@@ -1,0 +1,50 @@
+	if (Pixels[pos * 3 + 0] == 237 && Pixels[pos * 3 + 1] == 28 && Pixels[pos * 3 + 2] == 36)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 0.f, 17.f, true);
+
+	else if (Pixels[pos * 3 + 0] == 255 && Pixels[pos * 3 + 1] == 127 && Pixels[pos * 3 + 2] == 39)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 0.f, 0.f, true);
+
+	else if (Pixels[pos * 3 + 0] == 34 && Pixels[pos * 3 + 1] == 177 && Pixels[pos * 3 + 2] == 76)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 17.f, 17.f, false);
+		
+	else if (Pixels[pos * 3 + 0] == 185 && Pixels[pos * 3 + 1] == 122 && Pixels[pos * 3 + 2] == 87)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 17.f, 0.f, false);
+
+	else if (Pixels[pos * 3 + 0] == 195 && Pixels[pos * 3 + 1] == 195 && Pixels[pos * 3 + 2] == 195)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 34.f, 0.f, false);
+
+	else if (Pixels[pos * 3 + 0] == 181 && Pixels[pos * 3 + 1] == 230 && Pixels[pos * 3 + 2] == 29)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 34.f, 17.f, false);
+
+	else if (Pixels[pos * 3 + 0] == 255 && Pixels[pos * 3 + 1] == 242 && Pixels[pos * 3 + 2] == 0)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 51.f, 17.f, false);
+
+	else if (Pixels[pos * 3 + 0] == 127 && Pixels[pos * 3 + 1] == 127 && Pixels[pos * 3 + 2] == 127)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 51.f, 0.f, false);
+
+	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 162 && Pixels[pos * 3 + 2] == 232)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 68.f, 17.f, false);
+
+	else if (Pixels[pos * 3 + 0] == 163 && Pixels[pos * 3 + 1] == 73 && Pixels[pos * 3 + 2] == 164)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 68.f, 0.f, false);
+
+	else if (Pixels[pos * 3 + 0] == 153 && Pixels[pos * 3 + 1] == 217 && Pixels[pos * 3 + 2] == 234)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 85.f, 17.f, false);
+
+	else if (Pixels[pos * 3 + 0] == 64 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 128)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 85.f, 0.f, false);
+
+	else if (Pixels[pos * 3 + 0] == 63 && Pixels[pos * 3 + 1] == 72 && Pixels[pos * 3 + 2] == 204)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 119.f, 17.f, false);
+
+	else if (Pixels[pos * 3 + 0] == 255 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 128)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 119.f, 0.f, false);
+
+	else if (Pixels[pos * 3 + 0] == 112 && Pixels[pos * 3 + 1] == 146 && Pixels[pos * 3 + 2] == 190)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 102.f, 17.f, false);
+ 
+	else if (Pixels[pos * 3 + 0] == 128 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 255)
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 102.f, 0.f, false);
+
+	else
+		tileManager->CreateTile(STATIC, x * 15.f, y * 15.f, 15.f, 15.f, 8.f, 8.f, false);
