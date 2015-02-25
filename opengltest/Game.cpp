@@ -5,6 +5,8 @@
 #define WINDOW_SCREEN_WIDTH 256
 #define WINDOW_SCREEN_HEIGHT 196
 
+//I made a change. - Bonnyman
+
 /* this is called by std::sort to sort the list based on layerID
  *  for drawing in the proper order
  */
