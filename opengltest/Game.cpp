@@ -6,6 +6,7 @@
 #define WINDOW_SCREEN_HEIGHT 196
 
 //I made a change. - Bonnyman
+//Hi Bonnyman - Deryk
 
 /* this is called by std::sort to sort the list based on layerID
  *  for drawing in the proper order
