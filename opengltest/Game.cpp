@@ -5,12 +5,6 @@
 #define WINDOW_SCREEN_WIDTH 256
 #define WINDOW_SCREEN_HEIGHT 196
 
-//I made a change. - Bonnyman
-//Hi Bonnyman. - Deryk
-//Guys I'm here too! - Baker
-//P.S. Deryk you suck. - Baker
-//Get to work monkeys. - James
-
 /* this is called by std::sort to sort the list based on layerID
  *  for drawing in the proper order
  */
