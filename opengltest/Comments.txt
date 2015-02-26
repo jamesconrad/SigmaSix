@@ -1,0 +1,9 @@
+This is where we can write things down and do TODO statements to eachother
+
+
+TODO:
+Projectiles have momentum and cause a knockback.
+Fix all collision.
+Main menu.
+Audio.
+Map Transition.
