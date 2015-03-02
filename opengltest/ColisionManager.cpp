@@ -298,7 +298,7 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 					if (!(l > 0 || r < 0 || t > 0 || b < 0))
 					{
 						//Now we get to load the map
-						int mapID = chunkVectorPtr->at(chunkNum).at(i)->GetPortalMapID();
+						int mapID = portalMap.at(portalIter).mapTransitionID;
 						mapLoader->LoadMap(mapID);
 						RebuildColisionMap();
 						return;

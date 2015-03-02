@@ -105,7 +105,8 @@ bool MapLoader::LoadMap(int mapID)
 			
 			//printf("Loading Map: %f\n", progress);
 		}
-	}
+	}		
+	mapLoaded = true;
 	//next step is to create and fill the vbo
 	return true;
 }
