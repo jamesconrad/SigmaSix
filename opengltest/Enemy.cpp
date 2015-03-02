@@ -27,16 +27,20 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 	w = 34.f / 2;
 	h = 46.f / 2;
 	animFrame = shotTimer = 0.f;
-	texture->loadSpriteSheet("assets/nakedsheet.png");
-	texture->setNumberOfAnimations(5);
+	texture->loadSpriteSheet("assets/enemy.png");
+	texture->setNumberOfAnimations(9);
 	texture->setPosition(x, y);
 	texture->setSpriteFrameSize(34, 46);
-	texture->addSpriteAnimRow(0, 0, 1, 35.f, 0, 4);
-	texture->addSpriteAnimRow(1, 0, 48, 35.f, 0, 4);
-	texture->addSpriteAnimRow(2, 0, 95, 35.f, 0, 4);
-	texture->addSpriteAnimRow(3, 0, 142, 35.f, 0, 4);
-	texture->addSpriteAnimRow(4, 0, 1, 35.f, 47, 4);
-	texture->setCurrentAnimation(4);
+	texture->addSpriteAnimRow(4, 0, 1, 35.f, 0, 4);
+	texture->addSpriteAnimRow(5, 0, 48, 35.f, 0, 4);
+	texture->addSpriteAnimRow(6, 0, 95, 35.f, 0, 4);
+	texture->addSpriteAnimRow(7, 0, 142, 35.f, 0, 4);
+	texture->addSpriteAnimRow(0, 0, 189, 35.f, 0, 4);
+	texture->addSpriteAnimRow(1, 0, 236, 35.f, 0, 4);
+	texture->addSpriteAnimRow(2, 0, 283, 35.f, 0, 4);
+	texture->addSpriteAnimRow(3, 0, 330, 35.f, 0, 4);
+
+	texture->addSpriteAnimRow(8, 0, 189, 35.f, 47, 4);
 	
 	hpBG->sheet = bar;
 	hpBG->setNumberOfAnimations(1);
@@ -68,13 +72,18 @@ void Enemy::update(float dTime)
 	}
 
 	if (direction.x > direction.y && direction.x > 0.f)
-		texture->setCurrentAnimation(0);
+		curAnim = 0;
 	else if (direction.x < direction.y && direction.x < 0.f)
-		texture->setCurrentAnimation(2);
+		curAnim = 2;
 	else if (direction.y > direction.x && direction.y > 0.f)
-		texture->setCurrentAnimation(3);
+		curAnim = 3;
 	else if (direction.y < direction.x && direction.y < 0.f)
-		texture->setCurrentAnimation(1);
+		curAnim = 1;
+
+	if (state == state_attack)
+		texture->setCurrentAnimation(curAnim + 4);
+	else
+		texture->setCurrentAnimation(curAnim);
 
 	x += dTime * direction.x * speed;
 	y += dTime * direction.y * speed;
@@ -148,8 +157,6 @@ bool Enemy::Safe()
 
 void Enemy::Shoot()
 {
-	if (curAnim <= 3)
-		curAnim += 4;
 	texture->setCurrentAnimation(4);
 	float playerX = entityManager->getCXofID(0);
 	float playerY = entityManager->getCYofID(0);
