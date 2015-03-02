@@ -14,11 +14,12 @@
 #include "IL/ilu.h"
 #include "IL/ilut.h"
 #include "TileManager.h"
+#include "EntityManager.h"
 
 class MapLoader
 {
 public:
-	MapLoader(TileManager* tileManager);
+	MapLoader(TileManager* tileManager, EntityManager* entityManager);
 	~MapLoader();
 
 	bool LoadMap(int MapID);
@@ -30,6 +31,8 @@ private:
 	GLuint TextureID;
 	GLuint imageWidth, imageHeight, textureWidth, textureHeight;
 	TileManager* tileManager;
+	EntityManager* entityManager;
+	bool mapLoaded;
 };
 
 #endif

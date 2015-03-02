@@ -6,7 +6,7 @@ int hp, energy, energyRegen, damage;
 float speed, x, y, fireRate;
 vec2 direction, movement;
 */
-Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar)
+Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, float _y)
 {
 	texture = new Sprite;
 	projectileManager = projManager;
@@ -19,7 +19,8 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar)
 	energyRegen = 1;
 	damage = 5;
 	fireRate = 5;
-	x = y = 200;
+	x = _x;
+	y = _y;
 	speed = 0.1f;
 	animFrame = 0.f;
 	w = 34.f * 0.5f;

@@ -11,6 +11,9 @@ public:
 	void ForceTexID(int texID);
 	RECT GetRect();
 	bool GetColision();
+	void MakePortal(int mapTransitionID);
+	bool IsPortal();
+	int GetPortalMapID();
 
 	/*testSprite = new Sprite("images/HaggarSNEStransp.gif");
 	testSprite->setNumberOfAnimations(1);
@@ -23,6 +26,7 @@ public:
 private:
 	float x, y, w, h;
 	bool solid;
+	int portal;
 	Sprite* mySprite;
 };
 

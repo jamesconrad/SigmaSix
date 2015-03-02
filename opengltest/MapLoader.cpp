@@ -1,9 +1,10 @@
 #include "MapLoader.h"
-#define MAP_BASE_SAVE_FILE "assets/map_demo.png"
+#define MAP_BASE_SAVE_FILE "assets/maps.png"
 #define TERRAIN_SPRITE_SHEET "assets/map_sprites.png"
 
 //Rect mapSprites = MAP_ID_1_POSITION
 #define MAP_ID_1_POSITION {0.f,0.f,351.f,30.f}
+#define MAP_ID_0_POSITION {0.f,30.f,16.f,46.f}
 
 
 struct Rect
@@ -26,11 +27,13 @@ void MapLoader::freeTexture()
 	}
 }
 
-MapLoader::MapLoader(TileManager* tileMan)
+MapLoader::MapLoader(TileManager* tileMan, EntityManager* entityMan)
 {
 	TextureID = 0;
 	Pixels = NULL;
 	tileManager = tileMan;
+	entityManager = entityMan;
+	mapLoaded = false;
 }
 
 MapLoader::~MapLoader()
@@ -45,6 +48,7 @@ bool MapLoader::LoadMap(int mapID)
 	Rect mapData;
 	switch (mapID)
 	{
+	case 0: mapData = MAP_ID_0_POSITION; break;
 	case 1: mapData = MAP_ID_1_POSITION; break;
 	default:
 		printf("ERROR: Invalid map id %i\n", mapID);
@@ -76,6 +80,15 @@ bool MapLoader::LoadMap(int mapID)
 		printf("ERROR: Unable to load base map image %s\n", MAP_BASE_SAVE_FILE);
 		return false;
 	}
+
+	//Wipe current map data
+	if (mapLoaded)
+	{
+		tileManager->Clear();
+		entityManager->Clear();
+	}
+	else
+		entityManager->CreateEntity(PLAYER, 0, 0);
 	float done = 0;
 	float progress = 0;
 	GLuint size = mapData.w * mapData.h;

@@ -1,10 +1,11 @@
 #include "ColisionManager.h"
 
-ColisionManager::ColisionManager(EntityManager* entityMan, TileManager* tileMan, ProjectileManager* projMan)
+ColisionManager::ColisionManager(EntityManager* entityMan, TileManager* tileMan, ProjectileManager* projMan, MapLoader* mapLoad)
 {
 	entityManager = entityMan;
 	tileManager = tileMan;
 	projectileManager = projMan;
+	mapLoader = mapLoad;
 	tileManager->GetVars(&chunkW, &mapW, chunkVectorPtr);
 	chunkVectorPtr = tileManager->GetChunkVectorPtr();
 }
@@ -17,6 +18,7 @@ void ColisionManager::RebuildColisionMap()
 	chunkVectorPtr = tileManager->GetChunkVectorPtr();
 
 	colisionMap.clear();
+	portalMap.clear();
 	RECT tileRect = tileManager->GetTileRect(0, 0);
 	std::vector<RECT> initPushBack;
 	initPushBack.push_back(tileRect);
@@ -29,6 +31,16 @@ void ColisionManager::RebuildColisionMap()
 			{
 				tileRect = chunkVectorPtr->at(chunkNum).at(chunkPos)->GetRect();
 				
+				if (chunkVectorPtr->at(chunkNum).at(chunkPos)->IsPortal())
+				{
+					Portal tmpPort;
+					tmpPort.chunkNum = chunkNum;
+					tmpPort.colisionPos = colisionMap.at(chunkNum).size();
+					tmpPort.pos = tileRect;
+					tmpPort.mapTransitionID = chunkVectorPtr->at(chunkNum).at(chunkPos)->GetPortalMapID();
+					portalMap.push_back(tmpPort);
+				}
+
 				if (colisionMap.at(chunkNum).back().right == tileRect.left && colisionMap.at(chunkNum).back().bottom == tileRect.bottom)
 				{
 					colisionMap.at(chunkNum).back().right = tileRect.right;
@@ -272,6 +284,27 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 
 		if (!(l > 0 || r < 0 || t > 0 || b < 0))
 		{
+			//we have collision
+			//issue is that i need to derive the chunkVector location instead of the colisionMap location
+			for (int portalIter = 0, numOfPortals = portalMap.size(); portalIter < numOfPortals; portalIter++)
+			{
+				if (portalMap.at(portalIter).chunkNum == chunkNum && portalMap.at(portalIter).colisionPos == i)
+				{
+					l = portalMap.at(portalIter).pos.left - entPos.right;
+					r = portalMap.at(portalIter).pos.right - entPos.left;
+					t = portalMap.at(portalIter).pos.bottom - entPos.top;
+					b = portalMap.at(portalIter).pos.top - entPos.bottom;
+
+					if (!(l > 0 || r < 0 || t > 0 || b < 0))
+					{
+						//Now we get to load the map
+						int mapID = chunkVectorPtr->at(chunkNum).at(i)->GetPortalMapID();
+						mapLoader->LoadMap(mapID);
+						RebuildColisionMap();
+						return;
+					}
+				}
+			}
 			if (abs(l) < r)
 				mtd.x = l;
 			else

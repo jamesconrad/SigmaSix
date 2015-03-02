@@ -186,5 +186,6 @@ private:
 	EntityManager* entityManager;
 	ProjectileManager* projectileManager;
 	ColisionManager* colisionManager;
+	MapLoader* mapLoader;
 	Sprite *hpBar, *energyBar, *hpBG, *energyBG;
 };
