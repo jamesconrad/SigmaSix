@@ -294,7 +294,6 @@ void Game::DrawMainMenu()
 	*/
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	glEnable(GL_TEXTURE_2D);
 	mainMenu->Draw();
 	glDisable(GL_TEXTURE_2D);
 	setColor(1.f, 0.f, 0.f);
