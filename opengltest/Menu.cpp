@@ -19,6 +19,6 @@ void MenuClass::Draw()
 {
 	for (int i = 0, s = effects.size(); i < s; i++)
 		effects.at(i)->draw(1.f);
-	background->draw(0.23f);
+	background->draw(0.25f);
 }
 
