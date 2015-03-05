@@ -3,7 +3,6 @@
 
 #include "Vector2.h"
 #include "Sprite.h"
-#include "Item.h"
 
 class Entity
 {

@@ -1,5 +1,5 @@
-#ifndef ITEM
-#define ITEM
+#ifndef ITEM_H
+#define ITEM_H
 
 #include "Entity.h"
 
@@ -16,4 +16,4 @@ protected:
 	Entity* owner;
 };
 
-#endif ITEM
+#endif ITEM_H

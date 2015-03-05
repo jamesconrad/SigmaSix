@@ -7,6 +7,7 @@ public:
 	void Activate();
 	void Update(float dTime);
 	void OnFire();
+	void OnDamage();
 private:
 	
 };	

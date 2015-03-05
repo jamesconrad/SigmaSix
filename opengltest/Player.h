@@ -3,6 +3,7 @@
 
 #include "ProjectileManager.h"
 #include "Entity.h"
+#include "Item.h"
 
 class Player : public Entity
 {
