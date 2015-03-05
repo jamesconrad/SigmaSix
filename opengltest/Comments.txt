@@ -6,4 +6,6 @@ Projectiles have momentum and cause a knockback.
 Fix all collision.
 Main menu.
 Audio.
-Map Transition.
+
+BUGS:
+Bottom left corner beneath the border breaks the game

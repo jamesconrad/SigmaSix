@@ -55,17 +55,16 @@ void Game::initializeGame()
 	bars.height = 24;
 	bars.width = 120;
 	bars.textureID = hpBar->GetTexID();
+	
+	mainMenu = new MenuClass();
 
 	viewCam = new Camera;
 	tileManager = new TileManager;
 	projectileManager = new ProjectileManager();
 	entityManager = new EntityManager(projectileManager, bars);
-	entityManager->CreateEntity(PLAYER);
-	entityManager->CreateEntity(ENEMY);
-	MapLoader *map = new MapLoader(tileManager);
-	map->LoadMap(1);
-	free(map);
-	colisionManager = new ColisionManager(entityManager, tileManager, projectileManager);
+	mapLoader = new MapLoader(tileManager, entityManager);
+	mapLoader->LoadMap(0);
+	colisionManager = new ColisionManager(entityManager, tileManager, projectileManager, mapLoader);
 	colisionManager->RebuildColisionMap();
 
 	hpBar->sheet = bars;
@@ -291,12 +290,14 @@ void Game::DrawMainMenu()
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluOrtho2D(entityManager->getXofID(0) - WINDOW_SCREEN_WIDTH / 2.0, entityManager->getXofID(0) + 34 / 2 + WINDOW_SCREEN_WIDTH / 2.0,
-		entityManager->getYofID(0) - WINDOW_SCREEN_HEIGHT / 2.0, entityManager->getYofID(0) + 46 / 2 + WINDOW_SCREEN_HEIGHT / 2.0);
+	entityManager->getYofID(0) - WINDOW_SCREEN_HEIGHT / 2.0, entityManager->getYofID(0) + 46 / 2 + WINDOW_SCREEN_HEIGHT / 2.0);
 	*/
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-
+	mainMenu->Draw();
+	glDisable(GL_TEXTURE_2D);
 	setColor(1.f, 0.f, 0.f);
+	
 	drawText("Press any key to start!", WINDOW_SCREEN_WIDTH / 2 - 21, WINDOW_SCREEN_HEIGHT / 2 + 12);
 	glutSwapBuffers();
 }

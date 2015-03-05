@@ -50,6 +50,34 @@ void TileManager::CreateTile(tiletype tileType, float xPos, float yPos, float wi
 	//printf("%i\n", numOfTiles);
 }
 
+void TileManager::CreateTile(tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid, int mapTransitionID)
+{
+	int chunkNum = (int)((yPos / height) / CHUNK_WIDTH) * MAP_WIDTH_IN_CHUNKS + (int)((xPos / width) / CHUNK_WIDTH);
+	if (chunkNum >= chunkVector.size())
+	{
+		std::vector<Tile*> tilePushBackVector;
+		chunkVector.push_back(tilePushBackVector);
+		Tile* tilePushBackTile = new Tile(0.f, 0.f, 16.f, 16.f, 0.f, 0.f, true, texID, texW, texH);
+		for (int i = chunkVector.size(); chunkNum >= i; i++)
+			chunkVector.push_back(tilePushBackVector);
+	}
+
+	std::vector<Tile*>* tileVector = &chunkVector[chunkNum];
+	Tile* tmpTile = new Tile(xPos, yPos, width, height, texX, texY, solid, texID, texW, texH);
+//	tmpTile->MakePortal(mapTransitionID);
+	tmpTile->ForceTexID(texID);
+	tileVector->push_back(tmpTile);
+	chunkVector.at(chunkNum).back()->MakePortal(mapTransitionID);
+	numOfTiles++;
+	//printf("%i\n", numOfTiles);
+}
+
+void TileManager::Clear()
+{
+	chunkVector.clear();
+	chunkVector.shrink_to_fit();
+}
+
 void TileManager::RemoveTile(float x, float y)
 {
 	int chunkNum = (int)(y / CHUNK_WIDTH) * MAP_WIDTH_IN_CHUNKS + (int)(x / CHUNK_WIDTH);

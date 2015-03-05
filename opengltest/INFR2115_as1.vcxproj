@@ -101,6 +101,7 @@
     <ClCompile Include="HorizontalScrollingBackground.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapLoader.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileManager.cpp" />
@@ -119,6 +120,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="HorizontalScrollingBackground.h" />
     <ClInclude Include="MapLoader.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />

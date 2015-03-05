@@ -20,7 +20,7 @@ class EntityManager
 {
 public:
 	EntityManager(ProjectileManager* projManager, SpriteSheetInfo bar);
-	void CreateEntity(entitytype entityType);
+	void CreateEntity(entitytype entityType, float x, float y);
 	void DeleteEntity(int entityID);
 	void Update(float dTime);
 	void HandleInput(char key, bool press);
@@ -37,12 +37,14 @@ public:
 	int GetSize() { return entityVector.size(); }
 	RECT getRectOfID(int id) { return entityVector[id]->getRect(); }
 	void ModPosOfID(int id, vec2 mod);
+	void Clear();
 
 private:
 	std::vector<Entity*> entityVector;
 	std::vector<Entity*> entityVecotrIter;
 	ProjectileManager* projectileManager;
 	SpriteSheetInfo barTexID;
+	bool playerLoaded;
 
 };
 

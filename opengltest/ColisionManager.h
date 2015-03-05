@@ -4,11 +4,20 @@
 #include "EntityManager.h"
 #include "TileManager.h"
 #include "ProjectileManager.h"
+#include "MapLoader.h"
+
+struct Portal
+{
+	int chunkNum;
+	int colisionPos;
+	int mapTransitionID;
+	RECT pos;
+};
 
 class ColisionManager
 {
 public:
-	ColisionManager(EntityManager* entityManager, TileManager* tileManager, ProjectileManager* projectileManager);
+	ColisionManager(EntityManager* entityManager, TileManager* tileManager, ProjectileManager* projectileManager, MapLoader* mapLoader);
 	void RebuildColisionMap();
 	void Update();
 
@@ -19,11 +28,14 @@ private:
 	EntityManager* entityManager;
 	TileManager* tileManager;
 	ProjectileManager* projectileManager;
+	MapLoader* mapLoader;
 	
 	int chunkW, mapW;
 	std::vector<std::vector<Tile*>>* chunkVectorPtr;
 	std::vector<Projectile*>* projectileVectorPtr;
 	std::vector<std::vector<RECT>> colisionMap;
+	std::vector<Portal> portalMap;
+	
 };
 
 #endif

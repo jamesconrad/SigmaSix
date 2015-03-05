@@ -7,7 +7,7 @@
 class Player : public Entity
 {
 public:
-	Player(ProjectileManager* projManager, SpriteSheetInfo bar);
+	Player(ProjectileManager* projManager, SpriteSheetInfo bar, float x, float y);
 	~Player();
 	virtual void draw();
 	virtual void update(float dTime);

@@ -26,11 +26,29 @@ Tile::Tile(float xPos, float yPos, float width, float height, float texX, float 
 	mySprite->setSpriteFrameSize(width, height);
 	mySprite->addSpriteAnimFrame(0, texX+1.f, texY);
 	mySprite->setLayerID(3);
+	portal = -1;
 }
 
 void Tile::Draw(float cameraPosX, float cameraPosY)
 {
 	mySprite->draw(1.f);
+}
+
+void Tile::MakePortal(int mapTransitionID)
+{
+	portal = mapTransitionID;
+}
+
+bool Tile::IsPortal()
+{
+	if (portal != -1)
+		return true;
+	else return false;
+}
+
+int Tile::GetPortalMapID()
+{
+	return portal;
 }
 
 int Tile::GetTexID()

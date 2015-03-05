@@ -22,6 +22,7 @@
 #include "TileManager.h"
 #include "EntityManager.h"
 #include "Camera.h"
+#include "Menu.h"
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -181,10 +182,12 @@ private:
 	int frame = 0, time, timebase = 0, fps = 0;
 	int score;
 	float fTime = 0;
+	MenuClass* mainMenu;
 	Camera* viewCam;
 	TileManager* tileManager;
 	EntityManager* entityManager;
 	ProjectileManager* projectileManager;
 	ColisionManager* colisionManager;
+	MapLoader* mapLoader;
 	Sprite *hpBar, *energyBar, *hpBG, *energyBG;
 };

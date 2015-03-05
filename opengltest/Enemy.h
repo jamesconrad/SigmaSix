@@ -24,7 +24,7 @@ class EntityManager;
 class Enemy : public Entity
 {
 public:
-	Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar);
+	Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar, float x, float y);
 	virtual void draw();
 	virtual void update(float dTime); // will need to do ai stuff
 	virtual void ModPos(vec2 mod);

@@ -12,7 +12,7 @@
 //		Always offensive
 //		Will attempt to defend elites
 
-Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar)
+Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar, float _x, float _y)
 {
 	projectileManager = projMan;
 	entityManager = entityMan;
@@ -22,8 +22,8 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 	speed = 0.1f;//default 0.1f
 	hp = 100;
 	maxHP = 100;
-	x = 220;
-	y = 220;
+	x = _x;
+	y = _y;
 	w = 34.f / 2;
 	h = 46.f / 2;
 	animFrame = shotTimer = 0.f;

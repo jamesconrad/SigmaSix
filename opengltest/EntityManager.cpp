@@ -4,6 +4,7 @@ EntityManager::EntityManager(ProjectileManager* projManager, SpriteSheetInfo bar
 {
 	projectileManager = projManager;
 	barTexID = bar;
+	playerLoaded = false;
 }
 
 void EntityManager::Update(float dTime)
@@ -12,18 +13,36 @@ void EntityManager::Update(float dTime)
 		entityVector[i]->update(dTime);
 }
 
-void EntityManager::CreateEntity(entitytype entityType)
+void EntityManager::CreateEntity(entitytype entityType, float x, float y)
 {
-	if (entityType == PLAYER)
+	if (entityType == PLAYER && !playerLoaded)
 	{
-		Player* newEntity = new Player(projectileManager, barTexID);
+		Player* newEntity = new Player(projectileManager, barTexID, x, y);
 		entityVector.push_back(newEntity);
+		playerLoaded = true;
+	}
+	else if (entityType == PLAYER && playerLoaded)
+	{
+		//just move the player
+		float cx, cy;
+		vec2 pos;
+		cx = entityVector.at(0)->getX();
+		cy = entityVector.at(0)->getY();
+		pos.x = x - cx;
+		pos.y = y - cy;
+		entityVector.at(0)->ModPos(pos);
 	}
 	else if (entityType == ENEMY)
 	{
-		Enemy* newEntity = new Enemy(projectileManager, this, barTexID);
+		Enemy* newEntity = new Enemy(projectileManager, this, barTexID, x, y);
 		entityVector.push_back(newEntity);
 	}
+}
+
+void EntityManager::Clear()
+{
+	for (int i = 1, s = entityVector.size(); i < s; i++)
+		entityVector.erase(entityVector.begin() + i);
 }
 
 void EntityManager::HandleInput(char key, bool press)
