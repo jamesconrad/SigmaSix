@@ -3,6 +3,7 @@
 
 #include "Vector2.h"
 #include "Sprite.h"
+#include "Item.h"
 
 class Entity
 {
@@ -21,6 +22,11 @@ public:
 	virtual float getEnergy() { return 0.f; }
 	virtual float getMaxHP() { return 0.f; }
 	virtual float getMaxEnergy() { return 0.f; }
+
+	virtual void modDamage(float change) { return; }
+	virtual float getDamage() { return 0.0f; }
+	virtual void giveShield(float shield) { return; }
+
 
 private:
 	

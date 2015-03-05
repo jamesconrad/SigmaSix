@@ -31,6 +31,7 @@ public:
 	virtual void ModPos(vec2 mod);
 	void shoot();
 private:
+	std::vector<Item*> inventory;
 	Sprite* texture, *hpBar, *energyBar, *hpBG, *energyBG;
 	ProjectileManager* projectileManager;
 	int hp, energy, energyRegen, damage, maxHP, maxEnergy;

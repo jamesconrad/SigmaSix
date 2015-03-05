@@ -12,6 +12,7 @@
 
 #include <windows.h>
 #include "Game.h"
+#include <ctime>
 
 /******************************************/
 /* GLOBAL VARIABLES */
@@ -160,6 +161,7 @@ int main(int argc, char **argv)
 	theGame = new Game();
 	theGame->setNewWindowSize(WINDOW_WIDTH,WINDOW_HEIGHT);
 	theGame->initializeGame();
+	srand(time(NULL));
 
 	/* start the event handler */
 	glutMainLoop();

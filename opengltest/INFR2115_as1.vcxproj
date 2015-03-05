@@ -105,6 +105,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileManager.cpp" />
+    <ClCompile Include="Shield.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManager.cpp" />
@@ -119,6 +120,7 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="HorizontalScrollingBackground.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="MapLoader.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Object.h" />
@@ -126,6 +128,7 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileManager.h" />
     <ClInclude Include="resource1.h" />
+    <ClInclude Include="Shield.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManager.h" />
