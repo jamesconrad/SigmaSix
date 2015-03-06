@@ -2,10 +2,32 @@ This is where we can write things down and do TODO statements to eachother
 
 
 TODO:
+Items need functions to update the owners stats
 Projectiles have momentum and cause a knockback.
 Fix all collision.
 Main menu.
 Audio.
+
+
+
+
+
+ITEMS TODO:
+
+X	Shield
+	Sombody
+	List
+	All
+	Items
+	Here
+	Please
+	And
+	Thank
+	You
+
+
+
+
 
 BUGS:
 Bottom left corner beneath the border breaks the game

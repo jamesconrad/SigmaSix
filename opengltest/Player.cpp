@@ -29,6 +29,8 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	for (int i = 0; i < 256; i++)
 		keysPressed[i] = 0;
 
+	inventory.push_back(new I_Shield(this, 0.1f, 0.1f));
+
 	texture->loadSpriteSheet("assets/playersheet_d.png");
 	texture->setNumberOfAnimations(9);
 	texture->setPosition(x, y);
@@ -69,8 +71,11 @@ void Player::draw()
 
 void Player::update(float dTime)
 {
+	//update items
+	for (int i = 0, s = inventory.size(); i < s; i++)
+		inventory[i]->Update(dTime);
 	//update direction and movement
-	if (keysPressed['g']) hp--;
+	if (keysPressed['g']) this->Damage(1);
 	if (keysPressed['h']) hp++;
 	if (keysPressed[119])//w
 	{
@@ -171,6 +176,8 @@ void Player::shoot()
 	{
 		energy -= 10;
 		projectileManager->CreateProjectile(0, getCX(), getCY() + 0.5f * direction.x, direction.x, direction.y, damage, 3000.f, 0.2f);
+		for (int i = 0, s = inventory.size(); i < s; i++)
+			inventory[i]->OnFire();
 	}
 }
 

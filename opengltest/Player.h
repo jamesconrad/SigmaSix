@@ -3,7 +3,7 @@
 
 #include "ProjectileManager.h"
 #include "Entity.h"
-#include "Item.h"
+#include "Shield.h"
 
 class Player : public Entity
 {
@@ -23,6 +23,8 @@ public:
 	virtual float getMaxEnergy() { return maxEnergy; }
 	virtual void Damage(float projDamage) 
 	{ 
+		for (int i = 0, s = inventory.size(); i < s; i++)
+			inventory[i]->OnDamage();
 		if (hp < projDamage)
 			hp = 0;
 		else

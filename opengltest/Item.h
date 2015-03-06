@@ -12,7 +12,7 @@ public:
 	virtual void OnFire() { return; }
 	virtual void OnDamage() { return; }
 protected:
-	float cooldown, procRate;
+	float cooldown, procRate, maxCooldown;
 	Entity* owner;
 };
 
