@@ -7,6 +7,7 @@ Projectiles have momentum and cause a knockback.
 Fix all collision.
 Main menu.
 Audio.
+Finish setting the position of the ui elements.
 
 
 
@@ -31,3 +32,4 @@ X	Shield
 
 BUGS:
 Bottom left corner beneath the border breaks the game
+0.xf might be breaking the draw code. Try changing all vars to 0.1 instead of 0.1f to check.

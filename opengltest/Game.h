@@ -189,5 +189,5 @@ private:
 	ProjectileManager* projectileManager;
 	ColisionManager* colisionManager;
 	MapLoader* mapLoader;
-	Sprite *hpBar, *energyBar, *hpBG, *energyBG;
+	Sprite *hpBar, *energyBar, *hpBG, *energyBG, *s_Score, *s_Time;
 };

@@ -49,11 +49,13 @@ void Game::initializeGame()
 	hpBG = new Sprite;
 	energyBar = new Sprite;
 	energyBG = new Sprite;
+	s_Score = new Sprite;
+	s_Time = new Sprite;
 
-	hpBar->loadSpriteSheet("assets/bars.png");
+	hpBar->loadSpriteSheet("assets/ui.png");
 	SpriteSheetInfo bars;
-	bars.height = 24;
-	bars.width = 120;
+	bars.height = 170;
+	bars.width = 528;
 	bars.textureID = hpBar->GetTexID();
 	
 	mainMenu = new MenuClass();
@@ -71,16 +73,18 @@ void Game::initializeGame()
 	hpBG->sheet = bars;
 	energyBar->sheet = bars;
 	energyBG->sheet = bars;
+	s_Score->sheet = bars;
+	s_Time->sheet = bars;
 
 	hpBG->setNumberOfAnimations(1);
 	hpBG->setCurrentAnimation(0);
-	hpBG->setSpriteFrameSize(118, 8);
-	hpBG->addSpriteAnimFrame(0, 0, 14);
+	hpBG->setSpriteFrameSize(528, 59);
+	hpBG->addSpriteAnimFrame(0, 0, 53);
 
 	hpBar->setNumberOfAnimations(1);
 	hpBar->setCurrentAnimation(0);
-	hpBar->setSpriteFrameSize(116, 6);
-	hpBar->addSpriteAnimFrame(0, 0, 7);
+	hpBar->setSpriteFrameSize(497, 22);
+	hpBar->addSpriteAnimFrame(0, 8, 29);
 
 	energyBG->setNumberOfAnimations(1);
 	energyBG->setCurrentAnimation(0);
@@ -89,8 +93,18 @@ void Game::initializeGame()
 
 	energyBar->setNumberOfAnimations(1);
 	energyBar->setCurrentAnimation(0);
-	energyBar->setSpriteFrameSize(116, 6);
-	energyBar->addSpriteAnimFrame(0, 0, 0);
+	energyBar->setSpriteFrameSize(427, 22);
+	energyBar->addSpriteAnimFrame(0, 51, 0);
+
+	s_Score->setNumberOfAnimations(1);
+	s_Score->setCurrentAnimation(0);
+	s_Score->setSpriteFrameSize(134, 24);
+	s_Score->addSpriteAnimFrame(0, 0, 113);
+
+	s_Time->setNumberOfAnimations(1);
+	s_Time->setCurrentAnimation(0);
+	s_Time->setSpriteFrameSize(91, 24);
+	s_Time->addSpriteAnimFrame(0, 0, 146);
 }
 
 /* draw()
@@ -215,25 +229,36 @@ void Game::drawSprites()
 	if (dec <= 0)
 		w = 0;
 	else
-		dec > 1 ? w = 116 : w = 116 * dec;
-	hpBar->setSpriteFrameSize(w, 6);
+		dec > 1 ? w = 497 : w = 497 * dec;
+	hpBar->setSpriteFrameSize(w, 22);
 	dec = (float)entityManager->getEnergy(0) / entityManager->getMaxEnergy(0);
 	if (dec <= 0)
 		w = 0;
 	else
-		w = 116 * dec;
-	energyBar->setSpriteFrameSize(w, 6);
+		w = 427 * dec;
+	energyBar->setSpriteFrameSize(w, 22);
+
 
 
 	hpBG->setPosition(entityManager->getCXofID(0) - (120 + 4), entityManager->getYofID(0) - (64 + 10));
-	hpBG->draw(1.f);
-	hpBar->setPosition(entityManager->getCXofID(0) - (120 + 4 - 1), entityManager->getYofID(0) - (64 + 10 - 1));
-	hpBar->draw(1.f);
+	hpBG->draw(0.25);
 
+
+	hpBar->setPosition(entityManager->getCXofID(0) - (120 + 4 - 1), entityManager->getYofID(0) - (64 + 10 - 1));
+	hpBar->draw(0.25);
+	energyBar->setPosition(entityManager->getCXofID(0) - (4 - 1), entityManager->getYofID(0) - (64 + 10 - 1));
+	energyBar->draw(0.25);
+
+	s_Score->setPosition(entityManager->getCXofID(0) - (WINDOW_SCREEN_WIDTH / 2), entityManager->getYofID(0) + (64 + WINDOW_SCREEN_HEIGHT - 32));
+	s_Score->draw(0.25);
+
+	s_Time->setPosition(entityManager->getCXofID(0) - (WINDOW_SCREEN_WIDTH / 2), entityManager->getYofID(0) + (64 + WINDOW_SCREEN_HEIGHT - 16));
+	s_Time->draw(0.25);
+
+	/*
 	energyBG->setPosition(entityManager->getCXofID(0) - (4), entityManager->getYofID(0) - (64 + 10));
 	energyBG->draw(1.f);
-	energyBar->setPosition(entityManager->getCXofID(0) - (4 - 1), entityManager->getYofID(0) - (64 + 10 - 1));
-	energyBar->draw(1.f);
+	*/
 
 }
 
