@@ -1,20 +1,31 @@
 #ifndef ENTITYMANAGER_H
 #define ENTITYMANAGER_H
 
+
+#ifndef BCAST_S
+#define BCAST_S
+struct bcast
+{
+	char msg;
+	int sender;
+};
+#endif BCAST_S
+
+enum entitytype {
+	PLAYER,
+	ENEMY,
+	ELITE,
+	NEUTRAL,
+	BOSS,
+	MINIBOSS
+};
+
 #include "Entity.h"
 #include <vector>
 #include "Player.h"
 #include "Enemy.h"
 
 
-//to make things easy leave a comment to descibe the state of each component
-enum entitytype {
-	PLAYER, //framework setup
-	ENEMY, //framework setup
-	NEUTRAL,
-	BOSS,
-	MINIBOSS
-};
 
 class EntityManager
 {
@@ -39,9 +50,13 @@ public:
 	void ModPosOfID(int id, vec2 mod);
 	void Clear();
 
+	void bcastRecv(char msg, int sender);
+	void bcastSend();
+
 private:
 	std::vector<Entity*> entityVector;
 	std::vector<Entity*> entityVecotrIter;
+	std::vector<bcast> broadcast;
 	ProjectileManager* projectileManager;
 	SpriteSheetInfo barTexID;
 	bool playerLoaded;

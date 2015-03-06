@@ -12,8 +12,10 @@
 //		Always offensive
 //		Will attempt to defend elites
 
-Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar, float _x, float _y)
+Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar, float _x, float _y, int _i, entitytype entType)
 {
+	entityType = entType;
+	manIndex = _i;
 	projectileManager = projMan;
 	entityManager = entityMan;
 	texture = new Sprite;
@@ -22,8 +24,8 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 	speed = 0.1f;//default 0.1f
 	hp = 100;
 	maxHP = 100;
-	x = _x;
-	y = _y;
+	origX = x = _x;
+	origX = y = _y;
 	w = 34.f / 2;
 	h = 46.f / 2;
 	animFrame = shotTimer = 0.f;
@@ -59,6 +61,7 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 
 void Enemy::update(float dTime)
 {
+	stateCD -= dTime;
 	this->dTime = dTime;
 	updateAiState();
 	
@@ -129,13 +132,16 @@ void Enemy::updateAiState()
 		Shoot();
 		break;
 	case state_passive:
-		state = ai_state::state_attack;
+		ChangeState(state_attack, 0);
 		break;
 	case state_patrol:
 
 		break;
 	case state_runaway:
-
+		Runaway();
+		break;
+	case state_heal:
+		Heal();
 		break;
 	case state_chase:
 		//need to raycast to check if ai can hit player before changing
@@ -145,9 +151,36 @@ void Enemy::updateAiState()
 
 }
 
+void Enemy::Heal()
+{
+	float val = (float)rand() / RAND_MAX;
+	if (val < 0.1)
+		hp++;
+	if (!Safe())
+		ChangeState(state_attack, 10000);
+}
+
+void Enemy::Runaway()
+{
+	if (Safe())
+	{
+		if (entityType != ENEMY)
+		{
+			bcastSend('H', manIndex);
+			ChangeState(state_heal, 0);
+		}
+	}
+}
+
 void Enemy::EvadePlayer()
 {
+	if (entityType != ENEMY)
+		bcastSend('E', manIndex);
+}
 
+void Enemy::Patrol()
+{
+	ChangeState(state_chase, 0);
 }
 
 bool Enemy::Safe()
@@ -167,7 +200,7 @@ void Enemy::Shoot()
 	projDir.y = projDir.y / mag;
 	
 	if (mag > 8 * 15)
-		state = ai_state::state_chase;
+		ChangeState(state_chase, 0);
 
 	if (shotTimer >= 0.f)//1000.f seems to be a good speed, but 0.f is for testing
 	{
@@ -186,9 +219,14 @@ void Enemy::Chase()
 	vec2 plyrDir(playerX - getCX(), playerY - getCY());
 	float mag = sqrt(pow(plyrDir.x, 2) + pow(plyrDir.y, 2));
 
-	if (mag < 4 * 15)
+	if (mag > 10 * 15 && Safe())
 	{
-		state = ai_state::state_attack;
+		ChangeState(state_patrol, 100);
+		return;
+	}
+	else if (mag < 4 * 15)
+	{
+		ChangeState(state_attack, 3000);
 		direction.x = 0;
 		direction.y = 0;
 		return;
@@ -200,5 +238,30 @@ void Enemy::Chase()
 
 void Enemy::Damage(float projDamage)
 {
-	//hp -= projDamage;
+	hp -= projDamage;
+	if (hp <= 0)
+	{
+		bcastSend('X', manIndex);
+		state = state_dead;
+	}
+}
+
+void Enemy::ChangeState(ai_state newState, float cd)
+{
+	if (stateCD <= 0)
+	{
+		state = newState;
+		stateCD = cd;
+	}
+}
+
+void Enemy::bcastRecv(bcast broadcast)
+{
+	if (broadcast.msg == 'E')
+		state = state_attack;
+}
+
+void Enemy::bcastSend(char msg, int sender)
+{
+	entityManager->bcastRecv(msg, sender);
 }

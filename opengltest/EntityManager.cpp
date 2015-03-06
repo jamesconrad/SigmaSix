@@ -11,6 +11,7 @@ void EntityManager::Update(float dTime)
 {
 	for (int i = 0, size = entityVector.size(); i < size; i++)
 		entityVector[i]->update(dTime);
+	bcastSend();
 }
 
 void EntityManager::CreateEntity(entitytype entityType, float x, float y)
@@ -32,11 +33,16 @@ void EntityManager::CreateEntity(entitytype entityType, float x, float y)
 		pos.y = y - cy;
 		entityVector.at(0)->ModPos(pos);
 	}
-	else if (entityType == ENEMY)
+	else
 	{
-		Enemy* newEntity = new Enemy(projectileManager, this, barTexID, x, y);
+		Enemy* newEntity = new Enemy(projectileManager, this, barTexID, x, y, entityVector.size(), entityType);
 		entityVector.push_back(newEntity);
 	}
+}
+
+void EntityManager::DeleteEntity(int index)
+{
+
 }
 
 void EntityManager::Clear()
@@ -60,4 +66,22 @@ void EntityManager::DrawAll(float x, float y)
 void EntityManager::ModPosOfID(int id, vec2 mod)
 {
 	entityVector[id]->ModPos(mod);
+}
+
+void EntityManager::bcastRecv(char msg, int sender)
+{
+	bcast tmp;
+	tmp.msg = msg;
+	tmp.sender = sender;
+	broadcast.push_back(tmp);
+}
+
+void EntityManager::bcastSend()
+{
+	while (!broadcast.empty())
+	{
+		for (int ent = 1, s = entityVector.size(); ent < s; ent++)
+			entityVector.at(ent)->bcastRecv(broadcast.back());
+		broadcast.pop_back();
+	}
 }

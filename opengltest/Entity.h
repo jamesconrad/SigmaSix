@@ -4,6 +4,15 @@
 #include "Vector2.h"
 #include "Sprite.h"
 
+#ifndef BCAST_S
+#define BCAST_S
+struct bcast
+{
+	char msg;
+	int sender;
+};
+#endif BCAST_S
+
 class Entity
 {
 public:
@@ -25,6 +34,9 @@ public:
 	virtual void modDamage(float change) { return; }
 	virtual float getDamage() { return 0.0f; }
 	virtual void giveShield(float shield) { return; }
+
+	virtual void bcastRecv(bcast broadcast) {}
+	virtual void bcastSend(char msg, int sender) {}
 
 
 private:
