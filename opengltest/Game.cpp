@@ -48,7 +48,6 @@ void Game::initializeGame()
 	hpBar = new Sprite;
 	hpBG = new Sprite;
 	energyBar = new Sprite;
-	energyBG = new Sprite;
 	s_Score = new Sprite;
 	s_Time = new Sprite;
 
@@ -72,7 +71,6 @@ void Game::initializeGame()
 	hpBar->sheet = bars;
 	hpBG->sheet = bars;
 	energyBar->sheet = bars;
-	energyBG->sheet = bars;
 	s_Score->sheet = bars;
 	s_Time->sheet = bars;
 
@@ -85,11 +83,6 @@ void Game::initializeGame()
 	hpBar->setCurrentAnimation(0);
 	hpBar->setSpriteFrameSize(497, 22);
 	hpBar->addSpriteAnimFrame(0, 8, 29);
-
-	energyBG->setNumberOfAnimations(1);
-	energyBG->setCurrentAnimation(0);
-	energyBG->setSpriteFrameSize(118, 8);
-	energyBG->addSpriteAnimFrame(0, 0, 14);
 
 	energyBar->setNumberOfAnimations(1);
 	energyBar->setCurrentAnimation(0);
@@ -240,26 +233,20 @@ void Game::drawSprites()
 
 
 
-	hpBG->setPosition(entityManager->getCXofID(0) - (120 + 4), entityManager->getYofID(0) - (64 + 10));
+	hpBG->setPosition(entityManager->getCXofID(0) - (66), entityManager->getYofID(0) - (74));
 	hpBG->draw(0.25);
 
 
-	hpBar->setPosition(entityManager->getCXofID(0) - (120 + 4 - 1), entityManager->getYofID(0) - (64 + 10 - 1));
+	hpBar->setPosition(entityManager->getCXofID(0) - (66 - 3), entityManager->getYofID(0) - (74 - 8.5));
 	hpBar->draw(0.25);
-	energyBar->setPosition(entityManager->getCXofID(0) - (4 - 1), entityManager->getYofID(0) - (64 + 10 - 1));
+	energyBar->setPosition(entityManager->getCXofID(0) - (66 - 13), entityManager->getYofID(0) - (74 - 1.1));
 	energyBar->draw(0.25);
 
-	s_Score->setPosition(entityManager->getCXofID(0) - (WINDOW_SCREEN_WIDTH / 2), entityManager->getYofID(0) + (64 + WINDOW_SCREEN_HEIGHT - 32));
+	s_Score->setPosition(entityManager->getCXofID(0) - (132), entityManager->getYofID(0) + (100));
 	s_Score->draw(0.25);
 
-	s_Time->setPosition(entityManager->getCXofID(0) - (WINDOW_SCREEN_WIDTH / 2), entityManager->getYofID(0) + (64 + WINDOW_SCREEN_HEIGHT - 16));
+	s_Time->setPosition(entityManager->getCXofID(0) - (132), entityManager->getYofID(0) + (110));
 	s_Time->draw(0.25);
-
-	/*
-	energyBG->setPosition(entityManager->getCXofID(0) - (4), entityManager->getYofID(0) - (64 + 10));
-	energyBG->draw(1.f);
-	*/
-
 }
 
 /* for testing purposes to show you how to use
@@ -291,7 +278,7 @@ void Game::drawTestPrimitives()
 	setColor(1.f, 0.4f, 0.f);
 	char fpsbuffer[16];
 	ltoa(score, fpsbuffer, 10);
-	drawText(fpsbuffer, entityManager->getCXofID(0) - (10), entityManager->getYofID(0) - (64));
+	drawText(fpsbuffer, entityManager->getCXofID(0) - (130), entityManager->getYofID(0) + (101.1));
 
 
 	std::string gameClock; 
@@ -304,8 +291,8 @@ void Game::drawTestPrimitives()
 	if (secs < 10)
 		gameClock.append("0");
 	gameClock.append(ltoa(secs, fpsbuffer, 10));
-	setColor(1.f, 1.f, 1.f);//						   v width of text						  v text height
-	drawText(gameClock, entityManager->getCXofID(0) - (11.5f), entityManager->getYofID(0) - (64 + 16));
+	setColor(1.f, 1.f, 1.f);
+	drawText(gameClock, entityManager->getCXofID(0) - (130), entityManager->getYofID(0) + (111.1));
 
 }
 
@@ -381,7 +368,7 @@ void Game::keyboardDown(unsigned char key, int mouseX, int mouseY)
 		break;
 	case 27: // the escape key
 	case 'q': // the 'q' key
-		exit(1);
+		score*=10;
 		break;
 	}
 
@@ -399,8 +386,6 @@ void Game::keyboardUp(unsigned char key, int mouseX, int mouseY)
 	case 32: // the space bar
 		break;
 	case 27: // the escape key
-	case 'q': // the 'q' key
-		exit(1);
 		break;
 	}
 

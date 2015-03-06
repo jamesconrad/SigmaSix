@@ -117,7 +117,7 @@ void drawText(std::string s, float posX, float posY)
 	const char *text = s.c_str();
 	for(int i=0;i<s.length();i++)
 	{
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, text[i]);
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, text[i]);
 	}
 	glPopMatrix();
 }

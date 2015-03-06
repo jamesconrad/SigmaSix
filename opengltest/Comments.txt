@@ -7,7 +7,6 @@ Projectiles have momentum and cause a knockback.
 Fix all collision.
 Main menu.
 Audio.
-Finish setting the position of the ui elements.
 
 
 
