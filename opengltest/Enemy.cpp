@@ -238,12 +238,17 @@ void Enemy::Chase()
 
 void Enemy::Damage(float projDamage)
 {
-	hp -= projDamage;
-	if (hp <= 0)
+	if (!shielded)
 	{
-		bcastSend('X', manIndex);
-		state = state_dead;
+		hp -= projDamage;
+		if (hp <= 0)
+		{
+			bcastSend('X', manIndex);
+			state = state_dead;
+		}
 	}
+	else
+		shielded = false;
 }
 
 void Enemy::ChangeState(ai_state newState, float cd)

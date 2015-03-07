@@ -107,7 +107,6 @@ bool MapLoader::LoadMap(int mapID)
 		}
 	}		
 	mapLoaded = true;
-	//next step is to create and fill the vbo
 	return true;
 }
 

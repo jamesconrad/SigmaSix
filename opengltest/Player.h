@@ -10,28 +10,34 @@ class Player : public Entity
 public:
 	Player(ProjectileManager* projManager, SpriteSheetInfo bar, float x, float y);
 	~Player();
-	virtual void draw();
-	virtual void update(float dTime);
-	virtual void handleinput(char keycode, bool press);
-	virtual float getX() { return x; }
-	virtual float getY() { return y; }
-	virtual float getCX() { return x + w * 0.5f; }
-	virtual float getCY() { return y + h * 0.5f; }
-	virtual float getHP() { return hp; }
-	virtual float getEnergy() { return energy; }
-	virtual float getMaxHP() { return maxHP; }
-	virtual float getMaxEnergy() { return maxEnergy; }
-	virtual void Damage(float projDamage) 
+	void draw();
+	void update(float dTime);
+	void handleinput(char keycode, bool press);
+	float getX() { return x; }
+	float getY() { return y; }
+	float getCX() { return x + w * 0.5f; }
+	float getCY() { return y + h * 0.5f; }
+	float getHP() { return hp; }
+	float getEnergy() { return energy; }
+	float getMaxHP() { return maxHP; }
+	float getMaxEnergy() { return maxEnergy; }
+	void giveShield() { shielded = true; }
+	void Damage(float projDamage) 
 	{ 
-		for (int i = 0, s = inventory.size(); i < s; i++)
-			inventory[i]->OnDamage();
-		if (hp < projDamage)
-			hp = 0;
+		if (!shielded)
+		{
+			for (int i = 0, s = inventory.size(); i < s; i++)
+				inventory[i]->OnDamage();
+			if (hp < projDamage)
+				hp = 0;
+			else
+				hp -= projDamage;
+		}
 		else
-			hp -= projDamage;
+			shielded = false;
 	}
-	virtual RECT getRect() { RECT tmp = { x, y + h, x + w, y }; return tmp; }
-	virtual void ModPos(vec2 mod);
+	RECT getRect() { RECT tmp = { x, y + h, x + w, y }; return tmp; }
+	void ModPos(vec2 mod);
 	void shoot();
 private:
 	std::vector<Item*> inventory;
@@ -43,6 +49,7 @@ private:
 	float animFrame, lastShot;
 	bool keysPressed[256];
 	int curAnim;
+	bool shielded;
 };
 
 #endif

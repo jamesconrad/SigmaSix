@@ -33,7 +33,7 @@ public:
 
 	virtual void modDamage(float change) { return; }
 	virtual float getDamage() { return 0.0f; }
-	virtual void giveShield(float shield) { return; }
+	virtual void giveShield() { return; }
 
 	virtual void bcastRecv(bcast broadcast) {}
 	virtual void bcastSend(char msg, int sender) {}
