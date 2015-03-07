@@ -21,7 +21,7 @@ void I_Shield::Activate()
 	cooldown = maxCooldown;
 
 	//give the owner a 25% hp shield
-	owner->giveShield(owner->getMaxHP() / 4);
+	owner->giveShield();
 
 	printf("Shielded!\n");
 }

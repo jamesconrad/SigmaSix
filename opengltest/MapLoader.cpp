@@ -93,7 +93,7 @@ bool MapLoader::LoadMap(int mapID)
 	float progress = 0;
 	GLuint size = mapData.w * mapData.h;
 	tileManager->SetSize(mapData.w, mapData.h);
-	for (int y = 0; y < mapData.h; y++)
+	for (int y = mapData.h; y >= 0 ; y--)
 	{
 		for (int x = 0; x < mapData.w; x++)
 		{
