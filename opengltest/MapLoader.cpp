@@ -1,10 +1,11 @@
 #include "MapLoader.h"
-#define MAP_BASE_SAVE_FILE "assets/maps.png"
+#define MAP_BASE_SAVE_FILE "assets/level_maps.png"
 #define TERRAIN_SPRITE_SHEET "assets/map_sprites.png"
 
 //Rect mapSprites = MAP_ID_1_POSITION
-#define MAP_ID_1_POSITION {0.f,0.f,351.f,30.f}
-#define MAP_ID_0_POSITION {0.f,30.f,16.f,46.f}
+#define MAP_ID_0_POSITION {0,0,0,0} //HUB
+#define MAP_ID_1_POSITION {0,0,57,37} //Level 1 (Volcano level)
+#define MAP_ID_11_POSITION {0,59,18,77} //Level 1 Boss
 
 
 struct Rect
@@ -50,6 +51,7 @@ bool MapLoader::LoadMap(int mapID)
 	{
 	case 0: mapData = MAP_ID_0_POSITION; break;
 	case 1: mapData = MAP_ID_1_POSITION; break;
+	case 11: mapData = MAP_ID_11_POSITION; break;
 	default:
 		printf("ERROR: Invalid map id %i\n", mapID);
 		return false;
