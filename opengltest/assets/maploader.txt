@@ -102,3 +102,39 @@
 		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 51, 137, false);
 	else if (Pixels[pos * 3 + 0] == 195 && Pixels[pos * 3 + 1] == 195 && Pixels[pos * 3 + 2] == 195)//Bot Right Platform
 		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 68, 137, true);
+
+//Level 2 (Autumn)
+/*R1*/	else if (Pixels[pos * 3 + 0] == 127 && Pixels[pos * 3 + 1] == 127 && Pixels[pos * 3 + 2] == 127)//Lava door
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 0, 120, true);//Need to convert to portals
+	else if (Pixels[pos * 3 + 0] == 255 && Pixels[pos * 3 + 1] == 111 && Pixels[pos * 3 + 2] == 132)//Top Cactus
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 17, 120, true);
+	else if (Pixels[pos * 3 + 0] == 49 && Pixels[pos * 3 + 1] == 180 && Pixels[pos * 3 + 2] == 213)
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 34, 120, true);
+	else if (Pixels[pos * 3 + 0] == 185 && Pixels[pos * 3 + 1] == 208 && Pixels[pos * 3 + 2] == 53)
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 51, 120, false);
+	else if (Pixels[pos * 3 + 0] == 122 && Pixels[pos * 3 + 1] == 153 && Pixels[pos * 3 + 2] == 108)
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 68, 120, true);
+
+/*R2*/	else if (Pixels[pos * 3 + 0] == 255 && Pixels[pos * 3 + 1] == 227 && Pixels[pos * 3 + 2] == 132)
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 0, 103, true);
+	else if (Pixels[pos * 3 + 0] == 149 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 22)
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 17, 103, true);
+	else if (Pixels[pos * 3 + 0] == 222 && Pixels[pos * 3 + 1] == 193 && Pixels[pos * 3 + 2] == 165)
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 34, 103, true);
+	else if (Pixels[pos * 3 + 0] == 240 && Pixels[pos * 3 + 1] == 168 && Pixels[pos * 3 + 2] == 147)
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 51, 103, false);
+	else if (Pixels[pos * 3 + 0] == 163 && Pixels[pos * 3 + 1] == 224 && Pixels[pos * 3 + 2] == 207)
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 68, 103, true);
+
+/*R3*/	else if (Pixels[pos * 3 + 0] == 213 && Pixels[pos * 3 + 1] == 192 && Pixels[pos * 3 + 2] == 174)
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 0, 86, true);
+	else if (Pixels[pos * 3 + 0] == 208 && Pixels[pos * 3 + 1] == 174 && Pixels[pos * 3 + 2] == 213)//Desert door
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 17, 86, true);//Need to convert to portals
+	else if (Pixels[pos * 3 + 0] == 219 && Pixels[pos * 3 + 1] == 136 && Pixels[pos * 3 + 2] == 251)
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 34, 86, true);
+	
+//END DESERT
+	else if (Pixels[pos * 3 + 0] == 185 && Pixels[pos * 3 + 1] == 122 && Pixels[pos * 3 + 2] == 87)
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 51, 86, false);
+	else if (Pixels[pos * 3 + 0] == 195 && Pixels[pos * 3 + 1] == 195 && Pixels[pos * 3 + 2] == 195)
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 68, 86, true);
