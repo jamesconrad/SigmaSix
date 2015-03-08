@@ -320,6 +320,16 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 				mtd.x = 0;
 
 			entityManager->ModPosOfID(entityIter, mtd);
+			
+			if (mtd.x)
+				entityManager->HandleInput('a', false);
+			else
+				entityManager->HandleInput('d', false);
+
+			if (mtd.y)
+				entityManager->HandleInput('w', false);
+			else
+				entityManager->HandleInput('s', false);
 		}
 	}
 }
