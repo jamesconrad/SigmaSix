@@ -94,6 +94,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Audio.cpp" />
     <ClCompile Include="ColisionManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EntityManager.cpp" />
@@ -112,6 +113,7 @@
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Audio.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ColisionManager.h" />
     <ClInclude Include="drawPrimitives.h" />
