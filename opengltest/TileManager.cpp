@@ -37,7 +37,8 @@ void TileManager::CreateTile(tiletype tileType, float xPos, float yPos, float wi
 	{
 		std::vector<Tile*> tilePushBackVector;
 		chunkVector.push_back(tilePushBackVector);
-		Tile* tilePushBackTile = new Tile(0.f, 0.f, 16.f, 16.f, 0.f, 0.f, true, texID, texW, texH);
+		//CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 136, 0, false);
+		Tile* tilePushBackTile = new Tile(0.f, 0.f, 16.f, 16.f, 136, 0, true, texID, texW, texH);
 		for (int i = chunkVector.size(); chunkNum >= i; i++)
 			chunkVector.push_back(tilePushBackVector);
 	}
@@ -99,7 +100,7 @@ void TileManager::DrawScene(float cameraPosX, float cameraPosY)
 
 	DrawChunk(chunkNum, cameraPosX, cameraPosY);
 
-	if (chunkPosX >= 7.f && chunkPosX <= 8.f && chunkPosY >= 7.f && chunkPosX <= 8.f)
+	if (chunkPosX >= 10 && chunkPosX <= 11 && chunkPosY >= 10 && chunkPosX <= 11)
 	{
 		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS - 1, cameraPosX, cameraPosY);
 		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS, cameraPosX, cameraPosY);
@@ -112,7 +113,7 @@ void TileManager::DrawScene(float cameraPosX, float cameraPosY)
 		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS, cameraPosX, cameraPosY);
 		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS + 1, cameraPosX, cameraPosY);
 	}
-	else if (chunkPosX <= 8.f && chunkPosY <= 8.f)
+	else if (chunkPosX <= 11 && chunkPosY <= 10)
 	{
 		//bottom left
 		//printf("bl\n");
@@ -120,7 +121,7 @@ void TileManager::DrawScene(float cameraPosX, float cameraPosY)
 		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS - 1, cameraPosX, cameraPosY);
 		DrawChunk(chunkNum - 1, cameraPosX, cameraPosY);
 	}
-	else if (chunkPosX >= 7.f && chunkPosY <= 8.f)
+	else if (chunkPosX >= 10 && chunkPosY <= 11)
 	{
 		//bottom right
 		//printf("br\n");
@@ -128,7 +129,7 @@ void TileManager::DrawScene(float cameraPosX, float cameraPosY)
 		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS + 1, cameraPosX, cameraPosY);
 		DrawChunk(chunkNum + 1, cameraPosX, cameraPosY);
 	}
-	else if (chunkPosX <= 8.f && chunkPosY >= 7.f)
+	else if (chunkPosX <= 11 && chunkPosY >= 10)
 	{
 		//top left
 		//printf("tl\n");
@@ -136,7 +137,7 @@ void TileManager::DrawScene(float cameraPosX, float cameraPosY)
 		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS - 1, cameraPosX, cameraPosY);
 		DrawChunk(chunkNum - 1, cameraPosX, cameraPosY);
 	}
-	else if (chunkPosX >= 7.f && chunkPosY >= 7.f)
+	else if (chunkPosX >= 10 && chunkPosY >= 10)
 	{
 		//top right
 		//printf("tr\n");

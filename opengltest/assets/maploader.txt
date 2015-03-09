@@ -73,37 +73,37 @@
 	*/
 //Level 1 (Volcano)
 /*R1*/	else if (Pixels[pos * 3 + 0] == 237 && Pixels[pos * 3 + 1] == 28 && Pixels[pos * 3 + 2] == 36)//Small Rock
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 0, 171, true);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 0, 171, true);
 	else if (Pixels[pos * 3 + 0] == 255 && Pixels[pos * 3 + 1] == 127 && Pixels[pos * 3 + 2] == 39)//Top Tall Rock
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 17, 171, true);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 17, 171, true);
 	else if (Pixels[pos * 3 + 0] == 255 && Pixels[pos * 3 + 1] == 242 && Pixels[pos * 3 + 2] == 0)//Top Left Platform
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 34, 171, true);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 34, 171, true);
 	else if (Pixels[pos * 3 + 0] == 34 && Pixels[pos * 3 + 1] == 177 && Pixels[pos * 3 + 2] == 76)//Top Middle Platform
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 51, 171, false);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 51, 171, false);
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 162 && Pixels[pos * 3 + 2] == 232)//Top Right Platform
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 68, 171, true);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 68, 171, true);
 
 /*R2*/	else if (Pixels[pos * 3 + 0] == 63 && Pixels[pos * 3 + 1] == 72 && Pixels[pos * 3 + 2] == 204)//Lava
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 0, 154, true);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 0, 154, true);
 	else if (Pixels[pos * 3 + 0] == 163 && Pixels[pos * 3 + 1] == 73 && Pixels[pos * 3 + 2] == 164)//Bottom Tall Rock
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 17, 154, true);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 17, 154, true);
 	else if (Pixels[pos * 3 + 0] == 200 && Pixels[pos * 3 + 1] == 191 && Pixels[pos * 3 + 2] == 231)//Middle Left Platform
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 34, 154, true);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 34, 154, true);
 	else if (Pixels[pos * 3 + 0] == 112 && Pixels[pos * 3 + 1] == 146 && Pixels[pos * 3 + 2] == 190)//Middle Middle Platform
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 51, 154, false);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 51, 154, false);
 	else if (Pixels[pos * 3 + 0] == 153 && Pixels[pos * 3 + 1] == 217 && Pixels[pos * 3 + 2] == 234)//Middle Right Platform
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 68, 154, true);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 68, 154, true);
 
 /*R3*/	else if (Pixels[pos * 3 + 0] == 255 && Pixels[pos * 3 + 1] == 174 && Pixels[pos * 3 + 2] == 201)//Horiz Lava Bridge
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 0, 137, true);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 0, 137, true);
 	else if (Pixels[pos * 3 + 0] == 255 && Pixels[pos * 3 + 1] == 201 && Pixels[pos * 3 + 2] == 14)//Vert Lava Bridge
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 17, 137, true);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 17, 137, true);
 	else if (Pixels[pos * 3 + 0] == 239 && Pixels[pos * 3 + 1] == 228 && Pixels[pos * 3 + 2] == 176)//Bot Left Platform
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 34, 137, true);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 34, 137, true);
 	else if (Pixels[pos * 3 + 0] == 185 && Pixels[pos * 3 + 1] == 122 && Pixels[pos * 3 + 2] == 87)//Bot Middle Platform
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 51, 137, false);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 51, 137, false);
 	else if (Pixels[pos * 3 + 0] == 195 && Pixels[pos * 3 + 1] == 195 && Pixels[pos * 3 + 2] == 195)//Bot Right Platform
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 68, 137, true);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 68, 137, true);
 
 //Level 2 (Autumn)
 /*R1*/	else if (Pixels[pos * 3 + 0] == 127 && Pixels[pos * 3 + 1] == 127 && Pixels[pos * 3 + 2] == 127)//Lava door
@@ -140,3 +140,12 @@
 		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 51, 86, false);
 	else if (Pixels[pos * 3 + 0] == 195 && Pixels[pos * 3 + 1] == 195 && Pixels[pos * 3 + 2] == 195)
 		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 68, 86, true);
+
+
+
+
+
+
+	//Case where white background
+	else
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 136, 0, false);
