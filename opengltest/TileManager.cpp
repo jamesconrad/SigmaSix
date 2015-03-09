@@ -38,7 +38,7 @@ void TileManager::CreateTile(tiletype tileType, float xPos, float yPos, float wi
 		std::vector<Tile*> tilePushBackVector;
 		chunkVector.push_back(tilePushBackVector);
 		//CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 136, 0, false);
-		Tile* tilePushBackTile = new Tile(0.f, 0.f, 16.f, 16.f, 136, 0, true, texID, texW, texH);
+		Tile* tilePushBackTile = new Tile(0, 0, 16, 16, 136, 0, false, texID, texW, texH);
 		for (int i = chunkVector.size(); chunkNum >= i; i++)
 			chunkVector.push_back(tilePushBackVector);
 	}
@@ -58,14 +58,13 @@ void TileManager::CreateTile(tiletype tileType, float xPos, float yPos, float wi
 	{
 		std::vector<Tile*> tilePushBackVector;
 		chunkVector.push_back(tilePushBackVector);
-		Tile* tilePushBackTile = new Tile(0.f, 0.f, 16.f, 16.f, 0.f, 0.f, true, texID, texW, texH);
+		Tile* tilePushBackTile = new Tile(0, 0, 16, 16, 136, 0, true, texID, texW, texH);
 		for (int i = chunkVector.size(); chunkNum >= i; i++)
 			chunkVector.push_back(tilePushBackVector);
 	}
 
 	std::vector<Tile*>* tileVector = &chunkVector[chunkNum];
 	Tile* tmpTile = new Tile(xPos, yPos, width, height, texX, texY, solid, texID, texW, texH);
-//	tmpTile->MakePortal(mapTransitionID);
 	tmpTile->ForceTexID(texID);
 	tileVector->push_back(tmpTile);
 	chunkVector.at(chunkNum).back()->MakePortal(mapTransitionID);

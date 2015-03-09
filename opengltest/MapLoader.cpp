@@ -5,7 +5,7 @@
 //Rect mapSprites = MAP_ID_1_POSITION
 #define MAP_ID_0_POSITION {0,0,0,0} //HUB
 #define MAP_ID_1_POSITION {0,20,37,57} //Level 1 (Volcano level)
-#define MAP_ID_11_POSITION {0,0,17,17} //Level 1 Boss
+#define MAP_ID_11_POSITION {0,0,19,19} //Level 1 Boss
 
 #define MAP_ID_2_POSITION {0,0,57,37} //Level 2 (Autumn level)
 #define MAP_ID_12_POSITION {0,59,18,77} //Level 2 Boss
@@ -113,7 +113,8 @@ bool MapLoader::LoadMap(int mapID)
 			
 			//printf("Loading Map: %f\n", progress);
 		}
-	}		
+	}
+	printf("%i",mapID);
 	mapLoaded = true;
 	return true;
 }
