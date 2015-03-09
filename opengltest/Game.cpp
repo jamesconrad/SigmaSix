@@ -52,6 +52,7 @@ void Game::initializeGame()
 	s_Time = new Sprite;
 	entBarSprite = new Sprite;
 
+	entBarSprite->loadSpriteSheet("assets/bars.png");
 	hpBar->loadSpriteSheet("assets/ui.png");
 	SpriteSheetInfo bars;
 	bars.height = 170;
