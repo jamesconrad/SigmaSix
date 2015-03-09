@@ -157,6 +157,11 @@
 		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 51, 154, false);
 		entityManager->CreateEntity(PLAYER, x * 15, (mapData.h - y) * 15);
 	}
+	else if (Pixels[pos * 3 + 0] == 138 && Pixels[pos * 3 + 1] == 138 && Pixels[pos * 3 + 2] == 138)
+	{	
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 51, 154, false);
+		entityManager->CreateEntity(ENEMY, x * 15, (mapData.h - y) * 15);
+	}
 	//Case where white background
 	//else
 	//	tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 136, 0, false);
