@@ -164,6 +164,20 @@ void Player::update(float dTime)
 	
 }
 
+void Player::cancelMovement(char dir)
+{
+	if (dir == 'u')//up
+		keysPressed[119] = false;
+	else if (dir == 'l') //left *a
+		keysPressed[97] = false;
+	else if (dir == 'r')
+		keysPressed[100] = false;
+	else if (dir == 'd')
+		keysPressed[115] = false;
+
+
+}
+
 void Player::handleinput(char keycode, bool press)
 {
 	printf("%i - %i ", keycode, press);

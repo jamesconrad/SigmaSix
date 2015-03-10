@@ -23,7 +23,7 @@ Projectile::Projectile(int managerIndex, int texID, float startX, float startY, 
 	y = startY;
 	index = managerIndex;
 	projNum = projN;
-	float deg = atan2(direction.y, direction.x) * 180 / 3.14;
+	float deg = atan2(direction.y, direction.x) * 180 / 3.14; // wtf is atan2?
 	//POINT r1 = RotatePoint(x + (w * scale / 2.f), y + (h * scale / 2.f), startX, startY, deg);
 	//POINT r2 = RotatePoint(x + (w * scale / 2.f), y + (h * scale / 2.f), startX + w * scale, startY + h * scale, deg);
 	//r1.x >= r2.x ? rRect.maxX = r1.x, rRect.minX = r2.x : rRect.maxX = r2.x, rRect.minX = r1.x;

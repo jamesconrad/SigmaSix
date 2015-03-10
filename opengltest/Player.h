@@ -22,6 +22,7 @@ public:
 	float getMaxHP() { return maxHP; }
 	float getMaxEnergy() { return maxEnergy; }
 	void giveShield() { shielded = true; }
+	virtual void cancelMovement(char dir);
 	void Damage(float projDamage) 
 	{ 
 		if (!shielded)

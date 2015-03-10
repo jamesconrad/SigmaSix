@@ -50,6 +50,7 @@ public:
 	void ModPosOfID(int id, vec2 mod);
 	void Clear();
 
+	//virtual void cancelMovement();
 	void bcastRecv(char msg, int sender);
 	void bcastSend();
 
