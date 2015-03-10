@@ -150,10 +150,10 @@ void ColisionManager::Update()
 		for (int projectileIter = projectileVectorPtr->size() - 1; projectileIter >= 0; projectileIter--)
 		{
 			//check if projectiles are owned by the entity
-			//if (entityIter == 0 && (projectileVectorPtr->at(projectileIter)->GetType() != 0))
-			//	break;
-			//else if (entityIter != 0 && (projectileVectorPtr->at(projectileIter)->GetType() != 1))
-			//	break;
+			if (entityIter == 0 && (projectileVectorPtr->at(projectileIter)->GetType() != 0))
+				break;
+			else if (entityIter != 0 && (projectileVectorPtr->at(projectileIter)->GetType() != 1))
+				break;
 			RECT proj = projectileVectorPtr->at(projectileIter)->GetRect();
 			float l = proj.left - entPos.right;
 			float r = proj.right - entPos.left;
@@ -325,6 +325,16 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 				mtd.x = 0;
 
 			entityManager->ModPosOfID(entityIter, mtd);
+			
+			if (mtd.x)
+				entityManager->HandleInput('a', false);
+			else
+				entityManager->HandleInput('d', false);
+
+			if (mtd.y)
+				entityManager->HandleInput('w', false);
+			else
+				entityManager->HandleInput('s', false);
 		}
 	}
 }

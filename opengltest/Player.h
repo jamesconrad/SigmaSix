@@ -15,8 +15,8 @@ public:
 	void handleinput(char keycode, bool press);
 	float getX() { return x; }
 	float getY() { return y; }
-	float getCX() { return x + w * 0.5f; }
-	float getCY() { return y + h * 0.5f; }
+	float getCX() { return x + w * 0.5; }
+	float getCY() { return y + h * 0.5; }
 	float getHP() { return hp; }
 	float getEnergy() { return energy; }
 	float getMaxHP() { return maxHP; }
@@ -37,7 +37,16 @@ public:
 		else
 			shielded = false;
 	}
-	RECT getRect() { RECT tmp = { x, y + h, x + w, y }; return tmp; }
+	RECT getRect() 
+	{ 
+		RECT tmp; 
+		tmp.left = getCX() - 5;
+		tmp.bottom = getCY() - 7;
+		tmp.right = getCX() + 5;
+		tmp.top = getCY() + 5;
+		return tmp;
+	}
+
 	void ModPos(vec2 mod);
 	void shoot();
 private:

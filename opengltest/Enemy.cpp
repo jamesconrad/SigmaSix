@@ -109,7 +109,7 @@ void Enemy::draw()
 {
 	texture->draw(0.5f);
 	hpBG->draw(0.25f);
-	hpBar->draw(0.25f);hp--;
+	hpBar->draw(0.25f);
 }
 
 void Enemy::ModPos(vec2 mod)
