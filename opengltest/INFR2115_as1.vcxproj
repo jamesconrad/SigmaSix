@@ -110,6 +110,7 @@
     <ClCompile Include="ScriptReader.cpp" />
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="EnergyRegen.cpp" />
+    <ClCompile Include="SpeedMod.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManager.cpp" />
@@ -137,6 +138,7 @@
     <ClInclude Include="resource1.h" />
     <ClInclude Include="ScriptReader.h" />
     <ClInclude Include="Shield.h" />
+    <ClInclude Include="SpeedMod.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManager.h" />
