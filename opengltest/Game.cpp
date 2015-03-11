@@ -66,7 +66,7 @@ void Game::initializeGame()
 	mainMenu = new MenuClass();
 
 	viewCam = new Camera;
-	tileManager = new TileManager;
+	tileManager = TileManager::instance();
 	projectileManager = ProjectileManager::instance();
 	entityManager = new EntityManager(projectileManager, entBars);
 	mapLoader = new MapLoader(tileManager, entityManager);
