@@ -67,7 +67,7 @@ void Game::initializeGame()
 
 	viewCam = new Camera;
 	tileManager = new TileManager;
-	projectileManager = new ProjectileManager();
+	projectileManager = ProjectileManager::instance();
 	entityManager = new EntityManager(projectileManager, entBars);
 	mapLoader = new MapLoader(tileManager, entityManager);
 	mapLoader->LoadMap(1);
