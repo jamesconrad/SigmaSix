@@ -11,7 +11,11 @@ enum tiletype{
 class TileManager
 {
 public:
-	TileManager();
+	static TileManager* instance()
+	{
+		static TileManager *instance = new TileManager();
+		return instance;
+	}
 	void CreateTile(tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid);
 	void CreateTile(tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid, int mapTransitionID);
 	void RemoveTile(float x, float y);
@@ -27,6 +31,7 @@ public:
 	std::vector<std::vector<Tile*>>* TileManager::GetChunkVectorPtr();
 
 private:
+	TileManager();
 	int GetTexID();
 	std::vector<std::vector<Tile*>> chunkVector;
 	std::vector<std::vector<Tile*>> tileVectorIter;
