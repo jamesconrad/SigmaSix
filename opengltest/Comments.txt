@@ -25,7 +25,7 @@ X	Shield
 	HP+
 	Energy charge
 	DMG+
-	SPD+
+X	SPD+
 X	MAXENG+
 
 
