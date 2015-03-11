@@ -24,6 +24,7 @@ public:
 	void giveShield() { shielded = true; }
 	virtual void cancelMovement(char dir);
 	void energyRegenMod(float value) { energyRegenCD *= value; }
+	void speedMod(float value) { speed *= value; }
 	void Damage(float projDamage) 
 	{ 
 		if (!shielded)

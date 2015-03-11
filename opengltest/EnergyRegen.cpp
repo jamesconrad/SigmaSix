@@ -2,32 +2,14 @@
 
 I_EnergyRegen::I_EnergyRegen(Entity* owner, float cooldown, float procRate) : Item(owner, cooldown, procRate)
 {
-
-}
-
-void I_EnergyRegen::Update()
-{
-	cooldown -= dTime;
-}
-
-void I_EnergyRegen::OnFire()
-{
-
+	Activate();
 }
 
 void I_EnergyRegen::Activate()
 {
 	
-	//give the owner a 25% hp shield
-	owner->giveShield();
+	//give the owner a 5% energy regen time reduction
+	owner->energyRegenMod(0.05);
 
-	printf("Shielded!\n");
-}
-
-void I_EnergyRegen::OnDamage()
-{
-	float val = (float)rand() / RAND_MAX;
-
-	if (val < procRate && cooldown < 0)
-		Activate();
+	printf("Energy regen plus!\n");
 }
