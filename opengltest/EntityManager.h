@@ -53,6 +53,7 @@ public:
 	RECT getRectOfID(int id) { return entityVector[id]->getRect(); }
 	void ModPosOfID(int id, vec2 mod);
 	float SpeedOfID(int id) { return entityVector[id]->getSpeed(); }
+	void FreezeID(int id, bool status) { entityVector[id]->Freeze(status); }
 	void Clear();
 
 	//virtual void cancelMovement();

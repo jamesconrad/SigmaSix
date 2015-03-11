@@ -35,6 +35,7 @@ public:
 	float getCY() { return y + h * 0.25f; }
 	float getX() { return x; }
 	float getY() { return y; }
+	void Freeze(bool status) { frozen = status; }
 	float getSpeed() { return speed; }
 	void giveShield() { shielded = true; }
 	RECT getRect();
@@ -71,6 +72,7 @@ private:
 	entitytype entityType;
 	float stateCD;
 	bool shielded;
+	bool frozen;
 };
 
 #endif

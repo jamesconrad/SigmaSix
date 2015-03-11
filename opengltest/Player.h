@@ -23,6 +23,7 @@ public:
 	float getMaxHP() { return maxHP; }
 	float getMaxEnergy() { return maxEnergy; }
 	void giveShield() { shielded = true; }
+	void Freeze(bool status) { return; }
 	virtual void cancelMovement(char dir);
 	void energyRegenMod(float value) { energyRegenCd *= value; }
 	void speedMod(float value) { speed *= value; }
