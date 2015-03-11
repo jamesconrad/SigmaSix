@@ -1,5 +1,6 @@
 #include "Item.h"
 #include "Entity.h"
+#include "ProjectileManager.h"
 
 class Aura : public Item
 {
@@ -16,6 +17,8 @@ public:
 private:
 	float size;		// the radius away from the player this will impact 
 	float scaler;//to convert health into size
+	float damage;
+	float duration;
 
 };
 
