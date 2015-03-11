@@ -8,8 +8,20 @@ Aura::Aura(Entity* own, float cd, float pR) :Item(own, cd, pR)
 	return;
 }
 
+void distanceToPlayer()
+{
+	
+}
+
 void Aura::Update(float dTime)
 {
-
-
+	size = (owner->getMaxHP - owner->getHP)*scaler;
+	cooldown -= dTime;
+	
 }
+
+void Aura::Activate()
+{
+	
+}
+

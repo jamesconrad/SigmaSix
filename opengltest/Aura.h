@@ -10,9 +10,12 @@ public:
 	virtual void Update(float dTime);
 	virtual void OnFire() { return; }
 	virtual void OnDamage() { return; }
+	double distanceToPlayer();
+	void createProjectiles();
 
 private:
-	float size, scaler;//to convert health into size
+	float size;		// the radius away from the player this will impact 
+	float scaler;//to convert health into size
 
 };
 
