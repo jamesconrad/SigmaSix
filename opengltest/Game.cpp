@@ -63,9 +63,9 @@ void Game::initializeGame()
 	tileManager = TileManager::instance();
 	projectileManager = ProjectileManager::instance();
 	entityManager = EntityManager::instance();
-	mapLoader = new MapLoader(tileManager, entityManager);
+	mapLoader = new MapLoader();
 	mapLoader->LoadMap(1);
-	colisionManager = new ColisionManager(entityManager, tileManager, projectileManager, mapLoader);
+	colisionManager = new ColisionManager(mapLoader);
 	colisionManager->RebuildColisionMap();
 
 	hpBar->sheet = bars;
