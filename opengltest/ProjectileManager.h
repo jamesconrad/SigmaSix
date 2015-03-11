@@ -16,9 +16,8 @@ class ProjectileManager
 public:
 	static ProjectileManager* instance()
 	{
-		// Lazy initialize.
-		if (instance_ == NULL) instance_ = new ProjectileManager();
-		return instance_;
+		static ProjectileManager *instance = new ProjectileManager();
+		return instance;
 	}
 	void CreateProjectile(int projNum, float startX, float startY, float dirX, float dirY, float dmg, float maxDur, float projSpeed);
 	void RemoveProjectile(int index);
@@ -28,8 +27,6 @@ public:
 	float DamageOfID(int id) { return projectileVector.at(id)->GetDamage(); }
 private:
 	ProjectileManager();
-
-	static ProjectileManager* instance_;
 	std::vector<Projectile*> projectileVector;
 	Sprite* projSheet;
 	int texID;
