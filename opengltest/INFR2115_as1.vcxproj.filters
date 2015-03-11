@@ -75,6 +75,9 @@
     <ClCompile Include="EnergyRegen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Aura.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="drawPrimitives.h">
@@ -150,6 +153,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EnergyRegen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Aura.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
