@@ -30,7 +30,11 @@ enum entitytype {
 class EntityManager
 {
 public:
-	EntityManager(ProjectileManager* projManager, SpriteSheetInfo bar);
+	static EntityManager* instance()
+	{
+		static EntityManager *instance = new EntityManager();
+		return instance;
+	}
 	void CreateEntity(entitytype entityType, float x, float y);
 	void DeleteEntity(int entityID);
 	void Update(float dTime);
@@ -55,6 +59,8 @@ public:
 	void bcastSend();
 
 private:
+	EntityManager();
+	Sprite* entBarSprite;
 	std::vector<Entity*> entityVector;
 	std::vector<Entity*> entityVecotrIter;
 	std::vector<bcast> broadcast;

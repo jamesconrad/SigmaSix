@@ -1,10 +1,10 @@
 #include "ColisionManager.h"
 
-ColisionManager::ColisionManager(EntityManager* entityMan, TileManager* tileMan, ProjectileManager* projMan, MapLoader* mapLoad)
+ColisionManager::ColisionManager(MapLoader* mapLoad)
 {
-	entityManager = entityMan;
-	tileManager = tileMan;
-	projectileManager = projMan;
+	entityManager = EntityManager::instance();
+	tileManager = TileManager::instance();
+	projectileManager = ProjectileManager::instance();
 	mapLoader = mapLoad;
 	tileManager->GetVars(&chunkW, &mapW, chunkVectorPtr);
 	chunkVectorPtr = tileManager->GetChunkVectorPtr();
