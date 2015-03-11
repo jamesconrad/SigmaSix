@@ -4,16 +4,16 @@
 Aura::Aura(Entity* own, float cd, float pR) :Item(own, cd, pR)
 {
 	scaler = 2;
-	size = (own->getHP)*scaler;
-	damage = owner->getDamage;
+	size = (own->getHP())*scaler;
+	damage = owner->getDamage();
 	return;
 }
 
 //STILL WORKING ON THIS
 void Aura::createProjectiles()
 {
-	float locX = owner->getX;
-	float locY = owner->getY;
+	float locX = owner->getX();
+	float locY = owner->getY();
 
 	for (int i = size; i >= 0; i--)
 	{
@@ -29,7 +29,7 @@ void Aura::createProjectiles()
 void Aura::Update(float dTime)
 {
 
-	size = (owner->getMaxHP - owner->getHP)*scaler;
+	size = (owner->getMaxHP() - owner->getHP())*scaler;
 	cooldown -= dTime;
 	createProjectiles();
 }
