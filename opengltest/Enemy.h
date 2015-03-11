@@ -33,6 +33,9 @@ public:
 	void ModPos(vec2 mod);
 	float getCX() { return x + w * 0.25f; }
 	float getCY() { return y + h * 0.25f; }
+	float getX() { return x; }
+	float getY() { return y; }
+	float getSpeed() { return speed; }
 	void giveShield() { shielded = true; }
 	RECT getRect();
 	void Damage(float projDamage);

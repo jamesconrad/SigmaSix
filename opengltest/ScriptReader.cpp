@@ -1,5 +1,17 @@
 #include "ScriptReader.h"
 
+/*
+SYNTAX:
+command arg1 arg2 arg3...
+
+COMMANDS:
+
+Attach [tarType] [target]
+Move [tarX] [tarY]
+Freeze
+*/
+
+
 Script::Script(char* filepath)
 {
 	step = 0;
@@ -38,6 +50,20 @@ void Script::Update(float dTime)
 
 	if (curArg.compare("Attach"))
 	{
-
+		switch (args[0])
+		{
+		case 1: tarType = ENTITY; break;
+		case 2: tarType = PROJ; break;
+		}
+		target = args[1];
+	}
+	else if (curArg.compare("Move"))
+	{
+		switch (tarType)
+		{
+		case 1:
+			if (args[0] > EntityManager::instance()->getXofID(target))
+				EntityManager::instance()->ModPosOfID(target, vec2(EntityManager::instance()->SpeedOfID(target).x * dTime ,0));
+		}
 	}
 }

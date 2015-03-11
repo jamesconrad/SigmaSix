@@ -30,6 +30,7 @@ public:
 	virtual float getEnergy() { return 0.f; }
 	virtual float getMaxHP() { return 0.f; }
 	virtual float getMaxEnergy() { return 0.f; }
+	virtual float getSpeed() { return 0.f; }
 
 	virtual void modDamage(float change) { return; }
 	virtual float getDamage() { return 0.0f; }

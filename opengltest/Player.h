@@ -18,6 +18,7 @@ public:
 	float getCX() { return x + w * 0.5; }
 	float getCY() { return y + h * 0.5; }
 	float getHP() { return hp; }
+	float getSpeed() { return speed; }
 	float getEnergy() { return energy; }
 	float getMaxHP() { return maxHP; }
 	float getMaxEnergy() { return maxEnergy; }

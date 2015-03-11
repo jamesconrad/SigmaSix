@@ -52,6 +52,7 @@ public:
 	int GetSize() { return entityVector.size(); }
 	RECT getRectOfID(int id) { return entityVector[id]->getRect(); }
 	void ModPosOfID(int id, vec2 mod);
+	float SpeedOfID(int id) { return entityVector[id]->getSpeed(); }
 	void Clear();
 
 	//virtual void cancelMovement();
