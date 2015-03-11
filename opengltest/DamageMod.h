@@ -5,7 +5,6 @@ class I_DamageMod : public Item
 public:
 	I_DamageMod(Entity* owner, float cooldown, float procRate);
 	void Activate();
-	void Update(float dTime);
 private:
 
 };
