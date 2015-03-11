@@ -26,6 +26,7 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	w = 34 * 0.5;
 	h = 46 * 0.5;
 	lastShot = 10000.f;
+	energyRegenCD = 2000.f;
 	for (int i = 0; i < 256; i++)
 		keysPressed[i] = 0;
 
@@ -130,7 +131,7 @@ void Player::update(float dTime)
 
 	//update the shooting anim direction if gun still out
 	lastShot += dTime;
-	if (lastShot <= 2000.f)
+	if (lastShot <= energyRegenCd)
 	{
 		if (curAnim <= 4)
 			curAnim += 4;
