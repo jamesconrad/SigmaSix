@@ -22,8 +22,8 @@ public:
 	virtual float getX() { return 0.f; }
 	virtual float getY() { return 0.f; }
 	virtual RECT getRect() { RECT tmp = { 0, 0, 0, 0 }; return tmp; }
-	virtual void ModPos(vec2) {};
-	virtual void Damage(float damage){};
+	virtual void modPos(vec2) {};
+	virtual void damage(float damage){};
 	virtual float getCX() { return 0.f; }
 	virtual float getCY() { return 0.f; }
 	virtual float getHP() { return 0.f; }

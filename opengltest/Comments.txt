@@ -26,7 +26,7 @@ X	Shield
 	Energy charge
 	DMG+
 	SPD+
-	MAXENG+
+X	MAXENG+
 
 
 
