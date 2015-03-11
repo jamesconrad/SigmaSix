@@ -17,7 +17,7 @@ struct Portal
 class ColisionManager
 {
 public:
-	ColisionManager(MapLoader* mapLoader);
+	ColisionManager(EntityManager* entityManager, TileManager* tileManager, ProjectileManager* projectileManager, MapLoader* mapLoader);
 	void RebuildColisionMap();
 	void Update();
 

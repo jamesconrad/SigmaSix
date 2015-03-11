@@ -34,14 +34,21 @@ void MapLoader::freeTexture()
 	}
 }
 
-MapLoader::MapLoader()
+MapLoader::MapLoader(TileManager* tileMan, EntityManager* entityMan)
 {
 	TextureID = 0;
 	Pixels = NULL;
-	tileManager = TileManager::instance();
-	entityManager = EntityManager::instance();
+	tileManager = tileMan;
+	entityManager = entityMan;
 	mapLoaded = false;
 }
+
+MapLoader::~MapLoader()
+{
+	freeTexture();
+}
+
+
 
 bool MapLoader::LoadMap(int mapID)
 {

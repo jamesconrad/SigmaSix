@@ -50,19 +50,25 @@ void Game::initializeGame()
 	energyBar = new Sprite;
 	s_Score = new Sprite;
 	s_Time = new Sprite;
+	entBarSprite = new Sprite;
 
+	entBarSprite->loadSpriteSheet("assets/bars.png");
 	hpBar->loadSpriteSheet("assets/ui.png");
 	SpriteSheetInfo bars;
 	bars.height = 170;
 	bars.width = 528;
 	bars.textureID = hpBar->GetTexID();
+	SpriteSheetInfo entBars;
+	entBars.height = 24;
+	entBars.width = 120;
+	entBars.textureID = entBarSprite->GetTexID();
 	
 	mainMenu = new MenuClass();
 
 	viewCam = new Camera;
 	tileManager = TileManager::instance();
 	projectileManager = ProjectileManager::instance();
-	entityManager = EntityManager::instance();
+	entityManager = new EntityManager(projectileManager, entBars);
 	mapLoader = new MapLoader(tileManager, entityManager);
 	mapLoader->LoadMap(1);
 	colisionManager = new ColisionManager(entityManager, tileManager, projectileManager, mapLoader);

@@ -19,7 +19,8 @@
 class MapLoader
 {
 public:
-	MapLoader();
+	MapLoader(TileManager* tileManager, EntityManager* entityManager);
+	~MapLoader();
 
 	bool LoadMap(int MapID);
 	void RenderBackground();

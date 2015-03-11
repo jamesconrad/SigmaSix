@@ -1,14 +1,9 @@
 #include "EntityManager.h"
 
-EntityManager::EntityManager()
+EntityManager::EntityManager(ProjectileManager* projManager, SpriteSheetInfo bar)
 {
-	entBarSprite = new Sprite;
-	entBarSprite->loadSpriteSheet("assets/bars.png");
-	barTexID.height = 24;
-	barTexID.width = 120;
-	barTexID.textureID = entBarSprite->GetTexID();
-
-	projectileManager = ProjectileManager::instance();
+	projectileManager = projManager;
+	barTexID = bar;
 	playerLoaded = false;
 }
 
