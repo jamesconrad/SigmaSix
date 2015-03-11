@@ -110,6 +110,13 @@ void Enemy::draw()
 	texture->draw(0.5f);
 	hpBG->draw(0.25f);
 	hpBar->draw(0.25f);
+	/*RECT tmp = getRect();
+	glBegin(GL_QUADS);
+	glVertex3f(tmp.left, tmp.bottom, 0);
+	glVertex3f(tmp.right, tmp.bottom, 0);
+	glVertex3f(tmp.right, tmp.top, 0);
+	glVertex3f(tmp.left, tmp.top, 0);
+	glEnd();*/
 }
 
 void Enemy::ModPos(vec2 mod)
@@ -120,7 +127,11 @@ void Enemy::ModPos(vec2 mod)
 
 RECT Enemy::getRect() 
 { 
-	RECT tmp = { y, x, x + w, y + h };
+	RECT tmp;
+	tmp.right = x;
+	tmp.left = x + w;
+	tmp.bottom = y;
+	tmp.top = y + h;
 	return tmp; 
 }
 
