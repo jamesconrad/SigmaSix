@@ -34,6 +34,8 @@ public:
 	virtual void modDamage(float change) { return; }
 	virtual float getDamage() { return 0.0f; }
 	virtual void giveShield() { return; }
+	virtual void energyRegenMod(float value) { energyRegenCD *= value; }
+
 
 	virtual void bcastRecv(bcast broadcast) {}
 	virtual void bcastSend(char msg, int sender) {}

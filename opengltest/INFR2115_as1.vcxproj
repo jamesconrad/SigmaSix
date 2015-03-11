@@ -108,6 +108,7 @@
     <ClCompile Include="ProjectileManager.cpp" />
     <ClCompile Include="ScriptReader.cpp" />
     <ClCompile Include="Shield.cpp" />
+    <ClCompile Include="EnergyRegen.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManager.cpp" />
@@ -126,6 +127,7 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="MapLoader.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="EnergyRegen.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />
