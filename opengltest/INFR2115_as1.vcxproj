@@ -97,6 +97,7 @@
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Aura.cpp" />
     <ClCompile Include="ColisionManager.cpp" />
+    <ClCompile Include="DamageMod.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -126,6 +127,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="DamageMod.h" />
     <ClInclude Include="HorizontalScrollingBackground.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="MapLoader.h" />

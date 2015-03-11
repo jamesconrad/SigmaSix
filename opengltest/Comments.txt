@@ -24,8 +24,8 @@ X	Shield
 	Lifesteal
 	HP+
 	Energy charge
-	DMG+
-	SPD+
+X	DMG+
+X	SPD+
 X	MAXENG+
 
 
