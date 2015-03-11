@@ -4,7 +4,7 @@
 Aura::Aura(Entity* own, float cd, float pR) :Item(own, cd, pR)
 {
 	scaler = 2;
-	size = (own->getHP)*scaler;
+	size = (own->getHP())*scaler;
 	damage = owner->getDamage;
 	return;
 }
