@@ -23,9 +23,9 @@ public:
 	float getMaxEnergy() { return maxEnergy; }
 	void giveShield() { shielded = true; }
 	virtual void cancelMovement(char dir);
-	void energyRegenMod(float value) { energyRegenCD *= value; }
+	void energyRegenMod(float value) { energyRegenCd *= value; }
 	void speedMod(float value) { speed *= value; }
-	void damageMod(float value) {damage *= value}
+	void damageMod(float value) { damage *= value; }
 	void Damage(float projDamage) 
 	{ 
 		if (!shielded)
@@ -59,7 +59,7 @@ private:
 	int hp, energy, energyRegen, damage, maxHP, maxEnergy;
 	float speed, x, y, w, h, fireRate;
 	vec2 direction, movement;
-	float animFrame, lastShot, energyRegenCD;
+	float animFrame, lastShot, energyRegenCd;
 	bool keysPressed[256];
 	int curAnim;
 	bool shielded;

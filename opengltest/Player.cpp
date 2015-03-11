@@ -26,7 +26,7 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	w = 34 * 0.5;
 	h = 46 * 0.5;
 	lastShot = 10000.f;
-	energyRegenCD = 2000.f;
+	energyRegenCd = 2000.f;
 	for (int i = 0; i < 256; i++)
 		keysPressed[i] = 0;
 
