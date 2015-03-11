@@ -27,9 +27,9 @@ void ColisionManager::RebuildColisionMap()
 		colisionMap.push_back(initPushBack);
 		for (int chunkPos = 0, chunkSize = chunkVectorPtr->at(chunkNum).size(); chunkPos < chunkSize; chunkPos++)
 		{
-			if (chunkVectorPtr->at(chunkNum).at(chunkPos)->GetColision())
+			if (chunkVectorPtr->at(chunkNum).at(chunkPos)->GetColision()) //check to see if it is a solid object 
 			{
-				tileRect = chunkVectorPtr->at(chunkNum).at(chunkPos)->GetRect();
+				tileRect = chunkVectorPtr->at(chunkNum).at(chunkPos)->GetRect(); //returns the location of the bullet & tileRect is equated to it
 				
 				if (chunkVectorPtr->at(chunkNum).at(chunkPos)->IsPortal())
 				{
@@ -38,11 +38,11 @@ void ColisionManager::RebuildColisionMap()
 					tmpPort.colisionPos = colisionMap.at(chunkNum).size();
 					tmpPort.pos = tileRect;
 					tmpPort.mapTransitionID = chunkVectorPtr->at(chunkNum).at(chunkPos)->GetPortalMapID();
-					portalMap.push_back(tmpPort);
+					portalMap.push_back(tmpPort);//why are we pushing back?
 				}
 
 				if (colisionMap.at(chunkNum).back().right == tileRect.left && colisionMap.at(chunkNum).back().bottom == tileRect.bottom)
-				{
+				{//is this where we check if they actually collide? 
 					colisionMap.at(chunkNum).back().right = tileRect.right;
 				}
 				else
@@ -150,10 +150,10 @@ void ColisionManager::Update()
 		for (int projectileIter = projectileVectorPtr->size() - 1; projectileIter >= 0; projectileIter--)
 		{
 			//check if projectiles are owned by the entity
-			//if (entityIter == 0 && (projectileVectorPtr->at(projectileIter)->GetType() != 0))
-			//	break;
-			//else if (entityIter != 0 && (projectileVectorPtr->at(projectileIter)->GetType() != 1))
-			//	break;
+			if (entityIter == 0 && (projectileVectorPtr->at(projectileIter)->GetType() != 0))
+				break;
+			else if (entityIter != 0 && (projectileVectorPtr->at(projectileIter)->GetType() != 1))
+				break;
 			RECT proj = projectileVectorPtr->at(projectileIter)->GetRect();
 			float l = proj.left - entPos.right;
 			float r = proj.right - entPos.left;
@@ -304,9 +304,14 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 						return;
 					}
 				}
+
+
 			}
+
+
 			if (abs(l) < r)
 				mtd.x = l;
+			
 			else
 				mtd.x = r;
 			if (abs(t) < b)
@@ -333,6 +338,8 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 		}
 	}
 }
+
+
 
 /*
 void ColisionManager::Update()

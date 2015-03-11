@@ -21,10 +21,10 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	fireRate = 5;
 	x = _x;
 	y = _y;
-	speed = 0.1f;
-	animFrame = 0.f;
-	w = 34.f * 0.5f;
-	h = 46.f * 0.5f;
+	speed = 0.1;
+	animFrame = 0;
+	w = 34 * 0.5;
+	h = 46 * 0.5;
 	lastShot = 10000.f;
 	for (int i = 0; i < 256; i++)
 		keysPressed[i] = 0;
@@ -67,6 +67,14 @@ void Player::draw()
 {
 	texture->draw(0.5f);
 	//printf("%f, %f\n", x, y);
+	/*RECT tmp = getRect();
+	glBegin(GL_QUADS);
+	glVertex3f(tmp.left, tmp.bottom, 0);
+	glVertex3f(tmp.right, tmp.bottom, 0);
+	glVertex3f(tmp.right, tmp.top, 0);
+	glVertex3f(tmp.left, tmp.top, 0);
+	glEnd();*/
+
 }
 
 void Player::update(float dTime)
@@ -143,13 +151,6 @@ void Player::update(float dTime)
 	else
 		speed = 0.1f;
 
-	//DEBUG ANIM FORCE
-	for (int i = 0; i < 8; i++)
-	{
-		if (keysPressed[48 + i])
-			curAnim = i;
-	}
-
 	texture->setPosition(x, y);
 	texture->setCurrentAnimation(curAnim);
 
@@ -162,6 +163,20 @@ void Player::update(float dTime)
 		animFrame = 0.f;
 	}
 	
+}
+
+void Player::cancelMovement(char dir)
+{
+	if (dir == 'u')//up
+		keysPressed[119] = false;
+	else if (dir == 'l') //left *a
+		keysPressed[97] = false;
+	else if (dir == 'r')
+		keysPressed[100] = false;
+	else if (dir == 'd')
+		keysPressed[115] = false;
+
+
 }
 
 void Player::handleinput(char keycode, bool press)

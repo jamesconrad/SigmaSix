@@ -10,8 +10,8 @@ POINT RotatePoint(float pivX, float pivY, float pX, float pY, float angle)
 
 Projectile::Projectile(int managerIndex, int texID, float startX, float startY, float dirX, float dirY, float dmg, float maxDur, float projSpeed, int projN)
 {
-	w = 4;
-	h = 4;
+	w = 9;
+	h = 9;
 	float scale = 0.5f;//need to get these from constructor
 	direction.x = dirX;
 	direction.y = dirY;
@@ -23,7 +23,7 @@ Projectile::Projectile(int managerIndex, int texID, float startX, float startY, 
 	y = startY;
 	index = managerIndex;
 	projNum = projN;
-	float deg = atan2(direction.y, direction.x) * 180 / 3.14;
+	float deg = atan2(direction.y, direction.x) * 180 / 3.14; // wtf is atan2?
 	//POINT r1 = RotatePoint(x + (w * scale / 2.f), y + (h * scale / 2.f), startX, startY, deg);
 	//POINT r2 = RotatePoint(x + (w * scale / 2.f), y + (h * scale / 2.f), startX + w * scale, startY + h * scale, deg);
 	//r1.x >= r2.x ? rRect.maxX = r1.x, rRect.minX = r2.x : rRect.maxX = r2.x, rRect.minX = r1.x;
@@ -45,14 +45,14 @@ Projectile::Projectile(int managerIndex, int texID, float startX, float startY, 
 	*/
 	proj = new Sprite();
 	proj->sheet.textureID = texID;
-	proj->sheet.width = 71;
-	proj->sheet.height = 7;
+	proj->sheet.width = 60;
+	proj->sheet.height = 20;
 	proj->setNumberOfAnimations(1);
 	proj->setCurrentAnimation(0);
 	proj->setPosition(x, y);
 	proj->setSpriteFrameSize(w, h);
 	proj->setCenter((w * scale) / 2.f, (h * scale) / 2.f);
-	proj->addSpriteAnimRow(0, 0, projNum*3.f, w, 0, 4);
+	proj->addSpriteAnimRow(0, 0, 1 + projNum * (h + 1), w + 1, 0, 4);
 	proj->setLayerID(1);
 	//proj->setOrientation(atan2(direction.y, direction.x) * 180 / 3.14);
 	//texture->addSpriteAnimRow(animnum,startx,starty,spacingx,spacingy,numframe)
@@ -106,5 +106,5 @@ void Projectile::SetIndex(int managerIndex)
 
 void Projectile::Draw()
 {
-	proj->draw(0.5f);
+	proj->draw(0.66);
 }
