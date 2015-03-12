@@ -15,9 +15,9 @@ void Aura::createProjectiles()
 	float locX = owner->getX();
 	float locY = owner->getY();
 
-	for (int i = size; i >= 0; i--)
-	{
-		ProjectileManager::instance()->CreateProjectile(66, (locX - size), (locY - size), 0, 0, damage, duration, 0);
+	for (int i = size; i >= -size; i--)
+	{//this way it puts a projectile in every space within the duration 
+		ProjectileManager::instance()->CreateProjectile(66, (locX - i), (locY - i), 0, 0, damage, duration, 0);
 	}
 		// start x & start Y are the bottom left hand corner 
 		// max dur = aprox 1 
