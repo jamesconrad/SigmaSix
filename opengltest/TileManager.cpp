@@ -55,7 +55,7 @@ void TileManager::CreateTile(tiletype tileType, float xPos, float yPos, float wi
 	//printf("%i\n", numOfTiles);
 }
 
-void TileManager::CreateTile(tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid, int mapTransitionID, int texSpacing, int numFrames, float animDelay)
+void TileManager::CreatePortal(tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid, int mapTransitionID, int texSpacing, int numFrames, float animDelay)
 {
 	int chunkNum = (int)((yPos / height) / CHUNK_WIDTH) * MAP_WIDTH_IN_CHUNKS + (int)((xPos / width) / CHUNK_WIDTH);
 	if (chunkNum >= chunkVector.size())
