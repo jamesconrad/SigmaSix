@@ -88,7 +88,7 @@ void TileManager::RemoveTile(float x, float y)
 	chunkVector.shrink_to_fit();
 }
 
-void TileManager::DrawScene(float cameraPosX, float cameraPosY)
+void TileManager::DrawScene(float cameraPosX, float cameraPosY, float dTime)
 {
 	int chunkNum = (int)((cameraPosY/15) / CHUNK_WIDTH) * MAP_WIDTH_IN_CHUNKS + (int)((cameraPosX/15) / CHUNK_WIDTH);
 	int chunkPosX = (int)cameraPosX/15 % CHUNK_WIDTH;
@@ -97,7 +97,7 @@ void TileManager::DrawScene(float cameraPosX, float cameraPosY)
 	//DrawAll();
 	//return;
 
-	DrawChunk(chunkNum, cameraPosX, cameraPosY);
+	DrawChunk(chunkNum, cameraPosX, cameraPosY, dTime);
 
 	if (chunkPosX >= 10 && chunkPosX <= 11 && chunkPosY >= 10 && chunkPosX <= 11)
 	{
@@ -148,13 +148,14 @@ void TileManager::DrawScene(float cameraPosX, float cameraPosY)
 		printf("ERROR: Invalid camera position at inner chunk coordinates (%i,%i)\n", chunkPosX, chunkPosY);
 }
 
-void TileManager::DrawChunk(int chunkNum, float cameraPosX, float cameraPosY)
+void TileManager::DrawChunk(int chunkNum, float cameraPosX, float cameraPosY, float dTime)
 {
 	if (chunkNum >= 0 && chunkNum < chunkVector.size())
 	{
 		std::vector<Tile*> tileVector = chunkVector[chunkNum];
 		for (int i = 0, s = chunkVector[chunkNum].size(); i < s; ++i)
 		{
+			tileVector.at(i)->update(dTime);
 			tileVector.at(i)->Draw(cameraPosX, cameraPosY);
 		}
 	}
