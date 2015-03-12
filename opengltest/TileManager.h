@@ -16,8 +16,8 @@ public:
 		static TileManager *instance = new TileManager();
 		return instance;
 	}
-	void CreateTile(tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid);
-	void CreateTile(tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid, int mapTransitionID);
+	void CreateTile(tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid, int texSpacing = 0, int numFrames = 0, float animDelay = 0);
+	void CreateTile(tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid, int mapTransitionID, int texSpacing = 0, int numFrames = 0, float animDelay = 0);
 	void RemoveTile(float x, float y);
 	void DrawScene(float cameraPosX, float cameraPosY, float dTime);
 	void DrawChunk(int chunkNum, float cameraPosX, float cameraPosY, float dTime);
