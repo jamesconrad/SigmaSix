@@ -10,7 +10,7 @@ struct RotatedRectangle
 {
 	float maxX, minX, maxY, minY;
 };
-#endif
+#endif RRECT
 
 class Projectile
 {
@@ -40,4 +40,4 @@ private:
 	//RECT Rect;
 };
 
-#endif
+#endif PROJECTILE

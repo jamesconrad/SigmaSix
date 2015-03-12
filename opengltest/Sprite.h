@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SPRITE_H
+#define SPRITE_H
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -133,3 +135,5 @@ public:
 	/* list of animations */
 	std::vector<SpriteAnimation*> animations;
 };
+
+#endif SPRITE_H

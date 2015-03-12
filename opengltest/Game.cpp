@@ -161,7 +161,7 @@ void Game::DrawGame()
 		entityManager->getYofID(0) - WINDOW_SCREEN_HEIGHT / 2.0, entityManager->getYofID(0) + 46/2 + WINDOW_SCREEN_HEIGHT / 2.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	tileManager->DrawScene(entityManager->getXofID(0), entityManager->getYofID(0));
+	tileManager->DrawScene(entityManager->getXofID(0), entityManager->getYofID(0), updateTimer->getElapsedTimeMS());
 	entityManager->DrawAll(0, 0);
 	projectileManager->Draw();
 

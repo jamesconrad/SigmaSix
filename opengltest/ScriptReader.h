@@ -6,11 +6,14 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include "EntityManager.h"
+#include "ProjectileManager.h"
 
 enum targetType
 {
-	ENTITY = 0,
-	PROJECTILE = 1
+	NONE = 0,
+	ENTITY = 1,
+	PROJ = 2
 };
 
 class Script

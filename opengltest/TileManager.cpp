@@ -30,7 +30,7 @@ void TileManager::SetSize(int w, int h)
 	mHeight = h;
 }
 
-void TileManager::CreateTile(tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid)
+void TileManager::CreateTile(tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid, int texSpacing, int numFrames, float animDelay)
 {
 	int chunkNum = (int)((yPos/height) / CHUNK_WIDTH) * MAP_WIDTH_IN_CHUNKS + (int)((xPos/width) / CHUNK_WIDTH);
 	if (chunkNum >= chunkVector.size())
@@ -43,28 +43,35 @@ void TileManager::CreateTile(tiletype tileType, float xPos, float yPos, float wi
 			chunkVector.push_back(tilePushBackVector);
 	}
 
+	Tile* tmpTile;
 	std::vector<Tile*>* tileVector = &chunkVector[chunkNum];
-	Tile* tmpTile = new Tile(xPos, yPos, width, height, texX, texY, solid, texID, texW, texH);
+	if (tileType == STATIC)
+		tmpTile = new Tile(xPos, yPos, width, height, texX, texY, solid, texID, texW, texH);
+	else if (tileType == NON_STATIC)
+		tmpTile = new AnimTile(xPos, yPos, width, height, texX, texY, solid, texID, texW, texH, texSpacing, numFrames, animDelay);
 	tmpTile->ForceTexID(texID);
 	tileVector->push_back(tmpTile);
 	numOfTiles++;
 	//printf("%i\n", numOfTiles);
 }
 
-void TileManager::CreateTile(tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid, int mapTransitionID)
+void TileManager::CreatePortal(tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid, int mapTransitionID, int texSpacing, int numFrames, float animDelay)
 {
 	int chunkNum = (int)((yPos / height) / CHUNK_WIDTH) * MAP_WIDTH_IN_CHUNKS + (int)((xPos / width) / CHUNK_WIDTH);
 	if (chunkNum >= chunkVector.size())
 	{
 		std::vector<Tile*> tilePushBackVector;
 		chunkVector.push_back(tilePushBackVector);
-		Tile* tilePushBackTile = new Tile(0, 0, 16, 16, 136, 0, true, texID, texW, texH);
+		//Tile* tilePushBackTile = new Tile(0, 0, 16, 16, 136, 0, true, texID, texW, texH);
 		for (int i = chunkVector.size(); chunkNum >= i; i++)
 			chunkVector.push_back(tilePushBackVector);
 	}
-
+	Tile* tmpTile;
 	std::vector<Tile*>* tileVector = &chunkVector[chunkNum];
-	Tile* tmpTile = new Tile(xPos, yPos, width, height, texX, texY, solid, texID, texW, texH);
+	if (tileType == STATIC)
+		tmpTile = new Tile(xPos, yPos, width, height, texX, texY, solid, texID, texW, texH);
+	else if (tileType == NON_STATIC)
+		tmpTile = new AnimTile(xPos, yPos, width, height, texX, texY, solid, texID, texW, texH, texSpacing, numFrames, animDelay);
 	tmpTile->ForceTexID(texID);
 	tileVector->push_back(tmpTile);
 	chunkVector.at(chunkNum).back()->MakePortal(mapTransitionID);
@@ -88,7 +95,7 @@ void TileManager::RemoveTile(float x, float y)
 	chunkVector.shrink_to_fit();
 }
 
-void TileManager::DrawScene(float cameraPosX, float cameraPosY)
+void TileManager::DrawScene(float cameraPosX, float cameraPosY, float dTime)
 {
 	int chunkNum = (int)((cameraPosY/15) / CHUNK_WIDTH) * MAP_WIDTH_IN_CHUNKS + (int)((cameraPosX/15) / CHUNK_WIDTH);
 	int chunkPosX = (int)cameraPosX/15 % CHUNK_WIDTH;
@@ -97,64 +104,65 @@ void TileManager::DrawScene(float cameraPosX, float cameraPosY)
 	//DrawAll();
 	//return;
 
-	DrawChunk(chunkNum, cameraPosX, cameraPosY);
+	DrawChunk(chunkNum, cameraPosX, cameraPosY, dTime);
 
 	if (chunkPosX >= 10 && chunkPosX <= 11 && chunkPosY >= 10 && chunkPosX <= 11)
 	{
-		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS - 1, cameraPosX, cameraPosY);
-		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS, cameraPosX, cameraPosY);
-		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS + 1, cameraPosX, cameraPosY);
+		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS - 1, cameraPosX, cameraPosY, dTime);
+		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS, cameraPosX, cameraPosY, dTime);
+		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS + 1, cameraPosX, cameraPosY, dTime);
 
-		DrawChunk(chunkNum - 1, cameraPosX, cameraPosY);
-		DrawChunk(chunkNum + 1, cameraPosX, cameraPosY);
+		DrawChunk(chunkNum - 1, cameraPosX, cameraPosY, dTime);
+		DrawChunk(chunkNum + 1, cameraPosX, cameraPosY, dTime);
 
-		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS - 1, cameraPosX, cameraPosY);
-		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS, cameraPosX, cameraPosY);
-		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS + 1, cameraPosX, cameraPosY);
+		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS - 1, cameraPosX, cameraPosY, dTime);
+		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS, cameraPosX, cameraPosY, dTime);
+		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS + 1, cameraPosX, cameraPosY, dTime);
 	}
 	else if (chunkPosX <= 11 && chunkPosY <= 10)
 	{
 		//bottom left
 		//printf("bl\n");
-		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS, cameraPosX, cameraPosY);
-		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS - 1, cameraPosX, cameraPosY);
-		DrawChunk(chunkNum - 1, cameraPosX, cameraPosY);
+		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS, cameraPosX, cameraPosY, dTime);
+		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS - 1, cameraPosX, cameraPosY, dTime);
+		DrawChunk(chunkNum - 1, cameraPosX, cameraPosY, dTime);
 	}
 	else if (chunkPosX >= 10 && chunkPosY <= 11)
 	{
 		//bottom right
 		//printf("br\n");
-		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS, cameraPosX, cameraPosY);
-		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS + 1, cameraPosX, cameraPosY);
-		DrawChunk(chunkNum + 1, cameraPosX, cameraPosY);
+		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS, cameraPosX, cameraPosY, dTime);
+		DrawChunk(chunkNum - MAP_WIDTH_IN_CHUNKS + 1, cameraPosX, cameraPosY, dTime);
+		DrawChunk(chunkNum + 1, cameraPosX, cameraPosY, dTime);
 	}
 	else if (chunkPosX <= 11 && chunkPosY >= 10)
 	{
 		//top left
 		//printf("tl\n");
-		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS, cameraPosX, cameraPosY);
-		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS - 1, cameraPosX, cameraPosY);
-		DrawChunk(chunkNum - 1, cameraPosX, cameraPosY);
+		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS, cameraPosX, cameraPosY, dTime);
+		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS - 1, cameraPosX, cameraPosY, dTime);
+		DrawChunk(chunkNum - 1, cameraPosX, cameraPosY, dTime);
 	}
 	else if (chunkPosX >= 10 && chunkPosY >= 10)
 	{
 		//top right
 		//printf("tr\n");
-		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS, cameraPosX, cameraPosY);
-		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS + 1, cameraPosX, cameraPosY);
-		DrawChunk(chunkNum + 1, cameraPosX, cameraPosY);
+		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS, cameraPosX, cameraPosY, dTime);
+		DrawChunk(chunkNum + MAP_WIDTH_IN_CHUNKS + 1, cameraPosX, cameraPosY, dTime);
+		DrawChunk(chunkNum + 1, cameraPosX, cameraPosY, dTime);
 	}
 	else
 		printf("ERROR: Invalid camera position at inner chunk coordinates (%i,%i)\n", chunkPosX, chunkPosY);
 }
 
-void TileManager::DrawChunk(int chunkNum, float cameraPosX, float cameraPosY)
+void TileManager::DrawChunk(int chunkNum, float cameraPosX, float cameraPosY, float dTime)
 {
 	if (chunkNum >= 0 && chunkNum < chunkVector.size())
 	{
 		std::vector<Tile*> tileVector = chunkVector[chunkNum];
 		for (int i = 0, s = chunkVector[chunkNum].size(); i < s; ++i)
 		{
+			tileVector.at(i)->update(dTime);
 			tileVector.at(i)->Draw(cameraPosX, cameraPosY);
 		}
 	}
