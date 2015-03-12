@@ -3,16 +3,27 @@
 #define TERRAIN_SPRITE_SHEET "assets/map_sprites.png"
 
 //Rect mapSprites = MAP_ID_1_POSITION
-#define MAP_ID_0_POSITION {0,0,0,0} //HUB
+#define MAP_ID_0_POSITION {120,0,16,16} //HUB
+
 #define MAP_ID_1_POSITION {0,20,37,57} //Level 1 (Volcano level)
 #define MAP_ID_11_POSITION {0,0,19,19} //Level 1 Boss
 
-#define MAP_ID_2_POSITION {0,0,57,37} //Level 2 (Autumn level)
-#define MAP_ID_12_POSITION {0,59,18,77} //Level 2 Boss
+#define MAP_ID_2_POSITION {38,26,50,51} //Level 2 (Autumn level)
+#define MAP_ID_12_POSITION {20,0,19,19} //Level 2 Boss
 
-#define MAP_ID_3_POSITION {89,0,47,49} //Level 3 (Desert level)
-#define MAP_ID_13_POSITION {40,59,18,18} //Level 3 Boss
+#define MAP_ID_3_POSITION {89,28,47,49} //Level 3 (Desert level)
+#define MAP_ID_13_POSITION {40,0,19,19} //Level 3 Boss
 
+#define MAP_ID_4_POSITION {137,21,35,56} //Level 4 (Field level)
+#define MAP_ID_14_POSITION {60,0,19,19} //Level 4 Boss
+
+#define MAP_ID_5_POSITION {173,21,35,56} //Level 5 (Tech level)
+#define MAP_ID_15_POSITION {80,0,19,19} //Level 5 Boss
+
+#define MAP_ID_6_POSITION {209,23,45,54} //Level 6 (Castle level)
+#define MAP_ID_16_POSITION {100,0,19,19} //Level 6 Boss
+
+#define MAP_ID_7_POSITION {255,46,15,31} //Tutorial
 
 struct Rect
 {
