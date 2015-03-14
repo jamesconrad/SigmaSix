@@ -12,7 +12,7 @@
 //		Always offensive
 //		Will attempt to defend elites
 
-Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar, float _x, float _y, int _i, entitytype entType)
+Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar, float _x, float _y, int _i, entitytype entType, int _index)
 {
 	entityType = entType;
 	manIndex = _i;
@@ -28,6 +28,7 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 	origX = y = _y;
 	w = 34.f / 2;
 	h = 46.f / 2;
+	index = _index;
 	animFrame = shotTimer = 0.f;
 	texture->loadSpriteSheet("assets/enemy.png");
 	texture->setNumberOfAnimations(9);
@@ -215,7 +216,7 @@ void Enemy::Shoot()
 
 	if (shotTimer >= 0.f)//1000.f seems to be a good speed, but 0.f is for testing
 	{
-		projectileManager->CreateProjectile(1, getCX(), getCY(), projDir.x, projDir.y, damage, 3000.f, 0.2f);
+		projectileManager->CreateProjectile(1, getCX(), getCY(), projDir.x, projDir.y, damage, 3000.f, 0.2f, GetIndex());
 		shotTimer = 0.f;
 	}
 	else

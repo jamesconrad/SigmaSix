@@ -42,6 +42,11 @@ public:
 		else
 			shielded = false;
 	}
+	void OnHit()
+	{
+		for (int i = 0, s = inventory.size(); i < s; i++)
+			inventory[i]->OnHit();
+	}
 	RECT getRect() 
 	{ 
 		RECT tmp; 

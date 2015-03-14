@@ -15,7 +15,7 @@ struct RotatedRectangle
 class Projectile
 {
 public:
-	Projectile(int managerIndex, int texID, float startX, float startY, float dirX, float dirY, float dmg, float maxDur, float projSpeed, int projNum);
+	Projectile(int managerIndex, int texID, float startX, float startY, float dirX, float dirY, float dmg, float maxDur, float projSpeed, int projNum, int ownerIndex);
 	~Projectile();
 	//Returns TRUE if the projectile needs to be removed
 	bool Update(float dTime);
@@ -24,6 +24,7 @@ public:
 	void Draw();
 	float GetDamage() { return damage; }
 	int GetType() { return projNum; }
+	int GetOwner() { return owner; }
 
 	RotatedRectangle GetRRect() { return rRect; }
 	RECT GetRect() { return RECT{ y, x, x + w, y + h }; }
@@ -36,6 +37,7 @@ private:
 	float x, y, w, h;
 	float animFrame;
 	int index, projNum;
+	int owner;
 	RotatedRectangle rRect;
 	//RECT Rect;
 };

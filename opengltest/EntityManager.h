@@ -55,6 +55,7 @@ public:
 	float SpeedOfID(int id) { return entityVector[id]->getSpeed(); }
 	void FreezeID(int id, bool status) { entityVector[id]->Freeze(status); }
 	void Clear();
+	void OnHit(int id) { entityVector[id]->OnHit(); }
 
 	//virtual void cancelMovement();
 	void bcastRecv(char msg, int sender);

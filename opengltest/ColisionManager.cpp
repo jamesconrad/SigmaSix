@@ -163,6 +163,7 @@ void ColisionManager::Update()
 			if (!(l > 0 || r < 0 || t > 0 || b < 0))
 			{
 				entityManager->DamageID(entityIter, projectileVectorPtr->at(projectileIter)->GetDamage());
+				entityManager->OnHit(projectileManager->GetOwner(projectileIter));
 				projectileManager->RemoveProjectile(projectileIter);
 			}
 

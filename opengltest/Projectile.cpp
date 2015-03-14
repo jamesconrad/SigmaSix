@@ -8,7 +8,7 @@ POINT RotatePoint(float pivX, float pivY, float pX, float pY, float angle)
 	return rVal;
 }
 
-Projectile::Projectile(int managerIndex, int texID, float startX, float startY, float dirX, float dirY, float dmg, float maxDur, float projSpeed, int projN)
+Projectile::Projectile(int managerIndex, int texID, float startX, float startY, float dirX, float dirY, float dmg, float maxDur, float projSpeed, int projN, int ownerIndex)
 {
 	w = 9;
 	h = 9;
@@ -22,6 +22,7 @@ Projectile::Projectile(int managerIndex, int texID, float startX, float startY, 
 	x = startX;
 	y = startY;
 	index = managerIndex;
+	owner = ownerIndex;
 	projNum = projN;
 	float deg = atan2(direction.y, direction.x) * 180 / 3.14; // wtf is atan2?
 	//POINT r1 = RotatePoint(x + (w * scale / 2.f), y + (h * scale / 2.f), startX, startY, deg);

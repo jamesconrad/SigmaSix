@@ -40,7 +40,7 @@ void EntityManager::CreateEntity(entitytype entityType, float x, float y)
 	}
 	else
 	{
-		Enemy* newEntity = new Enemy(projectileManager, this, barTexID, x, y, entityVector.size(), entityType);
+		Enemy* newEntity = new Enemy(projectileManager, this, barTexID, x, y, entityVector.size(), entityType, entityVector.size());
 		entityVector.push_back(newEntity);
 	}
 }
