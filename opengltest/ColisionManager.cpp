@@ -336,6 +336,22 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 				entityManager->HandleInput('w', false);
 			else
 				entityManager->HandleInput('s', false);
+
+			
+		}
+		//Check for projectile hitting wall
+		for (int projIter = projectileVectorPtr->size() - 1; projIter >= 0; projIter--)
+		{
+			RECT projRect = projectileVectorPtr->at(projIter)->GetRect();
+			l = colisionMap.at(chunkNum).at(i).left - projRect.right;
+			r = colisionMap.at(chunkNum).at(i).right - projRect.left;
+			t = colisionMap.at(chunkNum).at(i).bottom - projRect.top;
+			b = colisionMap.at(chunkNum).at(i).top - projRect.bottom;
+
+			if (!(l > 0 || r < 0 || t > 0 || b < 0))
+			{
+				ProjectileManager::instance()->RemoveProjectile(projIter);
+			}
 		}
 	}
 }
