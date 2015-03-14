@@ -12,7 +12,7 @@ Projectile::Projectile(int managerIndex, int texID, float startX, float startY, 
 {
 	w = 9;
 	h = 9;
-	float scale = 0.5f;//need to get these from constructor
+	float scale = 0.66f;//need to get these from constructor
 	direction.x = dirX;
 	direction.y = dirY;
 	damage = dmg;
@@ -59,8 +59,8 @@ Projectile::Projectile(int managerIndex, int texID, float startX, float startY, 
 	//texture->addSpriteAnimRow(animnum,startx,starty,spacingx,spacingy,numframe)
 
 	//scale the width and height because im lazy
-	w *= 0.5f;
-	h *= 0.5f;
+	w *= 0.66f;
+	h *= 0.66f;
 	/*	*/
 }
 Projectile::~Projectile()
@@ -108,4 +108,11 @@ void Projectile::SetIndex(int managerIndex)
 void Projectile::Draw()
 {
 	proj->draw(0.66);
+	/*RECT tmp = GetRect();
+	glBegin(GL_QUADS);
+	glVertex3f(tmp.left, tmp.bottom, 0);
+	glVertex3f(tmp.right, tmp.bottom, 0);
+	glVertex3f(tmp.right, tmp.top, 0);
+	glVertex3f(tmp.left, tmp.top, 0);
+	glEnd();*/
 }

@@ -27,7 +27,15 @@ public:
 	int GetOwner() { return owner; }
 
 	RotatedRectangle GetRRect() { return rRect; }
-	RECT GetRect() { return RECT{ y, x, x + w, y + h }; }
+	RECT GetRect() 
+	{
+		RECT tmp;
+		tmp.left = x;
+		tmp.right = x + w;
+		tmp.bottom = y;
+		tmp.top = y + h;
+		return tmp;
+	}
 private:
 	vec2 direction;
 	Sprite* proj;
