@@ -150,9 +150,9 @@ void ColisionManager::Update()
 		for (int projectileIter = projectileVectorPtr->size() - 1; projectileIter >= 0; projectileIter--)
 		{
 			//check if projectiles are owned by the entity
-			if (entityIter == 0 && (projectileVectorPtr->at(projectileIter)->GetType() != 0))
+			if (entityIter == ProjectileManager::instance()->GetOwner(projectileIter))
 				break;
-			else if (entityIter != 0 && (projectileVectorPtr->at(projectileIter)->GetType() != 1))
+			else if (entityIter != 0 && ProjectileManager::instance()->GetOwner(projectileIter) != 0)
 				break;
 			RECT proj = projectileVectorPtr->at(projectileIter)->GetRect();
 			float l = proj.left - entPos.right;
