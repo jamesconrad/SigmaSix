@@ -14,7 +14,7 @@ EntityManager::EntityManager()
 
 void EntityManager::Update(float dTime)
 {
-	for (int i = 0, size = entityVector.size(); i < size; i++)
+	for (int i = entityVector.size() - 1; i >= 0; i--)
 		entityVector[i]->update(dTime);
 	bcastSend();
 }
@@ -47,7 +47,11 @@ void EntityManager::CreateEntity(entitytype entityType, float x, float y)
 
 void EntityManager::DeleteEntity(int index)
 {
-
+	free(entityVector[index]);
+	entityVector.erase(entityVector.begin() + index);
+	entityVector.shrink_to_fit();
+	for (int i = entityVector.size() - 1; i > 0; i--)
+		entityVector.at(i)->UpdateIndex(i);
 }
 
 void EntityManager::Clear()

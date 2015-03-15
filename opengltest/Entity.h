@@ -21,7 +21,26 @@ public:
 	virtual void handleinput(char keycode, bool press) {}; //^
 	virtual float getX() { return 0.f; }
 	virtual float getY() { return 0.f; }
-	virtual RECT getRect() { RECT tmp = { 0, 0, 0, 0 }; return tmp; }
+	RECT getRect() 
+	{
+		RECT tmp;
+		if (index != 0)
+		{
+			tmp.left = x;
+			tmp.right = x + w;
+			tmp.top = y + h;
+			tmp.bottom = y;
+		}
+		else
+		{
+			tmp.left = getCX() - 5;
+			tmp.bottom = getCY() - 7;
+			tmp.right = getCX() + 5;
+			tmp.top = getCY() + 5;
+		}
+		return tmp;
+	};
+	void UpdateIndex(int i) { index = i; }
 	virtual void ModPos(vec2) {};
 	virtual void Damage(float damage){};
 	virtual float getCX() { return 0.f; }
@@ -46,7 +65,9 @@ public:
 	virtual void bcastSend(char msg, int sender) {}
 
 
-private:
+protected:
+	float x, y, w, h;
+	int index;
 	
 };
 #endif

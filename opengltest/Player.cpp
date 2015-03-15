@@ -12,12 +12,13 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	projectileManager = projManager;
 	direction = vec2(0, -1);
 	movement = vec2(0, 0);
+	index = 0;
 	hp = 100;
 	maxHP = 100;
 	energy = 100;
 	maxEnergy = 100;
 	energyRegen = 1;
-	damage = 5;
+	damage = 25;
 	fireRate = 5;
 	x = _x;
 	y = _y;
@@ -68,13 +69,13 @@ void Player::draw()
 {
 	texture->draw(0.5f);
 	//printf("%f, %f\n", x, y);
-	RECT tmp = getRect();
+	/*RECT tmp = getRect();
 	glBegin(GL_QUADS);
 	glVertex3f(tmp.left, tmp.bottom, 0);
 	glVertex3f(tmp.right, tmp.bottom, 0);
 	glVertex3f(tmp.right, tmp.top, 0);
 	glVertex3f(tmp.left, tmp.top, 0);
-	glEnd();
+	glEnd();*/
 
 }
 

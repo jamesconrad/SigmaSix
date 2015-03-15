@@ -60,7 +60,7 @@ private:
 	EntityManager* entityManager;
 	ProjectileManager* projectileManager;
 	int  energy, energyRegen, damage;
-	float speed, x, y, w, h, fireRate;
+	float speed, fireRate;
 	float origX, origY;
 	int  hp, maxHP;
 	vec2 direction, movement;
@@ -74,7 +74,6 @@ private:
 	float stateCD;
 	bool shielded;
 	bool frozen;
-	int index;
 };
 
 #endif

@@ -284,26 +284,27 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 
 		if (!(l > 0 || r < 0 || t > 0 || b < 0))
 		{
-			for (int portalIter = 0, numOfPortals = portalMap.size(); portalIter < numOfPortals; portalIter++)
+			if (entityIter == 0)
 			{
-				if (portalMap.at(portalIter).chunkNum == chunkNum && portalMap.at(portalIter).colisionPos == i)
+				for (int portalIter = 0, numOfPortals = portalMap.size(); portalIter < numOfPortals; portalIter++)
 				{
-					l = portalMap.at(portalIter).pos.left - entPos.right;
-					r = portalMap.at(portalIter).pos.right - entPos.left;
-					t = portalMap.at(portalIter).pos.bottom - entPos.top;
-					b = portalMap.at(portalIter).pos.top - entPos.bottom;
-
-					if (!(l > 0 || r < 0 || t > 0 || b < 0))
+					if (portalMap.at(portalIter).chunkNum == chunkNum && portalMap.at(portalIter).colisionPos == i)
 					{
-						//Now we get to load the map
-						int mapID = portalMap.at(portalIter).mapTransitionID;
-						mapLoader->LoadMap(mapID);
-						RebuildColisionMap();
-						return;
+						l = portalMap.at(portalIter).pos.left - entPos.right;
+						r = portalMap.at(portalIter).pos.right - entPos.left;
+						t = portalMap.at(portalIter).pos.bottom - entPos.top;
+						b = portalMap.at(portalIter).pos.top - entPos.bottom;
+
+						if (!(l > 0 || r < 0 || t > 0 || b < 0))
+						{
+							//Now we get to load the map
+							int mapID = portalMap.at(portalIter).mapTransitionID;
+							mapLoader->LoadMap(mapID);
+							RebuildColisionMap();
+							return;
+						}
 					}
 				}
-
-
 			}
 
 
@@ -324,7 +325,7 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 
 			entityManager->ModPosOfID(entityIter, mtd);
 			
-			if (mtd.x)
+			/*if (mtd.x)
 				entityManager->HandleInput('a', false);
 			else
 				entityManager->HandleInput('d', false);
@@ -332,7 +333,7 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 			if (mtd.y)
 				entityManager->HandleInput('w', false);
 			else
-				entityManager->HandleInput('s', false);
+				entityManager->HandleInput('s', false);*/
 
 			
 		}

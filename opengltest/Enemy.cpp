@@ -63,6 +63,12 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 
 void Enemy::update(float dTime)
 {
+	if (hp <= 0.f)
+	{
+		EntityManager::instance()->DeleteEntity(index);
+		return;
+	}
+
 	stateCD -= dTime;
 	this->dTime = dTime;
 	updateAiState();
@@ -111,13 +117,13 @@ void Enemy::draw()
 	texture->draw(0.5f);
 	hpBG->draw(0.25f);
 	hpBar->draw(0.25f);
-	RECT tmp = getRect();
+	/*RECT tmp = getRect();
 	glBegin(GL_QUADS);
 	glVertex3f(tmp.left, tmp.bottom, 0);
 	glVertex3f(tmp.right, tmp.bottom, 0);
 	glVertex3f(tmp.right, tmp.top, 0);
 	glVertex3f(tmp.left, tmp.top, 0);
-	glEnd();
+	glEnd();*/
 }
 
 void Enemy::ModPos(vec2 mod)
