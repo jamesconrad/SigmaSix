@@ -146,8 +146,6 @@ void ColisionManager::Update()
 		//Attempt #2 Fuck the seperating axis theorm
 		for (int projectileIter = projectileVectorPtr->size() - 1; projectileIter >= 0; projectileIter--)
 		{
-			if (ProjectileManager::instance()->GetOwner(projectileIter) == 0 && entityIter != 0)
-				printf("break;");
 			//check if projectiles are owned by the entity
 			if (entityIter == ProjectileManager::instance()->GetOwner(projectileIter))
 				break;

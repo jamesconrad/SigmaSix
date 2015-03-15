@@ -108,11 +108,11 @@ void Projectile::SetIndex(int managerIndex)
 void Projectile::Draw()
 {
 	proj->draw(0.66);
-	RECT tmp = GetRect();
+	/*RECT tmp = GetRect();
 	glBegin(GL_QUADS);
 	glVertex3f(tmp.left, tmp.bottom, 0);
 	glVertex3f(tmp.right, tmp.bottom, 0);
 	glVertex3f(tmp.right, tmp.top, 0);
 	glVertex3f(tmp.left, tmp.top, 0);
-	glEnd();
+	glEnd();*/
 }
