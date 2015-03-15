@@ -125,9 +125,6 @@ void ColisionManager::Update()
 {
 	projectileVectorPtr = projectileManager->GetProjectileVector();//rederive location incase pushback caused it to move
 	RECT entPos;
-	POINT axis[4], aProj[4], bProj[4];
-	bool overlap[4];
-	RotatedRectangle rRect;
 	for (int entityIter = 0, numOfEnts = entityManager->GetSize(); entityIter < numOfEnts; entityIter++)
 	{
 		entPos = entityManager->getRectOfID(entityIter);
@@ -149,6 +146,8 @@ void ColisionManager::Update()
 		//Attempt #2 Fuck the seperating axis theorm
 		for (int projectileIter = projectileVectorPtr->size() - 1; projectileIter >= 0; projectileIter--)
 		{
+			if (ProjectileManager::instance()->GetOwner(projectileIter) == 0 && entityIter != 0)
+				printf("break;");
 			//check if projectiles are owned by the entity
 			if (entityIter == ProjectileManager::instance()->GetOwner(projectileIter))
 				break;
@@ -163,8 +162,8 @@ void ColisionManager::Update()
 			if (!(l > 0 || r < 0 || t > 0 || b < 0))
 			{
 				entityManager->DamageID(entityIter, projectileVectorPtr->at(projectileIter)->GetDamage());
-				entityManager->OnHit(projectileManager->GetOwner(projectileIter));
-				projectileManager->RemoveProjectile(projectileIter);
+				entityManager->OnHit(ProjectileManager::instance()->GetOwner(projectileIter));
+				ProjectileManager::instance()->RemoveProjectile(projectileIter);
 			}
 
 		}
@@ -285,8 +284,6 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 
 		if (!(l > 0 || r < 0 || t > 0 || b < 0))
 		{
-			//we have collision
-			//issue is that i need to derive the chunkVector location instead of the colisionMap location
 			for (int portalIter = 0, numOfPortals = portalMap.size(); portalIter < numOfPortals; portalIter++)
 			{
 				if (portalMap.at(portalIter).chunkNum == chunkNum && portalMap.at(portalIter).colisionPos == i)

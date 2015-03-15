@@ -129,6 +129,9 @@ bool MapLoader::LoadMap(int mapID)
 			//printf("Loading Map: %f\n", progress);
 		}
 	}
+	EntityManager::instance()->CreateEntity(ENEMY, -20, -20);
+	EntityManager::instance()->CreateEntity(ENEMY, -40, -40);
+	EntityManager::instance()->CreateEntity(ENEMY, -60, -60);
 	printf("%i",mapID);
 	mapLoaded = true;
 	return true;

@@ -24,6 +24,7 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 	speed = 0.1f;//default 0.1f
 	hp = 100;
 	maxHP = 100;
+	damage = 5;
 	origX = x = _x;
 	origX = y = _y;
 	w = 34.f / 2;
@@ -102,7 +103,6 @@ void Enemy::update(float dTime)
 	else
 		hpw = w * 4 * hpdec;
 	hpBar->setSpriteFrameSize(hpw, 6);
-	//hpBar->addSpriteAnimFrame(0, 0, 7);
 	
 }
 
@@ -111,13 +111,13 @@ void Enemy::draw()
 	texture->draw(0.5f);
 	hpBG->draw(0.25f);
 	hpBar->draw(0.25f);
-	/*RECT tmp = getRect();
+	RECT tmp = getRect();
 	glBegin(GL_QUADS);
 	glVertex3f(tmp.left, tmp.bottom, 0);
 	glVertex3f(tmp.right, tmp.bottom, 0);
 	glVertex3f(tmp.right, tmp.top, 0);
 	glVertex3f(tmp.left, tmp.top, 0);
-	glEnd();*/
+	glEnd();
 }
 
 void Enemy::ModPos(vec2 mod)
@@ -147,7 +147,7 @@ void Enemy::updateAiState()
 		ChangeState(state_attack, 0);
 		break;
 	case state_patrol:
-
+		ChangeState(state_chase, 1000);
 		break;
 	case state_runaway:
 		Runaway();
@@ -156,7 +156,6 @@ void Enemy::updateAiState()
 		Heal();
 		break;
 	case state_chase:
-		//need to raycast to check if ai can hit player before changing
 		Chase();
 		break;
 	}
@@ -214,7 +213,7 @@ void Enemy::Shoot()
 	if (mag > 8 * 15)
 		ChangeState(state_chase, 0);
 
-	if (shotTimer >= 0.f)//1000.f seems to be a good speed, but 0.f is for testing
+	if (shotTimer >= 1000.f)//1000.f seems to be a good speed, but 0.f is for testing
 	{
 		projectileManager->CreateProjectile(1, getCX(), getCY(), projDir.x, projDir.y, damage, 3000.f, 0.2f, GetIndex());
 		shotTimer = 0.f;

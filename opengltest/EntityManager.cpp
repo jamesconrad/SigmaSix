@@ -52,7 +52,7 @@ void EntityManager::DeleteEntity(int index)
 
 void EntityManager::Clear()
 {
-	for (int i = 1, s = entityVector.size(); i < s; i++)
+	for (int i = entityVector.size() - 1; i > 0; i--)
 		entityVector.erase(entityVector.begin() + i);
 }
 
