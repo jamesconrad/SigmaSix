@@ -50,12 +50,16 @@ public:
 	int getEnergy(int id) { return entityVector[id]->getEnergy(); }
 	int getMaxEnergy(int id) { return entityVector[id]->getMaxEnergy(); }
 	int GetSize() { return entityVector.size(); }
-	RECT getRectOfID(int id) { return entityVector[id]->getRect(); }
+	RECT getRectOfID(int id) 
+	{ 
+		if (id < entityVector.size()) return entityVector[id]->getRect();
+		else return entityVector[0]->getRect();
+	}
 	void ModPosOfID(int id, vec2 mod);
 	float SpeedOfID(int id) { return entityVector[id]->getSpeed(); }
 	void FreezeID(int id, bool status) { entityVector[id]->Freeze(status); }
 	void Clear();
-	void OnHit(int id) { entityVector[id]->OnHit(); }
+	void OnHit(int id) { if (id < entityVector.size()) entityVector[id]->OnHit(); }
 
 	//virtual void cancelMovement();
 	void bcastRecv(char msg, int sender);
