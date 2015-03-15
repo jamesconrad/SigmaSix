@@ -4,69 +4,144 @@
 
 //Tutorial Portals
 	if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 7)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 0);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 
 //Hub Portals
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 1 && Pixels[pos * 3 + 2] == 0)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 1);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 2 && Pixels[pos * 3 + 2] == 0)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 2);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 3 && Pixels[pos * 3 + 2] == 0)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 3);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 4 && Pixels[pos * 3 + 2] == 0)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 4);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 5 && Pixels[pos * 3 + 2] == 0)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 5);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 6 && Pixels[pos * 3 + 2] == 0)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 6);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 
 //Level 1 Portals (Volcano)
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 1)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 0);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 11 && Pixels[pos * 3 + 2] == 1)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 11);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 11)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 0);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 
 //Level 2 Portals (Autumn)
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 2)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 0);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 12 && Pixels[pos * 3 + 2] == 2)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 12);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 12)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 0);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 
 //Level 3 (Desert)
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 3)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 0);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 13 && Pixels[pos * 3 + 2] == 3)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 13);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 13)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 0);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 
 //Level 4 (Field)
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 4)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 0);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 14 && Pixels[pos * 3 + 2] == 4)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 14);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 14)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 0);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 
 //Level 5 (Tech)
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 5)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 0);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 15 && Pixels[pos * 3 + 2] == 5)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 15);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 15)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 0);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 
 //Level 6 (Castle)
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 6)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 0);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 16 && Pixels[pos * 3 + 2] == 6)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 16);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 16)
+		{
 		tileManager->CreatePortal(STATIC, x * 15.f, (mapData.h - y) * 15.f, 15.f, 15.f, 17.f, 0.f, true, 0);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 16, 16, 306, 153, true);
+		}
 
 
 	
@@ -172,7 +247,7 @@
 		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 34, 68, true);
 	else if (Pixels[pos * 3 + 0] == 217 && Pixels[pos * 3 + 1] == 166 && Pixels[pos * 3 + 2] == 221)
 		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 51, 68, true);
-	else if (Pixels[pos * 3 + 0] == 156 && Pixels[pos * 3 + 1] == 223 && Pixels[pos * 3 + 2] == 154)
+	else if (Pixels[pos * 3 + 0] == 156 && Pixels[pos * 3 + 1] == 233 && Pixels[pos * 3 + 2] == 154)
 		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 68, 68, true);
 
 	else if (Pixels[pos * 3 + 0] == 139 && Pixels[pos * 3 + 1] == 18 && Pixels[pos * 3 + 2] == 136)
