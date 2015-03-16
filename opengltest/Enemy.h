@@ -27,10 +27,11 @@ class EntityManager;
 class Enemy : public Entity
 {
 public:
-	Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar, float x, float y, int index, entitytype entType);
+	Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar, float x, float y, int index, entitytype entType, int managerIndex);
 	void draw();
 	void update(float dTime); // will need to do ai stuff
 	void ModPos(vec2 mod);
+	int GetIndex() { return index; }
 	float getCX() { return x + w * 0.25f; }
 	float getCY() { return y + h * 0.25f; }
 	float getX() { return x; }
@@ -59,7 +60,7 @@ private:
 	EntityManager* entityManager;
 	ProjectileManager* projectileManager;
 	int  energy, energyRegen, damage;
-	float speed, x, y, w, h, fireRate;
+	float speed, fireRate;
 	float origX, origY;
 	int  hp, maxHP;
 	vec2 direction, movement;

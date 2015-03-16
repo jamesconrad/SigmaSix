@@ -125,9 +125,6 @@ void ColisionManager::Update()
 {
 	projectileVectorPtr = projectileManager->GetProjectileVector();//rederive location incase pushback caused it to move
 	RECT entPos;
-	POINT axis[4], aProj[4], bProj[4];
-	bool overlap[4];
-	RotatedRectangle rRect;
 	for (int entityIter = 0, numOfEnts = entityManager->GetSize(); entityIter < numOfEnts; entityIter++)
 	{
 		entPos = entityManager->getRectOfID(entityIter);
@@ -150,9 +147,9 @@ void ColisionManager::Update()
 		for (int projectileIter = projectileVectorPtr->size() - 1; projectileIter >= 0; projectileIter--)
 		{
 			//check if projectiles are owned by the entity
-			if (entityIter == 0 && (projectileVectorPtr->at(projectileIter)->GetType() != 0))
+			if (entityIter == ProjectileManager::instance()->GetOwner(projectileIter))
 				break;
-			else if (entityIter != 0 && (projectileVectorPtr->at(projectileIter)->GetType() != 1))
+			else if (entityIter != 0 && ProjectileManager::instance()->GetOwner(projectileIter) != 0)
 				break;
 			RECT proj = projectileVectorPtr->at(projectileIter)->GetRect();
 			float l = proj.left - entPos.right;
@@ -163,7 +160,8 @@ void ColisionManager::Update()
 			if (!(l > 0 || r < 0 || t > 0 || b < 0))
 			{
 				entityManager->DamageID(entityIter, projectileVectorPtr->at(projectileIter)->GetDamage());
-				projectileManager->RemoveProjectile(projectileIter);
+				entityManager->OnHit(ProjectileManager::instance()->GetOwner(projectileIter));
+				ProjectileManager::instance()->RemoveProjectile(projectileIter);
 			}
 
 		}
@@ -284,28 +282,27 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 
 		if (!(l > 0 || r < 0 || t > 0 || b < 0))
 		{
-			//we have collision
-			//issue is that i need to derive the chunkVector location instead of the colisionMap location
-			for (int portalIter = 0, numOfPortals = portalMap.size(); portalIter < numOfPortals; portalIter++)
+			if (entityIter == 0)
 			{
-				if (portalMap.at(portalIter).chunkNum == chunkNum && portalMap.at(portalIter).colisionPos == i)
+				for (int portalIter = 0, numOfPortals = portalMap.size(); portalIter < numOfPortals; portalIter++)
 				{
-					l = portalMap.at(portalIter).pos.left - entPos.right;
-					r = portalMap.at(portalIter).pos.right - entPos.left;
-					t = portalMap.at(portalIter).pos.bottom - entPos.top;
-					b = portalMap.at(portalIter).pos.top - entPos.bottom;
-
-					if (!(l > 0 || r < 0 || t > 0 || b < 0))
+					if (portalMap.at(portalIter).chunkNum == chunkNum && portalMap.at(portalIter).colisionPos == i)
 					{
-						//Now we get to load the map
-						int mapID = portalMap.at(portalIter).mapTransitionID;
-						mapLoader->LoadMap(mapID);
-						RebuildColisionMap();
-						return;
+						l = portalMap.at(portalIter).pos.left - entPos.right;
+						r = portalMap.at(portalIter).pos.right - entPos.left;
+						t = portalMap.at(portalIter).pos.bottom - entPos.top;
+						b = portalMap.at(portalIter).pos.top - entPos.bottom;
+
+						if (!(l > 0 || r < 0 || t > 0 || b < 0))
+						{
+							//Now we get to load the map
+							int mapID = portalMap.at(portalIter).mapTransitionID;
+							mapLoader->LoadMap(mapID);
+							RebuildColisionMap();
+							return;
+						}
 					}
 				}
-
-
 			}
 
 
@@ -326,7 +323,7 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 
 			entityManager->ModPosOfID(entityIter, mtd);
 			
-			if (mtd.x)
+			/*if (mtd.x)
 				entityManager->HandleInput('a', false);
 			else
 				entityManager->HandleInput('d', false);
@@ -334,7 +331,23 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 			if (mtd.y)
 				entityManager->HandleInput('w', false);
 			else
-				entityManager->HandleInput('s', false);
+				entityManager->HandleInput('s', false);*/
+
+			
+		}
+		//Check for projectile hitting wall
+		for (int projIter = projectileVectorPtr->size() - 1; projIter >= 0; projIter--)
+		{
+			RECT projRect = projectileVectorPtr->at(projIter)->GetRect();
+			l = colisionMap.at(chunkNum).at(i).left - projRect.right;
+			r = colisionMap.at(chunkNum).at(i).right - projRect.left;
+			t = colisionMap.at(chunkNum).at(i).bottom - projRect.top;
+			b = colisionMap.at(chunkNum).at(i).top - projRect.bottom;
+
+			if (!(l > 0 || r < 0 || t > 0 || b < 0))
+			{
+				ProjectileManager::instance()->RemoveProjectile(projIter);
+			}
 		}
 	}
 }

@@ -10,6 +10,7 @@ public:
 	virtual void Activate() { return; }
 	virtual void Update(float dTime) { return; }
 	virtual void OnFire() { return; }
+	virtual void OnHit() { return; }
 	virtual void OnDamage() { return; }
 protected:
 	float cooldown, procRate, maxCooldown;

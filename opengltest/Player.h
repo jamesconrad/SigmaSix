@@ -44,6 +44,11 @@ public:
 		else
 			shielded = false;
 	}
+	void OnHit()
+	{
+		for (int i = 0, s = inventory.size(); i < s; i++)
+			inventory[i]->OnHit();
+	}
 	RECT getRect() 
 	{ 
 		RECT tmp; 
@@ -61,7 +66,7 @@ private:
 	Sprite* texture, *hpBar, *energyBar, *hpBG, *energyBG;
 	ProjectileManager* projectileManager;
 	int hp, energy, energyRegen, damage, maxHP, maxEnergy;
-	float speed, x, y, w, h, fireRate;
+	float speed, fireRate;
 	vec2 direction, movement;
 	float animFrame, lastShot, energyRegenCd;
 	bool keysPressed[256];

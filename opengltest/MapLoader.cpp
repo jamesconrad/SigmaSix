@@ -61,7 +61,18 @@ bool MapLoader::LoadMap(int mapID)
 	{
 	case 0: mapData = MAP_ID_0_POSITION; break;
 	case 1: mapData = MAP_ID_1_POSITION; break;
+	case 2: mapData = MAP_ID_2_POSITION; break;
+	case 3: mapData = MAP_ID_3_POSITION; break;
+	case 4: mapData = MAP_ID_4_POSITION; break;
+	case 5: mapData = MAP_ID_5_POSITION; break;
+	case 6: mapData = MAP_ID_6_POSITION; break;
+	case 7: mapData = MAP_ID_7_POSITION; break;
 	case 11: mapData = MAP_ID_11_POSITION; break;
+	case 12: mapData = MAP_ID_12_POSITION; break;
+	case 13: mapData = MAP_ID_13_POSITION; break;
+	case 14: mapData = MAP_ID_14_POSITION; break;
+	case 15: mapData = MAP_ID_15_POSITION; break;
+	case 16: mapData = MAP_ID_16_POSITION; break;
 	default:
 		printf("ERROR: Invalid map id %i\n", mapID);
 		return false;
@@ -118,6 +129,9 @@ bool MapLoader::LoadMap(int mapID)
 			//printf("Loading Map: %f\n", progress);
 		}
 	}
+	//EntityManager::instance()->CreateEntity(ENEMY, -20, -20);
+	//EntityManager::instance()->CreateEntity(ENEMY, -40, -40);
+	//EntityManager::instance()->CreateEntity(ENEMY, -60, -60);
 	printf("%i",mapID);
 	mapLoaded = true;
 	return true;

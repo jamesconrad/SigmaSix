@@ -19,12 +19,13 @@ public:
 		static ProjectileManager *instance = new ProjectileManager();
 		return instance;
 	}
-	void CreateProjectile(int projNum, float startX, float startY, float dirX, float dirY, float dmg, float maxDur, float projSpeed);
+	void CreateProjectile(int projNum, float startX, float startY, float dirX, float dirY, float dmg, float maxDur, float projSpeed, int ownerIndex);
 	void RemoveProjectile(int index);
 	void Update(float dTime);
 	void Draw();
 	std::vector<Projectile*>* GetProjectileVector() { return &projectileVector; }
 	float DamageOfID(int id) { return projectileVector.at(id)->GetDamage(); }
+	int GetOwner(int id) { return projectileVector[id]->GetOwner(); }
 private:
 	ProjectileManager();
 	std::vector<Projectile*> projectileVector;

@@ -12,7 +12,7 @@
 //		Always offensive
 //		Will attempt to defend elites
 
-Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar, float _x, float _y, int _i, entitytype entType)
+Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar, float _x, float _y, int _i, entitytype entType, int _index)
 {
 	entityType = entType;
 	manIndex = _i;
@@ -24,10 +24,12 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 	speed = 0.1f;//default 0.1f
 	hp = 100;
 	maxHP = 100;
+	damage = 5;
 	origX = x = _x;
 	origX = y = _y;
 	w = 34.f / 2;
 	h = 46.f / 2;
+	index = _index;
 	animFrame = shotTimer = 0.f;
 	texture->loadSpriteSheet("assets/enemy.png");
 	texture->setNumberOfAnimations(9);
@@ -61,6 +63,12 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 
 void Enemy::update(float dTime)
 {
+	if (hp <= 0.f)
+	{
+		EntityManager::instance()->DeleteEntity(index);
+		return;
+	}
+
 	stateCD -= dTime;
 	this->dTime = dTime;
 	updateAiState();
@@ -101,7 +109,6 @@ void Enemy::update(float dTime)
 	else
 		hpw = w * 4 * hpdec;
 	hpBar->setSpriteFrameSize(hpw, 6);
-	//hpBar->addSpriteAnimFrame(0, 0, 7);
 	
 }
 
@@ -146,7 +153,7 @@ void Enemy::updateAiState()
 		ChangeState(state_attack, 0);
 		break;
 	case state_patrol:
-
+		ChangeState(state_chase, 1000);
 		break;
 	case state_runaway:
 		Runaway();
@@ -155,7 +162,6 @@ void Enemy::updateAiState()
 		Heal();
 		break;
 	case state_chase:
-		//need to raycast to check if ai can hit player before changing
 		Chase();
 		break;
 	}
@@ -213,9 +219,9 @@ void Enemy::Shoot()
 	if (mag > 8 * 15)
 		ChangeState(state_chase, 0);
 
-	if (shotTimer >= 0.f)//1000.f seems to be a good speed, but 0.f is for testing
+	if (shotTimer >= 1000.f)//1000.f seems to be a good speed, but 0.f is for testing
 	{
-		projectileManager->CreateProjectile(1, getCX(), getCY(), projDir.x, projDir.y, damage, 3000.f, 0.2f);
+		projectileManager->CreateProjectile(1, getCX(), getCY(), projDir.x, projDir.y, damage, 3000.f, 0.2f, GetIndex());
 		shotTimer = 0.f;
 	}
 	else

@@ -12,12 +12,13 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	projectileManager = projManager;
 	direction = vec2(0, -1);
 	movement = vec2(0, 0);
+	index = 0;
 	hp = 100;
 	maxHP = 100;
 	energy = 100;
 	maxEnergy = 100;
 	energyRegen = 1;
-	damage = 5;
+	damage = 25;
 	fireRate = 5;
 	x = _x;
 	y = _y;
@@ -182,7 +183,7 @@ void Player::cancelMovement(char dir)
 
 void Player::handleinput(char keycode, bool press)
 {
-	printf("%i - %i ", keycode, press);
+	//printf("%i - %i ", keycode, press);
 	keysPressed[keycode] = press;
 }
 
@@ -191,7 +192,7 @@ void Player::shoot()
 	if (energy > 10)
 	{
 		energy -= 10;
-		projectileManager->CreateProjectile(0, getCX(), getCY() + 0.5f * direction.x, direction.x, direction.y, damage, 3000.f, 0.2f);
+		projectileManager->CreateProjectile(0, getCX(), getCY() + 0.5f * direction.x, direction.x, direction.y, damage, 3000.f, 0.2f, 0);
 		for (int i = 0, s = inventory.size(); i < s; i++)
 			inventory[i]->OnFire();
 	}

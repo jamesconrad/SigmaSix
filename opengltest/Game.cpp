@@ -5,6 +5,10 @@
 #define WINDOW_SCREEN_WIDTH 256
 #define WINDOW_SCREEN_HEIGHT 196
 
+
+int score;
+
+
 /* this is called by std::sort to sort the list based on layerID
  *  for drawing in the proper order
  */
@@ -64,7 +68,7 @@ void Game::initializeGame()
 	projectileManager = ProjectileManager::instance();
 	entityManager = EntityManager::instance();
 	mapLoader = new MapLoader();
-	mapLoader->LoadMap(1);
+	mapLoader->LoadMap(7);
 	colisionManager = new ColisionManager(mapLoader);
 	colisionManager->RebuildColisionMap();
 

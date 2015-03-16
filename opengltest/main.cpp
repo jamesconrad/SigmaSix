@@ -48,7 +48,7 @@ void DisplayCallbackFunction(void)
  */
 void KeyboardCallbackFunction(unsigned char key, int x, int y)
 {
-	std::cout << "Keycode:"<<(int)key<<std::endl;
+	//std::cout << "Keycode:"<<(int)key<<std::endl;
 	theGame->keyboardDown(key,x,y);
 
 }
@@ -142,7 +142,7 @@ int main(int argc, char **argv)
 	glutInit(&argc,argv);
 	glutInitWindowSize(WINDOW_WIDTH,WINDOW_HEIGHT);
 	glutInitDisplayMode(GLUT_RGBA|GLUT_DOUBLE);
-	glutCreateWindow("Project: Judici");
+	glutCreateWindow("Sigma Six");
 
 	/* set up our function callbacks */
 	glutIgnoreKeyRepeat(1);
@@ -158,7 +158,7 @@ int main(int argc, char **argv)
 	initImageLibrary();
 
 	/* init the game */
-	theGame = new Game();
+	theGame = Game::instance();
 	theGame->setNewWindowSize(WINDOW_WIDTH,WINDOW_HEIGHT);
 	theGame->initializeGame();
 	srand(time(NULL));

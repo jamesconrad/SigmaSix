@@ -16,9 +16,9 @@ ProjectileManager::ProjectileManager()
 	mySprite->setLayerID(3);*/
 }
 
-void ProjectileManager::CreateProjectile(int projNum, float startX, float startY, float dirX, float dirY, float dmg, float maxDur, float projSpeed)
+void ProjectileManager::CreateProjectile(int projNum, float startX, float startY, float dirX, float dirY, float dmg, float maxDur, float projSpeed, int ownerIndex)
 {
-	Projectile *newProjectile = new Projectile(projectileVector.size(), texID, startX, startY, dirX, dirY, dmg, maxDur, projSpeed, projNum);
+	Projectile *newProjectile = new Projectile(projectileVector.size(), texID, startX, startY, dirX, dirY, dmg, maxDur, projSpeed, projNum, ownerIndex);
 	projectileVector.push_back(newProjectile);
 }
 

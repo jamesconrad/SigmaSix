@@ -14,7 +14,7 @@ EntityManager::EntityManager()
 
 void EntityManager::Update(float dTime)
 {
-	for (int i = 0, size = entityVector.size(); i < size; i++)
+	for (int i = entityVector.size() - 1; i >= 0; i--)
 		entityVector[i]->update(dTime);
 	bcastSend();
 }
@@ -40,19 +40,24 @@ void EntityManager::CreateEntity(entitytype entityType, float x, float y)
 	}
 	else
 	{
-		Enemy* newEntity = new Enemy(projectileManager, this, barTexID, x, y, entityVector.size(), entityType);
+		Enemy* newEntity = new Enemy(projectileManager, this, barTexID, x, y, entityVector.size(), entityType, entityVector.size());
 		entityVector.push_back(newEntity);
 	}
 }
 
 void EntityManager::DeleteEntity(int index)
 {
-
+	free(entityVector[index]);
+	entityVector.erase(entityVector.begin() + index);
+	entityVector.shrink_to_fit();
+	for (int i = entityVector.size() - 1; i > 0; i--)
+		entityVector.at(i)->UpdateIndex(i);
+	score += 100;
 }
 
 void EntityManager::Clear()
 {
-	for (int i = 1, s = entityVector.size(); i < s; i++)
+	for (int i = entityVector.size() - 1; i > 0; i--)
 		entityVector.erase(entityVector.begin() + i);
 }
 
