@@ -29,7 +29,7 @@ public:
 	void speedMod(float value) { speed *= value; }
 	void damageMod(float value) { damage *= value; }
 	void maxHealthMod(float value) { maxHP *= value; }
-	void lifeSteal(float value) { lifeSteal *= value; }
+	void lifeSteal(float value) { toggleLifeSteal *= value; }
 	void Damage(float projDamage) 
 	{ 
 		if (!shielded)
