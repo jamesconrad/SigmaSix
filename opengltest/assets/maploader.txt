@@ -575,7 +575,7 @@
 		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 187, 17, false);
 		entityManager->CreateEntity(PLAYER, x * 15, (mapData.h - y) * 15);
 	}
-	else if (Pixels[pos * 3 + 0] == 148 && Pixels[pos * 3 + 1] == 138 && Pixels[pos * 3 + 2] == 148)
+	else if (Pixels[pos * 3 + 0] == 148 && Pixels[pos * 3 + 1] == 148 && Pixels[pos * 3 + 2] == 148)
 	{	
 		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 187, 17, false);
 		entityManager->CreateEntity(ENEMY, x * 15, (mapData.h - y) * 15);
