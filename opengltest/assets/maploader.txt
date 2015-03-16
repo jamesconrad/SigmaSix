@@ -493,9 +493,99 @@
 
 //Player/Enemy Spawns
 
+//Level 0 (Hub)
+
+	if (Pixels[pos * 3 + 0] == 136 && Pixels[pos * 3 + 1] == 136 && Pixels[pos * 3 + 2] == 136)
+	{	
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 238, 136, false);
+		entityManager->CreateEntity(PLAYER, x * 15, (mapData.h - y) * 15);
+	}
+	else if (Pixels[pos * 3 + 0] == 138 && Pixels[pos * 3 + 1] == 138 && Pixels[pos * 3 + 2] == 138)
+	{	
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 51, 154, false);
+		entityManager->CreateEntity(ENEMY, x * 15, (mapData.h - y) * 15);
+	}
+
+//Level 1 (Lava)
 	if (Pixels[pos * 3 + 0] == 137 && Pixels[pos * 3 + 1] == 137 && Pixels[pos * 3 + 2] == 137)
 	{	
 		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 51, 154, false);
+		entityManager->CreateEntity(PLAYER, x * 15, (mapData.h - y) * 15);
+	}
+	else if (Pixels[pos * 3 + 0] == 138 && Pixels[pos * 3 + 1] == 138 && Pixels[pos * 3 + 2] == 138)
+	{	
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 51, 154, false);
+		entityManager->CreateEntity(ENEMY, x * 15, (mapData.h - y) * 15);
+	}
+
+//Level 2 (Autumn)
+	if (Pixels[pos * 3 + 0] == 139 && Pixels[pos * 3 + 1] == 139 && Pixels[pos * 3 + 2] == 139)
+	{	
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 68, 85, false);
+		entityManager->CreateEntity(PLAYER, x * 15, (mapData.h - y) * 15);
+	}
+	else if (Pixels[pos * 3 + 0] == 140 && Pixels[pos * 3 + 1] == 140 && Pixels[pos * 3 + 2] == 140)
+	{	
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 68, 85, false);
+		entityManager->CreateEntity(ENEMY, x * 15, (mapData.h - y) * 15);
+	}
+
+//Level 3 (Desert)
+	if (Pixels[pos * 3 + 0] == 141 && Pixels[pos * 3 + 1] == 141 && Pixels[pos * 3 + 2] == 141)
+	{	
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 0, 102, false);
+		entityManager->CreateEntity(PLAYER, x * 15, (mapData.h - y) * 15);
+	}
+	else if (Pixels[pos * 3 + 0] == 142 && Pixels[pos * 3 + 1] == 142 && Pixels[pos * 3 + 2] == 142)
+	{	
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 0, 102, false);
+		entityManager->CreateEntity(ENEMY, x * 15, (mapData.h - y) * 15);
+	}
+
+//Level 4 (Field)
+
+	if (Pixels[pos * 3 + 0] == 143 && Pixels[pos * 3 + 1] == 143 && Pixels[pos * 3 + 2] == 143)
+	{	
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 119, 136, false);
+		entityManager->CreateEntity(PLAYER, x * 15, (mapData.h - y) * 15);
+	}
+	else if (Pixels[pos * 3 + 0] == 144 && Pixels[pos * 3 + 1] == 144 && Pixels[pos * 3 + 2] == 144)
+	{	
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 119, 135, false);
+		entityManager->CreateEntity(ENEMY, x * 15, (mapData.h - y) * 15);
+	}
+
+//Level 5 (Tech)
+
+	if (Pixels[pos * 3 + 0] == 145 && Pixels[pos * 3 + 1] == 145 && Pixels[pos * 3 + 2] == 145)
+	{	
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 119, 119, false);
+		entityManager->CreateEntity(PLAYER, x * 15, (mapData.h - y) * 15);
+	}
+	else if (Pixels[pos * 3 + 0] == 146 && Pixels[pos * 3 + 1] == 146 && Pixels[pos * 3 + 2] == 146)
+	{	
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 119, 119, false);
+		entityManager->CreateEntity(ENEMY, x * 15, (mapData.h - y) * 15);
+	}
+
+//Level 6 (Castle)
+
+	if (Pixels[pos * 3 + 0] == 147 && Pixels[pos * 3 + 1] == 147 && Pixels[pos * 3 + 2] == 147)
+	{	
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 187, 17, false);
+		entityManager->CreateEntity(PLAYER, x * 15, (mapData.h - y) * 15);
+	}
+	else if (Pixels[pos * 3 + 0] == 148 && Pixels[pos * 3 + 1] == 138 && Pixels[pos * 3 + 2] == 148)
+	{	
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 187, 17, false);
+		entityManager->CreateEntity(ENEMY, x * 15, (mapData.h - y) * 15);
+	}
+
+//Level 7 (Tutorial)
+
+	if (Pixels[pos * 3 + 0] == 135 && Pixels[pos * 3 + 1] == 135 && Pixels[pos * 3 + 2] == 135)
+	{	
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 238, 136, false);
 		entityManager->CreateEntity(PLAYER, x * 15, (mapData.h - y) * 15);
 	}
 	else if (Pixels[pos * 3 + 0] == 138 && Pixels[pos * 3 + 1] == 138 && Pixels[pos * 3 + 2] == 138)
