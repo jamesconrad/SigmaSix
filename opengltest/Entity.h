@@ -39,6 +39,8 @@ public:
 	virtual void energyRegenMod(float value) { return; }
 	virtual void speedMod(float value) { return; }
 	virtual void damageMod(float value) { return; }
+	virtual void maxHealthMod(float value) { return; }
+	virtual void lifeSteal(float value) { return; }
 
 	virtual void bcastRecv(bcast broadcast) {}
 	virtual void bcastSend(char msg, int sender) {}
