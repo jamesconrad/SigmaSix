@@ -52,6 +52,7 @@ void EntityManager::DeleteEntity(int index)
 	entityVector.shrink_to_fit();
 	for (int i = entityVector.size() - 1; i > 0; i--)
 		entityVector.at(i)->UpdateIndex(i);
+	score += 100;
 }
 
 void EntityManager::Clear()

@@ -158,7 +158,7 @@ int main(int argc, char **argv)
 	initImageLibrary();
 
 	/* init the game */
-	theGame = new Game();
+	theGame = Game::instance();
 	theGame->setNewWindowSize(WINDOW_WIDTH,WINDOW_HEIGHT);
 	theGame->initializeGame();
 	srand(time(NULL));

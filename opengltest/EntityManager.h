@@ -25,7 +25,7 @@ enum entitytype {
 #include "Player.h"
 #include "Enemy.h"
 
-
+extern int score;
 
 class EntityManager
 {

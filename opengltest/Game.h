@@ -1,4 +1,6 @@
 #pragma once
+#ifndef GAME_H
+#define GAME_H
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -86,8 +88,12 @@ typedef struct _GameStateInfo
 class Game
 {
 public:
+	static Game* instance()
+	{
+		static Game *instance = new Game();
+		return instance;
+	}
 	/* initialization */
-	Game(void);
 	~Game(void);
 	void initializeGame();
 
@@ -178,9 +184,12 @@ public:
 	Timer *renderingTimer;
 	Timer *updateTimer; // for physics/collisions etc.
 
+
+	void ModScore(int mod) { score += mod; }
+	
 private:
+	Game(void);
 	int frame = 0, time, timebase = 0, fps = 0;
-	int score;
 	float fTime = 0;
 	MenuClass* mainMenu;
 	Camera* viewCam;
@@ -191,3 +200,5 @@ private:
 	MapLoader* mapLoader;
 	Sprite *hpBar, *energyBar, *hpBG, *s_Score, *s_Time, *entBarSprite;
 };
+
+#endif
