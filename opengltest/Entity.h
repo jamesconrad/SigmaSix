@@ -34,7 +34,7 @@ public:
 		else
 		{
 			tmp.left = getCX() - 5;
-			tmp.bottom = getCY() - 7;
+			tmp.bottom = getCY() - 8;
 			tmp.right = getCX() + 5;
 			tmp.top = getCY() + 5;
 		}
