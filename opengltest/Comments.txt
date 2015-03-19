@@ -22,7 +22,7 @@ X	Shield
 	Berserk
 	Gernade
 	Lifesteal
-	HP+
+X	HP+
 	Energy charge
 X	DMG+
 X	SPD+
