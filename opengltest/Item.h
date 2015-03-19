@@ -14,6 +14,7 @@ public:
 	virtual void OnDamage() { return; }
 protected:
 	float cooldown, procRate, maxCooldown;
+	Sprite* icon;
 	Entity* owner;
 };
 

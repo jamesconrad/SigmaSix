@@ -5,6 +5,7 @@
 #include "TileManager.h"
 #include "ProjectileManager.h"
 #include "MapLoader.h"
+#include "Item.h"
 
 struct Portal
 {
@@ -35,6 +36,7 @@ private:
 	std::vector<Projectile*>* projectileVectorPtr;
 	std::vector<std::vector<RECT>> colisionMap;
 	std::vector<Portal> portalMap;
+	std::vector<Item*> droppedItems;
 	
 };
 

@@ -72,6 +72,7 @@ private:
 	bool keysPressed[256];
 	int curAnim;
 	bool shielded;
+	bool toggleLifeSteal;
 };
 
 #endif
