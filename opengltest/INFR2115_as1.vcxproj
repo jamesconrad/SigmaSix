@@ -102,8 +102,10 @@
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="HorizontalScrollingBackground.cpp" />
+    <ClCompile Include="LifeSteal.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapLoader.cpp" />
+    <ClCompile Include="MaxHealthMod.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
@@ -130,7 +132,9 @@
     <ClInclude Include="DamageMod.h" />
     <ClInclude Include="HorizontalScrollingBackground.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="LifeSteal.h" />
     <ClInclude Include="MapLoader.h" />
+    <ClInclude Include="MaxHealthMod.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="EnergyRegen.h" />
     <ClInclude Include="Object.h" />

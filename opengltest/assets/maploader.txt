@@ -151,7 +151,7 @@
 	else if (Pixels[pos * 3 + 0] == 255 && Pixels[pos * 3 + 1] == 242 && Pixels[pos * 3 + 2] == 0)
 		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 34, 170, true);
 	else if (Pixels[pos * 3 + 0] == 34 && Pixels[pos * 3 + 1] == 177 && Pixels[pos * 3 + 2] == 76)
-		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 51, 170, false);
+		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 51, 170, true);
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 162 && Pixels[pos * 3 + 2] == 232)
 		tileManager->CreateTile(STATIC, x * 15, (mapData.h - y) * 15, 15, 15, 68, 170, true);
 
