@@ -7,6 +7,14 @@ Projectiles have momentum and cause a knockback.
 Fix all collision.
 Main menu.
 Audio.
+Pause Menu (art is in drive)
+Cut Scene Script is in, now create the actual working cut scene
+Item Pickup
+Have items drop and affect player with whatever effects we actually do have
+Fix where bullet comes out of
+Fix the colour of the bullet to be visible
+Add some actual Elites into the game (Deryk can add more once the code and images necessary are there)
+
 
 
 
