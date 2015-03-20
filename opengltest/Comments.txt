@@ -1,46 +1,47 @@
-This is where we can write things down and do TODO statements to eachother
-
-
-TODO:
-Items need functions to update the owners stats
-Projectiles have momentum and cause a knockback.
-Fix all collision.
-Main menu.
-Audio.
-Pause Menu (art is in drive)
-Cut Scene Script is in, now create the actual working cut scene
-Item Pickup
-Have items drop and affect player with whatever effects we actually do have
-Fix where bullet comes out of
-Fix the colour of the bullet to be visible
-Add some actual Elites into the game (Deryk can add more once the code and images necessary are there)
+TODO: (In order of priority)
+	Main menu.
+	Audio.
+	Pause Menu (art is in drive)
+	Cut Scene Script is in, now create the actual working cut scene
+	Fix where bullet comes out of
+	Add some actual Elites into the game (Deryk can add more once the code and images necessary are there)
+	Projectiles have momentum and cause a knockback.
 
 
 
+												      Notes from Conrad:
++----------------------------------------------------FUCKING DO THESE GUYS-------------------------------------------------+
+|																														   |
+|											Finish All items.															   |
+|											-NOTE ITEM.H NO LONGER EXISTS USE ENTITY.H									   |
+|											-This means adding in animations, and icons									   |
+|											-For refrence see the Shield item											   |
+|																														   |
++------------------------------------------This shit is prio #1 for Baker and Bonnyman-------------------------------------+
 
-
-
-ITEMS TODO:
-
-X	Shield
-	Expanding Aura
-	Stun
-	Constant AOE
-	Laser
-	Berserk
-	Gernade
-	Lifesteal
-X	HP+
-	Energy charge
-X	DMG+
-X	SPD+
-X	MAXENG+
-
-
-
-
-
+++------------------------++
+++------------------------++
+||	ITEMS TODO:			  ||
+||	LEGEND:				  ||
+++------------------------++
+||	X	| Code Done		  ||
+||	 +	| Drawing Donw	  ||
+||		| 				  ||
+||	X+	| Shield		  ||
+||		| Expanding Aura  ||
+||		| Stun			  ||
+||		| Constant AOE	  ||
+||		| Laser			  ||
+||		| Berserk		  ||
+||		| Gernade		  ||
+||		| Lifesteal		  ||
+||	X	| HP+			  ||
+||		| Energy charge	  ||
+||	X	| DMG+			  ||
+||	X	| SPD+			  ||
+||	X	| MAXENG+		  ||
+++------+-----------------++
+++------+-----------------++
 
 BUGS:
-Bottom left corner beneath the border breaks the game
-0.xf might be breaking the draw code. Try changing all vars to 0.1 instead of 0.1f to check.
+Transparent lines 1px wide being drawn in randomly

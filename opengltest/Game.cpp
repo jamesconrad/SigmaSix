@@ -297,7 +297,6 @@ void Game::drawTestPrimitives()
 	gameClock.append(ltoa(secs, fpsbuffer, 10));
 	setColor(1.f, 1.f, 1.f);
 	drawText(gameClock, entityManager->getCXofID(0) - (130), entityManager->getYofID(0) + (111.1));
-
 }
 
 void Game::DrawMainMenu()
