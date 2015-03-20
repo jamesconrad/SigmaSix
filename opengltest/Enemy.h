@@ -60,7 +60,8 @@ private:
 	EntityManager* entityManager;
 	ai_state state;
 	entitytype entityType;
-	float stateCD;
+	float stateCD, cooldown;
+	bool stateBool;
 };
 
 #endif

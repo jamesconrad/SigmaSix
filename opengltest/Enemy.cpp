@@ -14,6 +14,8 @@
 
 Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar, float _x, float _y, int _i, entitytype entType, int _index)
 {
+	stateBool = false;
+	cooldown = 0;
 	entityType = entType;
 	manIndex = _i;
 	projectileManager = projMan;
@@ -75,7 +77,14 @@ void Enemy::update(float dTime)
 	updateAiState();
 	
 	if (moving)
-		animFrame += dTime * (speed / 7.5f);
+	{
+		if (state == state_patrol)
+		{
+			animFrame += dTime * (speed / 15.f);
+		}
+		else
+			animFrame += dTime * (speed / 7.5f);
+	}
 
 	if (animFrame >= 1.f)
 	{
@@ -97,8 +106,16 @@ void Enemy::update(float dTime)
 	else
 		texture->setCurrentAnimation(curAnim);
 
-	x += dTime * direction.x * speed;
-	y += dTime * direction.y * speed;
+	if (state == state_patrol)
+	{
+		x += dTime * direction.x * (speed / 2.f);
+		y += dTime * direction.y * (speed / 2.f);
+	}
+	else
+	{
+		x += dTime * direction.x * speed;
+		y += dTime * direction.y * speed;
+	}
 
 	texture->setPosition(x,y);
 
@@ -118,13 +135,6 @@ void Enemy::draw()
 	texture->draw(0.5f);
 	hpBG->draw(0.25f);
 	hpBar->draw(0.25f);
-	/*RECT tmp = getRect();
-	glBegin(GL_QUADS);
-	glVertex3f(tmp.left, tmp.bottom, 0);
-	glVertex3f(tmp.right, tmp.bottom, 0);
-	glVertex3f(tmp.right, tmp.top, 0);
-	glVertex3f(tmp.left, tmp.top, 0);
-	glEnd();*/
 }
 
 void Enemy::ModPos(vec2 mod)
@@ -151,10 +161,11 @@ void Enemy::updateAiState()
 		Shoot();
 		break;
 	case state_passive:
-		ChangeState(state_attack, 0);
+		if (hp < maxHP)
+			ChangeState(state_patrol, 100);
 		break;
 	case state_patrol:
-		ChangeState(state_chase, 1000);
+		Patrol();
 		break;
 	case state_runaway:
 		Runaway();
@@ -198,12 +209,50 @@ void Enemy::EvadePlayer()
 
 void Enemy::Patrol()
 {
-	ChangeState(state_chase, 0);
+	cooldown -= dTime;
+	//move to random point
+	if (!stateBool)
+	{
+		//pick a new direction
+		if ( cooldown <= 0)
+		{
+			direction.x = (float(rand()) / float(RAND_MAX)) * (1 - (-1)) + (-1);
+			direction.y = (float(rand()) / float(RAND_MAX)) * (1 - (-1)) + (-1);
+			cooldown = 1000.f;
+			stateBool = true;
+		}
+	}
+	else
+	{
+		if (cooldown <= 0)
+		{
+			direction.x = -direction.x;
+			direction.y = -direction.y;
+			cooldown = 1000.f;
+			stateBool = false;
+		}
+	}
+
+	moving = true;
+	if (!Safe())
+		ChangeState(state_chase, 0);
+
+	
 }
 
 bool Enemy::Safe()
 {
-	return true;
+	float playerX = entityManager->getCXofID(0);
+	float playerY = entityManager->getCYofID(0);
+	vec2 plyrDir(playerX - getCX(), playerY - getCY());
+	float mag = sqrt(pow(plyrDir.x, 2) + pow(plyrDir.y, 2));
+
+	if (mag > 10 * 15)
+	{
+		return true;
+	}
+	else
+		return false;
 }
 
 void Enemy::Shoot()
@@ -275,6 +324,8 @@ void Enemy::ChangeState(ai_state newState, float cd)
 	{
 		state = newState;
 		stateCD = cd;
+		stateBool = false;
+		cooldown = 0;
 	}
 }
 
