@@ -231,8 +231,9 @@ void Enemy::updateAiState()
 
 void Enemy::Heal()
 {
+	direction = vec2(0, 0);
 	float val = (float)rand() / RAND_MAX;
-	if (val < 0.1)
+	if (val < 0.25)
 		hp++;
 	if (!Safe())
 		ChangeState(state_attack, 10000);
@@ -248,12 +249,14 @@ void Enemy::Runaway()
 			ChangeState(state_heal, 0);
 		}
 	}
-}
+	float playerX = entityManager->getCXofID(0);
+	float playerY = entityManager->getCYofID(0);
+	vec2 plyrDir(playerX - getCX(), playerY - getCY());
+	float mag = sqrt(pow(plyrDir.x, 2) + pow(plyrDir.y, 2));
 
-void Enemy::EvadePlayer()
-{
-	if (entityType != ENEMY)
-		bcastSend('E', manIndex);
+	direction.x = -plyrDir.x/mag;
+	direction.y = -plyrDir.y/mag;
+	
 }
 
 void Enemy::Patrol()
@@ -296,7 +299,7 @@ bool Enemy::Safe()
 	vec2 plyrDir(playerX - getCX(), playerY - getCY());
 	float mag = sqrt(pow(plyrDir.x, 2) + pow(plyrDir.y, 2));
 
-	if (mag > 10 * 15)
+	if (mag > 8 * 15)
 	{
 		return true;
 	}
@@ -326,6 +329,9 @@ void Enemy::Shoot()
 	}
 	else
 		shotTimer += dTime;
+
+	if (hp / maxHP <= 0.25)
+		ChangeState(state_runaway, 0);
 }
 
 void Enemy::Chase()

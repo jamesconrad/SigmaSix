@@ -67,7 +67,18 @@ void EntityManager::DeleteEntity(int index)
 			di.itemId = 0;
 			di.qual = 1;
 			di.drop->addSpriteAnimFrame(0, 0, 0);
+			droppedItems.push_back(di);
 		}	
+	}
+	else if (t == ELITE)
+	{
+		if (val < 0.5)
+		{
+			di.itemId = 0;
+			di.qual = 1;
+			di.drop->addSpriteAnimFrame(0, 0, 0);
+			droppedItems.push_back(di);
+		}
 	}
 
 	free(entityVector[index]);

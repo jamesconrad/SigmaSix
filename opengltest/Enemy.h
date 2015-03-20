@@ -43,7 +43,6 @@ public:
 	RECT getRect();
 	void Damage(float projDamage);
 	void updateAiState();
-	void EvadePlayer();
 	bool Safe();
 	void Shoot();
 	void Chase();

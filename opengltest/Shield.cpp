@@ -1,9 +1,13 @@
 #include "Shield.h"
 
+//init the static var
+bool I_Shield::animDrawn = false;
+
 I_Shield::I_Shield(Entity* owner, float cooldown, float procRate) : Item(owner, cooldown, procRate)
 {
 	icon = new Sprite;
 	aSprite = new Sprite;
+	I_Shield::animDrawn = false;
 
 	icon->sheet = itemSheet->sheet;
 	icon->setNumberOfAnimations(1);
@@ -33,6 +37,8 @@ void I_Shield::Update(float dTime)
 	else
 		activated = false;
 
+
+	I_Shield::animDrawn = false;
 	aSprite->setPosition(owner->getX() - 4, owner->getY());
 }
 
@@ -57,5 +63,17 @@ void I_Shield::OnDamage()
 	float val = (float)rand() / RAND_MAX;
 
 	if (val < procRate && cooldown < 0)
+	{
 		Activate();
+		srand(GLUT_ELAPSED_TIME);
+	}
+}
+
+void I_Shield::DrawAnim()
+{
+	if (!I_Shield::animDrawn)
+	{
+		aSprite->draw(0.5);
+		I_Shield::animDrawn = true;
+	}
 }
