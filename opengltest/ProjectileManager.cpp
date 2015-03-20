@@ -32,19 +32,11 @@ void ProjectileManager::RemoveProjectile(int index)
 void ProjectileManager::Update(float dTime)
 {
 	std::vector<int> indiciesToRemove;
-	for (int i = 0, s = projectileVector.size(); i < s; i++)
+	for (int i =  projectileVector.size() - 1; i >= 0; i--)
 	{
-		if (projectileVector[i] != __nullptr && projectileVector[i]->Update(dTime))
-			indiciesToRemove.push_back(i);
+		if (projectileVector[i]->Update(dTime))
+			RemoveProjectile(i);
 	}
-
-	for (int s = indiciesToRemove.size() - 1; s > 0; s--)
-	{
-		free(projectileVector[s]);
-		projectileVector.erase(projectileVector.begin() + indiciesToRemove[s]);
-		indiciesToRemove.pop_back();
-	}
-	projectileVector.shrink_to_fit();
 }
 
 void ProjectileManager::Draw()
