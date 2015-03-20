@@ -28,7 +28,7 @@ TODO: (In order of priority)
 ||	 +	| Drawing Donw	  ||
 ||		| 				  ||
 ||	X+	| Shield		  ||
-||		| Expanding Aura  ||
+||	X+	| Expanding Aura  ||
 ||		| Stun			  ||
 ||		| Constant AOE	  ||
 ||		| Laser			  ||
