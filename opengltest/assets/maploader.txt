@@ -333,7 +333,7 @@
 		tileManager->CreateTile(STATIC, x * 16, (mapData.h - y) * 16, 16, 16, 186, 85, true);
 
 	else if (Pixels[pos * 3 + 0] == 241 && Pixels[pos * 3 + 1] == 176 && Pixels[pos * 3 + 2] == 27)
-		tileManager->CreateTile(STATIC, x * 16, (mapData.h - y) * 16, 16, 16, 84, 68, true);
+		tileManager->CreateTile(STATIC, x * 16, (mapData.h - y) * 16, 16, 16, 84, 68, false);
 	else if (Pixels[pos * 3 + 0] == 204 && Pixels[pos * 3 + 1] == 99 && Pixels[pos * 3 + 2] == 64)
 		tileManager->CreateTile(STATIC, x * 16, (mapData.h - y) * 16, 16, 16, 101, 68, true);
 	else if (Pixels[pos * 3 + 0] == 29 && Pixels[pos * 3 + 1] == 239 && Pixels[pos * 3 + 2] == 191)
