@@ -14,6 +14,7 @@
 
 Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar, float _x, float _y, int _i, entitytype entType, int _index)
 {
+	//GENERAL VARS
 	stateBool = false;
 	cooldown = 0;
 	entityType = entType;
@@ -24,30 +25,80 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 	hpBar = new Sprite;
 	hpBG = new Sprite;
 	speed = 0.1f;//default 0.1f
-	hp = 100;
-	maxHP = 100;
-	damage = 5;
 	origX = x = _x;
 	origX = y = _y;
-	w = 34.f / 2;
-	h = 46.f / 2;
 	shielded = false;
 	index = _index;
 	animFrame = shotTimer = 0.f;
-	texture->loadSpriteSheet("assets/enemy.png");
 	texture->setNumberOfAnimations(9);
 	texture->setPosition(x, y);
-	texture->setSpriteFrameSize(34, 46);
-	texture->addSpriteAnimRow(4, 0, 1, 35.f, 0, 4);
-	texture->addSpriteAnimRow(5, 0, 48, 35.f, 0, 4);
-	texture->addSpriteAnimRow(6, 0, 95, 35.f, 0, 4);
-	texture->addSpriteAnimRow(7, 0, 142, 35.f, 0, 4);
-	texture->addSpriteAnimRow(0, 0, 189, 35.f, 0, 4);
-	texture->addSpriteAnimRow(1, 0, 236, 35.f, 0, 4);
-	texture->addSpriteAnimRow(2, 0, 283, 35.f, 0, 4);
-	texture->addSpriteAnimRow(3, 0, 330, 35.f, 0, 4);
+	
+	w = 34;//Boss/Miniboss will need to change these
+	h = 46;//Boss/Miniboss will need to change these
 
-	texture->addSpriteAnimRow(8, 0, 189, 35.f, 47, 4);
+	//TESTING
+	entityType = ELITE;
+
+	if (entityType == ENEMY)
+	{
+		w = 34;
+		h = 46;
+		hp = 100;
+		maxHP = 100;
+		damage = 10;
+		texture->loadSpriteSheet("assets/enemy.png");
+		texture->setSpriteFrameSize(34, 46);
+		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
+		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
+		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
+		texture->addSpriteAnimRow(7, 0, 142, w + 1, 0, 4);
+		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
+		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
+		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
+		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
+
+		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+	}
+	else if (entityType == ELITE)
+	{
+		w = 34;
+		h = 46;
+		hp = 200;
+		maxHP = 200;
+		damage = 20;
+		texture->loadSpriteSheet("assets/elite.png");
+		texture->setSpriteFrameSize(34, 46);
+		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
+		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
+		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
+		texture->addSpriteAnimRow(7, 0, 142, w + 1, 0, 4);
+		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
+		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
+		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
+		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
+
+		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+	}
+	else if (entityType == BOSS)
+	{
+		
+	}
+	else
+	{
+		hp = 350;
+		maxHP = 350;
+		damage = 30;
+		std::string filePath;
+		filePath = "assets/miniboss" + entityType;
+		filePath.append(".png");
+		texture->loadSpriteSheet(filePath.c_str());
+	}
+	
+
+	
+	state = ai_state::state_chase;
+	w /= 2;
+	h /= 2;	
 	
 	hpBG->sheet = bar;
 	hpBG->setNumberOfAnimations(1);
@@ -60,8 +111,6 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 	hpBar->setCurrentAnimation(0);
 	hpBar->setSpriteFrameSize(w * 4, 6);
 	hpBar->addSpriteAnimFrame(0, 0, 7);
-	
-	state = ai_state::state_chase;
 }
 
 void Enemy::update(float dTime)
@@ -257,6 +306,7 @@ bool Enemy::Safe()
 
 void Enemy::Shoot()
 {
+	moving = false;
 	texture->setCurrentAnimation(4);
 	float playerX = entityManager->getCXofID(0);
 	float playerY = entityManager->getCYofID(0);

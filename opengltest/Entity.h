@@ -12,12 +12,17 @@ struct bcast
 };
 
 enum entitytype {
-	PLAYER,
-	ENEMY,
-	ELITE,
-	NEUTRAL,
-	BOSS,
-	MINIBOSS
+	PLAYER = 0,
+	ENEMY = 10,
+	ELITE = 11,
+	NEUTRAL = -1,
+	BOSS = 100,
+	MINIBOSS1 = 1,
+	MINIBOSS2 = 2,
+	MINIBOSS3 = 3,
+	MINIBOSS4 = 4,
+	MINIBOSS5 = 5,
+	MINIBOSS6 = 6
 };
 
 class Item;
