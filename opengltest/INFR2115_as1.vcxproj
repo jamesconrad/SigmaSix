@@ -102,6 +102,7 @@
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="HorizontalScrollingBackground.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="LifeSteal.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapLoader.cpp" />

@@ -3,6 +3,7 @@
 
 #include "Vector2.h"
 #include "Sprite.h"
+#include "ProjectileManager.h"
 
 #ifndef BCAST_S
 #define BCAST_S
@@ -12,6 +13,8 @@ struct bcast
 	int sender;
 };
 #endif BCAST_S
+
+class Item;
 
 class Entity
 {
@@ -66,10 +69,55 @@ public:
 	virtual void bcastRecv(bcast broadcast) {}
 	virtual void bcastSend(char msg, int sender) {}
 
+	bool isShielded() { return shielded; }
+
 
 protected:
+	std::vector<Item*> inventory;
+	Sprite* texture, *hpBar, *energyBar, *hpBG, *energyBG;
+	ProjectileManager* projectileManager;
 	float x, y, w, h;
 	int index;
-	
+	int  energy, energyRegen, damage;
+	float speed, fireRate;
+	float origX, origY;
+	int  hp, maxHP, maxEnergy;
+	vec2 direction, movement;
+	float animFrame, dTime;
+	int curAnim;
+	bool moving;
+	float shotTimer;
+	int manIndex;
+	bool frozen; 
+	float lastShot, energyRegenCd;
+	bool keysPressed[256];
+
+
+	//ITEM VARS
+	bool shielded;
+	bool toggleLifeSteal;
 };
+
+
+class Item
+{
+public:
+	Item(Entity* own, float cd, float pR);
+	virtual void Activate() { return; }
+	virtual void Update(float dTime) { return; }
+	virtual void OnFire() { return; }
+	virtual void OnHit() { return; }
+	virtual void OnDamage() { return; }
+	virtual void DrawItem(int i);
+	virtual void DrawAnim();
+
+protected:
+	float cooldown, procRate, maxCooldown, anim;
+	bool activated;
+	static Sprite* itemSheet;
+	Sprite* icon;
+	Sprite* aSprite;
+	Entity* owner;
+};
+
 #endif

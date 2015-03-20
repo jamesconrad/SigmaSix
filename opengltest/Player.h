@@ -62,17 +62,7 @@ public:
 	void ModPos(vec2 mod);
 	void shoot();
 private:
-	std::vector<Item*> inventory;
-	Sprite* texture, *hpBar, *energyBar, *hpBG, *energyBG;
-	ProjectileManager* projectileManager;
-	int hp, energy, energyRegen, damage, maxHP, maxEnergy;
-	float speed, fireRate;
-	vec2 direction, movement;
-	float animFrame, lastShot, energyRegenCd;
-	bool keysPressed[256];
-	int curAnim;
-	bool shielded;
-	bool toggleLifeSteal;
+	
 };
 
 #endif

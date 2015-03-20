@@ -1,4 +1,4 @@
-#include "Item.h"
+#include "Entity.h"
 
 class I_LifeSteal : public Item
 {

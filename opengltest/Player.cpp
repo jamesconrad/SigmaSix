@@ -31,6 +31,8 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	for (int i = 0; i < 256; i++)
 		keysPressed[i] = 0;
 
+	shielded = true;
+
 	inventory.push_back(new I_Shield(this, 0.1f, 0.1f));
 
 	texture->loadSpriteSheet("assets/playersheet_d.png");
@@ -68,15 +70,10 @@ Player::~Player()
 void Player::draw()
 {
 	texture->draw(0.5f);
-	//printf("%f, %f\n", x, y);
-	/*RECT tmp = getRect();
-	glBegin(GL_QUADS);
-	glVertex3f(tmp.left, tmp.bottom, 0);
-	glVertex3f(tmp.right, tmp.bottom, 0);
-	glVertex3f(tmp.right, tmp.top, 0);
-	glVertex3f(tmp.left, tmp.top, 0);
-	glEnd();*/
-
+	for (int i = 0, s = inventory.size(); i < s; i++)
+		inventory[i]->DrawAnim();
+	for (int i = 0, s = inventory.size(); i < s; i++)
+		inventory[i]->DrawItem(i);
 }
 
 void Player::update(float dTime)

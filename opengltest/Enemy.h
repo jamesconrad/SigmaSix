@@ -56,24 +56,10 @@ public:
 	void bcastSend(char msg, int sender);
 
 private:
-	Sprite* texture, *hpBar, *energyBar, *hpBG, *energyBG;
 	EntityManager* entityManager;
-	ProjectileManager* projectileManager;
-	int  energy, energyRegen, damage;
-	float speed, fireRate;
-	float origX, origY;
-	int  hp, maxHP;
-	vec2 direction, movement;
-	float animFrame, dTime;
-	int curAnim;
 	ai_state state;
-	bool moving;
-	float shotTimer;
-	int manIndex;
 	entitytype entityType;
 	float stateCD;
-	bool shielded;
-	bool frozen;
 };
 
 #endif

@@ -5,7 +5,6 @@
 #include "TileManager.h"
 #include "ProjectileManager.h"
 #include "MapLoader.h"
-#include "Item.h"
 
 struct Portal
 {
