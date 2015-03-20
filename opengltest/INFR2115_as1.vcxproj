@@ -132,7 +132,6 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="DamageMod.h" />
     <ClInclude Include="HorizontalScrollingBackground.h" />
-    <ClInclude Include="Item.h" />
     <ClInclude Include="LifeSteal.h" />
     <ClInclude Include="MapLoader.h" />
     <ClInclude Include="MaxHealthMod.h" />
