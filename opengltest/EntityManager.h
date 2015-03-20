@@ -1,31 +1,20 @@
 #ifndef ENTITYMANAGER_H
 #define ENTITYMANAGER_H
 
-
-#ifndef BCAST_S
-#define BCAST_S
-struct bcast
-{
-	char msg;
-	int sender;
-};
-#endif BCAST_S
-
-enum entitytype {
-	PLAYER,
-	ENEMY,
-	ELITE,
-	NEUTRAL,
-	BOSS,
-	MINIBOSS
-};
-
 #include "Entity.h"
 #include <vector>
 #include "Player.h"
 #include "Enemy.h"
 
 extern int score;
+
+struct DroppedItem
+{
+	RECT pickup;
+	Sprite* drop;
+	int qual;
+	int itemId;
+};
 
 class EntityManager
 {
@@ -65,6 +54,9 @@ public:
 	void bcastRecv(char msg, int sender);
 	void bcastSend();
 
+	void GiveItem(int entNum, int itemId);
+
+	std::vector<DroppedItem> droppedItems;
 private:
 	EntityManager();
 	Sprite* entBarSprite;

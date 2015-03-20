@@ -47,6 +47,29 @@ void EntityManager::CreateEntity(entitytype entityType, float x, float y)
 
 void EntityManager::DeleteEntity(int index)
 {
+	entitytype t = entityVector[index]->GetType();
+	float val = (float)rand() / RAND_MAX;
+	DroppedItem di;
+	di.pickup.bottom = entityVector[index]->getY();
+	di.pickup.top = entityVector[index]->getY() + 8;
+	di.pickup.left = entityVector[index]->getX();
+	di.pickup.right = entityVector[index]->getX() + 8;
+	di.drop = new Sprite;
+	di.drop->setPosition(di.pickup.left, di.pickup.bottom);
+	di.drop->setSpriteFrameSize(8, 8);
+	di.drop->setNumberOfAnimations(1);
+	di.drop->setCurrentAnimation(0);
+	di.drop->sheet = Item::itemSheet->sheet;
+	if (t == ENEMY)
+	{
+		if (val < 0.15)
+		{
+			di.itemId = 0;
+			di.qual = 1;
+			di.drop->addSpriteAnimFrame(0, 0, 0);
+		}	
+	}
+
 	free(entityVector[index]);
 	entityVector.erase(entityVector.begin() + index);
 	entityVector.shrink_to_fit();
@@ -71,6 +94,8 @@ void EntityManager::DrawAll(float x, float y)
 {
 	for (int i = 0, size = entityVector.size(); i < size; i++)
 		entityVector[i]->draw();
+	for (int i = 0, size = droppedItems.size(); i < size; i++)
+		droppedItems[i].drop->draw(1.f);
 }
 
 void EntityManager::ModPosOfID(int id, vec2 mod)
@@ -94,4 +119,9 @@ void EntityManager::bcastSend()
 			entityVector.at(ent)->bcastRecv(broadcast.back());
 		broadcast.pop_back();
 	}
+}
+
+void EntityManager::GiveItem(int entNum, int itemId)
+{
+	entityVector[entNum]->GiveItem(itemId);
 }

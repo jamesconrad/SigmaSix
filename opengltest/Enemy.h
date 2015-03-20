@@ -39,6 +39,7 @@ public:
 	void Freeze(bool status) { frozen = status; }
 	float getSpeed() { return speed; }
 	void giveShield() { shielded = true; }
+	entitytype GetType() { return entityType; }
 	RECT getRect();
 	void Damage(float projDamage);
 	void updateAiState();

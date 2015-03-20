@@ -5,14 +5,20 @@
 #include "Sprite.h"
 #include "ProjectileManager.h"
 
-#ifndef BCAST_S
-#define BCAST_S
 struct bcast
 {
 	char msg;
 	int sender;
 };
-#endif BCAST_S
+
+enum entitytype {
+	PLAYER,
+	ENEMY,
+	ELITE,
+	NEUTRAL,
+	BOSS,
+	MINIBOSS
+};
 
 class Item;
 
@@ -68,8 +74,10 @@ public:
 
 	virtual void bcastRecv(bcast broadcast) {}
 	virtual void bcastSend(char msg, int sender) {}
+	virtual entitytype GetType() { return PLAYER; }
 
 	bool isShielded() { return shielded; }
+	void GiveItem(int itemId);
 
 
 protected:
@@ -110,11 +118,11 @@ public:
 	virtual void OnDamage() { return; }
 	virtual void DrawItem(int i);
 	virtual void DrawAnim();
-
+	
+	static Sprite* itemSheet;
 protected:
 	float cooldown, procRate, maxCooldown, anim;
 	bool activated;
-	static Sprite* itemSheet;
 	Sprite* icon;
 	Sprite* aSprite;
 	Entity* owner;

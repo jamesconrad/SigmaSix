@@ -1,11 +1,11 @@
 #include "ColisionManager.h"
 
-ColisionManager::ColisionManager(MapLoader* mapLoad)
+ColisionManager::ColisionManager()
 {
+	mapLoader = MapLoader::instance();
 	entityManager = EntityManager::instance();
 	tileManager = TileManager::instance();
 	projectileManager = ProjectileManager::instance();
-	mapLoader = mapLoad;
 	tileManager->GetVars(&chunkW, &mapW, chunkVectorPtr);
 	chunkVectorPtr = tileManager->GetChunkVectorPtr();
 }
@@ -53,73 +53,6 @@ void ColisionManager::RebuildColisionMap()
 		}
 	}
 }
-/*
-void ColisionManager::RebuildColisionMap()
-{
-	//constants that need to be derived
-	float x_max = 351.f;
-	float y_max = 30.f;
-	//PLAN:
-	//start at (0,0)
-	//scan from (0,0) to (0,MAP_WIDTH);
-	//merge all adjacent right hand tiles until we find a gap, then keep going right until we start over
-	//once done going right, we go up one level and do it again
-	//now we check that the boxes lined up on the vertical
-	
-	RECT tileRect;
-	COORD pushBackIndex;
-	std::vector<COORD> rowIndex;
-	std::vector<RECT> horizMap;
-	int row = 0;
-	
-	for (float y = 0; y < y_max; y += 1.f)
-	{
-		pushBackIndex.X = horizMap.size();
-		for (float x = 0; x < x_max; x += 1.f)
-		{
-			if (tileManager->GetColision(x,y))
-			{
-				tileRect = tileManager->GetTileRect(x,y);
-
-				if (horizMap.size() <= 0)
-					horizMap.push_back(tileRect);
-				else
-				{
-					//CHECK IF TILE TO LEFT IS SOLID
-					//IF SO JOIN IT
-					if (horizMap.at(horizMap.size() - 1).right == tileRect.left && horizMap.at(horizMap.size() - 1).top == tileRect.top)
-					{
-						horizMap.at(horizMap.size() - 1).right = tileRect.right;
-					}
-					else
-						horizMap.push_back(tileRect);
-				}
-			}
-		}
-		pushBackIndex.Y = horizMap.size();
-		rowIndex.push_back(pushBackIndex);
-
-		//Check if any below are same as me;
-		if (row - 1 > 0)
-		{
-			for (int i = rowIndex[row - 1].X, s = rowIndex[row - 1].Y; i < s; i++)
-			{
-				for (int j = rowIndex[row].Y, t = horizMap.size(); j < t; j++)
-				{
-					if (horizMap[i].left == horizMap[j].left && horizMap[i].right == horizMap[j].right)
-					{
-						horizMap[i].top = horizMap[j].top;
-						horizMap.erase(horizMap.begin() + j);
-						horizMap.shrink_to_fit();
-					}
-				}
-			}
-		}
-		row++;
-	}
-	colisionMap = horizMap;
-}
-*/
 
 void ColisionManager::Update()
 {
@@ -163,43 +96,26 @@ void ColisionManager::Update()
 				entityManager->OnHit(ProjectileManager::instance()->GetOwner(projectileIter));
 				ProjectileManager::instance()->RemoveProjectile(projectileIter);
 			}
-
 		}
+		//Check for Item pickup if entityiter 0
+		if (entityIter == 0)
+		{
+			for (int i = EntityManager::instance()->droppedItems.size() - 1; i >= 0; i--)
+			{
+				RECT drop = EntityManager::instance()->droppedItems[i].pickup;
+				float l = drop.left - entPos.right;
+				float r = drop.right - entPos.left;
+				float t = drop.bottom - entPos.top;
+				float b = drop.top - entPos.bottom;
 
-
-		////yay for seperating axis theorm
-		////a = ent
-		////b = proj
-		//for (int projectileIter = 0, s = projectileVectorPtr->size(); projectileIter < s; projectileIter++)
-		//{
-		//	//check if types work
-		//	if (entityIter == 0 && (projectileVectorPtr->at(projectileIter)->GetType() != 0))
-		//		break;
-		//	else if (entityIter != 0 && (projectileVectorPtr->at(projectileIter)->GetType() != 1))
-		//		break;
-		//
-		//	rRect = projectileVectorPtr->at(projectileIter)->GetRRect();
-		//	axis[0].x = entPos.right - rRect.minX;
-		//	axis[0].y = entPos.top - rRect.maxY;
-		//	axis[1].x = entPos.right - rRect.maxX;
-		//	axis[1].y = entPos.top - rRect.minY;
-		//	axis[2].x = rRect.minX - entPos.left;
-		//	axis[2].y = rRect.maxY - entPos.bottom;
-		//	axis[3].x = rRect.minX - entPos.right;
-		//	axis[3].y = rRect.maxY - entPos.top;
-		//
-		//	for (int i = 0; i < 4; i++)
-		//	{
-		//		if (!CheckAxis(entPos, rRect, axis[i]))
-		//			break;
-		//		if (i == 3)
-		//		{
-		//			entityManager->DamageID(entityIter, projectileManager->DamageOfID(projectileIter));
-		//			projectileManager->RemoveProjectile(projectileIter);
-		//			s--;
-		//		}
-		//	}
-		//}
+				if (!(l > 0 || r < 0 || t > 0 || b < 0))
+				{
+					entityManager->GiveItem(entityIter, EntityManager::instance()->droppedItems[i].itemId);
+					EntityManager::instance()->droppedItems.erase(EntityManager::instance()->droppedItems.begin() + i);
+					EntityManager::instance()->droppedItems.shrink_to_fit();
+				}
+			}
+		}
 	}
 }
 

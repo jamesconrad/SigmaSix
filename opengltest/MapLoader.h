@@ -19,13 +19,17 @@
 class MapLoader
 {
 public:
-	MapLoader();
-
+	static MapLoader* instance()
+	{
+		static MapLoader* instance = new MapLoader();
+		return instance;
+	}
 	bool LoadMap(int MapID);
 	void RenderBackground();
 	void Scroll(float x, float y);
 	void freeTexture();
 private:
+	MapLoader();
 	ILubyte *Pixels;
 	GLuint TextureID;
 	GLuint imageWidth, imageHeight, textureWidth, textureHeight;

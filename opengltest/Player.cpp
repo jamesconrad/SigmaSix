@@ -33,8 +33,6 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 
 	shielded = true;
 
-	inventory.push_back(new I_Shield(this, 0.1f, 0.1f));
-
 	texture->loadSpriteSheet("assets/playersheet_d.png");
 	texture->setNumberOfAnimations(9);
 	texture->setPosition(x, y);

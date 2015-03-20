@@ -6,6 +6,8 @@
 #include "ProjectileManager.h"
 #include "MapLoader.h"
 
+
+
 struct Portal
 {
 	int chunkNum;
@@ -17,11 +19,17 @@ struct Portal
 class ColisionManager
 {
 public:
-	ColisionManager(MapLoader* mapLoader);
+	static ColisionManager* instance()
+	{
+		static ColisionManager* instance = new ColisionManager();
+		return instance;
+	}
 	void RebuildColisionMap();
 	void Update();
+	void DropItem(float x, float y, Item item);
 
 private:
+	ColisionManager();
 	void UpdateChunk(int chunkNum, int entityIter);
 	bool CheckAxis(RECT entPos, RotatedRectangle rRect, POINT axis);
 	POINT GetMinMax(POINT proj[4], POINT axis);
@@ -35,7 +43,6 @@ private:
 	std::vector<Projectile*>* projectileVectorPtr;
 	std::vector<std::vector<RECT>> colisionMap;
 	std::vector<Portal> portalMap;
-	std::vector<Item*> droppedItems;
 	
 };
 
