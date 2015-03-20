@@ -29,6 +29,7 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 	origX = y = _y;
 	w = 34.f / 2;
 	h = 46.f / 2;
+	shielded = false;
 	index = _index;
 	animFrame = shotTimer = 0.f;
 	texture->loadSpriteSheet("assets/enemy.png");
