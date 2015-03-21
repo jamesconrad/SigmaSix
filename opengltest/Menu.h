@@ -14,8 +14,6 @@ public:
 	//state == GLUT_DOWN || GLUT_UP
 	void KeyPress(unsigned char key, bool press);
 	void ChangeImage(int newImage);
-
-
 	bool StartGame() { return startGame; }
 
 private:

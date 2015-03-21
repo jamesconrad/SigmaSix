@@ -12,6 +12,23 @@ void MenuClass::Update(float dTime)
 
 }
 
+void MenuClass::KeyPress(unsigned char key, bool press)
+{
+	if (press)
+	{
+		if (key == 'w' || key == 'W')
+		{
+			if (selection <= 4 && selection > 1)
+			{
+				selection--;
+			}
+			else if (selection <= 3 && selection > 1)
+		}
+		ChangeImage(selection);
+	}
+
+}
+
 void MenuClass::Draw()
 {
 	for (int i = 0, s = effects.size(); i < s; i++)
