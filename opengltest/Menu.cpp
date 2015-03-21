@@ -23,6 +23,9 @@ void MenuClass::KeyPress(unsigned char key, bool press)
 				selection--;
 			}
 			else if (selection <= 3 && selection > 1)
+			{
+			
+			}
 		}
 		ChangeImage(selection);
 	}
