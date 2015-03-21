@@ -1,13 +1,10 @@
 #include "Menu.h"
 
-MenuClass::MenuClass()
+MenuClass::MenuClass(int num)
 {
 	background = new Sprite();
-	background->loadSpriteSheet("assets/menu/background.png");
 	background->setNumberOfAnimations(1);
-	background->setSpriteFrameSize(1210, 833);
-	background->addSpriteAnimFrame(0, 0, 0);
-	background->setPosition(0, 0);
+	ChangeImage(num);
 }
 
 void MenuClass::Update(float dTime)
@@ -22,3 +19,16 @@ void MenuClass::Draw()
 	background->draw(0.25f);
 }
 
+void MenuClass::ChangeImage(int num)
+{
+	std::string filepath;
+	filepath.append("assets/menu/menu_");
+	char menunum[8];
+	itoa(num, menunum, 10);
+	filepath.append(menunum);
+	filepath.append(".png");
+	background->loadSpriteSheet(filepath.c_str());
+	background->setSpriteFrameSize(1210, 833);
+	background->setPosition(0, 0);
+	background->addSpriteAnimFrame(0, 0, 0);
+}
