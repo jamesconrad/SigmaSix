@@ -15,6 +15,7 @@
 #include "IL/ilut.h"
 #include "TileManager.h"
 #include "EntityManager.h"
+#include "Audio.h"
 
 class MapLoader
 {
@@ -31,6 +32,7 @@ public:
 	int GetCurrentMap() { return currentMap; }
 private:
 	MapLoader();
+	Audio *sound;
 	ILubyte *Pixels;
 	GLuint TextureID;
 	GLuint imageWidth, imageHeight, textureWidth, textureHeight;
