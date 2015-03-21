@@ -1,7 +1,7 @@
 #ifndef MAPLOADER_H
 #define MAPLOADER_H
 
-#include <windows.h>
+#include "Audio.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
@@ -15,7 +15,6 @@
 #include "IL/ilut.h"
 #include "TileManager.h"
 #include "EntityManager.h"
-#include "Audio.h"
 
 class MapLoader
 {
