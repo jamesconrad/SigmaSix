@@ -2,6 +2,8 @@
 
 MenuClass::MenuClass(int num)
 {
+	startGame = false;
+	selection = 1;
 	background = new Sprite();
 	background->setNumberOfAnimations(1);
 	ChangeImage(num);
@@ -22,9 +24,75 @@ void MenuClass::KeyPress(unsigned char key, bool press)
 			{
 				selection--;
 			}
-			else if (selection <= 3 && selection > 1)
+			else if (selection <= 33 && selection > 30)
 			{
-			
+				selection--;
+			}
+		}
+		if (key == 's' || key == 'S')
+		{
+			if (selection < 4 && selection >= 1)
+			{
+				selection++;
+			}
+			else if (selection < 33 && selection >= 30)
+			{
+				selection++;
+			}
+		}
+		if (key == ' ')
+		{
+			if (selection == 1)
+			{
+				startGame = true;
+			}
+			else if (selection == 2)
+			{
+				selection *= 10;
+			}
+			else if (selection == 3)
+			{
+				selection *= 10;
+			}
+			else if (selection == 4)
+			{
+				exit(0);
+			}
+			else if (selection == 20)
+			{
+				selection /= 10;
+			}
+			else if (selection == 30)
+			{
+				selection *= 10;
+			}
+			else if (selection == 31)
+			{
+				selection *= 10;
+			}
+			else if (selection == 32)
+			{
+				selection *= 10;
+			}
+			else if (selection == 33)
+			{
+				selection *= 10;
+			}
+			else if (selection == 300)
+			{
+				selection /= 10;
+			}
+			else if (selection == 310)
+			{
+				selection /= 10;
+			}
+			else if (selection == 320)
+			{
+				selection /= 10;
+			}
+			else if (selection == 330)
+			{
+				selection /= 10;
 			}
 		}
 		ChangeImage(selection);
