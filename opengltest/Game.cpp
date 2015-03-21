@@ -26,7 +26,7 @@ Game::Game(void)
 	stateInfo.bgClearColor.blue = 0;
 
 	/* init state */
-	stateInfo.gameState = STATE_GAMEPLAY;
+	stateInfo.gameState = STATE_MAINMENU;
 	renderingTimer = new Timer("RENDER");
 	updateTimer = new Timer("UPDATE");
 
@@ -308,8 +308,6 @@ void Game::DrawMainMenu()
 	mainMenu->Draw();
 	glDisable(GL_TEXTURE_2D);
 	setColor(1.f, 0.f, 0.f);
-	
-	drawText("Press any key to start!", WINDOW_SCREEN_WIDTH / 2 - 21, WINDOW_SCREEN_HEIGHT / 2 + 12);
 	glutSwapBuffers();
 }
 
@@ -365,12 +363,10 @@ void Game::keyboardDown(unsigned char key, int mouseX, int mouseY)
 		if (mainMenu->StartGame())
 			stateInfo.gameState = STATE_GAMEPLAY;
 	}
-
 	else if (stateInfo.gameState == STATE_GAMEPLAY)
 	{
 		entityManager->HandleInput(key, true);
 	}
-
 }
 /* keyboardUp()
    - this gets called when you lift a key up

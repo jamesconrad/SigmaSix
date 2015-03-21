@@ -30,8 +30,8 @@ TODO: (In order of priority)
 ||	Progress:			  ||
 ++------------------------++
 ||	X+	| Shield		  ||
-||	X+	| Expanding Aura  ||-->	No its not bonnyman, the icon drawing is not done. 
-||		| Stun			  ||	Also double check your projectile code. You may have to make a few changes to the projectile class inorder to make it work the way it needs to.
+||	X	| Expanding Aura  ||-->	Bonnyman
+||		| Stun			  ||	Double check your projectile code. You may have to make a few changes to the projectile class inorder to make it work the way it needs to.
 ||		| Constant AOE	  ||	Should create one projectile every frame with the width and height of the desired aura size. Ask Ashley for art assets when you are ready to put them in.
 ||		| Laser			  ||
 ||		| Berserk		  ||
