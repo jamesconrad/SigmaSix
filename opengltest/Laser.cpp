@@ -22,7 +22,7 @@ Activate()
 void I_Laser::
 update()
 {
-	if (owner->getHP < owner->getMaxHP / 4)
+	if (owner->getHP() < owner->getMaxHP() / 4)
 	{
 		activated = true; 
 	}
