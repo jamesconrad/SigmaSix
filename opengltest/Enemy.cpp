@@ -14,6 +14,9 @@
 
 Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar, float _x, float _y, int _i, entitytype entType, int _index)
 {
+	//GENERAL VARS
+	stateBool = false;
+	cooldown = 0;
 	entityType = entType;
 	manIndex = _i;
 	projectileManager = projMan;
@@ -22,30 +25,80 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 	hpBar = new Sprite;
 	hpBG = new Sprite;
 	speed = 0.1f;//default 0.1f
-	hp = 100;
-	maxHP = 100;
-	damage = 5;
 	origX = x = _x;
 	origX = y = _y;
-	w = 34.f / 2;
-	h = 46.f / 2;
 	shielded = false;
 	index = _index;
 	animFrame = shotTimer = 0.f;
-	texture->loadSpriteSheet("assets/enemy.png");
 	texture->setNumberOfAnimations(9);
 	texture->setPosition(x, y);
-	texture->setSpriteFrameSize(34, 46);
-	texture->addSpriteAnimRow(4, 0, 1, 35.f, 0, 4);
-	texture->addSpriteAnimRow(5, 0, 48, 35.f, 0, 4);
-	texture->addSpriteAnimRow(6, 0, 95, 35.f, 0, 4);
-	texture->addSpriteAnimRow(7, 0, 142, 35.f, 0, 4);
-	texture->addSpriteAnimRow(0, 0, 189, 35.f, 0, 4);
-	texture->addSpriteAnimRow(1, 0, 236, 35.f, 0, 4);
-	texture->addSpriteAnimRow(2, 0, 283, 35.f, 0, 4);
-	texture->addSpriteAnimRow(3, 0, 330, 35.f, 0, 4);
+	
+	w = 34;//Boss/Miniboss will need to change these
+	h = 46;//Boss/Miniboss will need to change these
 
-	texture->addSpriteAnimRow(8, 0, 189, 35.f, 47, 4);
+	//TESTING
+	entityType = ELITE;
+
+	if (entityType == ENEMY)
+	{
+		w = 34;
+		h = 46;
+		hp = 100;
+		maxHP = 100;
+		damage = 10;
+		texture->loadSpriteSheet("assets/enemy.png");
+		texture->setSpriteFrameSize(34, 46);
+		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
+		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
+		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
+		texture->addSpriteAnimRow(7, 0, 142, w + 1, 0, 4);
+		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
+		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
+		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
+		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
+
+		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+	}
+	else if (entityType == ELITE)
+	{
+		w = 34;
+		h = 46;
+		hp = 200;
+		maxHP = 200;
+		damage = 20;
+		texture->loadSpriteSheet("assets/elite.png");
+		texture->setSpriteFrameSize(34, 46);
+		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
+		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
+		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
+		texture->addSpriteAnimRow(7, 0, 142, w + 1, 0, 4);
+		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
+		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
+		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
+		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
+
+		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+	}
+	else if (entityType == BOSS)
+	{
+		
+	}
+	else
+	{
+		hp = 350;
+		maxHP = 350;
+		damage = 30;
+		std::string filePath;
+		filePath = "assets/miniboss" + entityType;
+		filePath.append(".png");
+		texture->loadSpriteSheet(filePath.c_str());
+	}
+	
+
+	
+	state = ai_state::state_chase;
+	w /= 2;
+	h /= 2;	
 	
 	hpBG->sheet = bar;
 	hpBG->setNumberOfAnimations(1);
@@ -58,8 +111,6 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 	hpBar->setCurrentAnimation(0);
 	hpBar->setSpriteFrameSize(w * 4, 6);
 	hpBar->addSpriteAnimFrame(0, 0, 7);
-	
-	state = ai_state::state_chase;
 }
 
 void Enemy::update(float dTime)
@@ -75,7 +126,14 @@ void Enemy::update(float dTime)
 	updateAiState();
 	
 	if (moving)
-		animFrame += dTime * (speed / 7.5f);
+	{
+		if (state == state_patrol)
+		{
+			animFrame += dTime * (speed / 15.f);
+		}
+		else
+			animFrame += dTime * (speed / 7.5f);
+	}
 
 	if (animFrame >= 1.f)
 	{
@@ -97,8 +155,16 @@ void Enemy::update(float dTime)
 	else
 		texture->setCurrentAnimation(curAnim);
 
-	x += dTime * direction.x * speed;
-	y += dTime * direction.y * speed;
+	if (state == state_patrol)
+	{
+		x += dTime * direction.x * (speed / 2.f);
+		y += dTime * direction.y * (speed / 2.f);
+	}
+	else
+	{
+		x += dTime * direction.x * speed;
+		y += dTime * direction.y * speed;
+	}
 
 	texture->setPosition(x,y);
 
@@ -118,13 +184,6 @@ void Enemy::draw()
 	texture->draw(0.5f);
 	hpBG->draw(0.25f);
 	hpBar->draw(0.25f);
-	/*RECT tmp = getRect();
-	glBegin(GL_QUADS);
-	glVertex3f(tmp.left, tmp.bottom, 0);
-	glVertex3f(tmp.right, tmp.bottom, 0);
-	glVertex3f(tmp.right, tmp.top, 0);
-	glVertex3f(tmp.left, tmp.top, 0);
-	glEnd();*/
 }
 
 void Enemy::ModPos(vec2 mod)
@@ -151,10 +210,11 @@ void Enemy::updateAiState()
 		Shoot();
 		break;
 	case state_passive:
-		ChangeState(state_attack, 0);
+		if (hp < maxHP)
+			ChangeState(state_patrol, 100);
 		break;
 	case state_patrol:
-		ChangeState(state_chase, 1000);
+		Patrol();
 		break;
 	case state_runaway:
 		Runaway();
@@ -171,8 +231,9 @@ void Enemy::updateAiState()
 
 void Enemy::Heal()
 {
+	direction = vec2(0, 0);
 	float val = (float)rand() / RAND_MAX;
-	if (val < 0.1)
+	if (val < 0.25)
 		hp++;
 	if (!Safe())
 		ChangeState(state_attack, 10000);
@@ -188,26 +249,67 @@ void Enemy::Runaway()
 			ChangeState(state_heal, 0);
 		}
 	}
-}
+	float playerX = entityManager->getCXofID(0);
+	float playerY = entityManager->getCYofID(0);
+	vec2 plyrDir(playerX - getCX(), playerY - getCY());
+	float mag = sqrt(pow(plyrDir.x, 2) + pow(plyrDir.y, 2));
 
-void Enemy::EvadePlayer()
-{
-	if (entityType != ENEMY)
-		bcastSend('E', manIndex);
+	direction.x = -plyrDir.x/mag;
+	direction.y = -plyrDir.y/mag;
+	
 }
 
 void Enemy::Patrol()
 {
-	ChangeState(state_chase, 0);
+	cooldown -= dTime;
+	//move to random point
+	if (!stateBool)
+	{
+		//pick a new direction
+		if ( cooldown <= 0)
+		{
+			direction.x = (float(rand()) / float(RAND_MAX)) * (1 - (-1)) + (-1);
+			direction.y = (float(rand()) / float(RAND_MAX)) * (1 - (-1)) + (-1);
+			cooldown = 1000.f;
+			stateBool = true;
+		}
+	}
+	else
+	{
+		if (cooldown <= 0)
+		{
+			direction.x = -direction.x;
+			direction.y = -direction.y;
+			cooldown = 1000.f;
+			stateBool = false;
+		}
+	}
+
+	moving = true;
+	if (!Safe())
+		ChangeState(state_chase, 0);
+
+	
 }
 
 bool Enemy::Safe()
 {
-	return true;
+	float playerX = entityManager->getCXofID(0);
+	float playerY = entityManager->getCYofID(0);
+	vec2 plyrDir(playerX - getCX(), playerY - getCY());
+	float mag = sqrt(pow(plyrDir.x, 2) + pow(plyrDir.y, 2));
+
+	if (mag > 8 * 15)
+	{
+		return true;
+	}
+	else
+		return false;
 }
 
 void Enemy::Shoot()
 {
+	moving = false;
 	texture->setCurrentAnimation(4);
 	float playerX = entityManager->getCXofID(0);
 	float playerY = entityManager->getCYofID(0);
@@ -227,6 +329,9 @@ void Enemy::Shoot()
 	}
 	else
 		shotTimer += dTime;
+
+	if (hp / maxHP <= 0.25)
+		ChangeState(state_runaway, 0);
 }
 
 void Enemy::Chase()
@@ -275,6 +380,8 @@ void Enemy::ChangeState(ai_state newState, float cd)
 	{
 		state = newState;
 		stateCD = cd;
+		stateBool = false;
+		cooldown = 0;
 	}
 }
 

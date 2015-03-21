@@ -8,6 +8,7 @@ public:
 	void Update(float dTime);
 	void OnFire();
 	void OnDamage();
+	void DrawAnim();
 private:
-	
+	static bool animDrawn;	
 };	

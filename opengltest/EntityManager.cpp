@@ -67,7 +67,18 @@ void EntityManager::DeleteEntity(int index)
 			di.itemId = 0;
 			di.qual = 1;
 			di.drop->addSpriteAnimFrame(0, 0, 0);
+			droppedItems.push_back(di);
 		}	
+	}
+	else if (t == ELITE)
+	{
+		if (val < 0.5)
+		{
+			di.itemId = 0;
+			di.qual = 1;
+			di.drop->addSpriteAnimFrame(0, 0, 0);
+			droppedItems.push_back(di);
+		}
 	}
 
 	free(entityVector[index]);
@@ -96,6 +107,7 @@ void EntityManager::DrawAll(float x, float y)
 		entityVector[i]->draw();
 	for (int i = 0, size = droppedItems.size(); i < size; i++)
 		droppedItems[i].drop->draw(1.f);
+	printf("DroppedItems: %i\n", droppedItems.size());
 }
 
 void EntityManager::ModPosOfID(int id, vec2 mod)

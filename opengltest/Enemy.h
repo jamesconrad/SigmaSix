@@ -43,7 +43,6 @@ public:
 	RECT getRect();
 	void Damage(float projDamage);
 	void updateAiState();
-	void EvadePlayer();
 	bool Safe();
 	void Shoot();
 	void Chase();
@@ -60,7 +59,8 @@ private:
 	EntityManager* entityManager;
 	ai_state state;
 	entitytype entityType;
-	float stateCD;
+	float stateCD, cooldown;
+	bool stateBool;
 };
 
 #endif

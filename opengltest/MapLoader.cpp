@@ -77,6 +77,7 @@ bool MapLoader::LoadMap(int mapID)
 		printf("ERROR: Invalid map id %i\n", mapID);
 		return false;
 	}
+	currentMap = mapID;
 
 	bool pixelsloaded = false;
 	ILuint imgID = 0;

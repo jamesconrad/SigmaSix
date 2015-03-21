@@ -28,6 +28,7 @@ public:
 	void RenderBackground();
 	void Scroll(float x, float y);
 	void freeTexture();
+	int GetCurrentMap() { return currentMap; }
 private:
 	MapLoader();
 	ILubyte *Pixels;
@@ -36,6 +37,7 @@ private:
 	TileManager* tileManager;
 	EntityManager* entityManager;
 	bool mapLoaded;
+	int currentMap;
 };
 
 #endif

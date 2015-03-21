@@ -104,6 +104,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="HorizontalScrollingBackground.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Laser.cpp" />
     <ClCompile Include="LifeSteal.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapLoader.cpp" />
@@ -133,6 +134,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="DamageMod.h" />
     <ClInclude Include="HorizontalScrollingBackground.h" />
+    <ClInclude Include="Laser.h" />
     <ClInclude Include="LifeSteal.h" />
     <ClInclude Include="MapLoader.h" />
     <ClInclude Include="MaxHealthMod.h" />

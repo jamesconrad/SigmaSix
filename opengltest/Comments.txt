@@ -26,11 +26,13 @@ TODO: (In order of priority)
 ++------------------------++
 ||	X	| Code Done		  ||
 ||	 +	| Drawing Donw	  ||
-||		| 				  ||
+++------------------------++
+||	Progress:			  ||
+++------------------------++
 ||	X+	| Shield		  ||
-||		| Expanding Aura  ||
-||		| Stun			  ||
-||		| Constant AOE	  ||
+||	X+	| Expanding Aura  ||-->	No its not bonnyman, the icon drawing is not done. 
+||		| Stun			  ||	Also double check your projectile code. You may have to make a few changes to the projectile class inorder to make it work the way it needs to.
+||		| Constant AOE	  ||	Should create one projectile every frame with the width and height of the desired aura size. Ask Ashley for art assets when you are ready to put them in.
 ||		| Laser			  ||
 ||		| Berserk		  ||
 ||		| Gernade		  ||
@@ -44,4 +46,5 @@ TODO: (In order of priority)
 ++------+-----------------++
 
 BUGS:
-Transparent lines 1px wide being drawn in randomly
+Transparent lines 1px wide being drawn in randomly.
+Only first item dropped is actually drawn.
