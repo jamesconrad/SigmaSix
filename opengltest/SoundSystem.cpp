@@ -9,6 +9,7 @@ SoundSystemClass::SoundSystemClass()
 
 void SoundSystemClass::PlayBackground(char* fp)
 {
+	channel->stop();
 	system->createSound(fp, FMOD_LOOP_NORMAL, NULL, &bg);
 	system->playSound(bg, NULL, false, &channel);
 }
