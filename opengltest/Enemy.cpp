@@ -32,12 +32,6 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 	animFrame = shotTimer = 0.f;
 	texture->setNumberOfAnimations(9);
 	texture->setPosition(x, y);
-	
-	w = 34;//Boss/Miniboss will need to change these
-	h = 46;//Boss/Miniboss will need to change these
-
-	//TESTING
-	entityType = ELITE;
 
 	if (entityType == ENEMY)
 	{

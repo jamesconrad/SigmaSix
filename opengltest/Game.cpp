@@ -56,10 +56,7 @@ void Game::initializeGame()
 	s_Time = new Sprite;
 
 	hpBar->loadSpriteSheet("assets/ui.png");
-	SpriteSheetInfo bars;
-	bars.height = 170;
-	bars.width = 528;
-	bars.textureID = hpBar->GetTexID();
+	SpriteSheetInfo bars = hpBar->sheet;
 	
 	mainMenu = new MenuClass();
 
@@ -72,7 +69,6 @@ void Game::initializeGame()
 	colisionManager = ColisionManager::instance();
 	colisionManager->RebuildColisionMap();
 
-	hpBar->sheet = bars;
 	hpBG->sheet = bars;
 	energyBar->sheet = bars;
 	s_Score->sheet = bars;
