@@ -326,7 +326,7 @@ void Enemy::Shoot()
 	else
 		shotTimer += dTime;
 
-	if (hp / maxHP <= 0.25)
+	if (hp / maxHP <= 0.25 && entityType != ENEMY)
 		ChangeState(state_runaway, 0);
 }
 
