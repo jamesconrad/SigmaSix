@@ -322,15 +322,18 @@ void Game::DrawMainMenu()
   */
 void Game::update()
 {
-	// update our clock so we have the delta time since the last update
-	updateTimer->tick();
+	if (stateInfo.gameState == STATE_GAMEPLAY)
+	{
+		// update our clock so we have the delta time since the last update
+		updateTimer->tick();
 
-	entityManager->Update(updateTimer->getElapsedTimeMS());
-	projectileManager->Update(updateTimer->getElapsedTimeMS());
-	colisionManager->Update();
+		entityManager->Update(updateTimer->getElapsedTimeMS());
+		projectileManager->Update(updateTimer->getElapsedTimeMS());
+		colisionManager->Update();
 
-	fTime += updateTimer->getElapsedTimeSeconds();
-//	score -= updateTimer->getElapsedTimeSeconds();
+		fTime += updateTimer->getElapsedTimeSeconds();
+		//	score -= updateTimer->getElapsedTimeSeconds();
+	}
 }
 
 /*
@@ -357,7 +360,7 @@ void Game::addSpriteToDrawList(Sprite *s)
    */
 void Game::keyboardDown(unsigned char key, int mouseX, int mouseY)
 {
-	if (stateInfo.gameState == STATE_MAINMENU)
+	if (stateInfo.gameState == STATE_MAINMENU || stateInfo.gameState == STATE_PAUSE)
 	{
 		mainMenu->KeyPress(key, true);
 		if (mainMenu->StartGame())
@@ -366,6 +369,12 @@ void Game::keyboardDown(unsigned char key, int mouseX, int mouseY)
 	else if (stateInfo.gameState == STATE_GAMEPLAY)
 	{
 		entityManager->HandleInput(key, true);
+		if (key == 'p' || key == 'P')
+		{
+			stateInfo.gameState = STATE_PAUSE;
+			mainMenu->Pause();
+		}
+		
 	}
 }
 /* keyboardUp()

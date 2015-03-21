@@ -41,7 +41,8 @@
 enum {
 	STATE_GAMEPLAY=0, 
 	STATE_MAINMENU, 
-	STATE_CREDITS
+	STATE_CREDITS,
+	STATE_PAUSE
 };
 
 // input information related to mouse

@@ -13,8 +13,8 @@ public:
 	//button == GLUT_ABCD_BUTTON
 	//state == GLUT_DOWN || GLUT_UP
 	void KeyPress(unsigned char key, bool press);
-	void ChangeImage(int newImage);
 	bool StartGame() { return startGame; }
+	void Pause() { startGame = false; }
 
 private:
 	std::vector<Sprite*> effects;
@@ -22,6 +22,7 @@ private:
 	int selection;
 	bool startGame;
 	bool keys[256];
+	void ChangeImage(int newImage);
 
 };
 
