@@ -359,19 +359,18 @@ void Game::addSpriteToDrawList(Sprite *s)
    */
 void Game::keyboardDown(unsigned char key, int mouseX, int mouseY)
 {
-	if (stateInfo.gameState == STATE_MAINMENU && key >= 0)
-		stateInfo.gameState = STATE_GAMEPLAY;
-	switch (key)
+	if (stateInfo.gameState == STATE_MAINMENU)
 	{
-	case 32: // the space bar
-		break;
-	case 27: // the escape key
-	case 'q': // the 'q' key
-		score*=10;
-		break;
+		mainMenu->KeyPress(key, true);
+		if (mainMenu->StartGame())
+			stateInfo.gameState = STATE_GAMEPLAY;
 	}
 
-	entityManager->HandleInput(key, true);
+	else if (stateInfo.gameState == STATE_GAMEPLAY)
+	{
+		entityManager->HandleInput(key, true);
+	}
+
 }
 /* keyboardUp()
    - this gets called when you lift a key up
@@ -380,15 +379,14 @@ void Game::keyboardDown(unsigned char key, int mouseX, int mouseY)
    */
 void Game::keyboardUp(unsigned char key, int mouseX, int mouseY)
 {
-	switch (key)
+	if (stateInfo.gameState == STATE_MAINMENU)
 	{
-	case 32: // the space bar
-		break;
-	case 27: // the escape key
-		break;
+		mainMenu->KeyPress(key, false);
 	}
-
-	entityManager->HandleInput(key, false);
+	else if (stateInfo.gameState == STATE_GAMEPLAY)
+	{
+		entityManager->HandleInput(key, false);
+	}
 }
 
 /*
