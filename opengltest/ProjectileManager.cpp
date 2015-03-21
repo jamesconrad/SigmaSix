@@ -4,7 +4,6 @@ ProjectileManager::ProjectileManager()
 {
 	projSheet = new Sprite();
 	projSheet->loadSpriteSheet("assets/projectiles.png");
-	texID = projSheet->sheet.textureID;
 	/*mySprite = new Sprite();
 	mySprite->sheet.textureID = texID;
 	mySprite->sheet.width = texW;
@@ -18,13 +17,13 @@ ProjectileManager::ProjectileManager()
 
 void ProjectileManager::CreateProjectile(int projNum, float startX, float startY, float dirX, float dirY, float dmg, float maxDur, float projSpeed, int ownerIndex)
 {
-	Projectile *newProjectile = new Projectile(projectileVector.size(), texID, startX, startY, dirX, dirY, dmg, maxDur, projSpeed, projNum, ownerIndex);
+	Projectile *newProjectile = new Projectile(projectileVector.size(), projSheet->sheet, startX, startY, dirX, dirY, dmg, maxDur, projSpeed, projNum, ownerIndex);
 	projectileVector.push_back(newProjectile);
 }
 
 void ProjectileManager::RemoveProjectile(int index)
 {
-	free(projectileVector[index]);
+	//free(projectileVector[index]);
 	projectileVector.erase(projectileVector.begin() + index);
 	projectileVector.shrink_to_fit();
 }

@@ -233,10 +233,12 @@ void Enemy::Heal()
 {
 	direction = vec2(0, 0);
 	float val = (float)rand() / RAND_MAX;
-	if (val < 0.25)
+	if (val < 0.25 && hp <= 100)
 		hp++;
 	if (!Safe())
 		ChangeState(state_attack, 10000);
+	if (hp / maxHP >= 0.75)
+		ChangeState(state_chase, 0);
 }
 
 void Enemy::Runaway()

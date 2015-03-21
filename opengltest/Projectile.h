@@ -15,7 +15,7 @@ struct RotatedRectangle
 class Projectile
 {
 public:
-	Projectile(int managerIndex, int texID, float startX, float startY, float dirX, float dirY, float dmg, float maxDur, float projSpeed, int projNum, int ownerIndex);
+	Projectile(int managerIndex, SpriteSheetInfo sheet, float startX, float startY, float dirX, float dirY, float dmg, float maxDur, float projSpeed, int projNum, int ownerIndex);
 	~Projectile();
 	//Returns TRUE if the projectile needs to be removed
 	bool Update(float dTime);

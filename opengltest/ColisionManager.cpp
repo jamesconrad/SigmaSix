@@ -237,19 +237,7 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 			else
 				mtd.x = 0;
 
-			entityManager->ModPosOfID(entityIter, mtd);
-			
-			/*if (mtd.x)
-				entityManager->HandleInput('a', false);
-			else
-				entityManager->HandleInput('d', false);
-
-			if (mtd.y)
-				entityManager->HandleInput('w', false);
-			else
-				entityManager->HandleInput('s', false);*/
-
-			
+			entityManager->ModPosOfID(entityIter, mtd);			
 		}
 		//Check for projectile hitting wall
 		for (int projIter = projectileVectorPtr->size() - 1; projIter >= 0; projIter--)
@@ -267,48 +255,3 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 		}
 	}
 }
-
-
-
-/*
-void ColisionManager::Update()
-{
-RECT entPos = entityManager->getRectOfID(entityIter);
-float l, r, t, b;
-vec2 mtd(0,0);
-int chunkNum = (int)((entPos.bottom / 15) / chunkW) * mapW + (int)((entPos.left / 15) / chunkW);
-for (int entityIter = 0, numOfEnts = entityManager->GetSize(); entityIter < numOfEnts; entityIter++)
-{
-entPos = entityManager->getRectOfID(entityIter);
-
-if (chunkNum < 0) chunkNum*=-1;
-if (chunkNum > chunkVectorPtr->size() - 1) chunkNum = 0;
-for (int i = 0, s = colisionMap.at(chunkNum).size(); i < s; i++)
-{
-l = colisionMap.at(chunkNum).at(i).left - entPos.right;
-r = colisionMap.at(chunkNum).at(i).right - entPos.left;
-t = colisionMap.at(chunkNum).at(i).bottom - entPos.top;
-b = colisionMap.at(chunkNum).at(i).top - entPos.bottom;
-
-if (!(l > 0 || r < 0 || t > 0 || b < 0))
-{
-if (abs(l) < r)
-mtd.x = l;
-else
-mtd.x = r;
-if (abs(t) < b)
-mtd.y = t;
-else
-mtd.y = b;
-
-if (abs(mtd.x) < abs(mtd.y))
-mtd.y = 0;
-else
-mtd.x = 0;
-
-entityManager->ModPosOfID(entityIter, mtd);
-}
-}
-}
-}
-*/
