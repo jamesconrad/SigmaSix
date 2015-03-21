@@ -8,12 +8,15 @@ class I_Laser : public Item
 
 
 public:
-	I_Laser(Entity* owner, float cooldown, float procRate, float damage);
+	I_Laser(Entity* owner, float cooldown, float procRate, float damage, float ProjectileDuration);
 	void Activate();
-	void Update(float dTime);
+	void update();
 
 private:
+	void createprojectiles();
 	float Damage;
+	float ProjDuration;
+	bool activated;
 
 };
 
