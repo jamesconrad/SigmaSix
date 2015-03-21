@@ -1,5 +1,4 @@
 #include "MapLoader.h"
-#include "Audio.h"
 #define MAP_BASE_SAVE_FILE "assets/level_maps.png"
 #define TERRAIN_SPRITE_SHEET "assets/map_sprites.png"
 
@@ -48,7 +47,6 @@ void MapLoader::freeTexture()
 
 MapLoader::MapLoader()
 {
-	sound = new Audio();
 	TextureID = 0;
 	Pixels = NULL;
 	tileManager = TileManager::instance();
@@ -83,14 +81,11 @@ bool MapLoader::LoadMap(int mapID)
 	currentMap = mapID;
 	std::string filepath;
 	filepath.append("assets/audio/map_");
-	char mapnum[2];
+	char mapnum[8];
 	itoa(mapID, mapnum, 10);
 	filepath.append(mapnum);
 	filepath.append(".mp3");
-	wchar_t* wString = new wchar_t[32];
-	MultiByteToWideChar(CP_ACP, 0, filepath.c_str(), -1, wString, 32);
-	sound->Load(wString);
-	mciSendString(wString, NULL, NULL, NULL);
+	SoundSystemClass::instance()->PlayBackground((char *)filepath.c_str());
 
 	bool pixelsloaded = false;
 	ILuint imgID = 0;
@@ -148,7 +143,6 @@ bool MapLoader::LoadMap(int mapID)
 	//EntityManager::instance()->CreateEntity(ENEMY, -60, -60);
 	printf("%i",mapID);
 	mapLoaded = true;
-	sound->Play();
 	return true;
 }
 

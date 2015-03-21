@@ -66,7 +66,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;glut32.lib;DevIL.lib;ILU.lib;ILUT.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;glut32.lib;DevIL.lib;ILU.lib;ILUT.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>.\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
@@ -94,7 +94,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Aura.cpp" />
     <ClCompile Include="ColisionManager.cpp" />
     <ClCompile Include="DamageMod.cpp" />
@@ -116,6 +115,7 @@
     <ClCompile Include="ScriptReader.cpp" />
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="EnergyRegen.cpp" />
+    <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="SpeedMod.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -123,7 +123,6 @@
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Audio.h" />
     <ClInclude Include="Aura.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ColisionManager.h" />
@@ -147,6 +146,7 @@
     <ClInclude Include="resource1.h" />
     <ClInclude Include="ScriptReader.h" />
     <ClInclude Include="Shield.h" />
+    <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="SpeedMod.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Tile.h" />

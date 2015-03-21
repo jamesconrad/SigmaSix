@@ -1,10 +1,11 @@
 #ifndef MAPLOADER_H
 #define MAPLOADER_H
 
-#include "Audio.h"
+#include "TileManager.h"
+#include "EntityManager.h"
+#include "SoundSystem.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <vector>
 #include <algorithm>
 #include <iostream>
 #include <GL/gl.h>
@@ -13,8 +14,6 @@
 #include "IL/il.h"
 #include "IL/ilu.h"
 #include "IL/ilut.h"
-#include "TileManager.h"
-#include "EntityManager.h"
 
 class MapLoader
 {
@@ -31,7 +30,6 @@ public:
 	int GetCurrentMap() { return currentMap; }
 private:
 	MapLoader();
-	Audio *sound;
 	ILubyte *Pixels;
 	GLuint TextureID;
 	GLuint imageWidth, imageHeight, textureWidth, textureHeight;
