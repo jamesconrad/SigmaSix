@@ -90,8 +90,8 @@ bool MapLoader::LoadMap(int mapID)
 	wchar_t* wString = new wchar_t[32];
 	MultiByteToWideChar(CP_ACP, 0, filepath.c_str(), -1, wString, 32);
 	sound->Load(wString);
-	
-	
+	mciSendString(wString, NULL, NULL, NULL);
+
 	bool pixelsloaded = false;
 	ILuint imgID = 0;
 	ilGenImages(1, &imgID);

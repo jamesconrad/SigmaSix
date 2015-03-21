@@ -26,7 +26,7 @@ Game::Game(void)
 	stateInfo.bgClearColor.blue = 0;
 
 	/* init state */
-	stateInfo.gameState = STATE_MAINMENU;
+	stateInfo.gameState = STATE_GAMEPLAY;
 	renderingTimer = new Timer("RENDER");
 	updateTimer = new Timer("UPDATE");
 
@@ -58,7 +58,7 @@ void Game::initializeGame()
 	hpBar->loadSpriteSheet("assets/ui.png");
 	SpriteSheetInfo bars = hpBar->sheet;
 	
-	mainMenu = new MenuClass();
+	mainMenu = new MenuClass(1);
 
 	viewCam = new Camera;
 	tileManager = TileManager::instance();
