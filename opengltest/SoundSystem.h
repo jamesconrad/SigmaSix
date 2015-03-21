@@ -4,6 +4,12 @@
 #include <FMOD\fmod.hpp>
 #include <vector>
 
+enum soundEffect
+{
+	PLAYER_SHOOT = 0,
+	PLAYER_HURT = 1
+};
+
 class SoundSystemClass
 {
 public:
@@ -12,7 +18,7 @@ public:
 		static SoundSystemClass *instance = new SoundSystemClass();
 		return instance;
 	}
-	void PlaySound(int index);
+	void PlaySound(soundEffect);
 	void PlayBackground(char* filepath);
 
 private:
@@ -21,7 +27,8 @@ private:
 	FMOD::System *system; //handle to FMOD engine
 	FMOD::Sound *bg; //sound that will be loaded and played
 	FMOD::Channel *channel;
-	std::vector<FMOD::Sound*> sounds;
+	FMOD::Channel *effects;
+	std::vector<FMOD::Sound*> soundEffects;
 };
 
 #endif

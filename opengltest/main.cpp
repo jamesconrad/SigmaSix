@@ -143,6 +143,7 @@ int main(int argc, char **argv)
 	glutInitWindowSize(WINDOW_WIDTH,WINDOW_HEIGHT);
 	glutInitDisplayMode(GLUT_RGBA|GLUT_DOUBLE);
 	glutCreateWindow("Sigma Six");
+	glutSetIconTitle("assets/menu/icon.png");
 
 	/* set up our function callbacks */
 	glutIgnoreKeyRepeat(1);
