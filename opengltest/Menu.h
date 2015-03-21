@@ -15,6 +15,7 @@ public:
 	void KeyPress(unsigned char key, bool press);
 	bool StartGame() { return startGame; }
 	void Pause() { startGame = false; }
+	void setSelection(int num){ selection = num; ChangeImage(num); }
 
 private:
 	std::vector<Sprite*> effects;

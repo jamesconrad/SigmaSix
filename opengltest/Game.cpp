@@ -124,7 +124,11 @@ void Game::draw()
 		DrawGame();
 	else if (stateInfo.gameState == STATE_MAINMENU)
 		DrawMainMenu();
-
+	else if (stateInfo.gameState == STATE_PAUSE)
+	{
+		DrawGame();
+		DrawMainMenu();
+	}
 	/* post-draw - after rendering, setup the next frame */
 	PostDraw();
 }
@@ -382,7 +386,8 @@ void Game::keyboardDown(unsigned char key, int mouseX, int mouseY)
 		if (key == 'p' || key == 'P')
 		{
 			stateInfo.gameState = STATE_PAUSE;
-			mainMenu->Pause();
+			mainMenu->Pause(); 
+			mainMenu->setSelection(-1);
 		}
 		
 	}
