@@ -97,6 +97,7 @@ public:
 	/* initialization */
 	~Game(void);
 	void initializeGame();
+	void QuitGame();
 
 	/* convenience functions */
 	// screen size is the apparent size in pixels

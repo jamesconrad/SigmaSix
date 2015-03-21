@@ -32,6 +32,8 @@ Game::Game(void)
 
 	//temp really need to make a "score time modifier"
 	score = 10000;
+
+	mainMenu = new MenuClass(1);
 }
 
 /* destructor */
@@ -57,8 +59,6 @@ void Game::initializeGame()
 
 	hpBar->loadSpriteSheet("assets/ui.png");
 	SpriteSheetInfo bars = hpBar->sheet;
-	
-	mainMenu = new MenuClass(1);
 
 	viewCam = new Camera;
 	tileManager = TileManager::instance();
@@ -98,6 +98,16 @@ void Game::initializeGame()
 	s_Time->setCurrentAnimation(0);
 	s_Time->setSpriteFrameSize(91, 24);
 	s_Time->addSpriteAnimFrame(0, 0, 146);
+}
+
+void Game::QuitGame()
+{
+	free(hpBar);
+	free(hpBG);
+	free(energyBar);
+	free(s_Score);
+	free(s_Time);
+	free(viewCam);
 }
 
 /* draw()
