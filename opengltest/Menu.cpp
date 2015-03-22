@@ -1,4 +1,5 @@
 #include "Menu.h"
+#include "EntityManager.h"
 
 MenuClass::MenuClass(int num)
 {
@@ -28,6 +29,18 @@ void MenuClass::KeyPress(unsigned char key, bool press)
 			{
 				selection--;
 			}
+			else if (selection <= -33 && selection > -30)
+			{
+				selection++;
+			}
+			else if (selection = -41)
+			{
+				selection++;
+			}
+			else if (selection = -51)
+			{
+				selection++;
+			}
 		}
 		if (key == 's' || key == 'S')
 		{
@@ -38,6 +51,18 @@ void MenuClass::KeyPress(unsigned char key, bool press)
 			else if (selection < 33 && selection >= 30)
 			{
 				selection++;
+			}
+			else if (selection > -33 && selection <= -30)
+			{
+			selection--;
+			}
+			else if (selection = -40)
+			{
+			selection--;
+			}
+			else if (selection = -50)
+			{
+			selection--;
 			}
 		}
 		if (key == ' ')
@@ -94,12 +119,56 @@ void MenuClass::KeyPress(unsigned char key, bool press)
 			{
 				selection /= 10;
 			}
+			else if (selection == -1)
+			{
+				selection = 1;
+				startGame = true;
+			}
+			else if (selection == -2)
+			{
+				selection *= 10;
+			}
+			else if (selection == -20)
+			{
+				selection /= 10;
+			}
+			else if (selection == -3)
+			{
+				selection *= 10;
+			}
+			else if (selection == -300 || selection == -310 || selection == -320 || selection == -330)
+			{
+				selection /= 10;
+			}
+			else if (selection == -4)
+			{
+				selection *= 10;
+			}
+			else if (selection == -40)
+			{
+				selection = 1;
+			}
+			else if (selection == -41)
+			{
+				selection /= 10;
+			}
+			else if (selection == -5)
+			{
+				selection *= 10;
+			}
+			else if (selection == -51)
+			{
+				selection /= 10;
+			}
+			else if (selection == -50)
+			{
+				selection = 1;
+			}
 		}
 		ChangeImage(selection);
 	}
 
 }
-
 void MenuClass::Draw()
 {
 	for (int i = 0, s = effects.size(); i < s; i++)
@@ -116,7 +185,15 @@ void MenuClass::ChangeImage(int num)
 	filepath.append(menunum);
 	filepath.append(".png");
 	background->loadSpriteSheet(filepath.c_str());
-	background->setSpriteFrameSize(1210, 833);
-	background->setPosition(0, 0);
 	background->addSpriteAnimFrame(0, 0, 0);
+	if (num < 0)
+	{
+		background->setSpriteFrameSize(314, 428);
+		background->setPosition(EntityManager::instance()->getXofID(0) - 29, EntityManager::instance()->getYofID(0) - 20);
+	}
+	else
+	{
+		background->setSpriteFrameSize(1210, 833);
+		background->setPosition(0, 0);
+	}
 }

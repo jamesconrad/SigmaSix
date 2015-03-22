@@ -127,8 +127,10 @@ void Game::draw()
 	else if (stateInfo.gameState == STATE_PAUSE)
 	{
 		DrawGame();
+		PostDraw();
 		DrawMainMenu();
 	}
+	glutSwapBuffers();
 	/* post-draw - after rendering, setup the next frame */
 	PostDraw();
 }
@@ -186,7 +188,6 @@ void Game::DrawGame()
 
 	drawTestPrimitives();
 	/* this makes it actually show up on the screen */
-	glutSwapBuffers();
 }
 
 /*
@@ -317,12 +318,25 @@ void Game::DrawMainMenu()
 	gluOrtho2D(entityManager->getXofID(0) - WINDOW_SCREEN_WIDTH / 2.0, entityManager->getXofID(0) + 34 / 2 + WINDOW_SCREEN_WIDTH / 2.0,
 	entityManager->getYofID(0) - WINDOW_SCREEN_HEIGHT / 2.0, entityManager->getYofID(0) + 46 / 2 + WINDOW_SCREEN_HEIGHT / 2.0);
 	*/
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	if (stateInfo.gameState == STATE_PAUSE)
+	{
+		glViewport(0, 0, stateInfo.windowWidth, stateInfo.windowHeight);
+		glLoadIdentity(); 
+		glEnable(GL_TEXTURE_2D); 
+
+		renderingTimer->tick();
+	}
+	if (stateInfo.gameState != STATE_PAUSE)
+	{
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+	}
 	mainMenu->Draw();
-	glDisable(GL_TEXTURE_2D);
-	setColor(1.f, 0.f, 0.f);
-	glutSwapBuffers();
+	if (stateInfo.gameState != STATE_PAUSE)
+	{
+		glDisable(GL_TEXTURE_2D);
+		setColor(1.f, 0.f, 0.f);
+	}
 }
 
 /* update()
