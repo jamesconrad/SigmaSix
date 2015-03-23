@@ -10,6 +10,11 @@ EntityManager::EntityManager()
 
 	projectileManager = ProjectileManager::instance();
 	playerLoaded = false;
+
+	Sprite* tmp = new Sprite("assets/items.png");
+	Item::itemSheet->sheet = tmp->sheet;
+	Item::itemSheet->setLayerID(1);
+	free(tmp);
 }
 
 void EntityManager::Update(float dTime)
@@ -49,36 +54,50 @@ void EntityManager::DeleteEntity(int index)
 {
 	entitytype t = entityVector[index]->GetType();
 	float val = (float)rand() / RAND_MAX;
-	DroppedItem di;
-	di.pickup.bottom = entityVector[index]->getY();
-	di.pickup.top = entityVector[index]->getY() + 8;
-	di.pickup.left = entityVector[index]->getX();
-	di.pickup.right = entityVector[index]->getX() + 8;
-	di.drop = new Sprite;
-	di.drop->setPosition(di.pickup.left, di.pickup.bottom);
-	di.drop->setSpriteFrameSize(8, 8);
-	di.drop->setNumberOfAnimations(1);
-	di.drop->setCurrentAnimation(0);
-	di.drop->sheet = Item::itemSheet->sheet;
+	int sz = droppedItems.size();
+	DroppedItem* di = new DroppedItem;
+	di->pickup.bottom = entityVector[index]->getY();
+	di->pickup.top = entityVector[index]->getY() + 28 * 0.25f;
+	di->pickup.left = entityVector[index]->getX();
+	di->pickup.right = entityVector[index]->getX() + 38 * 0.25f;
+	di->drop = new Sprite();
+	di->drop->setPosition(di->pickup.left, di->pickup.bottom);
+	di->drop->sheet = Item::itemSheet->sheet;
+	di->drop->setSpriteFrameSize(28, 38);
+	di->drop->setNumberOfAnimations(1);
+	di->drop->setCurrentAnimation(0);
+	di->qual = 0;
 	if (t == ENEMY)
 	{
 		if (val < 0.15)
 		{
-			di.itemId = 0;
-			di.qual = 1;
-			di.drop->addSpriteAnimFrame(0, 0, 0);
-			droppedItems.push_back(di);
+			di->itemId = 0;
+			di->qual = 1;
 		}	
 	}
 	else if (t == ELITE)
 	{
 		if (val < 0.5)
 		{
-			di.itemId = 0;
-			di.qual = 1;
-			di.drop->addSpriteAnimFrame(0, 0, 0);
-			droppedItems.push_back(di);
+			di->itemId = 0;
+			di->qual = 2;
 		}
+	}
+	else if (t == BOSS || (t >= MINIBOSS1 && t <= MINIBOSS6))
+	{
+		di->itemId = 0;
+		di->qual = 3;
+	}
+
+	if (di->qual != 0)
+	{
+		switch (di->qual)
+		{
+		case 1: di->drop->addSpriteAnimFrame(0, 0, 67); break;
+		case 2: di->drop->addSpriteAnimFrame(0, 29, 67); break;
+		case 3: di->drop->addSpriteAnimFrame(0, 58, 67); break;
+		}
+		droppedItems.push_back(di);
 	}
 
 	free(entityVector[index]);
@@ -93,6 +112,7 @@ void EntityManager::Clear()
 {
 	for (int i = entityVector.size() - 1; i > 0; i--)
 		entityVector.erase(entityVector.begin() + i);
+	droppedItems.clear();
 }
 
 void EntityManager::HandleInput(char key, bool press)
@@ -105,8 +125,8 @@ void EntityManager::DrawAll(float x, float y)
 {
 	for (int i = 0, size = entityVector.size(); i < size; i++)
 		entityVector[i]->draw();
-	for (int i = 0, size = droppedItems.size(); i < size; i++)
-		droppedItems[i].drop->draw(1.f);
+	for (int i = droppedItems.size() - 1; i >= 0; i--)
+		droppedItems[i]->drop->draw(0.25f);
 }
 
 void EntityManager::ModPosOfID(int id, vec2 mod)

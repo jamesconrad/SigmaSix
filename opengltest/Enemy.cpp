@@ -42,7 +42,7 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		maxHP = 100;
 		damage = 10;
 		texture->loadSpriteSheet("assets/enemy.png");
-		texture->setSpriteFrameSize(34, 46);
+		texture->setSpriteFrameSize(w, h);
 		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
 		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
 		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
@@ -62,7 +62,7 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		maxHP = 200;
 		damage = 20;
 		texture->loadSpriteSheet("assets/elite.png");
-		texture->setSpriteFrameSize(34, 46);
+		texture->setSpriteFrameSize(w, h);
 		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
 		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
 		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
@@ -76,7 +76,23 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 	}
 	else if (entityType == BOSS)
 	{
-		
+		w = 42;
+		h = 88;
+		hp = 500;
+		maxHP = 500;
+		damage = 50;
+		texture->loadSpriteSheet("assets/boss.png");
+		texture->setSpriteFrameSize(w, h);
+		//pewpewing
+		texture->addSpriteAnimRow(4, 0, 0, w + 1, 0, 8);
+		texture->addSpriteAnimRow(5, 0, 0, w + 1, 0, 8);
+		texture->addSpriteAnimRow(6, 0, 0, w + 1, 0, 8);
+		texture->addSpriteAnimRow(7, 0, 0, w + 1, 0, 8);
+		//walking
+		texture->addSpriteAnimRow(0, 0, 1, w + 1, 0, 8);
+		texture->addSpriteAnimRow(1, 0, h+2, w + 1, 0, 8);
+		texture->addSpriteAnimRow(2, 0, 2*h+3, w + 1, 0, 8);
+		texture->addSpriteAnimRow(3, 0, 3*h+4, w + 1, 0, 8);
 	}
 	else
 	{
@@ -120,7 +136,7 @@ void Enemy::update(float dTime)
 	this->dTime = dTime;
 	updateAiState();
 	
-	if (moving)
+	if (moving || entityType == BOSS)
 	{
 		if (state == state_patrol)
 		{
