@@ -1,4 +1,4 @@
-#include "Berserk.h"
+/*#include "Berserk.h"
 
 
 Berserk::
@@ -27,3 +27,4 @@ void Berserk::Update(float dtime)
 
 	}
 }
+*/
