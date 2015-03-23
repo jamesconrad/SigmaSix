@@ -5,7 +5,6 @@ CONRAD TODO:
 	Boss needs to always be "bobbing"
 		Boss only retains expected behaviour when in the bottom right view sector
 	Black lines yo.
-	Boss needs pewpew sprites
 	Need to resize images to power of 2
 
 
