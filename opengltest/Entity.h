@@ -76,6 +76,7 @@ public:
 	virtual void damageMod(float value) { return; }
 	virtual void maxHealthMod(float value) { return; }
 	virtual void lifeSteal(float value) { return; }
+	virtual void maxEnergyMod(float value) { return; }
 
 	virtual void bcastRecv(bcast broadcast) {}
 	virtual void bcastSend(char msg, int sender) {}

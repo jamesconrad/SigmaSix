@@ -118,6 +118,7 @@
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="EnergyRegen.cpp" />
     <ClCompile Include="SoundSystem.cpp" />
+    <ClCompile Include="MaxEnergyMod.cpp" />
     <ClCompile Include="SpeedMod.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="DamageMod.h" />
+    <ClInclude Include="MaxEnergyMod.h" />
     <ClInclude Include="HorizontalScrollingBackground.h" />
     <ClInclude Include="Laser.h" />
     <ClInclude Include="LifeSteal.h" />
