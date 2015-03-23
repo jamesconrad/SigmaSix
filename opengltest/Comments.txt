@@ -6,7 +6,6 @@ CONRAD TODO:
 	Boss only retains expected behaviour when in the bottom right view sector
 	Black lines yo.
 	Boss needs pewpew sprites
-	Boss hp needs changed
 	Fix the initial call of update on game start
 
 

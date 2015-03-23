@@ -63,7 +63,7 @@ void EntityManager::DeleteEntity(int index)
 	di->drop = new Sprite();
 	di->drop->setPosition(di->pickup.left, di->pickup.bottom);
 	di->drop->sheet = Item::itemSheet->sheet;
-	di->drop->setSpriteFrameSize(28, 38);
+	di->drop->setSpriteFrameSize(28, 39);
 	di->drop->setNumberOfAnimations(1);
 	di->drop->setCurrentAnimation(0);
 	di->qual = 0;
@@ -93,9 +93,9 @@ void EntityManager::DeleteEntity(int index)
 	{
 		switch (di->qual)
 		{
-		case 1: di->drop->addSpriteAnimFrame(0, 0, 67); break;
-		case 2: di->drop->addSpriteAnimFrame(0, 29, 67); break;
-		case 3: di->drop->addSpriteAnimFrame(0, 58, 67); break;
+		case 1: di->drop->addSpriteAnimFrame(0, 0, 66); break;
+		case 2: di->drop->addSpriteAnimFrame(0, 28, 66); break;
+		case 3: di->drop->addSpriteAnimFrame(0, 57, 66); break;
 		}
 		droppedItems.push_back(di);
 	}
