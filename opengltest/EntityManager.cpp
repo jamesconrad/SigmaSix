@@ -107,7 +107,6 @@ void EntityManager::DrawAll(float x, float y)
 		entityVector[i]->draw();
 	for (int i = 0, size = droppedItems.size(); i < size; i++)
 		droppedItems[i].drop->draw(1.f);
-	printf("DroppedItems: %i\n", droppedItems.size());
 }
 
 void EntityManager::ModPosOfID(int id, vec2 mod)
