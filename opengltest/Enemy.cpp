@@ -29,6 +29,7 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 	origX = y = _y;
 	shielded = false;
 	index = _index;
+	curAnim = 0;
 	animFrame = shotTimer = 0.f;
 	texture->setNumberOfAnimations(9);
 	texture->setPosition(x, y);
@@ -87,7 +88,7 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		filePath.append(".png");
 		texture->loadSpriteSheet(filePath.c_str());
 	}
-	
+	texture->setCurrentAnimation(0);
 
 	
 	state = ai_state::state_chase;
