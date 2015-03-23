@@ -87,7 +87,7 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		filePath.append(".png");
 		texture->loadSpriteSheet(filePath.c_str());
 	}
-	
+	texture->setCurrentAnimation(0);
 
 	
 	state = ai_state::state_chase;
