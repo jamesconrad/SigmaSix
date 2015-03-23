@@ -187,7 +187,7 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 {
 	vec2 mtd;
 	RECT entPos = entityManager->getRectOfID(entityIter);
-	if (chunkNum < 0 || chunkNum > chunkVectorPtr->size() - 1)
+	if (chunkNum < 0 || chunkNum > (signed)chunkVectorPtr->size() - 1)
 		return;
 	for (int i = 0, s = colisionMap.at(chunkNum).size(); i < s; i++)
 	{

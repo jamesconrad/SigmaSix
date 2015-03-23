@@ -107,7 +107,7 @@ public:
 
 	void setCurrentAnimation(int anim) {
 		currentAnimation = anim;
-		if(currentAnimation >= animations.size()) currentAnimation = 0;
+		if(currentAnimation >= (signed)animations.size()) currentAnimation = 0;
 	}
 	/* update */
 	virtual void update();

@@ -115,7 +115,7 @@ void drawText(std::string s, float posX, float posY)
 	glPushMatrix();
 	glRasterPos2f(posX,posY);
 	const char *text = s.c_str();
-	for(int i=0;i<s.length();i++)
+	for(int i=0;i<(signed)s.length();i++)
 	{
 		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, text[i]);
 	}

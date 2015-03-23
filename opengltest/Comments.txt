@@ -1,3 +1,8 @@
+WARNINGS ARE NOW ERRORS
+DONT FUCKING ALLOW WARNINGS TO GO THROUGH
+
+
+
 TODO: (In order of priority)
 	Main menu.
 	Audio.

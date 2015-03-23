@@ -82,7 +82,7 @@ bool MapLoader::LoadMap(int mapID)
 	std::string filepath;
 	filepath.append("assets/audio/map_");
 	char mapnum[8];
-	itoa(mapID, mapnum, 10);
+	_itoa_s(mapID, mapnum, 10);
 	filepath.append(mapnum);
 	filepath.append(".mp3");
 	SoundSystemClass::instance()->PlayBackground((char *)filepath.c_str());

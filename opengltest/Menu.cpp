@@ -181,7 +181,7 @@ void MenuClass::ChangeImage(int num)
 	std::string filepath;
 	filepath.append("assets/menu/menu_");
 	char menunum[8];
-	itoa(num, menunum, 10);
+	_itoa_s(num, menunum, 10);
 	filepath.append(menunum);
 	filepath.append(".png");
 	background->loadSpriteSheet(filepath.c_str());

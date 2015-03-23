@@ -108,7 +108,7 @@ protected:
 
 	//ITEM VARS
 	bool shielded;
-	bool toggleLifeSteal;
+	float toggleLifeSteal;
 };
 
 

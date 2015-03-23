@@ -103,7 +103,10 @@ void Script::Update(float dTime)
 	}
 	else if (curArg.compare("Freeze"))
 	{
-		EntityManager::instance()->FreezeID(target, args[0]);
+		if (args[0] != 0)
+			EntityManager::instance()->FreezeID(target, true);
+		else
+			EntityManager::instance()->FreezeID(target, false);
 	}
 	else if (curArg.compare("Kill"))
 	{

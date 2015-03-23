@@ -33,7 +33,7 @@ void TileManager::SetSize(int w, int h)
 void TileManager::CreateTile(tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid, int texSpacing, int numFrames, float animDelay)
 {
 	int chunkNum = (int)((yPos/height) / CHUNK_WIDTH) * MAP_WIDTH_IN_CHUNKS + (int)((xPos/width) / CHUNK_WIDTH);
-	if (chunkNum >= chunkVector.size())
+	if (chunkNum >= (signed)chunkVector.size())
 	{
 		std::vector<Tile*> tilePushBackVector;
 		chunkVector.push_back(tilePushBackVector);
@@ -58,7 +58,7 @@ void TileManager::CreateTile(tiletype tileType, float xPos, float yPos, float wi
 void TileManager::CreatePortal(tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid, int mapTransitionID, int texSpacing, int numFrames, float animDelay)
 {
 	int chunkNum = (int)((yPos / height) / CHUNK_WIDTH) * MAP_WIDTH_IN_CHUNKS + (int)((xPos / width) / CHUNK_WIDTH);
-	if (chunkNum >= chunkVector.size())
+	if (chunkNum >= (signed)chunkVector.size())
 	{
 		std::vector<Tile*> tilePushBackVector;
 		chunkVector.push_back(tilePushBackVector);
@@ -157,7 +157,7 @@ void TileManager::DrawScene(float cameraPosX, float cameraPosY, float dTime)
 
 void TileManager::DrawChunk(int chunkNum, float cameraPosX, float cameraPosY, float dTime)
 {
-	if (chunkNum >= 0 && chunkNum < chunkVector.size())
+	if (chunkNum >= 0 && chunkNum < (signed)chunkVector.size())
 	{
 		std::vector<Tile*> tileVector = chunkVector[chunkNum];
 		for (int i = 0, s = chunkVector[chunkNum].size(); i < s; ++i)
@@ -194,7 +194,7 @@ bool TileManager::GetColision(int x, int y)
 {
 	int chunkNum = (int)(y / CHUNK_WIDTH) * MAP_WIDTH_IN_CHUNKS + (int)(x / CHUNK_WIDTH);
 	int chunkPos = (x % CHUNK_WIDTH) + (y % MAP_WIDTH_IN_CHUNKS * CHUNK_WIDTH);
-	if (chunkVector.at(chunkNum).size() > chunkPos)
+	if ((signed)chunkVector.at(chunkNum).size() > chunkPos)
 		return chunkVector.at(chunkNum).at(chunkPos)->GetColision();
 	else
 		return false;

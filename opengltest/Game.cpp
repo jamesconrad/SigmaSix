@@ -292,7 +292,7 @@ void Game::drawTestPrimitives()
 	*/
 	setColor(1.f, 0.4f, 0.f);
 	char fpsbuffer[16];
-	ltoa(score, fpsbuffer, 10);
+	_ltoa_s(score, fpsbuffer, 10);
 	drawText(fpsbuffer, entityManager->getCXofID(0) - (130), entityManager->getYofID(0) + (101.1));
 
 
@@ -301,11 +301,13 @@ void Game::drawTestPrimitives()
 	int secs = (int)fTime % 60;
 	if (mins < 10)
 		gameClock.append("0");
-	gameClock.append(ltoa(mins, fpsbuffer, 10));
+	_ltoa_s(mins, fpsbuffer, 10);
+	gameClock.append(fpsbuffer);
 	gameClock.append(":");
 	if (secs < 10)
 		gameClock.append("0");
-	gameClock.append(ltoa(secs, fpsbuffer, 10));
+	_ltoa_s(secs, fpsbuffer, 10);
+	gameClock.append(fpsbuffer);
 	setColor(1.f, 1.f, 1.f);
 	drawText(gameClock, entityManager->getCXofID(0) - (130), entityManager->getYofID(0) + (111.1));
 }
