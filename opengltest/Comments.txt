@@ -73,6 +73,8 @@ Baker: Bugs and glitches:
 - when exiting level from boss area to hub, player appears to flash on the right side from 
  where you spawn for a split second before returning to proper position
 
+ - exiting the feild level, if you hold the s button even after going through the door to exit, you walk thruough the bottom hub wall
+
 - when walking, if player stops in the middle of the walk animation, the character remains
  in that position until player physically moves into idle stance
 
