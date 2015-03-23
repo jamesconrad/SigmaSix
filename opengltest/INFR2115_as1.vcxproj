@@ -96,6 +96,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Aura.cpp" />
+    <ClCompile Include="Berserk.cpp" />
     <ClCompile Include="ColisionManager.cpp" />
     <ClCompile Include="DamageMod.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -125,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Aura.h" />
+    <ClInclude Include="Berserk.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ColisionManager.h" />
     <ClInclude Include="drawPrimitives.h" />
