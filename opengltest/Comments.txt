@@ -6,6 +6,7 @@ DONT FUCKING ALLOW WARNINGS TO GO THROUGH
 TODO: (In order of priority)
 	Main menu.
 	Audio.
+	BOSS RUNS LIKE A BITCH AFTER ONE SHOT
 	Pause Menu (art is in drive)
 	Cut Scene Script is in, now create the actual working cut scene
 	Fix where bullet comes out of
