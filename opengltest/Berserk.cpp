@@ -1,4 +1,4 @@
-/*#include "Berserk.h"
+#include "Berserk.h"
 
 
 Berserk::
@@ -21,10 +21,9 @@ void Berserk::Update(float dtime)
 	{
 		owner->modDamage(2);
 		owner->energyRegenMod(RegenIncrease);
-		if (owner->getEnergy <= owner->getMaxEnergy)
+//		if (owner->getEnergy <= owner->getMaxEnergy)
 			//owner->energy += 1;
 		
 
 	}
 }
-*/
