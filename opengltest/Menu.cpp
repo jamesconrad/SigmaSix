@@ -7,6 +7,7 @@ MenuClass::MenuClass(int num)
 	selection = 1;
 	background = new Sprite();
 	background->setNumberOfAnimations(1);
+	background->setCurrentAnimation(0);
 	ChangeImage(num);
 }
 
@@ -28,6 +29,10 @@ void MenuClass::KeyPress(unsigned char key, bool press)
 			else if (selection <= 33 && selection > 30)
 			{
 				selection--;
+			}
+			else if (selection >= -5 && selection < -1)
+			{
+				selection++;
 			}
 			else if (selection <= -33 && selection > -30)
 			{
@@ -51,6 +56,10 @@ void MenuClass::KeyPress(unsigned char key, bool press)
 			else if (selection < 33 && selection >= 30)
 			{
 				selection++;
+			}
+			else if (selection <= -5 && selection > -1)
+			{
+			selection--;
 			}
 			else if (selection > -33 && selection <= -30)
 			{
@@ -146,7 +155,7 @@ void MenuClass::KeyPress(unsigned char key, bool press)
 			}
 			else if (selection == -40)
 			{
-				selection = 1;
+				exit(0);
 			}
 			else if (selection == -41)
 			{
@@ -162,7 +171,7 @@ void MenuClass::KeyPress(unsigned char key, bool press)
 			}
 			else if (selection == -50)
 			{
-				selection = 1;
+				exit(0);
 			}
 		}
 		ChangeImage(selection);
@@ -188,8 +197,8 @@ void MenuClass::ChangeImage(int num)
 	background->addSpriteAnimFrame(0, 0, 0);
 	if (num < 0)
 	{
-		background->setSpriteFrameSize(314, 428);
-		background->setPosition(EntityManager::instance()->getXofID(0) - 29, EntityManager::instance()->getYofID(0) - 20);
+		background->setSpriteFrameSize(1024, 768);
+		background->setPosition(EntityManager::instance()->getXofID(0) - 120, EntityManager::instance()->getYofID(0) - 60);
 	}
 	else
 	{
