@@ -57,7 +57,7 @@ void MenuClass::KeyPress(unsigned char key, bool press)
 			{
 				selection++;
 			}
-			else if (selection <= -5 && selection > -1)
+			else if (selection > -5 && selection <= -1)
 			{
 			selection--;
 			}
@@ -155,7 +155,7 @@ void MenuClass::KeyPress(unsigned char key, bool press)
 			}
 			else if (selection == -40)
 			{
-				exit(0);
+				selection = 1;
 			}
 			else if (selection == -41)
 			{
@@ -200,7 +200,7 @@ void MenuClass::ChangeImage(int num)
 		background->setSpriteFrameSize(1024, 768);
 		background->setPosition(EntityManager::instance()->getXofID(0) - 120, EntityManager::instance()->getYofID(0) - 60);
 	}
-	else
+	else if (num > 0)
 	{
 		background->setSpriteFrameSize(1210, 833);
 		background->setPosition(0, 0);

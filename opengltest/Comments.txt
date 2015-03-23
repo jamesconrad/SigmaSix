@@ -38,12 +38,12 @@ TODO: (In order of priority)
 ||	X	| Expanding Aura  ||-->	Bonnyman
 ||		| Stun			  ||	Double check your projectile code. You may have to make a few changes to the projectile class inorder to make it work the way it needs to.
 ||		| Constant AOE	  ||	Should create one projectile every frame with the width and height of the desired aura size. Ask Ashley for art assets when you are ready to put them in.
-||		| Laser			  ||
+||	X	| Laser			  ||	Bonny: I was just going to have it leave mine like projectiles on the ground, also I have the duration set so it can last for one frame if you want it too.
 ||		| Berserk		  ||
 ||		| Gernade		  ||
 ||		| Lifesteal		  ||
 ||	X	| HP+			  ||
-||		| Energy charge	  ||
+||	X	| Energy charge	  ||
 ||	X	| DMG+			  ||
 ||	X	| SPD+			  ||
 ||	X	| MAXENG+		  ||
@@ -53,3 +53,30 @@ TODO: (In order of priority)
 BUGS:
 Transparent lines 1px wide being drawn in randomly.
 Only first item dropped is actually drawn.
+
+Baker: Bugs and glitches:
+
+- flashing black line when walking
+
+- shooting:
+
+    - when tapping shoot, not all shots affect enemies 
+
+    - a lot of shots do not collide with enemies; sometimes do damage without collision, 
+     other times, shots simply go through enemies without damage 
+
+       *edit: both glitches occur even when not tapping rapidly, as well as whil holding 
+        down spacebar*
+
+- updated desert level has cut off cactuses (cacti?)
+
+- when exiting level from boss area to hub, player appears to flash on the right side from 
+ where you spawn for a split second before returning to proper position
+
+- when walking, if player stops in the middle of the walk animation, the character remains
+ in that position until player physically moves into idle stance
+
+- Just asked a random person on the bus to play the game, they found a spot in the game where you couldn't glitch (f key) out, which was really 
+ weird.
+ (field level, boss area, behind the rock on the left of the door, between the rock and the
+ trees) *edit, i can't get stuck there, i keep trying, but it isnt working.*
