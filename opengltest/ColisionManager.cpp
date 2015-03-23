@@ -102,7 +102,7 @@ void ColisionManager::Update()
 		{
 			for (int i = EntityManager::instance()->droppedItems.size() - 1; i >= 0; i--)
 			{
-				RECT drop = EntityManager::instance()->droppedItems[i].pickup;
+				RECT drop = EntityManager::instance()->droppedItems[i]->pickup;
 				float l = drop.left - entPos.right;
 				float r = drop.right - entPos.left;
 				float t = drop.bottom - entPos.top;
@@ -110,7 +110,7 @@ void ColisionManager::Update()
 
 				if (!(l > 0 || r < 0 || t > 0 || b < 0))
 				{
-					entityManager->GiveItem(entityIter, EntityManager::instance()->droppedItems[i].itemId);
+					entityManager->GiveItem(entityIter, EntityManager::instance()->droppedItems[i]->itemId);
 					EntityManager::instance()->droppedItems.erase(EntityManager::instance()->droppedItems.begin() + i);
 					EntityManager::instance()->droppedItems.shrink_to_fit();
 				}

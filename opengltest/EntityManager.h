@@ -56,7 +56,7 @@ public:
 
 	void GiveItem(int entNum, int itemId);
 
-	std::vector<DroppedItem> droppedItems;
+	std::vector<DroppedItem*> droppedItems;
 private:
 	EntityManager();
 	Sprite* entBarSprite;
