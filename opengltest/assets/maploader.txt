@@ -630,16 +630,16 @@
 	}
 	else if (Pixels[pos * 3 + 0] == 134 && Pixels[pos * 3 + 1] == 134 && Pixels[pos * 3 + 2] == 134)
 	{	
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 50, 154, false);
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 237, 136, false);
 		entityManager->CreateEntity(ENEMY, x * 16 - 0.0f * x, (mapData.h - y) * 16);
 	}
 		else if (Pixels[pos * 3 + 0] == 107 && Pixels[pos * 3 + 1] == 107 && Pixels[pos * 3 + 2] == 107)
 	{	
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 50, 154, false);
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 237, 136, false);
 		entityManager->CreateEntity(ELITE, x * 16 - 0.0f * x, (mapData.h - y) * 16);
 	}
 			else if (Pixels[pos * 3 + 0] == 200 && Pixels[pos * 3 + 1] == 200 && Pixels[pos * 3 + 2] == 200)
 	{	
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 50, 154, false);
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 237, 136, false);
 		entityManager->CreateEntity(BOSS, x * 16 - 0.0f * x, (mapData.h - y) * 16);
 	}
