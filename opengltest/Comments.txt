@@ -1,6 +1,11 @@
 WARNINGS ARE NOW ERRORS
 DONT FUCKING ALLOW WARNINGS TO GO THROUGH
 
+CONRAD TODO:
+	Boss needs to always be "bobbing"
+	Boss only retains expected behaviour when in the bottom right view sector
+	Black lines yo.
+	Boss needs pewpew sprites
 
 
 TODO: (In order of priority)

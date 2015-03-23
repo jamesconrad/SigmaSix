@@ -166,12 +166,12 @@ void Enemy::update(float dTime)
 	else
 		texture->setCurrentAnimation(curAnim);
 
-	if (state == state_patrol)
+	if (state == state_patrol && moving)
 	{
 		x += dTime * direction.x * (speed / 2.f);
 		y += dTime * direction.y * (speed / 2.f);
 	}
-	else
+	else if (moving)
 	{
 		x += dTime * direction.x * speed;
 		y += dTime * direction.y * speed;
@@ -242,6 +242,7 @@ void Enemy::updateAiState()
 
 void Enemy::Heal()
 {
+	moving = false;
 	direction = vec2(0, 0);
 	float val = (float)rand() / RAND_MAX;
 	if (val < 0.25 && hp <= 100)
@@ -254,6 +255,7 @@ void Enemy::Heal()
 
 void Enemy::Runaway()
 {
+	moving = true;
 	if (Safe())
 	{
 		if (entityType != ENEMY)
@@ -274,6 +276,7 @@ void Enemy::Runaway()
 
 void Enemy::Patrol()
 {
+	moving = true;
 	cooldown -= dTime;
 	//move to random point
 	if (!stateBool)
@@ -298,7 +301,6 @@ void Enemy::Patrol()
 		}
 	}
 
-	moving = true;
 	if (!Safe())
 		ChangeState(state_chase, 0);
 
@@ -331,6 +333,8 @@ void Enemy::Shoot()
 	float mag = sqrt(pow(projDir.x, 2) + pow(projDir.y, 2));
 	projDir.x = projDir.x / mag;
 	projDir.y = projDir.y / mag;
+
+	direction = projDir;
 	
 	if (mag > 8 * 15)
 		ChangeState(state_chase, 0);
