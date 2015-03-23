@@ -43,7 +43,7 @@ TODO: (In order of priority)
 ||		| Gernade		  ||
 ||		| Lifesteal		  ||
 ||	X	| HP+			  ||
-||		| Energy charge	  ||
+||	X	| Energy charge	  ||
 ||	X	| DMG+			  ||
 ||	X	| SPD+			  ||
 ||	X	| MAXENG+		  ||
