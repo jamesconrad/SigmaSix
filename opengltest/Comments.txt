@@ -76,10 +76,7 @@ Baker: Bugs and glitches:
 - when walking, if player stops in the middle of the walk animation, the character remains
  in that position until player physically moves into idle stance
 
-- Just asked a random person on the bus to play the game, and though they'd played 
- computer games before was unable to figure out wasd was to move
-
-- they also found a spot in the game where you couldn't glitch (f key) out, which was really 
+- Just asked a random person on the bus to play the game, they found a spot in the game where you couldn't glitch (f key) out, which was really 
  weird.
  (field level, boss area, behind the rock on the left of the door, between the rock and the
  trees) *edit, i can't get stuck there, i keep trying, but it isnt working.*
