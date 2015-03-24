@@ -145,13 +145,6 @@ void Enemy::update(float dTime)
 		else
 			animFrame += dTime * (speed / 7.5f);
 	}
-
-	if (animFrame >= 1.f)
-	{
-		texture->nextFrame();
-		animFrame = 0.f;
-	}
-
 	if (direction.x > direction.y && direction.x > 0.f)
 		curAnim = 0;
 	else if (direction.x < direction.y && direction.x < 0.f)
@@ -165,6 +158,13 @@ void Enemy::update(float dTime)
 		texture->setCurrentAnimation(curAnim + 4);
 	else
 		texture->setCurrentAnimation(curAnim);
+
+	if (animFrame >= 1.f)
+	{
+		texture->nextFrame();
+		animFrame = 0.f;
+	}
+
 
 	if (state == state_patrol && moving)
 	{

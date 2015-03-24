@@ -2,8 +2,6 @@ WARNINGS ARE NOW ERRORS
 DONT FUCKING ALLOW WARNINGS TO GO THROUGH
 
 CONRAD TODO:
-	Boss needs to always be "bobbing"
-		Boss only retains expected behaviour when in the bottom right view sector
 	Black lines yo.
 	Need to resize images to power of 2
 

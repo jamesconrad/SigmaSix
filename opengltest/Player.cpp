@@ -48,17 +48,8 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	texture->addSpriteAnimRow(3, 0, 330, 35.f, 0, 4);
 
 	texture->addSpriteAnimRow(8, 0, 189, 35.f, 47, 4);
-	//texture->addSpriteAnimRow(animnum,startx,starty,spacingx,spacingy,numframe)
 	texture->setLayerID(1);
 	texture->setCurrentAnimation(0);
-
-	//texture->addSpriteAnimRow(1, 0, 40, 31, 0, 4);
-	/*
-	mySprite->setNumberOfAnimations(1);
-	mySprite->setPosition(xPos, yPos);
-	mySprite->setSpriteFrameSize(width, height);
-	mySprite->addSpriteAnimFrame(0, texX+1.f, texY);
-	*/
 }
 
 Player::~Player()
@@ -166,7 +157,7 @@ void Player::update(float dTime)
 	lastShot += dTime;
 	if (lastShot <= energyRegenCd)
 	{
-		if (curAnim <= 4)
+		if (curAnim < 4)
 			curAnim += 4;
 	}
 	else if (energy < maxEnergy)
@@ -237,11 +228,6 @@ void Player::shoot(float _x, float _y)
 		curAnim = 3;
 	else if (_y < _x && _y < 0.f)
 		curAnim = 1;
-	if (lastShot <= energyRegenCd)
-	{
-		if (curAnim <= 4)
-			curAnim += 4;
-	}
 
 	if (energy > 5)
 	{
