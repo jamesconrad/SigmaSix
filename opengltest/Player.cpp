@@ -50,6 +50,7 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	texture->addSpriteAnimRow(8, 0, 189, 35.f, 47, 4);
 	//texture->addSpriteAnimRow(animnum,startx,starty,spacingx,spacingy,numframe)
 	texture->setLayerID(1);
+	texture->setCurrentAnimation(0);
 
 	//texture->addSpriteAnimRow(1, 0, 40, 31, 0, 4);
 	/*
@@ -108,22 +109,58 @@ void Player::update(float dTime)
 	}
 	if (keysPressed[32])
 	{
-		if (lastShot >= 150.f && energy > 10)
+		if (lastShot >= 200.f && energy > 5)
 		{
 			shoot();
 			lastShot = 0;
 		}
 	}
-	
-	//set curAnim based on current direction;
-	if (direction.x > direction.y && direction.x > 0.f)
-		curAnim = 0;
-	else if (direction.x < direction.y && direction.x < 0.f)
-		curAnim = 2;
-	else if (direction.y > direction.x && direction.y > 0.f)
-		curAnim = 3;
-	else if (direction.y < direction.x && direction.y < 0.f)
-		curAnim = 1;
+
+	if (keysPressed[119] || keysPressed[97] || keysPressed[100] || keysPressed[115])
+	{
+		animFrame += dTime * (speed / 7.5f);
+		//set curAnim based on current direction;
+		if (direction.x > direction.y && direction.x > 0.f)
+			curAnim = 0;
+		else if (direction.x < direction.y && direction.x < 0.f)
+			curAnim = 2;
+		else if (direction.y > direction.x && direction.y > 0.f)
+			curAnim = 3;
+		else if (direction.y < direction.x && direction.y < 0.f)
+			curAnim = 1;
+	}
+
+	if (Controller::instance()->Refresh())
+	{
+		if (sqrt(pow(Controller::instance()->leftStickX, 2) + pow(Controller::instance()->leftStickY, 2) >= 0.5))
+		{
+			direction.x = Controller::instance()->leftStickX;
+			direction.y = Controller::instance()->leftStickY;
+			x += direction.x * dTime * speed;
+			y += direction.y * dTime * speed;
+			animFrame += dTime * (speed / 7.5f);
+		}
+		if (sqrt(pow(Controller::instance()->rightStickX, 2) + pow(Controller::instance()->rightStickY, 2)) >= 0.75)
+		{
+			if (lastShot >= 200.f && energy > 5)
+			{
+				shoot(Controller::instance()->rightStickX, Controller::instance()->rightStickY);
+				lastShot = 0;
+			}
+		}
+		else
+		{
+			//set curAnim based on current direction;
+			if (direction.x > direction.y && direction.x > 0.f)
+				curAnim = 0;
+			else if (direction.x < direction.y && direction.x < 0.f)
+				curAnim = 2;
+			else if (direction.y > direction.x && direction.y > 0.f)
+				curAnim = 3;
+			else if (direction.y < direction.x && direction.y < 0.f)
+				curAnim = 1;
+		}
+	}
 
 	//update the shooting anim direction if gun still out
 	lastShot += dTime;
@@ -150,9 +187,6 @@ void Player::update(float dTime)
 
 	texture->setPosition(x, y);
 	texture->setCurrentAnimation(curAnim);
-
-	if (keysPressed[119] || keysPressed[97] || keysPressed[100] || keysPressed[115])
-		animFrame += dTime * (speed / 7.5f);
 
 	if (animFrame >= 1.f)
 	{
@@ -184,10 +218,35 @@ void Player::handleinput(char keycode, bool press)
 
 void Player::shoot()
 {
-	if (energy > 10)
+	if (energy > 5)
 	{
-		energy -= 10;
+		energy -= 5;
 		projectileManager->CreateProjectile(0, getCX(), getCY() + 0.5f * direction.x, direction.x, direction.y, damage, 3000.f, 0.2f, 0);
+		for (int i = 0, s = inventory.size(); i < s; i++)
+			inventory[i]->OnFire();
+	}
+}
+
+void Player::shoot(float _x, float _y)
+{
+	if (_x > _y && _x > 0.f)
+		curAnim = 0;
+	else if (_x < _y && _x < 0.f)
+		curAnim = 2;
+	else if (_y > _x && _y > 0.f)
+		curAnim = 3;
+	else if (_y < _x && _y < 0.f)
+		curAnim = 1;
+	if (lastShot <= energyRegenCd)
+	{
+		if (curAnim <= 4)
+			curAnim += 4;
+	}
+
+	if (energy > 5)
+	{
+		energy -= 5;
+		projectileManager->CreateProjectile(0, getCX() - 2.f, getCY() - 6.f, _x, _y, damage, 3000.f, 0.2f, 0);
 		for (int i = 0, s = inventory.size(); i < s; i++)
 			inventory[i]->OnFire();
 	}

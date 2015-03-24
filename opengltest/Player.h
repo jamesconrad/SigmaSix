@@ -3,6 +3,7 @@
 
 #include "ProjectileManager.h"
 #include "Entity.h"
+#include "Controller.h"
 
 class Player : public Entity
 {
@@ -60,6 +61,7 @@ public:
 
 	void ModPos(vec2 mod);
 	void shoot();
+	void shoot(float x, float y);
 private:
 	
 };

@@ -84,15 +84,15 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		texture->loadSpriteSheet("assets/boss.png");
 		texture->setSpriteFrameSize(w, h);
 		//pewpewing
-		texture->addSpriteAnimRow(4, 0, 0, w + 1, 0, 8);
-		texture->addSpriteAnimRow(5, 0, 0, w + 1, 0, 8);
-		texture->addSpriteAnimRow(6, 0, 0, w + 1, 0, 8);
-		texture->addSpriteAnimRow(7, 0, 0, w + 1, 0, 8);
+		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 7);
+		texture->addSpriteAnimRow(5, 0, h+2, w + 1, 0, 7);
+		texture->addSpriteAnimRow(6, 0, 2*h+3, w + 1, 0, 7);
+		texture->addSpriteAnimRow(7, 0, 3*h+4, w + 1, 0, 7);
 		//walking
-		texture->addSpriteAnimRow(0, 0, 1, w + 1, 0, 8);
-		texture->addSpriteAnimRow(1, 0, h+2, w + 1, 0, 8);
-		texture->addSpriteAnimRow(2, 0, 2*h+3, w + 1, 0, 8);
-		texture->addSpriteAnimRow(3, 0, 3*h+4, w + 1, 0, 8);
+		texture->addSpriteAnimRow(0, 0, 4*h+5, w + 1, 0, 7);
+		texture->addSpriteAnimRow(1, 0, 5*h+6, w + 1, 0, 7);
+		texture->addSpriteAnimRow(2, 0, 6*h+7, w + 1, 0, 7);
+		texture->addSpriteAnimRow(3, 0, 7*h+8, w + 1, 0, 7);
 	}
 	else
 	{
