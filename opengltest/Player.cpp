@@ -152,7 +152,7 @@ void Player::update(float dTime)
 				curAnim = 1;
 		}
 	}
-
+	
 	//update the shooting anim direction if gun still out
 	lastShot += dTime;
 	if (lastShot <= energyRegenCd)
