@@ -2,6 +2,7 @@ WARNINGS ARE NOW ERRORS
 DONT FUCKING ALLOW WARNINGS TO GO THROUGH
 
 CONRAD TODO:
+	Menu auto scrolls if no controller present
 	Black lines yo.
 	Need to resize images to power of 2
 
