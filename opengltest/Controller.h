@@ -1,6 +1,11 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+//Comment out the line below to make it run if your too lazy to reinstall directx
+#define CONTROLLER_ENABLE
+
+#ifdef CONTROLLER_ENABLE
+
 #include <iostream>
 #include <Windows.h>
 #include <Xinput.h>
@@ -38,5 +43,7 @@ private:
 	Controller() : deadzoneX(0.05f), deadzoneY(0.02f) {}
 	Controller(float dzX, float dzY) : deadzoneX(dzX), deadzoneY(dzY) {}
 };
+
+#endif
 
 #endif

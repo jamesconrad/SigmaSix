@@ -352,7 +352,9 @@ void Game::DrawMainMenu()
   */
 void Game::update()
 {
+#ifdef CONTROLLER_ENABLE
 	Controller::instance()->Refresh();
+#endif
 	if (stateInfo.gameState == STATE_GAMEPLAY)
 	{
 		// update our clock so we have the delta time since the last update
@@ -363,14 +365,16 @@ void Game::update()
 		colisionManager->Update();
 
 		fTime += updateTimer->getElapsedTimeSeconds();
-
+#ifdef CONTROLLER_ENABLE
 		if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_START))
 		{
 			stateInfo.gameState = STATE_PAUSE;
 			mainMenu->Pause();
 			mainMenu->setSelection(-1);
 		}
+#endif
 	}
+#ifdef CONTROLLER_ENABLE
 	else
 	{
 		if (Controller::instance()->leftStickY > 0.75f)
@@ -384,6 +388,7 @@ void Game::update()
 				stateInfo.gameState = STATE_GAMEPLAY;
 		}
 	}
+#endif
 }
 
 /*
