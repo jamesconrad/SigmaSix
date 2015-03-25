@@ -59,6 +59,8 @@ Player::~Player()
 
 void Player::draw()
 {
+	if (!(texture->currentAnimation >= 0 && texture->currentAnimation <= 8))
+		texture->setCurrentAnimation(0);
 	texture->draw(0.5f);
 	for (int i = 0, s = inventory.size(); i < s; i++)
 		inventory[i]->DrawAnim();
