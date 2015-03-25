@@ -1,6 +1,6 @@
-
 #include "Controller.h"
 
+#ifdef CONTROLLER_ENABLE
 int Controller::GetPort()
 {
 	return cId + 1;
@@ -74,4 +74,4 @@ bool Controller::IsPressed(WORD button)
 {
 	return (state.Gamepad.wButtons & button) != 0;
 }
-
+#endif

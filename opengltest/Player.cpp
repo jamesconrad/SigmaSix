@@ -120,7 +120,7 @@ void Player::update(float dTime)
 		else if (direction.y < direction.x && direction.y < 0.f)
 			curAnim = 1;
 	}
-
+#ifdef CONTROLLER_ENABLE
 	if (Controller::instance()->Refresh())
 	{
 		if (sqrt(pow(Controller::instance()->leftStickX, 2) + pow(Controller::instance()->leftStickY, 2) >= 0.5))
@@ -152,7 +152,7 @@ void Player::update(float dTime)
 				curAnim = 1;
 		}
 	}
-	
+#endif
 	//update the shooting anim direction if gun still out
 	lastShot += dTime;
 	if (lastShot <= energyRegenCd)
