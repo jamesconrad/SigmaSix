@@ -185,6 +185,7 @@ void Game::DrawGame()
 	drawSprites();
 
 	glDisable(GL_TEXTURE_2D);
+	
 
 	drawTestPrimitives();
 	/* this makes it actually show up on the screen */
@@ -310,6 +311,36 @@ void Game::drawTestPrimitives()
 	gameClock.append(fpsbuffer);
 	setColor(1.f, 1.f, 1.f);
 	drawText(gameClock, entityManager->getCXofID(0) - (130), entityManager->getYofID(0) + (111.1));
+
+	setColor(1, 0, 0);
+	std::string deathMsg;
+	if (entityManager->entityVector.at(0)->getHP() <= 0)
+	{
+
+		if (entityManager->entityVector.at(0)->GetLives() <= 0)
+		{
+			deathMsg = "Game Over.";
+			drawText(deathMsg, entityManager->getCXofID(0) - 16, entityManager->getCYofID(0) + 16);
+			if (entityManager->entityVector.at(0)->IsDeathAnimOver())
+			{
+				GameOver();
+			}
+		}
+		else
+		{
+			deathMsg = "You Died. Lives Remaning: ";
+			_ltoa_s(entityManager->entityVector.at(0)->GetLives(), fpsbuffer, 10);
+			deathMsg.append(fpsbuffer);
+			drawText(deathMsg, entityManager->getCXofID(0) - 32, entityManager->getCYofID(0) + 16);
+			if (entityManager->entityVector.at(0)->IsDeathAnimOver())
+			{
+				MapLoader::instance()->LoadMap(0);
+				ColisionManager::instance()->RebuildColisionMap();
+				entityManager->entityVector.at(0)->ModLives(-1);
+				entityManager->entityVector.at(0)->ModHP(entityManager->entityVector.at(0)->getMaxHP());
+			}
+		}
+	}
 }
 
 void Game::DrawMainMenu()
@@ -352,9 +383,7 @@ void Game::DrawMainMenu()
   */
 void Game::update()
 {
-#ifdef CONTROLLER_ENABLE
 	Controller::instance()->Refresh();
-#endif
 	if (stateInfo.gameState == STATE_GAMEPLAY)
 	{
 		// update our clock so we have the delta time since the last update
@@ -365,32 +394,41 @@ void Game::update()
 		colisionManager->Update();
 
 		fTime += updateTimer->getElapsedTimeSeconds();
-#ifdef CONTROLLER_ENABLE
 		if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_START))
 		{
 			stateInfo.gameState = STATE_PAUSE;
 			mainMenu->Pause();
 			mainMenu->setSelection(-1);
 		}
-#endif
 	}
-#ifdef CONTROLLER_ENABLE
 	else
 	{
-		if (Controller::instance()->leftStickY > 0.75f)
-			mainMenu->KeyPress('w', true);
-		else if (Controller::instance()->leftStickY < -0.75f)
-			mainMenu->KeyPress('s', true);
-		if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_A))
+		if (Controller::instance()->Refresh())
 		{
-			mainMenu->KeyPress(' ', true);
-			if (mainMenu->StartGame())
-				stateInfo.gameState = STATE_GAMEPLAY;
+			if (Controller::instance()->leftStickY > 0.75f)
+				mainMenu->KeyPress('w', true);
+			else if (Controller::instance()->leftStickY < -0.75f)
+				mainMenu->KeyPress('s', true);
+			if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_A))
+			{
+				mainMenu->KeyPress(' ', true);
+				if (mainMenu->StartGame())
+					stateInfo.gameState = STATE_GAMEPLAY;
+			}
+
 		}
 	}
-#endif
+
+
+
+
+	//Actual Game stuff
 }
 
+void Game::GameOver()
+{
+
+}
 /*
  * addSpriteToDrawList()
  * - this function simply pushes the sprite to the end of the list

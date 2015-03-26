@@ -57,10 +57,10 @@ public:
 	void GiveItem(int entNum, int itemId);
 
 	std::vector<DroppedItem*> droppedItems;
+	std::vector<Entity*> entityVector;
 private:
 	EntityManager();
 	Sprite* entBarSprite;
-	std::vector<Entity*> entityVector;
 	std::vector<Entity*> entityVecotrIter;
 	std::vector<bcast> broadcast;
 	ProjectileManager* projectileManager;
