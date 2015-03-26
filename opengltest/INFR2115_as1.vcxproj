@@ -160,6 +160,7 @@
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector2.h" />
+    <ClInclude Include="Xinput.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Comments.txt" />
