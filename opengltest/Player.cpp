@@ -39,16 +39,15 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	texture->setPosition(x, y);
 	texture->setSpriteFrameSize(34, 46);
 
-	texture->addSpriteAnimRow(4, 0, 1, 35.f, 0, 4);
-	texture->addSpriteAnimRow(5, 0, 48, 35.f, 0, 4);
-	texture->addSpriteAnimRow(6, 0, 95, 35.f, 0, 4);
-	texture->addSpriteAnimRow(7, 0, 142, 35.f, 0, 4);
-	texture->addSpriteAnimRow(0, 0, 189, 35.f, 0, 4);
-	texture->addSpriteAnimRow(1, 0, 236, 35.f, 0, 4);
-	texture->addSpriteAnimRow(2, 0, 283, 35.f, 0, 4);
-	texture->addSpriteAnimRow(3, 0, 330, 35.f, 0, 4);
-
-	texture->addSpriteAnimRow(8, 0, 189, 35.f, 47, 4);
+	texture->addSpriteAnimRow(4, 0, 1, 35.f, 0, 3);
+	texture->addSpriteAnimRow(5, 0, 48, 35.f, 0, 3);
+	texture->addSpriteAnimRow(6, 0, 95, 35.f, 0, 3);
+	texture->addSpriteAnimRow(7, 0, 142, 35.f, 0, 3);
+	texture->addSpriteAnimRow(0, 0, 189, 35.f, 0, 3);
+	texture->addSpriteAnimRow(1, 0, 236, 35.f, 0, 3);
+	texture->addSpriteAnimRow(2, 0, 283, 35.f, 0, 3);
+	texture->addSpriteAnimRow(3, 0, 330, 35.f, 0, 3);
+	texture->addSpriteAnimRow(8, 0, 0, 35, 47, 3);
 	texture->setLayerID(1);
 	texture->setCurrentAnimation(0);
 }
@@ -74,9 +73,14 @@ void Player::update(float dTime)
 	if (hp <= 0)
 	{
 		//am ded
-		texture->setCurrentAnimation(8);
+		//texture->setCurrentAnimation(9);
+		//texture->setSpriteFrameSize(52, 30);
 		deathAnim -= dTime;
 		return;
+	}
+	else
+	{
+		//texture->setSpriteFrameSize(34, 46);
 	}
 	//update items
 	for (int i = 0, s = inventory.size(); i < s; i++)
