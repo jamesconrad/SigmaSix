@@ -84,11 +84,14 @@ public:
 	virtual void bcastSend(char msg, int sender) {}
 	virtual entitytype GetType() { return PLAYER; }
 
-	bool isShielded() { return shielded; }
-	void GiveItem(int itemId);
-	int GetLives() { return lives; }
-	void ModLives(int mod) { lives += mod; deathAnim = 2000.f; }
-	void ModHP(int mod) { hp += mod; }
+	bool isShielded() { return shielded; }//
+	void GiveItem(int itemId);//
+	int GetLives() { return lives; }//
+	void ModLives(int mod) { lives += mod; deathAnim = 2000.f; }//
+	void ModHP(int mod) { hp += mod; }//
+	
+
+	void increaseNRG();
 
 	bool IsDeathAnimOver() { return (deathAnim <= 0); }
 
