@@ -76,28 +76,28 @@ void Game::initializeGame()
 
 	hpBG->setNumberOfAnimations(1);
 	hpBG->setCurrentAnimation(0);
-	hpBG->setSpriteFrameSize(528, 59);
-	hpBG->addSpriteAnimFrame(0, 0, 53);
+	hpBG->setSpriteFrameSize(789, 119);
+	hpBG->addSpriteAnimFrame(0, 0, 0);
 
 	hpBar->setNumberOfAnimations(1);
 	hpBar->setCurrentAnimation(0);
-	hpBar->setSpriteFrameSize(497, 22);
-	hpBar->addSpriteAnimFrame(0, 8, 29);
+	hpBar->setSpriteFrameSize(351, 10);
+	hpBar->addSpriteAnimFrame(0, 1, 124);
 
 	energyBar->setNumberOfAnimations(1);
 	energyBar->setCurrentAnimation(0);
-	energyBar->setSpriteFrameSize(427, 22);
-	energyBar->addSpriteAnimFrame(0, 51, 0);
+	energyBar->setSpriteFrameSize(308, 7);
+	energyBar->addSpriteAnimFrame(0, 2, 147);
 
 	s_Score->setNumberOfAnimations(1);
 	s_Score->setCurrentAnimation(0);
 	s_Score->setSpriteFrameSize(134, 24);
-	s_Score->addSpriteAnimFrame(0, 0, 113);
+	s_Score->addSpriteAnimFrame(0, 0, 159);
 
 	s_Time->setNumberOfAnimations(1);
 	s_Time->setCurrentAnimation(0);
 	s_Time->setSpriteFrameSize(91, 24);
-	s_Time->addSpriteAnimFrame(0, 0, 146);
+	s_Time->addSpriteAnimFrame(0, 0, 193);
 }
 
 void Game::QuitGame()
@@ -238,24 +238,24 @@ void Game::drawSprites()
 	if (dec <= 0)
 		w = 0;
 	else
-		dec > 1 ? w = 497 : w = 497 * dec;
-	hpBar->setSpriteFrameSize(w, 22);
+		dec > 1 ? w = 351 : w = 351 * dec;
+	hpBar->setSpriteFrameSize(w, 15);
 	dec = (float)entityManager->getEnergy(0) / entityManager->getMaxEnergy(0);
 	if (dec <= 0)
 		w = 0;
 	else
-		w = 427 * dec;
-	energyBar->setSpriteFrameSize(w, 22);
+		w = 308 * dec;
+	energyBar->setSpriteFrameSize(w, 7);
 
 
 
-	hpBG->setPosition(entityManager->getCXofID(0) - (66), entityManager->getYofID(0) - (74));
+	hpBG->setPosition(entityManager->getCXofID(0) - (100), entityManager->getYofID(0) - (74 + 10));
 	hpBG->draw(0.25);
 
 
-	hpBar->setPosition(entityManager->getCXofID(0) - (66 - 3), entityManager->getYofID(0) - (74 - 8.5));
+	hpBar->setPosition(entityManager->getCXofID(0) - (100 - 53), entityManager->getYofID(0) - (56.35 + 10));
 	hpBar->draw(0.25);
-	energyBar->setPosition(entityManager->getCXofID(0) - (66 - 13), entityManager->getYofID(0) - (74 - 1.1));
+	energyBar->setPosition(entityManager->getCXofID(0) - (100 - 57.5), entityManager->getYofID(0) - (60.25 + 10));
 	energyBar->draw(0.25);
 
 	s_Score->setPosition(entityManager->getCXofID(0) - (132), entityManager->getYofID(0) + (100));
