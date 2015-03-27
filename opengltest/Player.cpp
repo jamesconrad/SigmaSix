@@ -28,6 +28,7 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	h = 46 * 0.5;
 	lastShot = 10000.f;
 	energyRegenCd = 2000.f;
+	lives = 3;
 	for (int i = 0; i < 256; i++)
 		keysPressed[i] = 0;
 
@@ -38,16 +39,15 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	texture->setPosition(x, y);
 	texture->setSpriteFrameSize(34, 46);
 
-	texture->addSpriteAnimRow(4, 0, 1, 35.f, 0, 4);
-	texture->addSpriteAnimRow(5, 0, 48, 35.f, 0, 4);
-	texture->addSpriteAnimRow(6, 0, 95, 35.f, 0, 4);
-	texture->addSpriteAnimRow(7, 0, 142, 35.f, 0, 4);
-	texture->addSpriteAnimRow(0, 0, 189, 35.f, 0, 4);
-	texture->addSpriteAnimRow(1, 0, 236, 35.f, 0, 4);
-	texture->addSpriteAnimRow(2, 0, 283, 35.f, 0, 4);
-	texture->addSpriteAnimRow(3, 0, 330, 35.f, 0, 4);
-
-	texture->addSpriteAnimRow(8, 0, 189, 35.f, 47, 4);
+	texture->addSpriteAnimRow(4, 0, 1, 35.f, 0, 3);
+	texture->addSpriteAnimRow(5, 0, 48, 35.f, 0, 3);
+	texture->addSpriteAnimRow(6, 0, 95, 35.f, 0, 3);
+	texture->addSpriteAnimRow(7, 0, 142, 35.f, 0, 3);
+	texture->addSpriteAnimRow(0, 0, 189, 35.f, 0, 3);
+	texture->addSpriteAnimRow(1, 0, 236, 35.f, 0, 3);
+	texture->addSpriteAnimRow(2, 0, 283, 35.f, 0, 3);
+	texture->addSpriteAnimRow(3, 0, 330, 35.f, 0, 3);
+	texture->addSpriteAnimRow(8, 0, 0, 35, 47, 3);
 	texture->setLayerID(1);
 	texture->setCurrentAnimation(0);
 }
@@ -70,6 +70,18 @@ void Player::draw()
 
 void Player::update(float dTime)
 {
+	if (hp <= 0)
+	{
+		//am ded
+		//texture->setCurrentAnimation(9);
+		//texture->setSpriteFrameSize(52, 30);
+		deathAnim -= dTime;
+		return;
+	}
+	else
+	{
+		//texture->setSpriteFrameSize(34, 46);
+	}
 	//update items
 	for (int i = 0, s = inventory.size(); i < s; i++)
 		inventory[i]->Update(dTime);
@@ -122,7 +134,7 @@ void Player::update(float dTime)
 		else if (direction.y < direction.x && direction.y < 0.f)
 			curAnim = 1;
 	}
-#ifdef CONTROLLER_ENABLE
+
 	if (Controller::instance()->Refresh())
 	{
 		if (sqrt(pow(Controller::instance()->leftStickX, 2) + pow(Controller::instance()->leftStickY, 2) >= 0.5))
@@ -154,7 +166,7 @@ void Player::update(float dTime)
 				curAnim = 1;
 		}
 	}
-#endif
+
 	//update the shooting anim direction if gun still out
 	lastShot += dTime;
 	if (lastShot <= energyRegenCd)

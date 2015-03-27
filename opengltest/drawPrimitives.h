@@ -1,5 +1,7 @@
 
 #pragma once
+#ifndef PRIM_H
+#define PRIM_H
 #include "GL/glut.h"
 #include <string>
 
@@ -121,3 +123,5 @@ void drawText(std::string s, float posX, float posY)
 	}
 	glPopMatrix();
 }
+
+#endif
