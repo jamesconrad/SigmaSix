@@ -88,6 +88,8 @@ public:
 	void GiveItem(int itemId);
 	void increaseNRG();
 
+	void increaseNRG();
+
 	bool IsDeathAnimOver() { return (deathAnim <= 0); }
 
 protected:
