@@ -2,9 +2,23 @@ WARNINGS ARE NOW ERRORS
 DONT FUCKING ALLOW WARNINGS TO GO THROUGH
 
 CONRAD TODO:
-	Menu auto scrolls if no controller present
 	Black lines yo.
-	Need to resize images to power of 2
+	NPC's
+		Invisible projectile that calls dialog on the getDamage function?
+	Dialog
+
+Deryk TODO:
+	Fix Menu
+	Map loading
+	Add in sound effects
+	Add in the rest of the music
+
+Baker TODO:
+	Finish adding in the rest of the drawing of items
+
+Bonnyman TODO:
+	Finish coding all items
+	Finish adding in the rest of the drawing of items
 
 
 TODO: (In order of priority)
