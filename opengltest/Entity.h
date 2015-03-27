@@ -56,6 +56,7 @@ public:
 		}
 		return tmp;
 	};
+	entitytype GetType() { return entityType; }
 	void UpdateIndex(int i) { index = i; }
 	virtual void ModPos(vec2) {};
 	virtual void Damage(float damage){};
@@ -96,6 +97,7 @@ public:
 	bool IsDeathAnimOver() { return (deathAnim <= 0); }
 
 protected:
+	entitytype entityType;
 	std::vector<Item*> inventory;
 	Sprite* texture, *hpBar, *energyBar, *hpBG, *energyBG;
 	ProjectileManager* projectileManager;

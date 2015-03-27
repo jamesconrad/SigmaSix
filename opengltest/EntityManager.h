@@ -39,6 +39,7 @@ public:
 	int getEnergy(int id) { return entityVector[id]->getEnergy(); }
 	int getMaxEnergy(int id) { return entityVector[id]->getMaxEnergy(); }
 	int GetSize() { return entityVector.size(); }
+	entitytype GetType(int i) { return entityVecotr[i]->GetType(); }
 	RECT getRectOfID(int id) 
 	{ 
 		if (id < (signed)entityVector.size()) return entityVector[id]->getRect();

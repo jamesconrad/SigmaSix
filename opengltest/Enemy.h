@@ -58,7 +58,6 @@ public:
 protected:
 	EntityManager* entityManager;
 	ai_state state;
-	entitytype entityType;
 	float stateCD, cooldown;
 	bool stateBool;
 };

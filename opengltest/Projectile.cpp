@@ -51,15 +51,7 @@ Projectile::~Projectile()
 
 float Projectile::GetDamage()
 {
-	if (projNum != -1)
-	{
-		return damage;
-	}
-	else
-	{
-		Dialog::instance()->Say(PLAYER, 0);
-		return 0;
-	}
+	return damage;
 }
 
 bool Projectile::Update(float dTime)
