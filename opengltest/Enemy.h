@@ -55,7 +55,7 @@ public:
 	void bcastRecv(bcast broadcast);
 	void bcastSend(char msg, int sender);
 
-private:
+protected:
 	EntityManager* entityManager;
 	ai_state state;
 	entitytype entityType;
