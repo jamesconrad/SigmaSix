@@ -3,6 +3,7 @@
 
 #include "Vector2.h"
 #include "Sprite.h"
+#include "Dialog.h"
 
 #ifndef RRECT
 #define RRECT
@@ -22,7 +23,7 @@ public:
 	int GetIndex();
 	void SetIndex(int managerIndex);
 	void Draw();
-	float GetDamage() { return damage; }
+	float GetDamage(); 
 	int GetType() { return projNum; }
 	int GetOwner() { return owner; }
 

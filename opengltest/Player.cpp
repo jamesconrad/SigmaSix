@@ -120,6 +120,10 @@ void Player::update(float dTime)
 			lastShot = 0;
 		}
 	}
+	else if (keysPressed['e'])
+	{
+		projectileManager->CreateProjectile(-1, getCX() - 2.f, getCY() - 6.f, direction.x, direction.y, damage, 100.f, 0.2f, 0);
+	}
 
 	if (keysPressed[119] || keysPressed[97] || keysPressed[100] || keysPressed[115])
 	{
@@ -144,6 +148,10 @@ void Player::update(float dTime)
 			x += direction.x * dTime * speed;
 			y += direction.y * dTime * speed;
 			animFrame += dTime * (speed / 7.5f);
+		}
+		if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_A))
+		{
+			projectileManager->CreateProjectile(-1, getCX() - 2.f, getCY() - 6.f, direction.x, direction.y, damage, 100.f, 0.2f, 0);
 		}
 		if (sqrt(pow(Controller::instance()->rightStickX, 2) + pow(Controller::instance()->rightStickY, 2)) >= 0.75)
 		{
