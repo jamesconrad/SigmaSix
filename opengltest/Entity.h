@@ -90,6 +90,8 @@ public:
 	void ModLives(int mod) { lives += mod; deathAnim = 2000.f; }
 	void ModHP(int mod) { hp += mod; }
 
+	void increaseNRG();
+
 	bool IsDeathAnimOver() { return (deathAnim <= 0); }
 
 protected:
