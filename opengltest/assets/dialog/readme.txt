@@ -16,15 +16,16 @@ To make a conversation, start by labeling the first conversation like so
 My name Jeff.
 
 	To make the conversation continue to a different persons line you do like so
-:ENTITYTYPENUM->X;
+:ENTITYTYPENUM->X:
 	//where ENTITYTYPE is the entities type num as denoted by the struct in code
 	//Just look for the ENTITYTYPE = part
 	//and once again x is the conversation number
-	
+;	
 	//Use a Semicolon to denote the end of the stage
 
 EXAMPLE
 
 :1:
 Hey there! Welcome to Sigma Six!
-:0>7;
+:0>7:
+;

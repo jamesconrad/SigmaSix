@@ -83,7 +83,6 @@ public:
 
 	virtual void bcastRecv(bcast broadcast) {}
 	virtual void bcastSend(char msg, int sender) {}
-	virtual entitytype GetType() { return PLAYER; }
 
 	bool isShielded() { return shielded; }//
 	void GiveItem(int itemId);//

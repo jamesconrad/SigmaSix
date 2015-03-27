@@ -19,6 +19,7 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	maxEnergy = 100;
 	energyRegen = 1;
 	damage = 25;
+	entityType = PLAYER;
 	fireRate = 5;
 	x = _x;
 	y = _y;

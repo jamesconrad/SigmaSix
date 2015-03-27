@@ -1,4 +1,5 @@
-
+#ifndef DIALOG_H
+#define DIALOG_H
 
 #include "Sprite.h"
 #ifndef M_PI
@@ -30,6 +31,7 @@ struct speech
 {
 	std::vector<std::string> text;
 	speech* next;
+	int speaker;
 };
 
 class Dialog
@@ -42,14 +44,21 @@ public:
 	}
 
 	void Say(entitytype, int diaNum);
+	void Draw(float dTime);
 	bool Speaking();
 	void Next();
 
 private:
 	Dialog();
+	std::string ReturnFP(int num);
+	std::string ReturnSearch(int num);
+	void ResetSay();
 
+	int linenum = 0;
 	speech* head;
 	speech* iter;
 	Sprite* dialogbox;
 	std::vector<Sprite*> portraits;
 };
+
+#endif
