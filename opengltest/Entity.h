@@ -84,6 +84,7 @@ public:
 
 	bool isShielded() { return shielded; }
 	void GiveItem(int itemId);
+	void increaseNRG();
 
 
 protected:
