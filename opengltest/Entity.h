@@ -11,6 +11,8 @@ struct bcast
 	int sender;
 };
 
+#ifndef ENTTYPE_S
+#define ENTTYPE_S
 enum entitytype {
 	PLAYER = 0,
 	ENEMY = 10,
@@ -24,7 +26,7 @@ enum entitytype {
 	MINIBOSS5 = 5,
 	MINIBOSS6 = 6
 };
-
+#endif
 class Item;
 
 class Entity
