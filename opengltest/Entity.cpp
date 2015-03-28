@@ -1,5 +1,14 @@
 #include "Entity.h"
 #include "Shield.h"
+#include "Aura.h"
+#include "Berserk.h"
+#include "DamageMod.h"
+#include "EnergyRegen.h"
+#include "LifeSteal.h"
+#include "MaxEnergyMod.h"
+#include "MaxHealthMod.h"
+#include "SpeedMod.h"
+#include "Laser.h"
 
 void Entity::GiveItem(int itemId)
 {
