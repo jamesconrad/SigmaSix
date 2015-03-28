@@ -1,4 +1,6 @@
 #include "MapLoader.h"
+#include "Dialog.h"
+
 #define MAP_BASE_SAVE_FILE "assets/level_maps.png"
 #define TERRAIN_SPRITE_SHEET "assets/map_sprites.png"
 
@@ -138,8 +140,9 @@ bool MapLoader::LoadMap(int mapID)
 			//printf("Loading Map: %f\n", progress);
 		}
 	}
-	//EntityManager::instance()->CreateEntity(ENEMY, -20, -20);
-	//EntityManager::instance()->CreateEntity(ENEMY, -40, -40);
+	//Dialog::instance()->Say(NEUTRAL1, 1);
+	EntityManager::instance()->CreateEntity(NEUTRAL1, -20, -20);
+	EntityManager::instance()->CreateEntity(MINIBOSS5, -40, -40);
 	//EntityManager::instance()->CreateEntity(ENEMY, -60, -60);
 	printf("%i",mapID);
 	mapLoaded = true;

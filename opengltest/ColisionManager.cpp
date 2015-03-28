@@ -92,8 +92,15 @@ void ColisionManager::Update()
 
 			if (!(l > 0 || r < 0 || t > 0 || b < 0))
 			{
-				entityManager->DamageID(entityIter, projectileVectorPtr->at(projectileIter)->GetDamage());
-				entityManager->OnHit(ProjectileManager::instance()->GetOwner(projectileIter));
+				if (projectileVectorPtr->at(projectileIter)->GetType() != -1)
+				{
+					entityManager->DamageID(entityIter, projectileVectorPtr->at(projectileIter)->GetDamage());
+					entityManager->OnHit(ProjectileManager::instance()->GetOwner(projectileIter));
+				}
+				else if (entityManager->GetType(entityIter) == NEUTRAL1 || entityManager->GetType(entityIter) == NEUTRAL2 || entityManager->GetType(entityIter) == NEUTRAL3)
+				{
+					Dialog::instance()->Say(entityManager->GetType(entityIter), 1);
+				}
 				ProjectileManager::instance()->RemoveProjectile(projectileIter);
 			}
 		}

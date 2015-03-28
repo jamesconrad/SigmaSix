@@ -12,3 +12,10 @@ void Entity::GiveItem(int itemId)
 		break;
 	}
 }
+
+
+void Entity::increaseNRG()
+{
+	energy = energy + 1;
+
+}

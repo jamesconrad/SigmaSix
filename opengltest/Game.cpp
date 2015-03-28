@@ -76,28 +76,28 @@ void Game::initializeGame()
 
 	hpBG->setNumberOfAnimations(1);
 	hpBG->setCurrentAnimation(0);
-	hpBG->setSpriteFrameSize(528, 59);
-	hpBG->addSpriteAnimFrame(0, 0, 53);
+	hpBG->setSpriteFrameSize(789, 119);
+	hpBG->addSpriteAnimFrame(0, 0, 0);
 
 	hpBar->setNumberOfAnimations(1);
 	hpBar->setCurrentAnimation(0);
-	hpBar->setSpriteFrameSize(497, 22);
-	hpBar->addSpriteAnimFrame(0, 8, 29);
+	hpBar->setSpriteFrameSize(351, 10);
+	hpBar->addSpriteAnimFrame(0, 1, 124);
 
 	energyBar->setNumberOfAnimations(1);
 	energyBar->setCurrentAnimation(0);
-	energyBar->setSpriteFrameSize(427, 22);
-	energyBar->addSpriteAnimFrame(0, 51, 0);
+	energyBar->setSpriteFrameSize(308, 7);
+	energyBar->addSpriteAnimFrame(0, 2, 147);
 
 	s_Score->setNumberOfAnimations(1);
 	s_Score->setCurrentAnimation(0);
 	s_Score->setSpriteFrameSize(134, 24);
-	s_Score->addSpriteAnimFrame(0, 0, 113);
+	s_Score->addSpriteAnimFrame(0, 0, 159);
 
 	s_Time->setNumberOfAnimations(1);
 	s_Time->setCurrentAnimation(0);
 	s_Time->setSpriteFrameSize(91, 24);
-	s_Time->addSpriteAnimFrame(0, 0, 146);
+	s_Time->addSpriteAnimFrame(0, 0, 193);
 }
 
 void Game::QuitGame()
@@ -181,10 +181,36 @@ void Game::DrawGame()
 	entityManager->DrawAll(0, 0);
 	projectileManager->Draw();
 
-
 	drawSprites();
 
 	glDisable(GL_TEXTURE_2D);
+	setColor(1.f, 0.4f, 0.f);
+	char fpsbuffer[16];
+	_ltoa_s(score, fpsbuffer, 10);
+	drawText(fpsbuffer, entityManager->getCXofID(0) - (130), entityManager->getYofID(0) + (101.1));
+
+
+	std::string gameClock;
+	int mins = (int)(fTime / 60) % 60;
+	int secs = (int)fTime % 60;
+	if (mins < 10)
+		gameClock.append("0");
+	_ltoa_s(mins, fpsbuffer, 10);
+	gameClock.append(fpsbuffer);
+	gameClock.append(":");
+	if (secs < 10)
+		gameClock.append("0");
+	_ltoa_s(secs, fpsbuffer, 10);
+	gameClock.append(fpsbuffer);
+	setColor(1.f, 1.f, 1.f);
+	drawText(gameClock, entityManager->getCXofID(0) - (130), entityManager->getYofID(0) + (111.1));
+	glEnable(GL_TEXTURE_2D);
+
+	if (Dialog::instance()->MoreText())
+		Dialog::instance()->_DrawBox();
+
+	glDisable(GL_TEXTURE_2D);
+	
 
 	drawTestPrimitives();
 	/* this makes it actually show up on the screen */
@@ -237,24 +263,24 @@ void Game::drawSprites()
 	if (dec <= 0)
 		w = 0;
 	else
-		dec > 1 ? w = 497 : w = 497 * dec;
-	hpBar->setSpriteFrameSize(w, 22);
+		dec > 1 ? w = 351 : w = 351 * dec;
+	hpBar->setSpriteFrameSize(w, 15);
 	dec = (float)entityManager->getEnergy(0) / entityManager->getMaxEnergy(0);
 	if (dec <= 0)
 		w = 0;
 	else
-		w = 427 * dec;
-	energyBar->setSpriteFrameSize(w, 22);
+		w = 308 * dec;
+	energyBar->setSpriteFrameSize(w, 7);
 
 
 
-	hpBG->setPosition(entityManager->getCXofID(0) - (66), entityManager->getYofID(0) - (74));
+	hpBG->setPosition(entityManager->getCXofID(0) - (100), entityManager->getYofID(0) - (74 + 10));
 	hpBG->draw(0.25);
 
 
-	hpBar->setPosition(entityManager->getCXofID(0) - (66 - 3), entityManager->getYofID(0) - (74 - 8.5));
+	hpBar->setPosition(entityManager->getCXofID(0) - (100 - 53), entityManager->getYofID(0) - (56.35 + 10));
 	hpBar->draw(0.25);
-	energyBar->setPosition(entityManager->getCXofID(0) - (66 - 13), entityManager->getYofID(0) - (74 - 1.1));
+	energyBar->setPosition(entityManager->getCXofID(0) - (100 - 57.5), entityManager->getYofID(0) - (60.25 + 10));
 	energyBar->draw(0.25);
 
 	s_Score->setPosition(entityManager->getCXofID(0) - (132), entityManager->getYofID(0) + (100));
@@ -290,26 +316,40 @@ void Game::drawTestPrimitives()
 	setColor(0.5,0,0.5);
 	drawTriangle(true, 100,100,200,200,300,100);
 	*/
-	setColor(1.f, 0.4f, 0.f);
+
+	setColor(1, 0, 0);
+	std::string deathMsg;
 	char fpsbuffer[16];
-	_ltoa_s(score, fpsbuffer, 10);
-	drawText(fpsbuffer, entityManager->getCXofID(0) - (130), entityManager->getYofID(0) + (101.1));
+	if (entityManager->entityVector.at(0)->getHP() <= 0)
+	{
 
-
-	std::string gameClock; 
-	int mins = (int)(fTime / 60) % 60;
-	int secs = (int)fTime % 60;
-	if (mins < 10)
-		gameClock.append("0");
-	_ltoa_s(mins, fpsbuffer, 10);
-	gameClock.append(fpsbuffer);
-	gameClock.append(":");
-	if (secs < 10)
-		gameClock.append("0");
-	_ltoa_s(secs, fpsbuffer, 10);
-	gameClock.append(fpsbuffer);
-	setColor(1.f, 1.f, 1.f);
-	drawText(gameClock, entityManager->getCXofID(0) - (130), entityManager->getYofID(0) + (111.1));
+		if (entityManager->entityVector.at(0)->GetLives() <= 0)
+		{
+			deathMsg = "Game Over.";
+			drawText(deathMsg, entityManager->getCXofID(0) - 16, entityManager->getCYofID(0) + 16);
+			if (entityManager->entityVector.at(0)->IsDeathAnimOver())
+			{
+				GameOver();
+			}
+		}
+		else
+		{
+			deathMsg = "You Died. Lives Remaning: ";
+			_ltoa_s(entityManager->entityVector.at(0)->GetLives(), fpsbuffer, 10);
+			deathMsg.append(fpsbuffer);
+			drawText(deathMsg, entityManager->getCXofID(0) - 32, entityManager->getCYofID(0) + 16);
+			if (entityManager->entityVector.at(0)->IsDeathAnimOver())
+			{
+				MapLoader::instance()->LoadMap(0);
+				ColisionManager::instance()->RebuildColisionMap();
+				entityManager->entityVector.at(0)->ModLives(-1);
+				entityManager->entityVector.at(0)->ModHP(entityManager->entityVector.at(0)->getMaxHP());
+			}
+		}
+	}
+	setColor(1, 1, 1);
+	if (Dialog::instance()->MoreText())
+		Dialog::instance()->_DrawText();
 }
 
 void Game::DrawMainMenu()
@@ -352,45 +392,57 @@ void Game::DrawMainMenu()
   */
 void Game::update()
 {
-#ifdef CONTROLLER_ENABLE
 	Controller::instance()->Refresh();
-#endif
-	if (stateInfo.gameState == STATE_GAMEPLAY)
+	if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_START) && stateInfo.gameState == STATE_GAMEPLAY)
 	{
-		// update our clock so we have the delta time since the last update
-		updateTimer->tick();
-
-		entityManager->Update(updateTimer->getElapsedTimeMS());
-		projectileManager->Update(updateTimer->getElapsedTimeMS());
-		colisionManager->Update();
-
-		fTime += updateTimer->getElapsedTimeSeconds();
-#ifdef CONTROLLER_ENABLE
-		if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_START))
-		{
 			stateInfo.gameState = STATE_PAUSE;
 			mainMenu->Pause();
 			mainMenu->setSelection(-1);
-		}
-#endif
 	}
-#ifdef CONTROLLER_ENABLE
+	if (stateInfo.gameState == STATE_GAMEPLAY)
+	{
+		updateTimer->tick();
+		// update our clock so we have the delta time since the last update
+		if (!Dialog::instance()->MoreText())
+		{
+
+			entityManager->Update(updateTimer->getElapsedTimeMS());
+			projectileManager->Update(updateTimer->getElapsedTimeMS());
+			colisionManager->Update();
+
+			fTime += updateTimer->getElapsedTimeSeconds();
+		}
+		Dialog::instance()->Update(updateTimer->getElapsedTimeMS(), entityManager->getCXofID(0), entityManager->getCYofID(0));
+		
+	}
 	else
 	{
-		if (Controller::instance()->leftStickY > 0.75f)
-			mainMenu->KeyPress('w', true);
-		else if (Controller::instance()->leftStickY < -0.75f)
-			mainMenu->KeyPress('s', true);
-		if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_A))
+		if (Controller::instance()->Refresh())
 		{
-			mainMenu->KeyPress(' ', true);
-			if (mainMenu->StartGame())
-				stateInfo.gameState = STATE_GAMEPLAY;
+			if (Controller::instance()->leftStickY > 0.75f)
+				mainMenu->KeyPress('w', true);
+			else if (Controller::instance()->leftStickY < -0.75f)
+				mainMenu->KeyPress('s', true);
+			if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_A))
+			{
+				mainMenu->KeyPress(' ', true);
+				if (mainMenu->StartGame())
+					stateInfo.gameState = STATE_GAMEPLAY;
+			}
+
 		}
 	}
-#endif
+
+
+
+
+	//Actual Game stuff
 }
 
+void Game::GameOver()
+{
+
+}
 /*
  * addSpriteToDrawList()
  * - this function simply pushes the sprite to the end of the list

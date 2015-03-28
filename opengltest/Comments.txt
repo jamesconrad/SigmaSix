@@ -2,9 +2,25 @@ WARNINGS ARE NOW ERRORS
 DONT FUCKING ALLOW WARNINGS TO GO THROUGH
 
 CONRAD TODO:
-	Menu auto scrolls if no controller present
 	Black lines yo.
-	Need to resize images to power of 2
+	Check Controller support again.
+	Check controller talking controls.
+	Hit Markers
+	NPCs turn and face you when talking to.
+
+Deryk TODO:
+	Fix Menu
+	Add in sound effects
+	Add in the rest of the music
+
+Baker TODO:
+	Finish adding in the rest of the drawing of items
+	Make projectiles exit from players gun
+		Note: I've already done it for the controller shoot function but not the spacebar
+
+Bonnyman TODO:
+	Finish coding all items
+	Finish adding in the rest of the drawing of items
 
 
 TODO: (In order of priority)
@@ -41,7 +57,7 @@ TODO: (In order of priority)
 ||		| Stun			  ||	Double check your projectile code. You may have to make a few changes to the projectile class inorder to make it work the way it needs to.
 ||		| Constant AOE	  ||	Should create one projectile every frame with the width and height of the desired aura size. Ask Ashley for art assets when you are ready to put them in.
 ||	X	| Laser			  ||	Bonny: I was just going to have it leave mine like projectiles on the ground, also I have the duration set so it can last for one frame if you want it too.
-||		| Berserk		  ||
+||	X	| Berserk		  ||--> done it just needs to be drawn and called
 ||		| Gernade		  ||
 ||	X	| Lifesteal		  ||
 ||	X	| HP+			  ||

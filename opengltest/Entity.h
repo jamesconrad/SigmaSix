@@ -11,11 +11,15 @@ struct bcast
 	int sender;
 };
 
+#ifndef ENTTYPE_S
+#define ENTTYPE_S
 enum entitytype {
 	PLAYER = 0,
 	ENEMY = 10,
 	ELITE = 11,
-	NEUTRAL = -1,
+	NEUTRAL1 = -1,
+	NEUTRAL2 = -2,
+	NEUTRAL3 = -3,
 	BOSS = 100,
 	MINIBOSS1 = 1,
 	MINIBOSS2 = 2,
@@ -24,7 +28,7 @@ enum entitytype {
 	MINIBOSS5 = 5,
 	MINIBOSS6 = 6
 };
-
+#endif
 class Item;
 
 class Entity
@@ -54,6 +58,7 @@ public:
 		}
 		return tmp;
 	};
+	entitytype GetType() { return entityType; }
 	void UpdateIndex(int i) { index = i; }
 	virtual void ModPos(vec2) {};
 	virtual void Damage(float damage){};
@@ -80,13 +85,20 @@ public:
 
 	virtual void bcastRecv(bcast broadcast) {}
 	virtual void bcastSend(char msg, int sender) {}
-	virtual entitytype GetType() { return PLAYER; }
 
-	bool isShielded() { return shielded; }
-	void GiveItem(int itemId);
+	bool isShielded() { return shielded; }//
+	void GiveItem(int itemId);//
+	int GetLives() { return lives; }//
+	void ModLives(int mod) { lives += mod; deathAnim = 2000.f; }//
+	void ModHP(int mod) { hp += mod; }//
+	
 
+	void increaseNRG();
+
+	bool IsDeathAnimOver() { return (deathAnim <= 0); }
 
 protected:
+	entitytype entityType;
 	std::vector<Item*> inventory;
 	Sprite* texture, *hpBar, *energyBar, *hpBG, *energyBG;
 	ProjectileManager* projectileManager;
@@ -105,7 +117,8 @@ protected:
 	bool frozen; 
 	float lastShot, energyRegenCd;
 	bool keysPressed[256];
-
+	int lives;
+	float deathAnim = 2000.f;
 
 	//ITEM VARS
 	bool shielded;

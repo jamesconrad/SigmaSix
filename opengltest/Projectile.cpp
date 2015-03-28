@@ -35,6 +35,11 @@ Projectile::Projectile(int managerIndex, SpriteSheetInfo sheet, float startX, fl
 	proj->addSpriteAnimRow(0, 0, 1 + projNum * (h + 1), w + 1, 0, 4);
 	proj->setLayerID(1);
 
+	if (projN == -1)
+	{
+		proj->setSpriteFrameSize(0, 0);
+	}
+
 	//scale the width and height because im lazy
 	w *= 0.66f;
 	h *= 0.66f;
@@ -42,6 +47,11 @@ Projectile::Projectile(int managerIndex, SpriteSheetInfo sheet, float startX, fl
 Projectile::~Projectile()
 {
 	free(proj);
+}
+
+float Projectile::GetDamage()
+{
+	return damage;
 }
 
 bool Projectile::Update(float dTime)

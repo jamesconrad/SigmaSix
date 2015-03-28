@@ -74,6 +74,69 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 
 		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
 	}
+	else if (entityType == NEUTRAL1)
+	{
+		w = 34;
+		h = 46;
+		hp = 200;
+		maxHP = 200;
+		damage = 20;
+		speed /= 2;
+		texture->loadSpriteSheet("assets/npc1.png");
+		texture->setSpriteFrameSize(w, h);
+		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
+		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
+		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
+		texture->addSpriteAnimRow(7, 0, 142, w + 1, 0, 4);
+		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
+		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
+		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
+		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
+
+		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+	}
+	else if (entityType == NEUTRAL2)
+	{
+		w = 34;
+		h = 46;
+		hp = 200;
+		maxHP = 200;
+		damage = 20;
+		speed /= 2;
+		texture->loadSpriteSheet("assets/npc2.png");
+		texture->setSpriteFrameSize(w, h);
+		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
+		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
+		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
+		texture->addSpriteAnimRow(7, 0, 142, w + 1, 0, 4);
+		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
+		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
+		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
+		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
+
+		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+	}
+	else if (entityType == NEUTRAL3)
+	{
+		w = 34;
+		h = 46;
+		hp = 200;
+		maxHP = 200;
+		damage = 20;
+		speed /= 2;
+		texture->loadSpriteSheet("assets/npc3.png");
+		texture->setSpriteFrameSize(w, h);
+		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
+		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
+		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
+		texture->addSpriteAnimRow(7, 0, 142, w + 1, 0, 4);
+		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
+		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
+		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
+		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
+
+		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+	}
 	else if (entityType == BOSS)
 	{
 		w = 42;
@@ -99,10 +162,26 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		hp = 350;
 		maxHP = 350;
 		damage = 30;
+		w = 69;
+		h = 75;
 		std::string filePath;
-		filePath = "assets/miniboss" + entityType;
+		char buff[16];
+		filePath = "assets/miniboss";
+		_ltoa_s(entityType, buff, 10);
+		filePath.append(buff);
 		filePath.append(".png");
 		texture->loadSpriteSheet(filePath.c_str());
+		texture->setSpriteFrameSize(w, h);
+		//pewpewing
+		texture->addSpriteAnimRow(7, 0, 1, w + 1, 0, 7);
+		texture->addSpriteAnimRow(5, 0, h + 2, w + 1, 0, 7);
+		texture->addSpriteAnimRow(6, 0, 2 * h + 3, w + 1, 0, 7);
+		texture->addSpriteAnimRow(4, 0, 3 * h + 4, w + 1, 0, 7);
+		//walking
+		texture->addSpriteAnimRow(3, 0, 4 * h + 5, w + 1, 0, 7);
+		texture->addSpriteAnimRow(1, 0, 5 * h + 6, w + 1, 0, 7);
+		texture->addSpriteAnimRow(2, 0, 6 * h + 7, w + 1, 0, 7);
+		texture->addSpriteAnimRow(0, 0, 7 * h + 8, w + 1, 0, 7);
 	}
 	texture->setCurrentAnimation(0);
 
@@ -215,6 +294,16 @@ RECT Enemy::getRect()
 
 void Enemy::updateAiState()
 {
+	if (entityType == NEUTRAL1 || entityType == NEUTRAL2 || entityType == NEUTRAL3)
+	{
+		if (hp < maxHP)
+		{
+			Runaway();
+		}
+		else
+			Patrol();
+		return;
+	}
 	switch (state)
 	{
 	case state_attack:
@@ -301,7 +390,7 @@ void Enemy::Patrol()
 		}
 	}
 
-	if (!Safe())
+	if (!Safe() && (entityType !=  NEUTRAL1 && entityType != NEUTRAL2 && entityType != NEUTRAL3))
 		ChangeState(state_chase, 0);
 
 	
