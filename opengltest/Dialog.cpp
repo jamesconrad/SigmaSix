@@ -110,7 +110,10 @@ void Dialog::Say(entitytype ent, int diaNum)
 
 	} while (done == false);
 
+	iter = head;
+
 	moreText = true;
+	waiting = true;
 
 	return;
 }
@@ -140,13 +143,11 @@ std::string Dialog::ReturnSearch(int diaNum)
 
 void Dialog::Next()
 {
-	dT = 0;
-	linenum = 0;
 	if (waiting)
 	{
+		waiting = false;
 		linenum = iter->text.size() - 1;
 		dT = 1000000;
-		waiting = false;
 	}
 	else
 	{
@@ -154,6 +155,8 @@ void Dialog::Next()
 		{
 			iter = iter->next;
 			waiting = true;
+			dT = 0;
+			linenum = 0;
 		}
 		else
 		{
@@ -209,13 +212,13 @@ void Dialog::Update(float dTime, float pX, float pY)
 	}
 	else
 	{
-		dialogbox->setPosition(pX - 128, pY + 98);
+		dialogbox->setPosition(pX - 128, pY + 58);
 		switch (iter->speaker)
 		{
 		case -1: pd = 1; break;
 		case 1: pd = 2; break;
 		}
-		portraits[pd]->setPosition(pX - 128, pY - 98);
+		portraits[pd]->setPosition(pX - 128, pY + 58);
 
 		top = true;
 	}

@@ -127,6 +127,7 @@ void Player::update(float dTime)
 			Dialog::instance()->Next();
 		else
 			projectileManager->CreateProjectile(-1, getCX() - 2.f, getCY() - 6.f, direction.x, direction.y, 0, 100.f, 0.2f, 0);
+		keysPressed['e'] = false;
 	}
 
 	if (keysPressed[119] || keysPressed[97] || keysPressed[100] || keysPressed[115])
@@ -142,7 +143,7 @@ void Player::update(float dTime)
 		else if (direction.y < direction.x && direction.y < 0.f)
 			curAnim = 1;
 	}
-
+	delay -= dTime;
 	if (Controller::instance()->Refresh())
 	{
 		if (sqrt(pow(Controller::instance()->leftStickX, 2) + pow(Controller::instance()->leftStickY, 2) >= 0.5))
@@ -153,12 +154,14 @@ void Player::update(float dTime)
 			y += direction.y * dTime * speed;
 			animFrame += dTime * (speed / 7.5f);
 		}
-		if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_A))
+		if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_A) && delay < 0)
 		{
 			if (Dialog::instance()->MoreText())
 				Dialog::instance()->Next();
 			else
 				projectileManager->CreateProjectile(-1, getCX() - 2.f, getCY() - 6.f, direction.x, direction.y, 0, 100.f, 0.2f, 0);
+			delay = 250;
+			
 		}
 		if (sqrt(pow(Controller::instance()->rightStickX, 2) + pow(Controller::instance()->rightStickY, 2)) >= 0.75)
 		{

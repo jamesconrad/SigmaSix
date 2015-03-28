@@ -346,6 +346,8 @@ void Game::drawTestPrimitives()
 	setColor(0, 0, 0);
 	if (Dialog::instance()->MoreText())
 		Dialog::instance()->_DrawText();
+
+
 }
 
 void Game::DrawMainMenu()
