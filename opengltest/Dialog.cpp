@@ -30,6 +30,9 @@ Dialog::Dialog()
 		portraits.push_back(port);
 	}
 
+	dT = linenum = 0;
+	
+
 	head = new speech;
 	head->next = NULL;
 	iter = head;
@@ -106,6 +109,9 @@ void Dialog::Say(entitytype ent, int diaNum)
 		}
 
 	} while (done == false);
+
+	moreText = true;
+
 	return;
 }
 
@@ -134,13 +140,30 @@ std::string Dialog::ReturnSearch(int diaNum)
 
 void Dialog::Next()
 {
-	
+	dT = 0;
+	linenum = 0;
+	if (waiting)
+	{
+		linenum = iter->text.size() - 1;
+		dT = 1000000;
+	}
+	else
+	{
+		if (iter->next != NULL)
+		{
+			iter = iter->next;
+			waiting = true;
+		}
+		else
+		{
+			moreText = false;
+		}
+	}
 }
 
-void deleteList(speech** head_ref)
+void DeleteList(speech** head)
 {
-	/* deref head_ref to get the real head */
-	speech* current = *head_ref;
+	speech* current = *head;
 	speech* next;
 
 	while (current != NULL)
@@ -149,21 +172,80 @@ void deleteList(speech** head_ref)
 		free(current);
 		current = next;
 	}
-
-	/* deref head_ref to affect the real head back
-	in the caller. */
-	*head_ref = NULL;
+	*head = NULL;
 }
 
 void Dialog::ResetSay()
 {
-	deleteList(&head);
+	DeleteList(&head);
 	head = new speech;
 	head->next = NULL;
 	iter = head;
 }
 
-void Dialog::Draw(float dTime)
+void drawText(std::string s, float posX, float posY, int numChars)
 {
-
+	glPushMatrix();
+	glRasterPos2f(posX, posY);
+	const char *text = s.c_str();
+	for (int i = 0; i<numChars; i++)
+	{
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, text[i]);
+	}
+	glPopMatrix();
 }
+
+void Dialog::Update(float dTime, float pX, float pY)
+{
+	dT += dTime;
+	if (iter->speaker == 0)
+	{
+		dialogbox->setPosition(pX - 128, pY - 98);
+		portraits[0]->setPosition(pX - 128, pY - 98);
+
+		top = false;
+		pd = 0;
+	}
+	else
+	{
+		dialogbox->setPosition(pX - 128, pY + 98);
+		switch (iter->speaker)
+		{
+		case -1: pd = 1; break;
+		case 1: pd = 2; break;
+		}
+		portraits[pd]->setPosition(pX - 128, pY - 98);
+
+		top = true;
+	}
+
+	numChars = dT / 500;
+	if (numChars >= iter->text[linenum].length() && linenum < iter->text.size() - 1)
+	{
+		linenum++;
+		dT = 0;
+	}
+	else if (linenum == iter->text.size())
+	{
+		waiting = false;
+	}
+	for (int i = 0; i < linenum; i++)
+	{
+		top ? tY = pY + 98 - 8 * i : tY = pY - 58 - 8 * i;
+		drawText(iter->text[i], pX - 96, tY, iter->text[i].size());
+	}
+	top ? tY = pY + 98 - 8 * linenum : tY = pY - 58 - 8 * linenum;
+	drawText(iter->text[linenum], pX - 96, tY, numChars);
+}
+
+void Dialog::Draw()
+{
+	for (int i = 0; i < linenum; i++)
+	{
+		top ? tY = pY + 98 - 8 * i : tY = pY - 58 - 8 * i;
+		drawText(iter->text[i], pX - 96, tY, iter->text[i].size());
+	}
+	top ? tY = pY + 98 - 8 * linenum : tY = pY - 58 - 8 * linenum;
+	drawText(iter->text[linenum], pX - 96, tY, numChars);
+}
+

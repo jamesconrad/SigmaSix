@@ -44,9 +44,12 @@ public:
 	}
 
 	void Say(entitytype, int diaNum);
-	void Draw(float dTime);
-	bool Speaking();
+	void Draw();
+	void Update(float dTime, float pX, float pY);
+	bool MoreText();
+	bool Waiting();
 	void Next();
+	void Skip();
 
 private:
 	Dialog();
@@ -54,7 +57,14 @@ private:
 	std::string ReturnSearch(int num);
 	void ResetSay();
 
-	int linenum = 0;
+	float dT;
+	bool moreText;
+	bool waiting;
+	bool top;
+	int linenum;
+	int pd;
+	float pX, pY, tY;
+	int numChars;
 	speech* head;
 	speech* iter;
 	Sprite* dialogbox;
