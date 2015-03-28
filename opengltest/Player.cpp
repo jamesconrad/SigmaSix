@@ -121,14 +121,6 @@ void Player::update(float dTime)
 			lastShot = 0;
 		}
 	}
-	else if (keysPressed['e'])
-	{
-		if (Dialog::instance()->MoreText())
-			Dialog::instance()->Next();
-		else
-			projectileManager->CreateProjectile(-1, getCX() - 2.f, getCY() - 6.f, direction.x, direction.y, 0, 100.f, 0.2f, 0);
-		keysPressed['e'] = false;
-	}
 
 	if (keysPressed[119] || keysPressed[97] || keysPressed[100] || keysPressed[115])
 	{
@@ -237,6 +229,27 @@ void Player::handleinput(char keycode, bool press)
 {
 	//printf("%i - %i ", keycode, press);
 	keysPressed[keycode] = press;
+
+	if (keysPressed['e'] == true)
+	{
+		if (Dialog::instance()->MoreText())
+			Dialog::instance()->Next();
+		else
+			projectileManager->CreateProjectile(-1, getCX() - 2.f, getCY() - 6.f, direction.x, direction.y, 0, 100.f, 0.2f, 0);
+		keysPressed['e'] = false;
+	}
+	if (Controller::instance()->Refresh())
+	{
+		if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_A) && delay < 0)
+		{
+			if (Dialog::instance()->MoreText())
+				Dialog::instance()->Next();
+			else
+				projectileManager->CreateProjectile(-1, getCX() - 2.f, getCY() - 6.f, direction.x, direction.y, 0, 100.f, 0.2f, 0);
+			delay = 250;
+
+		}
+	}
 }
 
 void Player::shoot()

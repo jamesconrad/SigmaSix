@@ -74,7 +74,7 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 
 		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
 	}
-	else if (entityType == NEUTRAL)
+	else if (entityType == NEUTRAL1)
 	{
 		w = 34;
 		h = 46;
@@ -82,7 +82,49 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		maxHP = 200;
 		damage = 20;
 		speed /= 2;
-		texture->loadSpriteSheet("assets/player_d.png");
+		texture->loadSpriteSheet("assets/npc1.png");
+		texture->setSpriteFrameSize(w, h);
+		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
+		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
+		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
+		texture->addSpriteAnimRow(7, 0, 142, w + 1, 0, 4);
+		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
+		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
+		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
+		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
+
+		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+	}
+	else if (entityType == NEUTRAL2)
+	{
+		w = 34;
+		h = 46;
+		hp = 200;
+		maxHP = 200;
+		damage = 20;
+		speed /= 2;
+		texture->loadSpriteSheet("assets/npc2.png");
+		texture->setSpriteFrameSize(w, h);
+		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
+		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
+		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
+		texture->addSpriteAnimRow(7, 0, 142, w + 1, 0, 4);
+		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
+		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
+		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
+		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
+
+		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+	}
+	else if (entityType == NEUTRAL3)
+	{
+		w = 34;
+		h = 46;
+		hp = 200;
+		maxHP = 200;
+		damage = 20;
+		speed /= 2;
+		texture->loadSpriteSheet("assets/npc3.png");
 		texture->setSpriteFrameSize(w, h);
 		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
 		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
@@ -236,7 +278,7 @@ RECT Enemy::getRect()
 
 void Enemy::updateAiState()
 {
-	if (entityType == NEUTRAL)
+	if (entityType == NEUTRAL1 || entityType == NEUTRAL2 || entityType == NEUTRAL3)
 	{
 		if (hp < maxHP)
 		{
@@ -332,7 +374,7 @@ void Enemy::Patrol()
 		}
 	}
 
-	if (!Safe() && entityType != NEUTRAL)
+	if (!Safe() && (entityType !=  NEUTRAL1 && entityType != NEUTRAL2 && entityType != NEUTRAL3))
 		ChangeState(state_chase, 0);
 
 	

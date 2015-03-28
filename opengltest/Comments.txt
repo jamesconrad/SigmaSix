@@ -3,9 +3,8 @@ DONT FUCKING ALLOW WARNINGS TO GO THROUGH
 
 CONRAD TODO:
 	Black lines yo.
-	NPC's
-		Invisible projectile that calls dialog on the getDamage function?
-	Dialog
+	Check Controller support again.
+	Check controller talking controls.
 
 Deryk TODO:
 	Fix Menu

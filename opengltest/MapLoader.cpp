@@ -140,8 +140,8 @@ bool MapLoader::LoadMap(int mapID)
 			//printf("Loading Map: %f\n", progress);
 		}
 	}
-	Dialog::instance()->Say(NEUTRAL, 1);
-	EntityManager::instance()->CreateEntity(NEUTRAL, -20, -20);
+	//Dialog::instance()->Say(NEUTRAL1, 1);
+	EntityManager::instance()->CreateEntity(NEUTRAL1, -20, -20);
 	//EntityManager::instance()->CreateEntity(ENEMY, -40, -40);
 	//EntityManager::instance()->CreateEntity(ENEMY, -60, -60);
 	printf("%i",mapID);

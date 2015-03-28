@@ -31,6 +31,8 @@ Dialog::Dialog()
 	}
 
 	dT = linenum = pd = 0;
+	moreText = false;
+	waiting = false;
 	
 
 	head = new speech;

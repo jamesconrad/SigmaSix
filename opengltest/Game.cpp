@@ -393,23 +393,27 @@ void Game::DrawMainMenu()
 void Game::update()
 {
 	Controller::instance()->Refresh();
-	if (stateInfo.gameState == STATE_GAMEPLAY)
+	if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_START) && stateInfo.gameState == STATE_GAMEPLAY)
 	{
-		// update our clock so we have the delta time since the last update
-		updateTimer->tick();
-
-		entityManager->Update(updateTimer->getElapsedTimeMS());
-		projectileManager->Update(updateTimer->getElapsedTimeMS());
-		colisionManager->Update();
-		Dialog::instance()->Update(updateTimer->getElapsedTimeMS(), entityManager->getCXofID(0), entityManager->getCYofID(0));
-
-		fTime += updateTimer->getElapsedTimeSeconds();
-		if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_START))
-		{
 			stateInfo.gameState = STATE_PAUSE;
 			mainMenu->Pause();
 			mainMenu->setSelection(-1);
+	}
+	if (stateInfo.gameState == STATE_GAMEPLAY)
+	{
+		updateTimer->tick();
+		// update our clock so we have the delta time since the last update
+		if (!Dialog::instance()->MoreText())
+		{
+
+			entityManager->Update(updateTimer->getElapsedTimeMS());
+			projectileManager->Update(updateTimer->getElapsedTimeMS());
+			colisionManager->Update();
+
+			fTime += updateTimer->getElapsedTimeSeconds();
 		}
+		Dialog::instance()->Update(updateTimer->getElapsedTimeMS(), entityManager->getCXofID(0), entityManager->getCYofID(0));
+		
 	}
 	else
 	{
