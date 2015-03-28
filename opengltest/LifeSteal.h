@@ -4,7 +4,8 @@ class I_LifeSteal : public Item
 {
 public:
 	I_LifeSteal(Entity* owner, float cooldown, float procRate);
-	void Activate();
+	void Activate() { /*increase hp */}
+	void OnHit() { Activate(); }
 private:
 
 };

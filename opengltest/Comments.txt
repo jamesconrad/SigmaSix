@@ -43,7 +43,7 @@ TODO: (In order of priority)
 ||	X	| Laser			  ||	Bonny: I was just going to have it leave mine like projectiles on the ground, also I have the duration set so it can last for one frame if you want it too.
 ||		| Berserk		  ||
 ||		| Gernade		  ||
-||		| Lifesteal		  ||
+||	X	| Lifesteal		  ||
 ||	X	| HP+			  ||
 ||	X	| Energy charge	  ||
 ||	X	| DMG+			  ||
