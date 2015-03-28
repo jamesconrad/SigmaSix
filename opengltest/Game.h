@@ -29,10 +29,6 @@
 #include "Controller.h"
 #include "Dialog.h"
 
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
-
 /* these are enumerated types (just names) of game states
    that the game can be in at any moment.  These help you
    manage the flow of the game.  Especially if you want 

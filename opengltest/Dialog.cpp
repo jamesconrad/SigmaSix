@@ -187,20 +187,10 @@ void Dialog::ResetSay()
 	iter = head;
 }
 
-void drawText(std::string s, float posX, float posY, int numChars)
-{
-	glPushMatrix();
-	glRasterPos2f(posX, posY);
-	const char *text = s.c_str();
-	for (int i = 0; i<numChars; i++)
-	{
-		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, text[i]);
-	}
-	glPopMatrix();
-}
-
 void Dialog::Update(float dTime, float pX, float pY)
 {
+	this->pX = pX;
+	this->pY = pY;
 	dT += dTime;
 	if (iter->speaker == 0)
 	{
@@ -224,10 +214,11 @@ void Dialog::Update(float dTime, float pX, float pY)
 	}
 
 	numChars = dT / 500;
-	if (numChars >= (signed)iter->text[linenum].size() && linenum < (signed)iter->text.size() - 1)
+	if (linenum < (signed)iter->text.size() && numChars >= (signed)iter->text[linenum].size())
 	{
 		linenum++;
 		dT = 0;
+		numChars = 0;
 	}
 	else if (linenum == iter->text.size())
 	{
@@ -240,10 +231,11 @@ void Dialog::_DrawText()
 	for (int i = 0; i < linenum; i++)
 	{
 		top ? tY = pY + 98 - 8 * i : tY = pY - 58 - 8 * i;
-		drawText(iter->text[i], pX - 96, tY, iter->text[i].size());
+		drawText(iter->text[i], pX /*- 96*/, tY, iter->text[i].size());
 	}
 	top ? tY = pY + 98 - 8 * linenum : tY = pY - 58 - 8 * linenum;
-	drawText(iter->text[linenum], pX - 96, tY, numChars);
+	if (linenum < (signed)iter->text.size())
+		drawText(iter->text[linenum], pX - 96, tY, numChars);
 }
 
 void Dialog::_DrawBox()

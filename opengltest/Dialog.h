@@ -1,6 +1,7 @@
 #ifndef DIALOG_H
 #define DIALOG_H
 
+#include "drawPrimitives.h"
 #include "Sprite.h"
 #include <string>
 #include <vector>
