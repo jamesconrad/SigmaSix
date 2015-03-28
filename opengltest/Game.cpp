@@ -345,12 +345,7 @@ void Game::drawTestPrimitives()
 	}
 	setColor(1, 1, 1);
 	if (Dialog::instance()->MoreText())
-	{
 		Dialog::instance()->_DrawText();
-		drawText(std::string("Testing"), entityManager->getCXofID(0), entityManager->getCYofID(0));
-	}
-
-
 }
 
 void Game::DrawMainMenu()
