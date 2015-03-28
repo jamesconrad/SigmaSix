@@ -1,13 +1,8 @@
 :1:
 Hello.
-Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-0_-_-_-_-_1_-_-_-_-_2_-_-_-_-_3_-_-_-_-_4_-_-_-_-_5_-_-_-_-_6_-_-_-_-_7_-_-_-_-_8_-_-_-_-_9
 [-1>2]
 ;
 
 :2:
 Goodbye.
-Actually, Fuck you.
-I'm gonna write a novel in here just to piss you off.
-Eat a dick you white fucking box.
 ;

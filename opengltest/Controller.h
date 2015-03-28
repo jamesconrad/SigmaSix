@@ -2,7 +2,7 @@
 #define CONTROLLER_H
 
 //Comment out the line below to make it run if your too lazy to reinstall directx
-//#define CONTROLLER_ENABLE
+#define CONTROLLER_ENABLE
 
 #ifdef CONTROLLER_ENABLE
 

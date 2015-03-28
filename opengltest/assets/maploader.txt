@@ -171,7 +171,7 @@
 	else if (Pixels[pos * 3 + 0] == 153 && Pixels[pos * 3 + 1] == 217 && Pixels[pos * 3 + 2] == 234)
 		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 67, 153, true);
 
-/*R3*/ if (Pixels[pos * 3 + 0] == 255 && Pixels[pos * 3 + 1] == 174 && Pixels[pos * 3 + 2] == 201)
+/*R3*/	else if (Pixels[pos * 3 + 0] == 255 && Pixels[pos * 3 + 1] == 174 && Pixels[pos * 3 + 2] == 201)
 		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, -1, 136, false);
 	else if (Pixels[pos * 3 + 0] == 255 && Pixels[pos * 3 + 1] == 201 && Pixels[pos * 3 + 2] == 14)
 		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 16, 136, false);
@@ -181,55 +181,6 @@
 		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 50, 136, true);
 	else if (Pixels[pos * 3 + 0] == 195 && Pixels[pos * 3 + 1] == 195 && Pixels[pos * 3 + 2] == 195)
 		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 67, 136, true);
-
-/*lava1*/  else if (Pixels[pos * 3 + 0] == 90 && Pixels[pos * 3 + 1] == 90 && Pixels[pos * 3 + 2] == 90)
-	tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 203, 85, false);
-	else if (Pixels[pos * 3 + 0] == 91 && Pixels[pos * 3 + 1] == 91 && Pixels[pos * 3 + 2] == 91)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 220, 85, false);
-	else if (Pixels[pos * 3 + 0] == 92 && Pixels[pos * 3 + 1] == 92 && Pixels[pos * 3 + 2] == 92)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 237, 85, false);
-	else if (Pixels[pos * 3 + 0] == 93 && Pixels[pos * 3 + 1] == 93 && Pixels[pos * 3 + 2] == 93)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 254, 85, false);
-	else if (Pixels[pos * 3 + 0] == 94 && Pixels[pos * 3 + 1] == 94 && Pixels[pos * 3 + 2] == 94)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 271, 85, false);
-
-/*lava2*/  else if (Pixels[pos * 3 + 0] == 80 && Pixels[pos * 3 + 1] == 80 && Pixels[pos * 3 + 2] == 80)
-	tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 203, 68, false);
-	else if (Pixels[pos * 3 + 0] == 81 && Pixels[pos * 3 + 1] == 81 && Pixels[pos * 3 + 2] == 81)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 220, 68, true);
-	else if (Pixels[pos * 3 + 0] == 82 && Pixels[pos * 3 + 1] == 82 && Pixels[pos * 3 + 2] == 82)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 237, 68, true);
-	else if (Pixels[pos * 3 + 0] == 83 && Pixels[pos * 3 + 1] == 83 && Pixels[pos * 3 + 2] == 83)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 254, 68, true);
-	else if (Pixels[pos * 3 + 0] == 84 && Pixels[pos * 3 + 1] == 84 && Pixels[pos * 3 + 2] == 84)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 271, 68, false);
-
-/*lava3*/  else if (Pixels[pos * 3 + 0] == 70 && Pixels[pos * 3 + 1] == 70 && Pixels[pos * 3 + 2] == 70)
-	tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 203, 51, false);
-	else if (Pixels[pos * 3 + 0] == 71 && Pixels[pos * 3 + 1] == 71 && Pixels[pos * 3 + 2] == 71)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 220, 51, false);
-	else if (Pixels[pos * 3 + 0] == 72 && Pixels[pos * 3 + 1] == 72 && Pixels[pos * 3 + 2] == 72)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 237, 51, false);
-	else if (Pixels[pos * 3 + 0] == 73 && Pixels[pos * 3 + 1] == 73 && Pixels[pos * 3 + 2] == 73)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 254, 51, false);
-	else if (Pixels[pos * 3 + 0] == 74 && Pixels[pos * 3 + 1] == 74 && Pixels[pos * 3 + 2] == 74)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 271, 51, false);
-
-/*innercorners walls*/  else if (Pixels[pos * 3 + 0] == 199 && Pixels[pos * 3 + 1] == 199 && Pixels[pos * 3 + 2] == 199)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 101, 102, true);
-	else if (Pixels[pos * 3 + 0] == 198 && Pixels[pos * 3 + 1] == 198 && Pixels[pos * 3 + 2] == 198)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 118, 102, true);
-
-/*innercorners lava*/	else if (Pixels[pos * 3 + 0] == 225 && Pixels[pos * 3 + 1] == 225 && Pixels[pos * 3 + 2] == 225)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 101, 85, false);
-	else if (Pixels[pos * 3 + 0] == 226 && Pixels[pos * 3 + 1] == 226 && Pixels[pos * 3 + 2] == 226)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 118, 85, false);
-	else if (Pixels[pos * 3 + 0] == 227 && Pixels[pos * 3 + 1] == 227 && Pixels[pos * 3 + 2] == 227)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 135, 102, false);
-	else if (Pixels[pos * 3 + 0] == 228 && Pixels[pos * 3 + 1] == 228 && Pixels[pos * 3 + 2] == 228)
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 135, 85, false);
-
-
 
 //Level 2 (Autumn)
 	else if (Pixels[pos * 3 + 0] == 251 && Pixels[pos * 3 + 1] == 139 && Pixels[pos * 3 + 2] == 136)
