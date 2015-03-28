@@ -12,19 +12,17 @@ Dialog::Dialog()
 	dialogbox->addSpriteAnimFrame(0, 0, 0);
 	dialogbox->setCurrentAnimation(0);
 
-	Sprite* port = new Sprite();
-	std::string fp;
-	char buff[16];
-	for (int i = 0; i < 11; i++)
+	Sprite* sheet = new Sprite();
+	sheet->loadSpriteSheet("assets/portraits.png");
+
+	Sprite* port;
+	for (int i = 0; i < 20; i++)
 	{
-		fp = "assets/portraits/";
-		_ltoa_s(i, buff, 10);
-		fp.append(buff);
-		fp.append(".png");
-		port->loadSpriteSheet(fp.c_str());
+		port = new Sprite();
+		port->sheet = sheet->sheet;
 		port->setSpriteFrameSize(PORT_W, PORT_H);
 		port->setNumberOfAnimations(1);
-		port->addSpriteAnimFrame(i, (i % PORT_W) * PORT_W, (i / PORT_W) * PORT_W);
+		port->addSpriteAnimFrame(0, (i % 5) * PORT_W + i, (i / 5) * PORT_W + i);
 		port->setCurrentAnimation(0);
 
 		portraits.push_back(port);
@@ -210,7 +208,17 @@ void Dialog::Update(float dTime, float pX, float pY)
 		switch (iter->speaker)
 		{
 		case -1: pd = 1; break;
-		case 1: pd = 2; break;
+		case -2: pd = 2; break;
+		case -3: pd = 3; break;
+		case 10: pd = 18; break;
+		case 11: pd = 17; break;
+		case 100: pd = 16; break;
+		case 1: pd = 10; break;
+		case 2: pd = 11; break;
+		case 3: pd = 12; break;
+		case 4: pd = 13; break;
+		case 5: pd = 14; break;
+		case 6: pd = 19; break;
 		}
 		portraits[pd]->setPosition(pX - 122, pY + 64);
 
