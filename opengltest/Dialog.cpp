@@ -30,7 +30,7 @@ Dialog::Dialog()
 		portraits.push_back(port);
 	}
 
-	dT = linenum = 0;
+	dT = linenum = pd = 0;
 	
 
 	head = new speech;
@@ -146,6 +146,7 @@ void Dialog::Next()
 	{
 		linenum = iter->text.size() - 1;
 		dT = 1000000;
+		waiting = false;
 	}
 	else
 	{
@@ -220,7 +221,7 @@ void Dialog::Update(float dTime, float pX, float pY)
 	}
 
 	numChars = dT / 500;
-	if (numChars >= iter->text[linenum].length() && linenum < iter->text.size() - 1)
+	if (numChars >= (signed)iter->text[linenum].size() && linenum < (signed)iter->text.size() - 1)
 	{
 		linenum++;
 		dT = 0;
@@ -229,6 +230,10 @@ void Dialog::Update(float dTime, float pX, float pY)
 	{
 		waiting = false;
 	}
+}
+
+void Dialog::_DrawText()
+{
 	for (int i = 0; i < linenum; i++)
 	{
 		top ? tY = pY + 98 - 8 * i : tY = pY - 58 - 8 * i;
@@ -238,14 +243,9 @@ void Dialog::Update(float dTime, float pX, float pY)
 	drawText(iter->text[linenum], pX - 96, tY, numChars);
 }
 
-void Dialog::Draw()
+void Dialog::_DrawBox()
 {
-	for (int i = 0; i < linenum; i++)
-	{
-		top ? tY = pY + 98 - 8 * i : tY = pY - 58 - 8 * i;
-		drawText(iter->text[i], pX - 96, tY, iter->text[i].size());
-	}
-	top ? tY = pY + 98 - 8 * linenum : tY = pY - 58 - 8 * linenum;
-	drawText(iter->text[linenum], pX - 96, tY, numChars);
+	dialogbox->draw(0.25);
+	portraits[pd]->draw(1);
 }
 

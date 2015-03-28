@@ -2,10 +2,6 @@
 #define DIALOG_H
 
 #include "Sprite.h"
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
-//#include "drawPrimitives.h"
 #include <string>
 #include <vector>
 #include <fstream>
@@ -44,10 +40,11 @@ public:
 	}
 
 	void Say(entitytype, int diaNum);
-	void Draw();
+	void _DrawText();
+	void _DrawBox();
 	void Update(float dTime, float pX, float pY);
-	bool MoreText();
-	bool Waiting();
+	bool MoreText() { return moreText; }
+	bool Waiting() { return waiting; }
 	void Next();
 	void Skip();
 

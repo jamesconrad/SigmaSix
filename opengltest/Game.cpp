@@ -181,8 +181,10 @@ void Game::DrawGame()
 	entityManager->DrawAll(0, 0);
 	projectileManager->Draw();
 
-
 	drawSprites();
+
+	if (Dialog::instance()->MoreText())
+		Dialog::instance()->_DrawBox();
 
 	glDisable(GL_TEXTURE_2D);
 	
@@ -341,6 +343,9 @@ void Game::drawTestPrimitives()
 			}
 		}
 	}
+	setColor(0, 0, 0);
+	if (Dialog::instance()->MoreText())
+		Dialog::instance()->_DrawText();
 }
 
 void Game::DrawMainMenu()
@@ -392,6 +397,7 @@ void Game::update()
 		entityManager->Update(updateTimer->getElapsedTimeMS());
 		projectileManager->Update(updateTimer->getElapsedTimeMS());
 		colisionManager->Update();
+		Dialog::instance()->Update(updateTimer->getElapsedTimeMS(), entityManager->getCXofID(0), entityManager->getCYofID(0));
 
 		fTime += updateTimer->getElapsedTimeSeconds();
 		if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_START))
