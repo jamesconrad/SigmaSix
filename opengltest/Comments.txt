@@ -8,7 +8,6 @@ CONRAD TODO:
 
 Deryk TODO:
 	Fix Menu
-	Map loading
 	Add in sound effects
 	Add in the rest of the music
 
