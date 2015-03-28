@@ -197,7 +197,7 @@ void Dialog::Update(float dTime, float pX, float pY)
 	if (iter->speaker == 0)
 	{
 		dialogbox->setPosition(pX - 128, pY - 98);
-		portraits[0]->setPosition(pX - 128, pY - 98);
+		portraits[0]->setPosition(pX - 122, pY - 92);
 
 		top = false;
 		pd = 0;
@@ -210,7 +210,7 @@ void Dialog::Update(float dTime, float pX, float pY)
 		case -1: pd = 1; break;
 		case 1: pd = 2; break;
 		}
-		portraits[pd]->setPosition(pX - 128, pY + 58);
+		portraits[pd]->setPosition(pX - 122, pY + 64);
 
 		top = true;
 	}
