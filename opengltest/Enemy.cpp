@@ -74,6 +74,27 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 
 		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
 	}
+	else if (entityType == NEUTRAL)
+	{
+		w = 34;
+		h = 46;
+		hp = 200;
+		maxHP = 200;
+		damage = 20;
+		speed /= 2;
+		texture->loadSpriteSheet("assets/player_d.png");
+		texture->setSpriteFrameSize(w, h);
+		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
+		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
+		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
+		texture->addSpriteAnimRow(7, 0, 142, w + 1, 0, 4);
+		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
+		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
+		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
+		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
+
+		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+	}
 	else if (entityType == BOSS)
 	{
 		w = 42;
@@ -215,6 +236,16 @@ RECT Enemy::getRect()
 
 void Enemy::updateAiState()
 {
+	if (entityType == NEUTRAL)
+	{
+		if (hp < maxHP)
+		{
+			Runaway();
+		}
+		else
+			Patrol();
+		return;
+	}
 	switch (state)
 	{
 	case state_attack:
@@ -301,7 +332,7 @@ void Enemy::Patrol()
 		}
 	}
 
-	if (!Safe())
+	if (!Safe() && entityType != NEUTRAL)
 		ChangeState(state_chase, 0);
 
 	

@@ -1,0 +1,10 @@
+
+:1:
+Hello Player.
+[0>1]
+;
+
+:2:
+Goodbye Player.
+[0>2]
+;

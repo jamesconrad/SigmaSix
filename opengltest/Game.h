@@ -25,11 +25,9 @@
 #include "EntityManager.h"
 #include "Camera.h"
 #include "Menu.h"
-//#include "Controller.h"
-
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
+//
+#include "Controller.h"
+#include "Dialog.h"
 
 /* these are enumerated types (just names) of game states
    that the game can be in at any moment.  These help you
@@ -160,6 +158,7 @@ public:
 	void keyboardUp(unsigned char key, int mouseX, int mouseY);
 	void mouseClicked(int button, int state, int x, int y);
 	void mouseMoved(int x, int y);
+	void GameOver();
 
 	/*********************************/
 	/* DATA */
