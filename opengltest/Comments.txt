@@ -5,6 +5,7 @@ CONRAD TODO:
 	Black lines yo.
 	Check Controller support again.
 	Check controller talking controls.
+	Hit Markers
 
 Deryk TODO:
 	Fix Menu
