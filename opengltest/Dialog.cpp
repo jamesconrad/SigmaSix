@@ -87,6 +87,8 @@ void Dialog::Say(entitytype ent, int diaNum)
 			nextSpeaker = _atoi64(buffer.c_str());
 			fp = ReturnFP(nextSpeaker).c_str();
 			file.open(fp.c_str(), std::ios::in);
+			//char err[512];
+			//printf(strerror_s(1,err,1));
 
 			first = iter->text[iter->text.size() - 2].find("]");
 			buffer = iter->text[iter->text.size() - 2].substr(last + 1, first - last - 1);
@@ -213,7 +215,7 @@ void Dialog::Update(float dTime, float pX, float pY)
 		top = true;
 	}
 
-	numChars = dT / 500;
+	numChars = dT / 100;
 	if (linenum < (signed)iter->text.size() && numChars >= (signed)iter->text[linenum].size())
 	{
 		linenum++;
@@ -230,12 +232,12 @@ void Dialog::_DrawText()
 {
 	for (int i = 0; i < linenum; i++)
 	{
-		top ? tY = pY + 98 - 8 * i : tY = pY - 58 - 8 * i;
-		drawText(iter->text[i], pX /*- 96*/, tY, iter->text[i].size());
+		top ? tY = pY + 92 - 8 * i : tY = pY - 64 - 8 * i;
+		drawText(iter->text[i], pX - 78, tY, iter->text[i].size());
 	}
-	top ? tY = pY + 98 - 8 * linenum : tY = pY - 58 - 8 * linenum;
+	top ? tY = pY + 92 - 8 * linenum : tY = pY - 64 - 8 * linenum;
 	if (linenum < (signed)iter->text.size())
-		drawText(iter->text[linenum], pX - 96, tY, numChars);
+		drawText(iter->text[linenum], pX - 78, tY, numChars);
 }
 
 void Dialog::_DrawBox()
