@@ -48,7 +48,7 @@ TODO: (In order of priority)
 ||	LEGEND:				  ||
 ++------------------------++
 ||	X	| Code Done		  ||
-||	 +	| Drawing Donw	  ||
+||	 +	| Drawing Done	  ||
 ++------------------------++
 ||	Progress:			  ||
 ++------------------------++
