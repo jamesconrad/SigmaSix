@@ -106,9 +106,9 @@ protected:
 	vec2 direction, movement;
 	bool moving;
 	float origX, origY;
+	float speed, fireRate;
 	int index;
 	int  energy, energyRegen, damage;
-	float speed, fireRate;	
 	int  hp, maxHP, maxEnergy;	
 	float animFrame, dTime;
 	int curAnim;
