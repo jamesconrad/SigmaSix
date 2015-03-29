@@ -402,6 +402,7 @@ void Game::update()
 	if (stateInfo.gameState == STATE_GAMEPLAY)
 	{
 		updateTimer->tick();
+		SoundSystemClass::instance()->Update(updateTimer->getElapsedTimeMS());
 		// update our clock so we have the delta time since the last update
 		if (!Dialog::instance()->MoreText())
 		{
