@@ -97,6 +97,8 @@ public:
 
 	bool IsDeathAnimOver() { return (deathAnim <= 0); }
 
+	float delay;
+	bool gamepad_APressed = false;
 protected:
 	entitytype entityType;
 	std::vector<Item*> inventory;

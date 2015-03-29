@@ -192,7 +192,7 @@ public:
 private:
 	Game(void);
 	int frame = 0, time, timebase = 0, fps = 0;
-	float fTime = 0;
+	float fTime = 0, delay = 0;
 	MenuClass* mainMenu;
 	Camera* viewCam;
 	TileManager* tileManager;
