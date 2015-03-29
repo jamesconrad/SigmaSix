@@ -63,7 +63,6 @@ public:
 	void shoot();
 	void shoot(float x, float y);
 private:
-	float delay;
 };
 
 #endif

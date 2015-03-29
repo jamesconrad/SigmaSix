@@ -97,21 +97,23 @@ public:
 
 	bool IsDeathAnimOver() { return (deathAnim <= 0); }
 
+	float delay;
+	bool gamepad_APressed = false;
 protected:
 	entitytype entityType;
 	std::vector<Item*> inventory;
 	Sprite* texture, *hpBar, *energyBar, *hpBG, *energyBG;
 	ProjectileManager* projectileManager;
 	float x, y, w, h;
+	vec2 direction, movement;
+	bool moving;
+	float origX, origY;
+	float speed, fireRate;
 	int index;
 	int  energy, energyRegen, damage;
-	float speed, fireRate;
-	float origX, origY;
-	int  hp, maxHP, maxEnergy;
-	vec2 direction, movement;
+	int  hp, maxHP, maxEnergy;	
 	float animFrame, dTime;
 	int curAnim;
-	bool moving;
 	float shotTimer;
 	int manIndex;
 	bool frozen; 

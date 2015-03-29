@@ -225,7 +225,7 @@ void Dialog::Update(float dTime, float pX, float pY)
 		top = true;
 	}
 
-	numChars = dT / 100;
+	numChars = dT / 50;
 	if (linenum < (signed)iter->text.size() && numChars >= (signed)iter->text[linenum].size())
 	{
 		linenum++;

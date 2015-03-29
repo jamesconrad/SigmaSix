@@ -20,6 +20,7 @@ public:
 	}
 	void PlaySound(soundEffect);
 	void PlayBackground(char* filepath);
+	void Update(float dTime);
 
 private:
 	SoundSystemClass();
@@ -29,6 +30,11 @@ private:
 	FMOD::Channel *channel;
 	FMOD::Channel *effects;
 	std::vector<FMOD::Sound*> soundEffects;
+
+	float tsl;
+	float vol;
+	float startvol = 0;
+	float stopvol = 1;
 };
 
 #endif

@@ -392,8 +392,6 @@ void Enemy::Patrol()
 
 	if (!Safe() && (entityType !=  NEUTRAL1 && entityType != NEUTRAL2 && entityType != NEUTRAL3))
 		ChangeState(state_chase, 0);
-
-	
 }
 
 bool Enemy::Safe()
