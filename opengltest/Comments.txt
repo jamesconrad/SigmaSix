@@ -3,9 +3,9 @@ DONT FUCKING ALLOW WARNINGS TO GO THROUGH
 
 CONRAD TODO:
 	Black lines yo.
-	Check Controller support again.
-	Check controller talking controls.
+
 	Hit Markers
+
 	NPCs turn and face you when talking to.
 
 Deryk TODO:

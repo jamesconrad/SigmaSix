@@ -402,6 +402,9 @@ void Game::update()
 	if (stateInfo.gameState == STATE_GAMEPLAY)
 	{
 		updateTimer->tick();
+		SoundSystemClass::instance()->Update(updateTimer->getElapsedTimeMS());
+		delay -= updateTimer->getElapsedTimeMS();
+		entityManager->entityVector[0]->delay = delay;
 		// update our clock so we have the delta time since the last update
 		if (!Dialog::instance()->MoreText())
 		{
@@ -411,6 +414,15 @@ void Game::update()
 			colisionManager->Update();
 
 			fTime += updateTimer->getElapsedTimeSeconds();
+		}
+		else if (Controller::instance()->Refresh() && delay < 0)
+		{
+			if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_A))
+				if (Dialog::instance()->MoreText())
+				{
+					Dialog::instance()->Next();
+					delay = 250;
+				}
 		}
 		Dialog::instance()->Update(updateTimer->getElapsedTimeMS(), entityManager->getCXofID(0), entityManager->getCYofID(0));
 		
