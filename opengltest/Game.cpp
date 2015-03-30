@@ -50,7 +50,7 @@ Game::~Game(void)
  */
 void Game::initializeGame()
 {
-	score = 100;
+	score = 0;
 	hpBar = new Sprite;
 	hpBG = new Sprite;
 	energyBar = new Sprite;
@@ -108,6 +108,9 @@ void Game::QuitGame()
 	free(s_Score);
 	free(s_Time);
 	free(viewCam);
+	TileManager::instance()->Clear();
+	EntityManager::instance()->Clear();
+	ProjectileManager::instance()->Update(10000);
 }
 
 /* draw()
@@ -440,6 +443,12 @@ void Game::update()
 				mainMenu->KeyPress(' ', true);
 				if (mainMenu->StartGame())
 					stateInfo.gameState = STATE_GAMEPLAY;
+				else if (mainMenu->StopGame())
+				{
+					QuitGame();
+					mainMenu->setSelection(1);
+					stateInfo.gameState = STATE_MAINMENU;
+				}
 			}
 
 		}
@@ -484,6 +493,12 @@ void Game::keyboardDown(unsigned char key, int mouseX, int mouseY)
 		mainMenu->KeyPress(key, true);
 		if (mainMenu->StartGame())
 			stateInfo.gameState = STATE_GAMEPLAY;
+	}
+	else if (mainMenu->StopGame())
+	{
+		QuitGame();
+		stateInfo.gameState = STATE_MAINMENU;
+		mainMenu->setSelection(1);
 	}
 	else if (stateInfo.gameState == STATE_GAMEPLAY)
 	{
