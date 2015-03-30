@@ -229,7 +229,8 @@
 	else if (Pixels[pos * 3 + 0] == 228 && Pixels[pos * 3 + 1] == 228 && Pixels[pos * 3 + 2] == 228)
 		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 135, 85, false);
 
-
+	else if (Pixels[pos * 3 + 0] == 111 && Pixels[pos * 3 + 1] == 222 && Pixels[pos * 3 + 2] == 0)
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 152, 0, false);
 
 //Level 2 (Autumn)
 	else if (Pixels[pos * 3 + 0] == 251 && Pixels[pos * 3 + 1] == 139 && Pixels[pos * 3 + 2] == 136)

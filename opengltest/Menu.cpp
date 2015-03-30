@@ -5,6 +5,7 @@
 
 MenuClass::MenuClass(int num)
 {
+	stopGame = false;
 	startGame = false;
 	selection = 1;
 	background = new Sprite();
@@ -181,8 +182,8 @@ void MenuClass::KeyPress(unsigned char key, bool press)
 			}
 			else if (selection == -40)
 			{
-				selection = 1;
-				EntityManager::instance()->ModPosOfID(0, vec2(EntityManager::instance()->getXofID(0) * -1 , EntityManager::instance()->getYofID(0) * -1));
+				stopGame = true;
+				EntityManager::instance()->ModPosOfID(0, vec2(EntityManager::instance()->getXofID(0) * -1 + 120, EntityManager::instance()->getYofID(0) * -1 + 78));
 			}
 			else if (selection == -41 || selection == -51)
 			{
