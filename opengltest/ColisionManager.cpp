@@ -93,7 +93,7 @@ void ColisionManager::Update()
 			if (!(l > 0 || r < 0 || t > 0 || b < 0))
 			{
 				if (projectileVectorPtr->at(projectileIter)->GetType() != -1)
-				{
+				{																											
 					entityManager->DamageID(entityIter, projectileVectorPtr->at(projectileIter)->GetDamage());
 					entityManager->OnHit(ProjectileManager::instance()->GetOwner(projectileIter));
 				}

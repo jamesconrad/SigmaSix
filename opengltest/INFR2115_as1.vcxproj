@@ -153,6 +153,7 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileManager.h" />
     <ClInclude Include="resource1.h" />
+    <ClInclude Include="Rocket.h" />
     <ClInclude Include="ScriptReader.h" />
     <ClInclude Include="Shield.h" />
     <ClInclude Include="SoundSystem.h" />
