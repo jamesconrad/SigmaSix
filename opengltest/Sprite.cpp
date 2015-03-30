@@ -123,6 +123,8 @@ void Sprite::draw(float scale)
 	u = anim->coords[currentFrame]->u;
 	v = anim->coords[currentFrame]->v;
 
+	const float kludge = 0.000001;
+
 	glColor3f(1,1,1);
 		/* bind the appropriate texture frame */
 		glBindTexture(GL_TEXTURE_2D,sheet.textureID);
@@ -131,13 +133,13 @@ void Sprite::draw(float scale)
 		    glTexCoord2f(u,v);
 			glVertex3f(0,0,0);
 			
-			glTexCoord2f(u,v+sz.normalizedHeight);
+			glTexCoord2f(u, v + sz.normalizedHeight - kludge);
 			glVertex3f(0,sz.height,0);
 			
-			glTexCoord2f(u+sz.normalizedWidth,v+sz.normalizedHeight);
+			glTexCoord2f(u + sz.normalizedWidth - kludge, v + sz.normalizedHeight - kludge);
 			glVertex3f(sz.width,sz.height,0);
 			
-			glTexCoord2f(u+sz.normalizedWidth,v);
+			glTexCoord2f(u + sz.normalizedWidth - kludge, v);
 			glVertex3f(sz.width,0,0);
 		glEnd();
 	glPopMatrix();

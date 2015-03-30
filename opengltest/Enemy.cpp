@@ -164,6 +164,7 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		damage = 30;
 		w = 69;
 		h = 75;
+		speed /= 2;
 		std::string filePath;
 		char buff[16];
 		filePath = "assets/miniboss";
@@ -173,15 +174,15 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		texture->loadSpriteSheet(filePath.c_str());
 		texture->setSpriteFrameSize(w, h);
 		//pewpewing
-		texture->addSpriteAnimRow(7, 0, 1, w + 1, 0, 7);
-		texture->addSpriteAnimRow(5, 0, h + 2, w + 1, 0, 7);
-		texture->addSpriteAnimRow(6, 0, 2 * h + 3, w + 1, 0, 7);
-		texture->addSpriteAnimRow(4, 0, 3 * h + 4, w + 1, 0, 7);
+		texture->addSpriteAnimRow(7, 0, 1, w + 1, 0, 4);
+		texture->addSpriteAnimRow(5, 0, h + 2, w + 1, 0, 4);
+		texture->addSpriteAnimRow(6, 0, 2 * h + 3, w + 1, 0, 4);
+		texture->addSpriteAnimRow(4, 0, 3 * h + 4, w + 1, 0, 4);
 		//walking
-		texture->addSpriteAnimRow(3, 0, 4 * h + 5, w + 1, 0, 7);
-		texture->addSpriteAnimRow(1, 0, 5 * h + 6, w + 1, 0, 7);
-		texture->addSpriteAnimRow(2, 0, 6 * h + 7, w + 1, 0, 7);
-		texture->addSpriteAnimRow(0, 0, 7 * h + 8, w + 1, 0, 7);
+		texture->addSpriteAnimRow(3, 0, 4 * h + 5, w + 1, 0, 4);
+		texture->addSpriteAnimRow(1, 0, 5 * h + 6, w + 1, 0, 4);
+		texture->addSpriteAnimRow(2, 0, 6 * h + 7, w + 1, 0, 4);
+		texture->addSpriteAnimRow(0, 0, 7 * h + 8, w + 1, 0, 4);
 	}
 	texture->setCurrentAnimation(0);
 

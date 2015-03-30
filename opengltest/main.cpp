@@ -18,7 +18,7 @@
 /* GLOBAL VARIABLES */
 /******************************************/
 #define WINDOW_SCREEN_WIDTH 256
-#define WINDOW_SCREEN_HEIGHT 196
+#define WINDOW_SCREEN_HEIGHT 192
 #define WINDOW_WIDTH 1024
 #define WINDOW_HEIGHT 768
 
