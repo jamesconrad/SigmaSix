@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include "EntityManager.h"
 #include "Game.h"
+#include "EntityManager.h"
 
 MenuClass::MenuClass(int num)
 {
@@ -181,6 +182,7 @@ void MenuClass::KeyPress(unsigned char key, bool press)
 			else if (selection == -40)
 			{
 				selection = 1;
+				EntityManager::instance()->ModPosOfID(0, vec2(EntityManager::instance()->getXofID(0) * -1 , EntityManager::instance()->getYofID(0) * -1));
 			}
 			else if (selection == -41 || selection == -51)
 			{
