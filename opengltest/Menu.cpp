@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include "EntityManager.h"
+#include "Game.h"
 
 MenuClass::MenuClass(int num)
 {
@@ -22,156 +23,182 @@ void MenuClass::KeyPress(unsigned char key, bool press)
 	{
 		if (key == 'w' || key == 'W')
 		{
-			if (selection <= 4 && selection > 1)
+			if (selection == 2 || selection == 3 || selection == 4)
 			{
 				selection--;
 			}
-			else if (selection <= 33 && selection > 30)
+			else if (selection == 1)
+			{
+				selection = 4;
+			}
+			/*else if (selection == 31 || selection == 32 || selection == 33)
 			{
 				selection--;
 			}
-			else if (selection >= -5 && selection < -1)
+			else if (selection == 30)
+			{
+				selection = 33;
+			}*/
+			else if (selection == -4 || selection == -3 || selection == -2 || selection == -5)
 			{
 				selection++;
 			}
-			else if (selection <= -33 && selection > -30)
+			else if (selection == -1)
+			{
+				selection = -5;
+			}
+			/*else if (selection == -33 || selection == -31 || selection == -32)
+			{
+				selection--;
+			}*/
+			else if (selection == -30)
+			{
+				selection = -33;
+			}
+			else if (selection == -40 || selection == -50)
+			{
+				selection--;
+			}
+			else if (selection == -41 || selection == -51)
 			{
 				selection++;
 			}
-			else if (selection = -41)
+			else if (selection == 301 || selection == 302 || selection == 303)
 			{
-				selection++;
+				selection = selection / 10;
 			}
-			else if (selection = -51)
+			else if (selection == 300)
 			{
-				selection++;
+				selection = 303;
+			}
+			else if (selection == -301 || selection == -302 || selection == -303)
+			{
+				selection = selection / 10;
+			}
+			else if (selection == -300)
+			{
+				selection = -303;
+			}
+			else
+			{
+				selection = selection;
 			}
 		}
 		if (key == 's' || key == 'S')
 		{
-			if (selection < 4 && selection >= 1)
+			if (selection == 1 || selection == 2 || selection == 3)
 			{
 				selection++;
 			}
-			else if (selection < 33 && selection >= 30)
+			else if (selection == 4)
+			{
+				selection = 1;
+			}
+			/*else if (selection == 30 || selection == 32 || selection == 31)
+			{
+				selection++;
+			}*/
+			else if (selection == 33)
+			{
+				selection = 30;
+			}
+			else if (selection == -4 || selection == -3 || selection == -2 || selection == -1)
+			{
+			selection--;
+			}
+			else if (selection == -5)
+			{
+				selection = -1;
+			}
+			/*else if (selection == -30 || selection == -31 || selection == -32)
+			{
+			selection--;
+			}*/
+			else if (selection == -33)
+			{
+				selection = -30;
+			}
+			else if (selection == -40 || selection == -50)
+			{
+				selection--;
+			}
+			else if (selection == -41 || selection == -51)
 			{
 				selection++;
 			}
-			else if (selection > -5 && selection <= -1)
+			else if (selection == 301 || selection == 302 || selection == 300)
 			{
-			selection--;
+				selection = selection / 10;
 			}
-			else if (selection > -33 && selection <= -30)
+			else if (selection == 303)
 			{
-			selection--;
+				selection = 300;
 			}
-			else if (selection = -40)
+			else if (selection == -301 || selection == -302 || selection == -300)
 			{
-			selection--;
+				selection = selection / 10;
 			}
-			else if (selection = -50)
+			else if (selection == -303)
 			{
-			selection--;
+				selection = -300;
 			}
+			else
+			{
+				selection = selection;
+			}
+
 		}
-		if (key == ' ')
+		if (key == ' ')//commented out if not yet implemented
 		{
 			if (selection == 1)
 			{
 				startGame = true;
 			}
-			else if (selection == 2)
+			else if (selection == 2 || selection == 3 /*|| selection == 30 || selection == 31 || selection == 32 || selection == 33*/)
 			{
-				selection *= 10;
+				selection = selection * 10;
 			}
-			else if (selection == 3)
-			{
-				selection *= 10;
-			}
-			else if (selection == 4)
+			else if (selection == 4 || selection == -50)
 			{
 				exit(0);
 			}
-			else if (selection == 20)
-			{
-				selection /= 10;
-			}
-			else if (selection == 30)
-			{
-				selection *= 10;
-			}
-			else if (selection == 31)
-			{
-				selection *= 10;
-			}
-			else if (selection == 32)
-			{
-				selection *= 10;
-			}
-			else if (selection == 33)
-			{
-				selection *= 10;
-			}
-			else if (selection == 300)
-			{
-				selection /= 10;
-			}
-			else if (selection == 310)
-			{
-				selection /= 10;
-			}
-			else if (selection == 320)
-			{
-				selection /= 10;
-			}
-			else if (selection == 330)
-			{
-				selection /= 10;
-			}
 			else if (selection == -1)
 			{
-				selection = 1;
 				startGame = true;
 			}
-			else if (selection == -2)
+			/*else if (selection == 30 || selection == 31 || selection == 32 || selection == 33)
 			{
-				selection *= 10;
+			selection = selection * 10;
 			}
-			else if (selection == -20)
+			else if (selection == 300 || selection == 310 || selection == 320 || selection == 330)
 			{
-				selection /= 10;
-			}
-			else if (selection == -3)
+				selection = selection / 10;
+			}*/
+			else if (selection == -2 || selection == -3 || selection == -4 || selection == -5)
 			{
-				selection *= 10;
-			}
-			else if (selection == -300 || selection == -310 || selection == -320 || selection == -330)
-			{
-				selection /= 10;
-			}
-			else if (selection == -4)
-			{
-				selection *= 10;
+				selection = selection * 10;
 			}
 			else if (selection == -40)
 			{
 				selection = 1;
 			}
-			else if (selection == -41)
+			else if (selection == -41 || selection == -51)
 			{
-				selection /= 10;
+				selection = selection / 10;
 			}
-			else if (selection == -5)
+			/*else if (selection == -30 || selection == -31 || selection == -32 || selection == -33)
 			{
-				selection *= 10;
+				selection = selection * 10;
 			}
-			else if (selection == -51)
+			else if (selection == -300 || selection == -310 || selection == -320 || selection == -330)
 			{
-				selection /= 10;
-			}
-			else if (selection == -50)
+				selection = selection / 10;
+			}*/
+
+			//temporary for WIP screen
+			else if (selection == -20 || selection == -30 || selection == 30 || selection == 20)
 			{
-				exit(0);
+				selection = selection / 10;
 			}
 		}
 		ChangeImage(selection);
