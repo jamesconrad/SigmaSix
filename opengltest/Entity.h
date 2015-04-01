@@ -42,6 +42,7 @@ public:
 	void findAngle();
 	float relativeVelocityX(Entity other);
 	float relativeVelocityY(Entity other);
+	void collideNonMovingWithMoving(Entity other);
 
 
 	virtual void draw() {}; //default does nothing needs to be overriden by owner
