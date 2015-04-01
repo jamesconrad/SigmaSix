@@ -9,6 +9,7 @@
 #include "MaxHealthMod.h"
 #include "SpeedMod.h"
 #include "Laser.h"
+#include "Barrage.h"
 
 void Entity::GiveItem(int itemId)
 {
@@ -24,6 +25,7 @@ void Entity::GiveItem(int itemId)
 		inventory.push_back(new Berserk(this, 10, 0.1, 4, 3));
 		break;
 	case 4:
+		inventory.push_back(new Barrage(this, 10, 0.1, 4));
 		break;
 	}
 }

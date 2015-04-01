@@ -102,7 +102,12 @@ public:
 	int GetLives() { return lives; }//
 	void ModLives(int mod) { lives += mod; deathAnim = 2000.f; }//
 	void ModHP(int mod) { hp += mod; }//
-	
+
+	int GetCollidingID(){ return 1; }
+	vec2 GetDirection(){ return direction; }
+	float GetLocationX(){ return x; }
+	float getLocationY(){ return y; }
+	vec2 BarrageLocation(int ID){ return projectileManager->GetLocation(ID); }
 
 	void increaseNRG();
 

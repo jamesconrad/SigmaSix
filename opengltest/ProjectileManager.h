@@ -21,6 +21,7 @@ public:
 	}
 	void CreateProjectile(int projNum, float startX, float startY, float dirX, float dirY, float dmg, float maxDur, float projSpeed, int ownerIndex);
 	void RemoveProjectile(int index);
+	vec2 GetLocation(int index);
 	void Update(float dTime);
 	void Draw();
 	std::vector<Projectile*>* GetProjectileVector() { return &projectileVector; }

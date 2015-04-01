@@ -26,6 +26,7 @@ public:
 	float GetDamage(); 
 	int GetType() { return projNum; }
 	int GetOwner() { return owner; }
+	vec2 GetLocation();
 
 	RotatedRectangle GetRRect() { return rRect; }
 	RECT GetRect() 

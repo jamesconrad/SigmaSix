@@ -43,3 +43,9 @@ void ProjectileManager::Draw()
 	for (int i = 0, s = projectileVector.size(); i < s; i++)
 		projectileVector[i]->Draw();
 }
+
+vec2 ProjectileManager::GetLocation(int ID)
+{
+	vec2 loc = projectileVector[ID]->GetLocation();
+	return loc;
+}

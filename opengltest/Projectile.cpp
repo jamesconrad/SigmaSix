@@ -102,3 +102,13 @@ void Projectile::Draw()
 	glVertex3f(tmp.left, tmp.top, 0);
 	glEnd();*/
 }
+
+
+
+vec2 Projectile::GetLocation()
+{
+	vec2 loc;
+	loc.x = x;
+	loc.y = y;
+	return loc;
+}
