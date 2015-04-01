@@ -81,7 +81,7 @@ public:
 	virtual float getMaxEnergy() { return 0.f; }
 	virtual float getSpeed() { return 0.f; }
 	virtual void Freeze(bool status) { return; }
-	virtual void OnHit() { return; }
+	virtual void OnHit(vec2 location) { return; }
 	virtual int GetIndex() { return 0; }
 
 	virtual void modDamage(float change) { return; }
