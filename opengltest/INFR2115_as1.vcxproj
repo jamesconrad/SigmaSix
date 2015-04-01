@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Aura.h" />
+    <ClInclude Include="Barrage.h" />
     <ClInclude Include="Berserk.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ColisionManager.h" />
