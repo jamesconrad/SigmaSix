@@ -96,7 +96,7 @@ void ColisionManager::Update()
 				{																				
 					
 					entityManager->DamageID(entityIter, projectileVectorPtr->at(projectileIter)->GetDamage());
-					entityManager->OnHit(ProjectileManager::instance()->GetOwner(projectileIter),ProjectileManager::instance()->GetLocation);
+					entityManager->OnHit(ProjectileManager::instance()->GetOwner(projectileIter),ProjectileManager::instance()->GetLocation(projectileIter));
 
 				}
 				else if (entityManager->GetType(entityIter) == NEUTRAL1 || entityManager->GetType(entityIter) == NEUTRAL2 || entityManager->GetType(entityIter) == NEUTRAL3)

@@ -82,6 +82,7 @@ public:
 	virtual float getSpeed() { return 0.f; }
 	virtual void Freeze(bool status) { return; }
 	virtual void OnHit(vec2 location);
+	virtual void OnHit();
 	virtual int GetIndex() { return 0; }
 
 	virtual void modDamage(float change) { return; }
@@ -154,6 +155,7 @@ public:
 	virtual void Activate() { return; }
 	virtual void Update(float dTime) { return; }
 	virtual void OnFire() { return; }
+	virtual void OnHit() { return; }
 	virtual void OnHit(vec2 location) { return; }
 	virtual void OnDamage() { return; }
 	virtual void DrawItem(int i);

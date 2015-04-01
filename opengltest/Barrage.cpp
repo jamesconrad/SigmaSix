@@ -5,7 +5,7 @@
 Barrage::Barrage(Entity* own, float cd, float pR, float tSize,  float tduration) : Item(owner, cooldown, procRate)
 {
 	size = tSize;
-	damage = own->getDamage;
+	damage = own->getDamage();
 	duration = tduration;
 }
 
@@ -24,6 +24,12 @@ Update(float dTime)
 
 }
 
+void Barrage::
+Activate()
+{
+	//PUT STUFF HERE
+}
+
 
 
 
@@ -33,8 +39,8 @@ OnHit(int projectileID)
 	if (nextShot = true)
 	{
 		//the location of impact
-		float x;
-		float y;
+		float x = 0;
+		float y = 0; //BONNYMAN YOU NEED TO DERIVE THESE
 		owner->BarrageLocation(projectileID);
 
 		for (int i = -2; i < 2; i++)
@@ -79,7 +85,8 @@ OnFire()
 		ProjectileManager::instance()->CreateProjectile(66, (owner->GetLocationX), (owner->getLocationY), dirX, dirY, damage, duration, 0, owner->GetIndex());
 
 	}
-}*/
+	*/
+}
 
 
 
