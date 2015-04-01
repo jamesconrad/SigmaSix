@@ -30,7 +30,17 @@ void Entity::GiveItem(int itemId)
 	}
 }
 
+void Entity::OnHit(vec2 location)
+{
+	for (int i = 0, s = inventory.size(); i < s; i++)
+	{
+		
+			inventory[i]->OnHit(location);
+	
+	}
 
+
+}
 void Entity::increaseNRG()
 {
 	energy = energy + 1;
