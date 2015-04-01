@@ -31,6 +31,16 @@ TODO: (In order of priority)
 	Projectiles have momentum and cause a knockback.
 
 
+++--------------------------++
+||Bonny for momentum:		||
+||Variables					||
+||Function:					||
+|| - calculate momentum		||
+|| - Collision??			||
+|| - Impact momentum?		||
+|| -what else should I do?	||
+++--------------------------++
+
 
 												      Notes from Conrad:
 +----------------------------------------------------FUCKING DO THESE GUYS-------------------------------------------------+
@@ -47,7 +57,7 @@ TODO: (In order of priority)
 ||	ITEMS TODO:			  ||
 ||	LEGEND:				  ||
 ++------------------------++
-||	X	| Code Done		  ||
+||	X	| Code Done		  ||			
 ||	 +	| Drawing Done	  ||
 ++------------------------++
 ||	Progress:			  ||

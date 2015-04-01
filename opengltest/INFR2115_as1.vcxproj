@@ -113,6 +113,7 @@
     <ClCompile Include="MapLoader.cpp" />
     <ClCompile Include="MaxHealthMod.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="momentum.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileManager.cpp" />

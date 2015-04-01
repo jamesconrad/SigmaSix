@@ -111,6 +111,9 @@
     <ClCompile Include="drawPrimitives.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="momentum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="drawPrimitives.h">

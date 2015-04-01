@@ -34,6 +34,16 @@ class Item;
 class Entity
 {
 public:
+
+	// Bonnie's shit Useless, do not touch just for math report
+	void mCollideWith(Entity other);
+	void mFindMomentum();
+	void applyFriction();
+	void findAngle();
+	float relativeVelocityX(Entity other);
+	float relativeVelocityY(Entity other);
+
+
 	virtual void draw() {}; //default does nothing needs to be overriden by owner
 	virtual void update(float dTime) {}; //^
 	virtual void handleinput(char keycode, bool press) {}; //^
@@ -121,6 +131,9 @@ protected:
 	bool keysPressed[256];
 	int lives;
 	float deathAnim = 2000.f;
+
+	//again, this is bonnie's 
+	float momentum, weight, angle;
 
 	//ITEM VARS
 	bool shielded;
