@@ -3,7 +3,10 @@
 
 class Barrage : public Item
 {
-
+public:
+	Barrage(float tSize, float tdamage, float tduration, Entity* own, float cd, float pR);
+	void OnHit();
+	void Activate();
 
 
 

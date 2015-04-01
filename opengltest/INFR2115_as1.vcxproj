@@ -96,6 +96,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Aura.cpp" />
+    <ClCompile Include="Barrage.cpp" />
     <ClCompile Include="Berserk.cpp" />
     <ClCompile Include="ColisionManager.cpp" />
     <ClCompile Include="Controller.cpp" />

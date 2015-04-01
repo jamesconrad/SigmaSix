@@ -48,7 +48,11 @@ private:
 	int index, projNum;
 	int owner;
 	RotatedRectangle rRect;
+	bool isBarrage;
 	//RECT Rect;
+
+
+
 };
 
 #endif PROJECTILE
