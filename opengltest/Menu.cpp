@@ -228,11 +228,21 @@ void MenuClass::ChangeImage(int num)
 	if (num < 0)
 	{
 		background->setSpriteFrameSize(1024, 768);
-		background->setPosition(EntityManager::instance()->getXofID(0) - 120, EntityManager::instance()->getYofID(0) - 60);
+		//EntityManager* tmp = EntityManager::instance();
+		background->setPosition(EntityManager::instance()->getXofID(0) - 120, EntityManager::instance()->getYofID(0) - 50);
+	}
+	else if (num > 1 && num < 1)
+	{
+
 	}
 	else if (num > 0)
 	{
 		background->setSpriteFrameSize(1210, 833);
-		background->setPosition(0, 0);
+		if (EntityManager::instance()->GetSize() > 0)
+		{
+			background->setPosition(EntityManager::instance()->getXofID(0) - 130, EntityManager::instance()->getYofID(0) + 60);
+		}
+		else
+			background->setPosition(0, 0);
 	}
 }

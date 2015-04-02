@@ -451,6 +451,7 @@ void Game::update()
 				if (mainMenu->StartGame())
 				{
 					stateInfo.gameState = STATE_GAMEPLAY;
+					initializeGame();
 					updateTimer->tick();
 					update();
 				}
@@ -505,6 +506,7 @@ void Game::keyboardDown(unsigned char key, int mouseX, int mouseY)
 		if (mainMenu->StartGame())
 		{
 			stateInfo.gameState = STATE_GAMEPLAY;
+			initializeGame();
 			updateTimer->tick();
 			update();
 		}
