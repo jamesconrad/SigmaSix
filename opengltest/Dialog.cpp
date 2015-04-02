@@ -55,7 +55,10 @@ void Dialog::Say(entitytype ent, int diaNum)
 	std::ifstream file(fp, std::ios::in);
 	
 	if (!file.is_open())
+	{
 		printf("ERROR: Invalid Entity to start talking");
+		return;
+	}
 
 	int nextSpeaker;
 
@@ -74,7 +77,7 @@ void Dialog::Say(entitytype ent, int diaNum)
 		search = ";";
 		while (iter->text.size() == 0 || strcmp(iter->text[iter->text.size() - 1].c_str(), search.c_str()) != 0)
 		{
-			file.getline(buff, 64, '\n');
+			file.getline(buff, 128, '\n');
 			iter->text.push_back(std::string(buff));
 		}
 		if (iter->text[iter->text.size() - 2].find("[") != std::string::npos)
@@ -110,7 +113,7 @@ void Dialog::Say(entitytype ent, int diaNum)
 			iter->next = NULL;
 		}
 
-	} while (done == false);
+	} while (done == false && !file.eof());
 
 	iter = head;
 

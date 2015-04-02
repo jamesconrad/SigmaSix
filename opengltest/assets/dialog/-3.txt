@@ -1,0 +1,27 @@
+:1:
+What do you want?
+[0>310]
+;
+
+:2:
+Just a field. Some jerks too, who shoot first,
+and literally do not speak. At all. 
+Some girl named Asami got dragged there. 
+Sucks to be her.
+[0>311]
+;
+
+:3:
+A lab. I don't know what even happens in there. 
+With all the guys shooting in there, I'm surprised 
+it hasn't been blown up yet. 
+That poor Conrad guy isn't going to last long in there.
+[0>312]
+;
+
+:4:
+The castle is in there. Pretty fancy, 
+although the people in there are FAR from noble. 
+Some guy named James went in there, and he is not going to have a good time.
+[0>313]
+;

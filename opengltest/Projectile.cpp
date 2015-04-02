@@ -12,7 +12,7 @@ Projectile::Projectile(int managerIndex, SpriteSheetInfo sheet, float startX, fl
 {
 	w = 9;
 	h = 9;
-	float scale = 0.66f;//need to get these from constructor
+	scale = 0.66f;//need to get these from constructor
 	direction.x = dirX;
 	direction.y = dirY;
 	damage = dmg;
@@ -32,7 +32,6 @@ Projectile::Projectile(int managerIndex, SpriteSheetInfo sheet, float startX, fl
 	proj->setPosition(x, y);
 	proj->setSpriteFrameSize(w, h);
 	proj->setCenter((w * scale) / 2.f, (h * scale) / 2.f);
-	proj->addSpriteAnimRow(0, 0, 1 + projNum * (h + 1), w + 1, 0, 4);
 	proj->setLayerID(1);
 
 	if (projN == -1)
@@ -40,9 +39,27 @@ Projectile::Projectile(int managerIndex, SpriteSheetInfo sheet, float startX, fl
 		proj->setSpriteFrameSize(0, 0);
 	}
 
+	if (projN == -10)
+	{
+		w = 15;
+		h = 15;
+		proj->setSpriteFrameSize(w, h);
+		proj->addSpriteAnimRow(0, 0, 21, w + 1, 0, 4);
+		scale = 0.33f;
+	}
+	else if (projN == -11)
+	{
+		w = 15;
+		h = 15;
+		proj->setSpriteFrameSize(w, h);
+		proj->addSpriteAnimRow(0, 0, 37, w + 1, 0, 4);
+		scale = 0.33f;
+	}
+	else
+		proj->addSpriteAnimRow(0, 0, 1 + projNum * (h + 1), w + 1, 0, 4);
 	//scale the width and height because im lazy
-	w *= 0.66f;
-	h *= 0.66f;
+	w *= scale;
+	h *= scale;
 }
 Projectile::~Projectile()
 {
@@ -93,7 +110,7 @@ void Projectile::SetIndex(int managerIndex)
 
 void Projectile::Draw()
 {
-	proj->draw(0.66);
+	proj->draw(scale);
 	/*RECT tmp = GetRect();
 	glBegin(GL_QUADS);
 	glVertex3f(tmp.left, tmp.bottom, 0);

@@ -66,6 +66,7 @@ void Game::initializeGame()
 	entityManager = EntityManager::instance();
 	mapLoader = MapLoader::instance();
 	mapLoader->LoadMap(7);
+	script = new Script("assets/scripts/tut.txt");
 	colisionManager = ColisionManager::instance();
 	colisionManager->RebuildColisionMap();
 
@@ -405,30 +406,36 @@ void Game::update()
 	if (stateInfo.gameState == STATE_GAMEPLAY)
 	{
 		updateTimer->tick();
-		SoundSystemClass::instance()->Update(updateTimer->getElapsedTimeMS());
-		delay -= updateTimer->getElapsedTimeMS();
-		entityManager->entityVector[0]->delay = delay;
-		// update our clock so we have the delta time since the last update
-		if (!Dialog::instance()->MoreText())
+		if (!script->Complete())
 		{
-
-			entityManager->Update(updateTimer->getElapsedTimeMS());
-			projectileManager->Update(updateTimer->getElapsedTimeMS());
-			colisionManager->Update();
-
-			fTime += updateTimer->getElapsedTimeSeconds();
+			script->Update(updateTimer->getElapsedTimeMS());
 		}
-		else if (Controller::instance()->Refresh() && delay < 0)
+		else
 		{
-			if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_A))
-				if (Dialog::instance()->MoreText())
-				{
-					Dialog::instance()->Next();
-					delay = 250;
-				}
+			SoundSystemClass::instance()->Update(updateTimer->getElapsedTimeMS());
+			delay -= updateTimer->getElapsedTimeMS();
+			entityManager->entityVector[0]->delay = delay;
+			// update our clock so we have the delta time since the last update
+			if (!Dialog::instance()->MoreText())
+			{
+
+				entityManager->Update(updateTimer->getElapsedTimeMS());
+				projectileManager->Update(updateTimer->getElapsedTimeMS());
+				colisionManager->Update();
+
+				fTime += updateTimer->getElapsedTimeSeconds();
+			}
+			else if (Controller::instance()->Refresh() && delay < 0)
+			{
+				if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_A))
+					if (Dialog::instance()->MoreText())
+					{
+						Dialog::instance()->Next();
+						delay = 250;
+					}
+			}
+			Dialog::instance()->Update(updateTimer->getElapsedTimeMS(), entityManager->getCXofID(0), entityManager->getCYofID(0));
 		}
-		Dialog::instance()->Update(updateTimer->getElapsedTimeMS(), entityManager->getCXofID(0), entityManager->getCYofID(0));
-		
 	}
 	else
 	{
@@ -445,6 +452,7 @@ void Game::update()
 				{
 					stateInfo.gameState = STATE_GAMEPLAY;
 					updateTimer->tick();
+					update();
 				}
 				else if (mainMenu->StopGame())
 				{
@@ -498,6 +506,7 @@ void Game::keyboardDown(unsigned char key, int mouseX, int mouseY)
 		{
 			stateInfo.gameState = STATE_GAMEPLAY;
 			updateTimer->tick();
+			update();
 		}
 	}
 	else if (mainMenu->StopGame())

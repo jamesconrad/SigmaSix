@@ -1,5 +1,6 @@
 #include "ScriptReader.h"
-
+#include "Dialog.h"
+#include "TileManager.h"
 /*
 SYNTAX:
 command arg1 arg2 arg3...
@@ -18,6 +19,7 @@ Script::Script(char* filepath)
 {
 	step = 0;
 	nextArg = true;
+	complete = false;
 	std::string line;
 	file.open(filepath, std::ios::in);
 	if (file.is_open())
@@ -30,14 +32,19 @@ Script::Script(char* filepath)
 		file.close();
 	}
 	else
+	{
 		printf("ERROR: Could not open script at: %s\n", filepath);
+		complete = true;
+	}
 }
 
 void Script::Update(float dTime)
 {
 	if (cmd.size() < 1)
+	{
+		complete = true;
 		return;
-
+	}
 	if (nextArg)
 	{
 		int space = cmd.at(step).find(' ');
@@ -114,9 +121,10 @@ void Script::Update(float dTime)
 	}
 	else if (curArg.compare("Say"))
 	{
-		switch (args[1])
-		{
-		case 1: printf("Fuck you."); break;
-		}
+		Dialog::instance()->Say(EntityManager::instance()->GetType(target), args[1]);
+	}
+	else if (curArg.compare("Breakout"))
+	{
+		//Deryk needs to do this.
 	}
 }
