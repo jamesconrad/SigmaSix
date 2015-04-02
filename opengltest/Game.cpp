@@ -442,7 +442,10 @@ void Game::update()
 			{
 				mainMenu->KeyPress(' ', true);
 				if (mainMenu->StartGame())
+				{
 					stateInfo.gameState = STATE_GAMEPLAY;
+					updateTimer->tick();
+				}
 				else if (mainMenu->StopGame())
 				{
 					QuitGame();
@@ -492,7 +495,10 @@ void Game::keyboardDown(unsigned char key, int mouseX, int mouseY)
 	{
 		mainMenu->KeyPress(key, true);
 		if (mainMenu->StartGame())
+		{
 			stateInfo.gameState = STATE_GAMEPLAY;
+			updateTimer->tick();
+		}
 	}
 	else if (mainMenu->StopGame())
 	{
