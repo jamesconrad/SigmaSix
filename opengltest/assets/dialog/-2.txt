@@ -1,11 +1,11 @@
 :1:
 Have you helped any of your friends yet? Or were you all talk.
-[0>230]
+[0>200]
 ;
 
 :10:
 I didn't say anything. I'm just an old man.
-[0>231]
+[0>201]
 ;
 
 :0:
