@@ -103,7 +103,15 @@ void ColisionManager::Update()
 				{
 					Dialog::instance()->Say(entityManager->GetType(entityIter), 1);
 				}
-				ProjectileManager::instance()->RemoveProjectile(projectileIter);
+				vec2 impact = ProjectileManager::instance()->GetLocation(projectileIter);
+				int type = projectileVectorPtr->at(projectileIter)->GetType();
+				if (type == 0)
+					ProjectileManager::instance()->CreateProjectile(-10, impact.x, impact.y, 0, 0, 0, 100, 0.075, projectileVectorPtr->size());
+				else if (type == 1)
+					ProjectileManager::instance()->CreateProjectile(-11, impact.x, impact.y, 0, 0, 0, 100, 0.075, projectileVectorPtr->size());
+
+				if (type != -10 && type != -11)
+					ProjectileManager::instance()->RemoveProjectile(projectileIter);
 			}
 		}
 		//Check for Item pickup if entityiter 0
@@ -259,7 +267,15 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 
 			if (!(l > 0 || r < 0 || t > 0 || b < 0))
 			{
-				ProjectileManager::instance()->RemoveProjectile(projIter);
+				vec2 impact = ProjectileManager::instance()->GetLocation(projIter);
+				int type = projectileVectorPtr->at(projIter)->GetType();
+				if (type == 0)
+					ProjectileManager::instance()->CreateProjectile(-10, impact.x, impact.y, 0, 0, 0, 100, 0.075, projectileVectorPtr->size());
+				else if (type == 1)
+					ProjectileManager::instance()->CreateProjectile(-11, impact.x, impact.y, 0, 0, 0, 100, 0.075, projectileVectorPtr->size());
+
+				if (type != -10 && type != -11)
+					ProjectileManager::instance()->RemoveProjectile(projIter);
 			}
 		}
 	}

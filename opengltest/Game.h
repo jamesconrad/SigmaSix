@@ -25,6 +25,7 @@
 #include "EntityManager.h"
 #include "Camera.h"
 #include "Menu.h"
+#include "ScriptReader.h"
 //
 #include "Controller.h"
 #include "Dialog.h"
@@ -201,6 +202,7 @@ private:
 	ColisionManager* colisionManager;
 	MapLoader* mapLoader;
 	Sprite *hpBar, *energyBar, *hpBG, *s_Score, *s_Time, *entBarSprite;
+	Script* script;
 };
 
 #endif

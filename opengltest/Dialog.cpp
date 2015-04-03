@@ -22,7 +22,7 @@ Dialog::Dialog()
 		port->sheet = sheet->sheet;
 		port->setSpriteFrameSize(PORT_W, PORT_H);
 		port->setNumberOfAnimations(1);
-		port->addSpriteAnimFrame(0, (i % 5) * PORT_W + i, (i / 5) * PORT_W + i);
+		port->addSpriteAnimFrame(0, (i % 5) * PORT_W, (i / 5) * PORT_W);
 		port->setCurrentAnimation(0);
 
 		portraits.push_back(port);
@@ -55,7 +55,10 @@ void Dialog::Say(entitytype ent, int diaNum)
 	std::ifstream file(fp, std::ios::in);
 	
 	if (!file.is_open())
+	{
 		printf("ERROR: Invalid Entity to start talking");
+		return;
+	}
 
 	int nextSpeaker;
 
@@ -74,7 +77,7 @@ void Dialog::Say(entitytype ent, int diaNum)
 		search = ";";
 		while (iter->text.size() == 0 || strcmp(iter->text[iter->text.size() - 1].c_str(), search.c_str()) != 0)
 		{
-			file.getline(buff, 64, '\n');
+			file.getline(buff, 128, '\n');
 			iter->text.push_back(std::string(buff));
 		}
 		if (iter->text[iter->text.size() - 2].find("[") != std::string::npos)
@@ -110,7 +113,7 @@ void Dialog::Say(entitytype ent, int diaNum)
 			iter->next = NULL;
 		}
 
-	} while (done == false);
+	} while (done == false && !file.eof());
 
 	iter = head;
 
@@ -187,6 +190,7 @@ void Dialog::ResetSay()
 	head = new speech;
 	head->next = NULL;
 	iter = head;
+	linenum = 0;
 }
 
 void Dialog::Update(float dTime, float pX, float pY)
@@ -212,7 +216,7 @@ void Dialog::Update(float dTime, float pX, float pY)
 		case -3: pd = 3; break;
 		case 10: pd = 18; break;
 		case 11: pd = 17; break;
-		case 100: pd = 16; break;
+		case 100: pd = 15; break;
 		case 1: pd = 10; break;
 		case 2: pd = 11; break;
 		case 3: pd = 12; break;
