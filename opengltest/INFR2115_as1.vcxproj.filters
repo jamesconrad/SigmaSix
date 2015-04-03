@@ -117,6 +117,9 @@
     <ClCompile Include="Barrage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LifestealItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="drawPrimitives.h">
