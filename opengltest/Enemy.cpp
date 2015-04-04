@@ -238,6 +238,20 @@ void Enemy::update(float dTime)
 {
 	if (hp <= 0.f)
 	{
+		if (entityType > 0 && entityType <= 6)
+		{
+			entitytype et;
+			switch (entityType)
+			{
+			case MINIBOSS1: et = F1; break;
+			case MINIBOSS2: et = F2; break;
+			case MINIBOSS3: et = F3; break;
+			case MINIBOSS4: et = F4; break;
+			case MINIBOSS5: et = F5; break;
+			case MINIBOSS6: et = F6; break;
+			}
+			Dialog::instance()->Say(et, 0);
+		}
 		EntityManager::instance()->DeleteEntity(index);
 		return;
 	}

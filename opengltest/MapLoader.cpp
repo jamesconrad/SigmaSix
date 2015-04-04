@@ -155,6 +155,21 @@ bool MapLoader::LoadMap(int mapID)
 		hubIntro = true;
 	}
 	*/
+	if (mapID > 10)
+	{
+		entitytype et;
+		switch (mapID)
+		{
+		case 11: et = F1; break;
+		case 12: et = F2; break;
+		case 13: et = F3; break;
+		case 14: et = F4; break;
+		case 15: et = F5; break;
+		case 16: et = F6; break;
+		}
+		Dialog::instance()->Say(et, -1);
+	}
+
 
 	printf("%i",mapID);
 	mapLoaded = true;

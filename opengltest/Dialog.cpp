@@ -53,10 +53,15 @@ void Dialog::Say(entitytype ent, int diaNum)
 	search = ReturnSearch(diaNum);
 
 	std::ifstream file(fp, std::ios::in);
-	
-	if (!file.is_open())
+
+	try
 	{
-		printf("ERROR: Invalid Entity to start talking");
+		if (!file.is_open())
+			throw 1;
+	}
+	catch (int e)
+	{
+		printf("ERROR: Entity has no txt file");
 		return;
 	}
 
@@ -66,7 +71,11 @@ void Dialog::Say(entitytype ent, int diaNum)
 
 	do
 	{
-
+		if (!file.is_open())
+		{
+			printf("ERROR: Dialogue has failed to open a file");
+			break;
+		}
 		do
 		{
 			getline(file, buffer);
