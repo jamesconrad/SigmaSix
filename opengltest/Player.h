@@ -44,7 +44,7 @@ public:
 		else
 			shielded = false;
 	}
-	void OnHit()
+	void OnHit(vec2 location)
 	{
 		for (int i = 0, s = inventory.size(); i < s; i++)
 			inventory[i]->OnHit();
