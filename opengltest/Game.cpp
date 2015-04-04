@@ -447,9 +447,9 @@ void Game::update()
 	{
 		if (Controller::instance()->Refresh())
 		{
-			if (Controller::instance()->leftStickY > 0.75f)
+			if (Controller::instance()->leftStickY > 0.75f || Controller::instance()->IsPressed(XINPUT_GAMEPAD_DPAD_UP))
 				mainMenu->KeyPress('w', true);
-			else if (Controller::instance()->leftStickY < -0.75f)
+			else if (Controller::instance()->leftStickY < -0.75f || Controller::instance()->IsPressed(XINPUT_GAMEPAD_DPAD_DOWN))
 				mainMenu->KeyPress('s', true);
 			if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_A))
 			{
