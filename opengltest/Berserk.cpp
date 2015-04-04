@@ -12,6 +12,15 @@ Berserk(Entity* own, float cd, float pR, float dmgbuff, float rgnbuff) :Item(own
 void Berserk::Activate()
 {
 	activated = true;
+	{
+		icon = new Sprite;
+		aSprite = new Sprite;
+		icon->sheet = itemSheet->sheet;
+		icon->setNumberOfAnimations(1);
+		icon->setCurrentAnimation(0);
+		icon->setSpriteFrameSize(22, 16);
+		icon->addSpriteAnimFrame(0, 38, 388);
+	}
 }
 
 

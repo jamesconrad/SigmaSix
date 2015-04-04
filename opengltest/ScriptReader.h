@@ -21,6 +21,7 @@ class Script
 public:
 	Script(char* path);
 	void Update(float dTime);
+	bool Complete() { return complete; }
 private:
 	std::vector<std::string> cmd;
 	int step;
@@ -29,6 +30,7 @@ private:
 	std::ifstream file;
 	bool nextArg;
 	int target;
+	bool complete = false;
 	targetType tarType;
 };
 

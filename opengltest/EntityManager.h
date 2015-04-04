@@ -52,6 +52,8 @@ public:
 	void OnHit(int id, vec2 location) { if (id < (signed)entityVector.size()) entityVector[id]->OnHit(location); }
 	void OnHit(int id) { if (id < (signed)entityVector.size()) entityVector[id]->OnHit(); }
 
+	void ResetInventory() { entityVector[0]->ClearInv(); }
+
 	//virtual void cancelMovement();
 	void bcastRecv(char msg, int sender);
 	void bcastSend();

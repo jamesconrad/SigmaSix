@@ -65,7 +65,9 @@ void Game::initializeGame()
 	projectileManager = ProjectileManager::instance();
 	entityManager = EntityManager::instance();
 	mapLoader = MapLoader::instance();
+	mapLoader->hubIntro = false;
 	mapLoader->LoadMap(7);
+	script = new Script("assets/scripts/tut.txt");
 	colisionManager = ColisionManager::instance();
 	colisionManager->RebuildColisionMap();
 
@@ -98,6 +100,10 @@ void Game::initializeGame()
 	s_Time->setCurrentAnimation(0);
 	s_Time->setSpriteFrameSize(91, 24);
 	s_Time->addSpriteAnimFrame(0, 0, 193);
+
+	entityManager->entityVector.at(0)->SetLives(3);
+	fTime = 0;
+	score = 0;
 }
 
 void Game::QuitGame()
@@ -110,6 +116,7 @@ void Game::QuitGame()
 	free(viewCam);
 	TileManager::instance()->Clear();
 	EntityManager::instance()->Clear();
+	EntityManager::instance()->ResetInventory();
 	ProjectileManager::instance()->Update(10000);
 }
 
@@ -405,30 +412,36 @@ void Game::update()
 	if (stateInfo.gameState == STATE_GAMEPLAY)
 	{
 		updateTimer->tick();
-		SoundSystemClass::instance()->Update(updateTimer->getElapsedTimeMS());
-		delay -= updateTimer->getElapsedTimeMS();
-		entityManager->entityVector[0]->delay = delay;
-		// update our clock so we have the delta time since the last update
-		if (!Dialog::instance()->MoreText())
+		if (!script->Complete())
 		{
-
-			entityManager->Update(updateTimer->getElapsedTimeMS());
-			projectileManager->Update(updateTimer->getElapsedTimeMS());
-			colisionManager->Update();
-
-			fTime += updateTimer->getElapsedTimeSeconds();
+			script->Update(updateTimer->getElapsedTimeMS());
 		}
-		else if (Controller::instance()->Refresh() && delay < 0)
+		else
 		{
-			if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_A))
-				if (Dialog::instance()->MoreText())
-				{
-					Dialog::instance()->Next();
-					delay = 250;
-				}
+			SoundSystemClass::instance()->Update(updateTimer->getElapsedTimeMS());
+			delay -= updateTimer->getElapsedTimeMS();
+			entityManager->entityVector[0]->delay = delay;
+			// update our clock so we have the delta time since the last update
+			if (!Dialog::instance()->MoreText())
+			{
+
+				entityManager->Update(updateTimer->getElapsedTimeMS());
+				projectileManager->Update(updateTimer->getElapsedTimeMS());
+				colisionManager->Update();
+
+				fTime += updateTimer->getElapsedTimeSeconds();
+			}
+			else if (Controller::instance()->Refresh() && delay < 0)
+			{
+				if (Controller::instance()->IsPressed(XINPUT_GAMEPAD_A))
+					if (Dialog::instance()->MoreText())
+					{
+						Dialog::instance()->Next();
+						delay = 250;
+					}
+			}
+			Dialog::instance()->Update(updateTimer->getElapsedTimeMS(), entityManager->getCXofID(0), entityManager->getCYofID(0));
 		}
-		Dialog::instance()->Update(updateTimer->getElapsedTimeMS(), entityManager->getCXofID(0), entityManager->getCYofID(0));
-		
 	}
 	else
 	{
@@ -442,7 +455,12 @@ void Game::update()
 			{
 				mainMenu->KeyPress(' ', true);
 				if (mainMenu->StartGame())
+				{
 					stateInfo.gameState = STATE_GAMEPLAY;
+					initializeGame();
+					updateTimer->tick();
+					update();
+				}
 				else if (mainMenu->StopGame())
 				{
 					QuitGame();
@@ -492,7 +510,12 @@ void Game::keyboardDown(unsigned char key, int mouseX, int mouseY)
 	{
 		mainMenu->KeyPress(key, true);
 		if (mainMenu->StartGame())
+		{
 			stateInfo.gameState = STATE_GAMEPLAY;
+			initializeGame();
+			updateTimer->tick();
+			update();
+		}
 	}
 	else if (mainMenu->StopGame())
 	{

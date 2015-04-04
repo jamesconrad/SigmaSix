@@ -1,0 +1,37 @@
+:1:
+Have you helped any of your friends yet? Or were you all talk.
+[0>200]
+;
+
+:10:
+I didn't say anything. I'm just an old man.
+[0>201]
+;
+
+:0:
+Well, well, well. You're a new face around here.
+Did you just come from the prison?
+[0>220]
+;
+
+:2:
+This is the center of our village. 
+This is where all paths begin. When you were captured,
+did you have some friends with you?
+[0>221]
+;
+
+:3:
+I have. If you talk to the ladies wandering by the doors,
+they can tell you where your friends are.
+[0>222]
+;
+
+:4:
+He's probably in his office, but fighting him is no joke.
+[0>223]
+;
+
+:5:
+Have it your way. Good luck.
+;

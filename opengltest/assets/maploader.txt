@@ -545,6 +545,17 @@
 		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 220, 102, true);
 	else if (Pixels[pos * 3 + 0] == 136 && Pixels[pos * 3 + 1] == 95 && Pixels[pos * 3 + 2] == 173)
 		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 237, 102, true);
+
+// Inside Walls Tutorial
+
+	else if (Pixels[pos * 3 + 0] == 215 && Pixels[pos * 3 + 1] == 215 && Pixels[pos * 3 + 2] == 215)
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 220, 17, true);
+	else if (Pixels[pos * 3 + 0] == 216 && Pixels[pos * 3 + 1] == 216 && Pixels[pos * 3 + 2] == 216)
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 220, 34, true);
+	else if (Pixels[pos * 3 + 0] == 217 && Pixels[pos * 3 + 1] == 217 && Pixels[pos * 3 + 2] == 217)
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 203, 17, true);
+	else if (Pixels[pos * 3 + 0] == 218 && Pixels[pos * 3 + 1] == 218 && Pixels[pos * 3 + 2] == 218)
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 203, 34, true);
 	
 //Player/Enemy/NPC Spawns
 

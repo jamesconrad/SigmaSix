@@ -44,5 +44,14 @@ void Aura::Activate()
 			tElapsed--;
 
 	}
+	{
+		icon = new Sprite;
+		aSprite = new Sprite;
+		icon->sheet = itemSheet->sheet;
+		icon->setNumberOfAnimations(1);
+		icon->setCurrentAnimation(0);
+		icon->setSpriteFrameSize(16, 16);
+		icon->addSpriteAnimFrame(0, 20, 388); 
+	}
 }
 

@@ -50,6 +50,7 @@ private:
 	int owner;
 	RotatedRectangle rRect;
 	bool isBarrage;
+	float scale;
 	//RECT Rect;
 
 

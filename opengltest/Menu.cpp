@@ -183,6 +183,7 @@ void MenuClass::KeyPress(unsigned char key, bool press)
 			else if (selection == -40)
 			{
 				stopGame = true;
+				selection = 1;
 				EntityManager::instance()->ModPosOfID(0, vec2(EntityManager::instance()->getXofID(0) * -1 + 120, EntityManager::instance()->getYofID(0) * -1 + 78));
 			}
 			else if (selection == -41 || selection == -51)
@@ -228,11 +229,19 @@ void MenuClass::ChangeImage(int num)
 	if (num < 0)
 	{
 		background->setSpriteFrameSize(1024, 768);
-		background->setPosition(EntityManager::instance()->getXofID(0) - 120, EntityManager::instance()->getYofID(0) - 60);
+		//EntityManager* tmp = EntityManager::instance();
+		background->setPosition(EntityManager::instance()->getXofID(0) - 120, EntityManager::instance()->getYofID(0) - 50);
 	}
 	else if (num > 0)
 	{
 		background->setSpriteFrameSize(1210, 833);
-		background->setPosition(0, 0);
+		if (EntityManager::instance()->GetSize() > 0)
+		{
+			background->setPosition(EntityManager::instance()->getXofID(0) - 130, EntityManager::instance()->getYofID(0) - 80);
+			float tmp = EntityManager::instance()->getXofID(0);
+			printf("q");
+		}
+		else
+			background->setPosition(0, 0);
 	}
 }
