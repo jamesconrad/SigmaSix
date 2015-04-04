@@ -33,7 +33,8 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	for (int i = 0; i < 256; i++)
 		keysPressed[i] = 0;
 
-	shielded = true;
+	shielded = false;
+	aiming = false;
 
 	texture->loadSpriteSheet("assets/playersheet_d.png");
 	texture->setNumberOfAnimations(9);
@@ -62,6 +63,13 @@ void Player::draw()
 {
 	if (!(texture->currentAnimation >= 0 && texture->currentAnimation <= 8))
 		texture->setCurrentAnimation(0);
+	if (aiming)
+	{
+		glDisable(GL_TEXTURE_2D);
+		setColor(1.f, 0.f, 0.f);
+		drawLine(getCX(), getCY(), getCX() + aimDir.x * 32, getCY() + aimDir.y * 32);
+		glEnable(GL_TEXTURE_2D);
+	}
 	texture->draw(0.5f);
 	for (int i = 0, s = inventory.size(); i < s; i++)
 		inventory[i]->DrawAnim();
@@ -154,7 +162,9 @@ void Player::update(float dTime)
 			gamepad_APressed = false;
 		if (sqrt(pow(Controller::instance()->rightStickX, 2) + pow(Controller::instance()->rightStickY, 2)) >= 0.75)
 		{
-			if (lastShot >= 200.f && energy > 5)
+			Aim(Controller::instance()->rightStickX, Controller::instance()->rightStickY);
+			aiming = true;
+			if (Controller::instance()->rightTrigger > 0.25f && lastShot >= 200.f && energy > 5)
 			{
 				shoot(Controller::instance()->rightStickX, Controller::instance()->rightStickY);
 				lastShot = 0;
@@ -162,6 +172,7 @@ void Player::update(float dTime)
 		}
 		else
 		{
+			aiming = false;
 			//set curAnim based on current direction;
 			if (direction.x > direction.y && direction.x > 0.f)
 				curAnim = 0;
@@ -234,6 +245,11 @@ void Player::handleinput(char keycode, bool press)
 			projectileManager->CreateProjectile(-1, getCX() - 2.f, getCY() - 6.f, direction.x, direction.y, 0, 100.f, 0.2f, 0);
 		keysPressed['e'] = false;
 	}	
+}
+
+void Player::Aim(float normX, float normY)
+{
+	aimDir = vec2(normX, normY);
 }
 
 void Player::shoot()
