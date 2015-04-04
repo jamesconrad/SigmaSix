@@ -26,7 +26,13 @@ enum entitytype {
 	MINIBOSS3 = 3,
 	MINIBOSS4 = 4,
 	MINIBOSS5 = 5,
-	MINIBOSS6 = 6
+	MINIBOSS6 = 6,
+	F1 = -101,
+	F2 = -102,
+	F3 = -103,
+	F4 = -104,
+	F5 = -105,
+	F6 = -106,
 };
 #endif
 class Item;

@@ -157,7 +157,37 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		texture->addSpriteAnimRow(2, 0, 6*h+7, w + 1, 0, 7);
 		texture->addSpriteAnimRow(3, 0, 7*h+8, w + 1, 0, 7);
 	}
-	else
+	else if (entityType < -100)
+	{
+		int fNum = entityType + 100;
+
+		hp = 100;
+		maxHP = 100;
+		damage = 0;
+		w = 34;
+		h = 46;
+
+		std::string filePath;
+		char buff[16];
+		filePath = "assets/F";
+		_ltoa_s(entityType, buff, 10);
+		filePath.append(buff);
+		filePath.append(".png");
+		texture->loadSpriteSheet(filePath.c_str());
+		texture->setSpriteFrameSize(w, h);
+
+		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
+		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
+		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
+		texture->addSpriteAnimRow(7, 0, 142, w + 1, 0, 4);
+		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
+		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
+		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
+		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
+
+		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+	}
+	else if (entityType > 0 && entityType <= 6)
 	{
 		hp = 350;
 		maxHP = 350;
@@ -295,7 +325,7 @@ RECT Enemy::getRect()
 
 void Enemy::updateAiState()
 {
-	if (entityType == NEUTRAL1 || entityType == NEUTRAL2 || entityType == NEUTRAL3)
+	if (entityType < 0)
 	{
 		if (hp < maxHP)
 		{
@@ -391,7 +421,7 @@ void Enemy::Patrol()
 		}
 	}
 
-	if (!Safe() && (entityType !=  NEUTRAL1 && entityType != NEUTRAL2 && entityType != NEUTRAL3))
+	if (!Safe() && (entityType > 0))
 		ChangeState(state_chase, 0);
 }
 
