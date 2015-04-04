@@ -37,6 +37,7 @@ private:
 	EntityManager* entityManager;
 	bool mapLoaded;
 	int currentMap;
+	bool hubIntro = false;
 };
 
 #endif

@@ -109,6 +109,8 @@ public:
 	float GetLocationX(){ return x; }
 	float getLocationY(){ return y; }
 	vec2 BarrageLocation(int ID){ return projectileManager->GetLocation(ID); }
+	void ClearInv() { inventory.clear(); }
+	void SetLives(int i) { lives = i; }
 
 	void increaseNRG();
 

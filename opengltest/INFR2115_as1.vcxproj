@@ -110,6 +110,7 @@
     <ClCompile Include="HorizontalScrollingBackground.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Laser.cpp" />
+    <ClCompile Include="LifestealItem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapLoader.cpp" />
     <ClCompile Include="MaxHealthMod.cpp" />

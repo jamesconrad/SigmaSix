@@ -99,6 +99,10 @@ void Game::initializeGame()
 	s_Time->setCurrentAnimation(0);
 	s_Time->setSpriteFrameSize(91, 24);
 	s_Time->addSpriteAnimFrame(0, 0, 193);
+
+	entityManager->entityVector.at(0)->SetLives(3);
+	fTime = 0;
+	score = 0;
 }
 
 void Game::QuitGame()
@@ -451,6 +455,7 @@ void Game::update()
 				if (mainMenu->StartGame())
 				{
 					stateInfo.gameState = STATE_GAMEPLAY;
+					initializeGame();
 					updateTimer->tick();
 					update();
 				}
@@ -505,6 +510,7 @@ void Game::keyboardDown(unsigned char key, int mouseX, int mouseY)
 		if (mainMenu->StartGame())
 		{
 			stateInfo.gameState = STATE_GAMEPLAY;
+			initializeGame();
 			updateTimer->tick();
 			update();
 		}

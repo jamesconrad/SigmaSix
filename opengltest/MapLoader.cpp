@@ -144,14 +144,16 @@ bool MapLoader::LoadMap(int mapID)
 
 	EntityManager::instance()->Update(0);
 
-	/*
 	if (mapID == 7)
 	{
 		Dialog::instance()->Say(PLAYER, 0);
 	}
-	else if (mapID == 0)
+	else if (mapID == 0 && !hubIntro)
+	{
 		Dialog::instance()->Say(NEUTRAL2, 0);
-	*/
+		hubIntro = true;
+	}
+
 
 	printf("%i",mapID);
 	mapLoaded = true;
