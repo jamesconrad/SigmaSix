@@ -28,6 +28,7 @@ public:
 	void Scroll(float x, float y);
 	void freeTexture();
 	int GetCurrentMap() { return currentMap; }
+	bool hubIntro = false;
 private:
 	MapLoader();
 	ILubyte *Pixels;
@@ -37,7 +38,6 @@ private:
 	EntityManager* entityManager;
 	bool mapLoaded;
 	int currentMap;
-	bool hubIntro = false;
 };
 
 #endif

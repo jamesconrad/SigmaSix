@@ -113,7 +113,6 @@ void EntityManager::Clear()
 	for (int i = entityVector.size() - 1; i > 0; i--)
 		entityVector.erase(entityVector.begin() + i);
 	droppedItems.clear();
-	entityVector.at(0)->ClearInv();
 }
 
 void EntityManager::HandleInput(char key, bool press)

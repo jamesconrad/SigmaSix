@@ -232,6 +232,7 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 							int mapID = portalMap.at(portalIter).mapTransitionID;
 							mapLoader->LoadMap(mapID);
 							RebuildColisionMap();
+							EntityManager::instance()->Update(0);
 							return;
 						}
 					}

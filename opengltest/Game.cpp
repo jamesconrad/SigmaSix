@@ -65,6 +65,7 @@ void Game::initializeGame()
 	projectileManager = ProjectileManager::instance();
 	entityManager = EntityManager::instance();
 	mapLoader = MapLoader::instance();
+	mapLoader->hubIntro = false;
 	mapLoader->LoadMap(7);
 	script = new Script("assets/scripts/tut.txt");
 	colisionManager = ColisionManager::instance();
@@ -115,6 +116,7 @@ void Game::QuitGame()
 	free(viewCam);
 	TileManager::instance()->Clear();
 	EntityManager::instance()->Clear();
+	EntityManager::instance()->ResetInventory();
 	ProjectileManager::instance()->Update(10000);
 }
 
