@@ -169,6 +169,14 @@ void Player::update(float dTime)
 				shoot(Controller::instance()->rightStickX, Controller::instance()->rightStickY);
 				lastShot = 0;
 			}
+			if (Controller::instance()->rightStickX > Controller::instance()->rightStickY && Controller::instance()->rightStickX > 0.f)
+				curAnim = 0;
+			else if (Controller::instance()->rightStickX < Controller::instance()->rightStickY && Controller::instance()->rightStickX < 0.f)
+				curAnim = 2;
+			else if (Controller::instance()->rightStickY > Controller::instance()->rightStickX && Controller::instance()->rightStickY > 0.f)
+				curAnim = 3;
+			else if (Controller::instance()->rightStickY < Controller::instance()->rightStickX && Controller::instance()->rightStickY < 0.f)
+				curAnim = 1;
 		}
 		else
 		{
@@ -186,7 +194,7 @@ void Player::update(float dTime)
 	}
 	//update the shooting anim direction if gun still out
 	lastShot += dTime;
-	if (lastShot <= energyRegenCd)
+	if (lastShot <= energyRegenCd || aiming)
 	{
 		if (curAnim < 4)
 			curAnim += 4;
