@@ -178,6 +178,11 @@ void Player::update(float dTime)
 			else if (Controller::instance()->rightStickY < Controller::instance()->rightStickX && Controller::instance()->rightStickY < 0.f)
 				curAnim = 1;
 		}
+		else if (Controller::instance()->rightTrigger > 0.25f && lastShot >= 200.f && energy > 5)
+		{
+			shoot();
+			lastShot = 0;
+		}
 		else
 		{
 			aiming = false;
