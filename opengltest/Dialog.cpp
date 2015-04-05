@@ -61,7 +61,7 @@ void Dialog::Say(entitytype ent, int diaNum)
 	}
 	catch (int e)
 	{
-		printf("ERROR: Entity has no txt file");
+		printf("ERROR: Entity has no txt file %i", e);
 		return;
 	}
 
