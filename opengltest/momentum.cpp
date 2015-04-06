@@ -9,7 +9,7 @@ void Entity::applyFriction()
 		mFindMomentum();
 		momentum  = momentum - (weight * 9.8 * CoFrictionSurface);	//because all surfaces are flat and there is no angle, 
 		setVelocity();												//-the normal force is equal to the mass of the object times gravity
-		if (velocity < 0)											//-the normal force is equal to the mass of the object times gravity
+		if (velocity < 0)											
 			velocity = 0;	// makes sure velocity never goes negative
 
 

@@ -11,6 +11,6 @@ public:
 private:
 	float DmgIncrease;
 	float RegenIncrease;
-
+	bool animDrawn;
 
 };
