@@ -28,6 +28,9 @@
 
 #define MAP_ID_7_POSITION {255,46,15,31} //Tutorial
 
+#define MAP_ID_9_POSITION {137,0,70,19} //Boss Path
+#define MAP_ID_10_POSITION {208,0,32,19} //Boss Room
+
 struct Rect
 {
 	float x, y, w, h;

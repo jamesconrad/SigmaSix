@@ -10,6 +10,7 @@
 #include "SpeedMod.h"
 #include "Laser.h"
 #include "Barrage.h"
+#include "Grenade.h"
 
 void Entity::GiveItem(int itemId)
 {
@@ -31,18 +32,21 @@ void Entity::GiveItem(int itemId)
 	case 4:
 		inventory.push_back(new I_MaxHealthMod(this, 0, 1));
 		break;
-	case 5:
-		inventory.push_back(new Berserk(this, 800, 12, 3, 3));
-		break;
+	
 	case 6:
 		inventory.push_back(new Barrage(this, 0, 1, 2, 1));
 		break;
-
+	case 7:
+		inventory.push_back(new Grenade(this, 400, 2, 4));
+		break;
 	case 10:
 		inventory.push_back(new I_Shield(this, 10, 0.1));
 		break;
 	case 11:
 		inventory.push_back(new I_LifeSteal(this, 0, 1));
+		break;
+	case 100:
+		inventory.push_back(new Berserk(this, 800, 12, 3, 3));
 		break;
 
 	default:

@@ -9,6 +9,28 @@
 		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 305, 153, true);
 		}
 
+//Boss Portals
+	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 9 && Pixels[pos * 3 + 2] == 0)
+		{
+		tileManager->CreatePortal(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 17, 0, true, 0);
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 305, 153, true);
+		}
+	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 9 && Pixels[pos * 3 + 2] == 0)
+		{
+		tileManager->CreatePortal(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 17, 0, true, 0);
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 305, 153, true);
+		}
+	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 9 && Pixels[pos * 3 + 2] == 10)
+		{
+		tileManager->CreatePortal(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 17, 0, true, 0);
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 305, 153, true);
+		}
+	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 10 && Pixels[pos * 3 + 2] == 0)
+		{
+		tileManager->CreatePortal(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 17, 0, true, 0);
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 305, 153, true);
+		}
+
 //Hub Portals
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 1 && Pixels[pos * 3 + 2] == 0)
 		{
@@ -557,7 +579,7 @@
 	else if (Pixels[pos * 3 + 0] == 218 && Pixels[pos * 3 + 1] == 218 && Pixels[pos * 3 + 2] == 218)
 		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 203, 34, true);
 
-		//locked doors
+//locked doors
 	else if (Pixels[pos * 3 + 0] == 44 && Pixels[pos * 3 + 1] == 44 && Pixels[pos * 3 + 2] == 44)
 		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 254, 102, true);
 	

@@ -107,6 +107,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Grenade.cpp" />
     <ClCompile Include="HorizontalScrollingBackground.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Laser.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="DamageMod.h" />
+    <ClInclude Include="Grenade.h" />
     <ClInclude Include="MaxEnergyMod.h" />
     <ClInclude Include="HorizontalScrollingBackground.h" />
     <ClInclude Include="Laser.h" />

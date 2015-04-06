@@ -120,6 +120,9 @@
     <ClCompile Include="LifestealItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Grenade.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="drawPrimitives.h">
@@ -231,6 +234,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Barrage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Grenade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
