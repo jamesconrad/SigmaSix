@@ -3,6 +3,7 @@
 I_SpeedMod::I_SpeedMod(Entity* owner, float cooldown, float procRate) : Item(owner, cooldown, procRate)
 {
 	Activate();
+	draw = false;
 }
 
 void I_SpeedMod::Activate()

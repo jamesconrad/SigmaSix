@@ -10,7 +10,7 @@ I_MaxHealthMod::I_MaxHealthMod(Entity* owner, float cooldown, float procRate) : 
 		icon->setNumberOfAnimations(1);
 		icon->setCurrentAnimation(0);
 		icon->setSpriteFrameSize(16, 17);
-		icon->addSpriteAnimFrame(0, 147, 388);
+		icon->addSpriteAnimFrame(0, 147, 107);
 	}
 }
 

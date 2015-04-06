@@ -20,7 +20,7 @@ Activate()
 	icon->setNumberOfAnimations(1);
 	icon->setCurrentAnimation(0);
 	icon->setSpriteFrameSize(16, 16);
-	icon->addSpriteAnimFrame(0, 95, 388);
+	icon->addSpriteAnimFrame(0, 95, 108);
 
 
 }
