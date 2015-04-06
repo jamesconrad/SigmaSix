@@ -59,7 +59,7 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 
 
 
-	inventory.push_back(new Berserk(this, 0, 1, 3, 3));
+	GiveItem(5);
 
 	}
 
