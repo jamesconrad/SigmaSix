@@ -1,6 +1,6 @@
 //#include "Enemy.h"
 #include "MapLoader.h"
-#include "EntityManager.h"
+#include "ColisionManager.h"
 
 //	--ELITES--
 //		If alone refuses to run or heal
@@ -155,6 +155,8 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		texture->addSpriteAnimRow(1, 0, 5*h+6, w + 1, 0, 7);
 		texture->addSpriteAnimRow(2, 0, 6*h+7, w + 1, 0, 7);
 		texture->addSpriteAnimRow(3, 0, 7*h+8, w + 1, 0, 7);
+
+		texture->addSpriteAnimFrame(8, 0, 714);
 	}
 	else if (entityType < -100)
 	{
@@ -175,10 +177,6 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		texture->loadSpriteSheet(filePath.c_str());
 		texture->setSpriteFrameSize(w, h);
 
-		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
-		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
-		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
-		texture->addSpriteAnimRow(7, 0, 142, w + 1, 0, 4);
 		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
 		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
 		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
@@ -202,16 +200,19 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		filePath.append(".png");
 		texture->loadSpriteSheet(filePath.c_str());
 		texture->setSpriteFrameSize(w, h);
-		//pewpewing
-		texture->addSpriteAnimRow(7, 0, 1, w + 1, 0, 4);
-		texture->addSpriteAnimRow(5, 0, h + 2, w + 1, 0, 4);
-		texture->addSpriteAnimRow(6, 0, 2 * h + 3, w + 1, 0, 4);
-		texture->addSpriteAnimRow(4, 0, 3 * h + 4, w + 1, 0, 4);
+
 		//walking
-		texture->addSpriteAnimRow(3, 0, 4 * h + 5, w + 1, 0, 4);
-		texture->addSpriteAnimRow(1, 0, 5 * h + 6, w + 1, 0, 4);
-		texture->addSpriteAnimRow(2, 0, 6 * h + 7, w + 1, 0, 4);
-		texture->addSpriteAnimRow(0, 0, 7 * h + 8, w + 1, 0, 4);
+		texture->addSpriteAnimRow(3, 0, 3 * h + 4, w + 1, 0, 4);
+		texture->addSpriteAnimRow(1, 0, 1 * h + 2, w + 1, 0, 4);
+		texture->addSpriteAnimRow(2, 0, 2 * h + 3, w + 1, 0, 4);
+		texture->addSpriteAnimRow(0, 0, 0 * h + 1, w + 1, 0, 4);
+
+		texture->addSpriteAnimRow(7, 0, 3 * h + 4, w + 1, 0, 4);
+		texture->addSpriteAnimRow(5, 0, 1 * h + 2, w + 1, 0, 4);
+		texture->addSpriteAnimRow(6, 0, 2 * h + 3, w + 1, 0, 4);
+		texture->addSpriteAnimRow(4, 0, 0 * h + 1, w + 1, 0, 4);
+
+		texture->addSpriteAnimFrame(8, 0, 302);
 	}
 	texture->setCurrentAnimation(0);
 
@@ -298,19 +299,42 @@ void Enemy::update(float dTime)
 	if (hp <= 0)
 	{
 		texture->setCurrentAnimation(8);
-		w = 52;
-		h = 30;
-		deathAnim -= dTime;
-		texture->setSpriteFrameSize(w, h);
-		state = state_dead;
-		w *= 0.5f;
-		h *= 0.5f;
 
-		if (entityType > 0 && entityType < 7)
+		if (entityType > 0 && entityType < 7 && hasItem)
 		{
+			DropItems();
+			hasItem = false;
 			MapLoader::instance()->SaveFriend(entityType);
-			TileManager::instance()->ReplaceTile(176, 16, STATIC, 176, 16, 16, 16, 305, 153, true);
+			TileManager::instance()->ReplaceTile(144, 32, STATIC, 176, 32, 16, 16, 305, 153, false);
+			TileManager::instance()->CreatePortal(STATIC, 144, 32, 16, 16, 305, 153, true, 0);
+			ColisionManager::instance()->RebuildColisionMap();
+			/*
+			tileManager->CreatePortal(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 17, 0, true, 0);
+			tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 305, 153, true);
+			*/
+			//TileManager::instance()->CreatePortal(STATIC, 144, 32, 16, 16, 305, 153, true, 0);
 		}
+		else if (entityType == BOSS)
+		{
+			w = 96;
+			h = 85;
+			texture->setCurrentAnimation(8);
+			texture->setSpriteFrameSize(w, h);
+			w *= 0.5f;
+			h *= 0.5;
+		}
+		else if (!(entityType > 0 && entityType < 7))
+		{
+			texture->setCurrentAnimation(8);
+			w = 52;
+			h = 30;
+			texture->setSpriteFrameSize(w, h);
+			w *= 0.5f;
+			h *= 0.5f;
+		}
+
+		deathAnim -= dTime;
+		state = state_dead;
 
 		if (hasItem)
 		{
