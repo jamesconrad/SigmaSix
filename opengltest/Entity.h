@@ -50,6 +50,7 @@ public:
 	float relativeVelocityX(Entity other);
 	float relativeVelocityY(Entity other);
 	void collideNonMovingWithMoving(Entity other);
+	void setVelocity();
 
 
 
