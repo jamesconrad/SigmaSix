@@ -55,8 +55,7 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	texture->setLayerID(1);
 	texture->setCurrentAnimation(0);
 
-	inventory.push_back(new I_LifeSteal(this, 0, 1));
-}
+	}
 
 Player::~Player()
 {
