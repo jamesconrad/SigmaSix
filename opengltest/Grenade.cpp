@@ -1,6 +1,7 @@
 #include "Grenade.h"
 
 
+
 Grenade::Grenade(Entity* own, float cd, float pR, float tdamage) : Item(own, cd, pR)
 {
 	damage = tdamage;
@@ -62,14 +63,3 @@ void Grenade::checks()
 	
 }
 
-
-
-
-void Grenade::DrawAnim()
-{
-	if (!Grenade::animDrawn && activated)
-	{
-		aSprite->draw(0.5);
-		Grenade::animDrawn = true;
-	}
-}
