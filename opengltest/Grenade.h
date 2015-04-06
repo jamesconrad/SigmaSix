@@ -6,11 +6,18 @@ class Grenade :public Item
 {
 public:
 	Grenade(Entity* own, float cd, float pR, float damage);
-	void Activate();
+	void Activate() { return; }
 	void Update(float dTime);
-	 void OnHit(vec2 location);
-	void DrawItem(int i);
-	void DrawAnim();
+	void OnHit(vec2 location);
+	void DrawItem(int i) { return; }
+	void DrawAnim(){
+		if (!Grenade::animDrawn && activated)
+		{
+			aSprite->draw(0.5);
+			Grenade::animDrawn = true;
+		}
+		return;
+	}
 	static Sprite* itemSheet;
 	void checks();
 
