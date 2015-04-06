@@ -750,6 +750,39 @@
 	}
 	else if (Pixels[pos * 3 + 0] == 236 && Pixels[pos * 3 + 1] == 236 && Pixels[pos * 3 + 2] == 236)
 	{	
-		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 152, 0, false);
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 186, 17, false);
 		entityManager->CreateEntity(MINIBOSS6, x * 16 - 0.0f * x, (mapData.h - y) * 16);
+	}
+
+	//Friend Spawns
+
+		if (Pixels[pos * 3 + 0] == 241 && Pixels[pos * 3 + 1] == 241 && Pixels[pos * 3 + 2] == 241)
+	{	
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 50, 153, false);
+		entityManager->CreateEntity(F1, x * 16 - 0.0f * x, (mapData.h - y) * 16);
+	}
+	else if (Pixels[pos * 3 + 0] == 242 && Pixels[pos * 3 + 1] == 242 && Pixels[pos * 3 + 2] == 242)
+	{	
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 67, 85, false);
+		entityManager->CreateEntity(F2, x * 16 - 0.0f * x, (mapData.h - y) * 16);
+	}
+	else if (Pixels[pos * 3 + 0] == 243 && Pixels[pos * 3 + 1] == 243 && Pixels[pos * 3 + 2] == 243)
+	{	
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, -1, 102, false);
+		entityManager->CreateEntity(F3, x * 16 - 0.0f * x, (mapData.h - y) * 16);
+	}
+	else if (Pixels[pos * 3 + 0] == 244 && Pixels[pos * 3 + 1] == 244 && Pixels[pos * 3 + 2] == 244)
+	{	
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 118, 136, false);
+		entityManager->CreateEntity(F4, x * 16 - 0.0f * x, (mapData.h - y) * 16);
+	}
+	else if (Pixels[pos * 3 + 0] == 245 && Pixels[pos * 3 + 1] == 245 && Pixels[pos * 3 + 2] == 245)
+	{	
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 118, 119, false);
+		entityManager->CreateEntity(F5, x * 16 - 0.0f * x, (mapData.h - y) * 16);
+	}
+	else if (Pixels[pos * 3 + 0] == 246 && Pixels[pos * 3 + 1] == 246 && Pixels[pos * 3 + 2] == 246)
+	{	
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 186, 17, false);
+		entityManager->CreateEntity(F6, x * 16 - 0.0f * x, (mapData.h - y) * 16);
 	}

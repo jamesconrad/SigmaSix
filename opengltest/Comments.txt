@@ -2,12 +2,10 @@ WARNINGS ARE NOW ERRORS
 DONT FUCKING ALLOW WARNINGS TO GO THROUGH
 
 CONRAD TODO:
+	Add in sound effects
 
 Deryk TODO:
 	Fix Menu
-	Add in sound effects
-	Add in the rest of the music
-	Add us into the game
 
 Baker TODO:
 	Finish adding in the rest of the drawing of items
