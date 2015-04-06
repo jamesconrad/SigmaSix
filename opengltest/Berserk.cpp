@@ -7,10 +7,10 @@ Berserk(Entity* own, float cd, float pR, float dmgbuff, float rgnbuff) :Item(own
 	DmgIncrease = dmgbuff;
 	RegenIncrease = rgnbuff;	
 	duration = 0;
-	maxDuration = 2000.f;
-	maxCooldown = 0;
+	maxDuration = 200.f;
+	maxCooldown = cd;
 	activated = false;
-
+	cooldown = maxCooldown;
 
 	icon = new Sprite;
 	aSprite = new Sprite;
@@ -44,6 +44,7 @@ void Berserk::Update(float dtime)
 	{
 		activated = true;
 	}
+
 
 	if (duration > maxDuration)
 	{

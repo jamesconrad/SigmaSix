@@ -32,7 +32,7 @@ void Entity::GiveItem(int itemId)
 		inventory.push_back(new I_MaxHealthMod(this, 0, 1));
 		break;
 	case 5:
-		inventory.push_back(new Berserk(this, 0, 1, 3, 3));
+		inventory.push_back(new Berserk(this, 0, 12, 3, 3));
 		break;
 	case 6:
 		inventory.push_back(new Barrage(this, 0, 1, 2, 1));
@@ -66,6 +66,7 @@ void Entity::OnHit(vec2 location)
 
 void Entity::setlowHP()
 {
+	if (hp <= maxHP*.2)
 	hp = maxHP *.2;
 }
 
