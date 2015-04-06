@@ -175,6 +175,7 @@ public:
 	virtual void OnDamage() { return; }
 	virtual void DrawItem(int i);
 	virtual void DrawAnim();
+	bool Drawable() { return draw; }
 	
 	static Sprite* itemSheet;
 protected:
