@@ -333,8 +333,11 @@ void Enemy::draw()
 
 	if (entityType >= 0 || hp < maxHP)
 	{
-		hpBG->draw(0.25f);
-		hpBar->draw(0.25f);
+		if (hp > 0)
+		{
+			hpBG->draw(0.25f);
+			hpBar->draw(0.25f);
+		}
 	}
 }
 
