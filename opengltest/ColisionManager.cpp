@@ -231,7 +231,7 @@ bool ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 		{
 			if (entityIter == 0)
 			{
-				for (int portalIter = 0, numOfPortals = portalMap.size(); portalIter < numOfPortals; portalIter++)
+				for (int portalIter = portalMap.size() - 1; portalIter >= 0; portalIter--)
 				{
 					if (portalMap.at(portalIter).chunkNum == chunkNum && portalMap.at(portalIter).colisionPos == i)
 					{
