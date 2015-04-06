@@ -7,10 +7,11 @@ SoundSystemClass::SoundSystemClass()
 	system->init(32, FMOD_INIT_NORMAL, 0);// initialise the game engine with 32 channels
 
 	FMOD::Sound *sound;
-	system->createSound("assets/sound/plyr_hurt.mp3", FMOD_DEFAULT, NULL, &sound);
+	system->createSound("assets/audio/plyr_hurt.mp3", FMOD_DEFAULT, NULL, &sound);
 	soundEffects.push_back(sound);
-	system->createSound("assets/sound/pew_pew.mp3", FMOD_DEFAULT, NULL, &sound);
+	system->createSound("assets/audio/pew_pew.mp3", FMOD_DEFAULT, NULL, &sound);
 	soundEffects.push_back(sound);
+	system->playSound(sound, NULL, false, &effects);
 
 }
 
@@ -46,11 +47,9 @@ void SoundSystemClass::Update(float dTime)
 	system->update();
 }
 
-void SoundSystemClass::PlayLaser()
+void SoundSystemClass::PlayLaser(bool p)
 {
 	system->playSound(soundEffects[1], NULL, false, &effects);
 	effects->setPaused(false);
 	effects->setVolume(1);
-	
-
 }

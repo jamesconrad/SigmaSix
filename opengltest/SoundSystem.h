@@ -21,7 +21,7 @@ public:
 	void PlaySound(soundEffect);
 	void PlayBackground(char* filepath);
 	void Update(float dTime);
-	void PlayLaser();
+	void PlayLaser(bool p);
 
 private:
 	SoundSystemClass();
