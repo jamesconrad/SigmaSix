@@ -302,6 +302,8 @@ void Enemy::update(float dTime)
 		deathAnim -= dTime;
 		texture->setSpriteFrameSize(w, h);
 		state = state_dead;
+		w *= 0.5f;
+		h *= 0.5f;
 		if (hasItem)
 		{
 			DropItems();
