@@ -721,3 +721,35 @@
 		entityManager->CreateEntity(BOSS, x * 16 - 0.0f * x, (mapData.h - y) * 16);
 	}
 
+	//Mini Boss Spawns
+
+	if (Pixels[pos * 3 + 0] == 231 && Pixels[pos * 3 + 1] == 231 && Pixels[pos * 3 + 2] == 231)
+	{	
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 50, 153, false);
+		entityManager->CreateEntity(MINIBOSS1, x * 16 - 0.0f * x, (mapData.h - y) * 16);
+	}
+	else if (Pixels[pos * 3 + 0] == 232 && Pixels[pos * 3 + 1] == 232 && Pixels[pos * 3 + 2] == 232)
+	{	
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 67, 85, false);
+		entityManager->CreateEntity(MINIBOSS2, x * 16 - 0.0f * x, (mapData.h - y) * 16);
+	}
+	else if (Pixels[pos * 3 + 0] == 233 && Pixels[pos * 3 + 1] == 233 && Pixels[pos * 3 + 2] == 233)
+	{	
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, -1, 102, false);
+		entityManager->CreateEntity(MINIBOSS3, x * 16 - 0.0f * x, (mapData.h - y) * 16);
+	}
+	else if (Pixels[pos * 3 + 0] == 234 && Pixels[pos * 3 + 1] == 234 && Pixels[pos * 3 + 2] == 234)
+	{	
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 118, 136, false);
+		entityManager->CreateEntity(MINIBOSS4, x * 16 - 0.0f * x, (mapData.h - y) * 16);
+	}
+	else if (Pixels[pos * 3 + 0] == 235 && Pixels[pos * 3 + 1] == 235 && Pixels[pos * 3 + 2] == 235)
+	{	
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 118, 119, false);
+		entityManager->CreateEntity(MINIBOSS5, x * 16 - 0.0f * x, (mapData.h - y) * 16);
+	}
+	else if (Pixels[pos * 3 + 0] == 236 && Pixels[pos * 3 + 1] == 236 && Pixels[pos * 3 + 2] == 236)
+	{	
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 152, 0, false);
+		entityManager->CreateEntity(MINIBOSS6, x * 16 - 0.0f * x, (mapData.h - y) * 16);
+	}

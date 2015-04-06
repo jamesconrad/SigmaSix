@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "SoundSystem.h"
+
 
 /*
 Sprite* texture;
@@ -274,6 +276,11 @@ void Player::shoot()
 	{
 		energy -= 5;
 		projectileManager->CreateProjectile(0, getCX(), getCY() + 0.5f * direction.x, direction.x, direction.y, damage, 3000.f, 0.2f, 0);
+		SoundSystemClass::instance()->PlayLaser();
+
+
+
+
 		for (int i = 0, s = inventory.size(); i < s; i++)
 			inventory[i]->OnFire();
 	}
