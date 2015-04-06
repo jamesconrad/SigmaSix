@@ -3,7 +3,6 @@
 
 #include "Entity.h"
 
-#include "MapLoader.h"
 
 enum ai_state
 {

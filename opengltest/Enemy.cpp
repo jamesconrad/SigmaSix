@@ -1,4 +1,5 @@
 //#include "Enemy.h"
+#include "MapLoader.h"
 #include "EntityManager.h"
 
 //	--ELITES--
@@ -306,7 +307,10 @@ void Enemy::update(float dTime)
 		h *= 0.5f;
 
 		if (entityType > 0 && entityType < 7)
+		{
 			MapLoader::instance()->SaveFriend(entityType);
+			TileManager::instance()->ReplaceTile(176, 16, STATIC, 176, 16, 16, 16, 305, 153, true);
+		}
 
 		if (hasItem)
 		{
