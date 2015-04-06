@@ -36,6 +36,7 @@ void Grenade::OnHit(vec2 location)
 			{
 				ProjectileManager::instance()->CreateProjectile(69, location.x + i, location.y + j, 0, 0, damage, duration, 0, owner->GetIndex());
 				aSprite->setPosition(location.x, location.y);
+				ready = false;
 			}
 		}
 	}
