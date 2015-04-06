@@ -29,6 +29,7 @@ class Enemy : public Entity
 public:
 	Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetInfo bar, float x, float y, int index, entitytype entType, int managerIndex);
 	void draw();
+	void DropItems();
 	void update(float dTime); // will need to do ai stuff
 	void ModPos(vec2 mod);
 	int GetIndex() { return index; }
@@ -60,6 +61,7 @@ protected:
 	ai_state state;
 	float stateCD, cooldown;
 	bool stateBool;
+	bool hasItem = true;
 };
 
 #endif

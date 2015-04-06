@@ -51,8 +51,7 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
 		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
 		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
-
-		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+		texture->addSpriteAnimFrame(8, 0, 376);
 	}
 	else if (entityType == ELITE)
 	{
@@ -71,8 +70,7 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
 		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
 		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
-
-		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+		texture->addSpriteAnimFrame(8, 0, 376);
 	}
 	else if (entityType == NEUTRAL1)
 	{
@@ -252,8 +250,6 @@ void Enemy::update(float dTime)
 			}
 			Dialog::instance()->Say(et, 0);
 		}
-		EntityManager::instance()->DeleteEntity(index);
-		return;
 	}
 
 	stateCD -= dTime;
@@ -278,11 +274,6 @@ void Enemy::update(float dTime)
 	else if (direction.y < direction.x && direction.y < 0.f)
 		curAnim = 1;
 
-	if (state == state_attack)
-		texture->setCurrentAnimation(curAnim + 4);
-	else
-		texture->setCurrentAnimation(curAnim);
-
 	if (animFrame >= 1.f)
 	{
 		texture->nextFrame();
@@ -303,6 +294,26 @@ void Enemy::update(float dTime)
 		}
 	}
 
+	if (hp <= 0)
+	{
+		texture->setCurrentAnimation(8);
+		w = 52;
+		h = 30;
+		deathAnim -= dTime;
+		texture->setSpriteFrameSize(w, h);
+		state = state_dead;
+		if (hasItem)
+		{
+			DropItems();
+			hasItem = false;
+		}
+		return;
+	}
+
+	if (state == state_attack)
+		texture->setCurrentAnimation(curAnim + 4);
+	else
+		texture->setCurrentAnimation(curAnim);
 	texture->setPosition(x,y);
 
 	hpBar->setPosition(x + 0.5f, y + h + 0.5f);
@@ -322,8 +333,11 @@ void Enemy::draw()
 
 	if (entityType >= 0 || hp < maxHP)
 	{
-		hpBG->draw(0.25f);
-		hpBar->draw(0.25f);
+		if (hp > 0)
+		{
+			hpBG->draw(0.25f);
+			hpBar->draw(0.25f);
+		}
 	}
 }
 
@@ -377,6 +391,8 @@ void Enemy::updateAiState()
 			break;
 		case state_chase:
 			Chase();
+			break;
+		case state_dead:
 			break;
 		}
 	}
@@ -551,4 +567,9 @@ void Enemy::bcastRecv(bcast broadcast)
 void Enemy::bcastSend(char msg, int sender)
 {
 	entityManager->bcastRecv(msg, sender);
+}
+
+void Enemy::DropItems()
+{
+	EntityManager::instance()->DropItems(manIndex);
 }

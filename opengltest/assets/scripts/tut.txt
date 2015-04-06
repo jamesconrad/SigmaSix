@@ -1,13 +1,1 @@
-Attach 1 1
-Freeze 1
-Attach 1 0
-Freeze 1
-Say 0
-Attach 1 1
-Move 112 768
-Kill 1
-Attach 1 0
-Say 1004
 Breakout
-Freeze 0
-Say 1100
