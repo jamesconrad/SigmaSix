@@ -11,27 +11,20 @@ public:
 	void OnHit(vec2 location);
 	void DrawItem(int i) { return; }
 	void DrawAnim(){
-		if (!Grenade::animDrawn && activated)
+		if (!animDrawn && activated)
 		{
 			aSprite->draw(0.5);
-			Grenade::animDrawn = true;
+			animDrawn = true;
 		}
 		return;
 	}
-	static Sprite* itemSheet;
 	void checks();
 
 
 protected:
-	float cooldown, procRate, maxCooldown, anim;
-	bool activated;
-	Sprite* icon;
-	Sprite* aSprite;
-	Entity* owner;
-	bool animDrawn;
-	float duration;
-	float maxDuration;
 
+	static bool animDrawn;
+	float duration;
 	float damage;
 	bool ready;
 

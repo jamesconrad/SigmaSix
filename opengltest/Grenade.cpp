@@ -1,6 +1,6 @@
 #include "Grenade.h"
 
-
+bool Grenade::animDrawn = false;
 
 Grenade::Grenade(Entity* own, float cd, float pR, float tdamage) : Item(own, cd, pR)
 {
@@ -11,7 +11,7 @@ Grenade::Grenade(Entity* own, float cd, float pR, float tdamage) : Item(own, cd,
 
 	icon = new Sprite;
 	aSprite = new Sprite;
-	Grenade::animDrawn = false;
+	animDrawn = false;
 	icon->sheet = itemSheet->sheet;
 	icon->setNumberOfAnimations(1);
 	icon->setCurrentAnimation(0);
