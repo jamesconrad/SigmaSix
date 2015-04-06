@@ -199,9 +199,13 @@ private:
 	TileManager* tileManager;
 	EntityManager* entityManager;
 	ProjectileManager* projectileManager;
+	int prevHp;
+	float flashDur = 1000.f;
+	float nrgFlashDur = 1000.f;
 	ColisionManager* colisionManager;
 	MapLoader* mapLoader;
 	Sprite *hpBar, *energyBar, *hpBG, *s_Score, *s_Time, *entBarSprite;
+	Sprite *energyFlash, *healthFlash;
 	Script* script;
 };
 

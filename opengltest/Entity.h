@@ -85,9 +85,9 @@ public:
 	virtual float getCX() { return 0.f; }
 	virtual float getCY() { return 0.f; }
 	virtual float getHP() { return 0.f; }
-	virtual float getEnergy() { return 0.f; }
+	float getEnergy() { return energy; }
 	virtual float getMaxHP() { return 0.f; }
-	virtual float getMaxEnergy() { return 0.f; }
+	float getMaxEnergy() { return maxEnergy; }
 	virtual float getSpeed() { return 0.f; }
 	void Freeze(bool status) { frozen = status; }
 	virtual void OnHit(vec2 location);

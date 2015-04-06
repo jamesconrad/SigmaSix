@@ -101,6 +101,18 @@ void Game::initializeGame()
 	s_Time->setSpriteFrameSize(91, 24);
 	s_Time->addSpriteAnimFrame(0, 0, 193);
 
+	energyFlash = new Sprite();
+	energyFlash->setNumberOfAnimations(1);
+	energyFlash->sheet = bars;
+	energyFlash->setSpriteFrameSize(344, 20);
+	energyFlash->addSpriteAnimFrame(0, 341, 159);
+
+	healthFlash = new Sprite();
+	healthFlash->setNumberOfAnimations(1);
+	healthFlash->loadSpriteSheet("assets/hpFlash.png");
+	healthFlash->setSpriteFrameSize(1028, 768);
+	healthFlash->addSpriteAnimFrame(0, 0, 0);
+
 	entityManager->entityVector.at(0)->SetLives(3);
 	fTime = 0;
 	score = 0;
@@ -292,6 +304,34 @@ void Game::drawSprites()
 	hpBar->draw(0.25);
 	energyBar->setPosition(entityManager->getCXofID(0) - (100 - 57.5), entityManager->getYofID(0) - (60.25 + 10));
 	energyBar->draw(0.25);
+
+	energyFlash->setPosition(entityManager->getCXofID(0) - (100 - 53.5), entityManager->getYofID(0) - (60.25 + 11));
+
+	if ((float)entityManager->getEnergy(0) / (float)entityManager->getMaxEnergy(0) < 0.33)
+	{
+		nrgFlashDur += updateTimer->getElapsedTimeMS();
+		if (nrgFlashDur / 500 < 0.75)
+			energyFlash->draw(0.25);
+
+		if (nrgFlashDur > 500.f)
+			nrgFlashDur = 0.f;
+	}
+	
+
+	healthFlash->setPosition(entityManager->getCXofID(0) - (260), entityManager->getYofID(0) - (200));
+	if (entityManager->getHP(0) < prevHp)
+	{
+		flashDur = 0;
+		healthFlash->draw(0.5);
+	}
+	else if (flashDur < 500.f)
+	{
+		healthFlash->draw(0.5);
+		flashDur += updateTimer->getElapsedTimeMS();
+	}
+	prevHp = entityManager->getHP(0);
+
+
 
 	s_Score->setPosition(entityManager->getCXofID(0) - (132), entityManager->getYofID(0) + (100));
 	s_Score->draw(0.25);
