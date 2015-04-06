@@ -63,6 +63,9 @@ public:
 	void shoot();
 	void Aim(float normX, float normY);
 	void shoot(float x, float y);
+
+	
+
 private:
 	vec2 aimDir;
 	bool aiming;

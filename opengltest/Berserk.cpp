@@ -7,7 +7,9 @@ Berserk(Entity* own, float cd, float pR, float dmgbuff, float rgnbuff) :Item(own
 	DmgIncrease = dmgbuff;
 	RegenIncrease = rgnbuff;	
 	duration = 0;
-	maxDuration = 20;
+	maxDuration = 2000.f;
+	maxCooldown = 0;
+	activated = false;
 
 
 	icon = new Sprite;
@@ -23,43 +25,53 @@ Berserk(Entity* own, float cd, float pR, float dmgbuff, float rgnbuff) :Item(own
 	aSprite->setNumberOfAnimations(1);
 	aSprite->setCurrentAnimation(0);
 	aSprite->setSpriteFrameSize(37, 25);
-	aSprite->addSpriteAnimRow(0, 0, 131, 38, 0, 2);
+	aSprite->addSpriteAnimRow(0, -38, 131, 38, 0, 2);
 
 }
 
 
 void Berserk::Activate()
 {
-	activated = true;
-	cooldown = maxCooldown;
 
-	//give the owner the shield 
-	owner->GiveItem(5);
+
+	
 }
 
 
 void Berserk::Update(float dtime)
 {
-	cooldown -= dtime;
-	if (duration < maxDuration)
+	if (owner->getHP() <= owner->getMaxHP()*.2 && cooldown <= 0)
+	{
+		activated = true;
+	}
+
+	if (duration > maxDuration)
 	{
 		activated = false;
 		duration = 0;
 		cooldown = maxCooldown;
 	}
 
+	
 
 	if (activated = true)
 	{
+		owner->setlowHP();
 		owner->modDamage(2);
-		owner->energyRegenMod(RegenIncrease);
 		owner->increaseNRG();	
-		duration++;
+		duration += dtime;
 		Berserk::animDrawn = false;
 		aSprite->setPosition(owner->getX() , owner->getY()+ 15);
+
+		anim += dtime;
+		if (anim > 100.f)
+		{
+			anim = 0;
+			aSprite->nextFrame();
+		}
 	}
 	else
-		cooldown--;
+		cooldown -= dtime;
 
 
 

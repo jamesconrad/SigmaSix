@@ -64,6 +64,11 @@ void Entity::OnHit(vec2 location)
 
 }
 
+void Entity::setlowHP()
+{
+	hp = maxHP *.2;
+}
+
 void Entity::OnHit()
 {
 	for (int i = 0, s = inventory.size(); i < s; i++)
