@@ -16,6 +16,10 @@ void Entity::applyFriction()
 	}
 }
 
+void Entity::setVelocity()
+{
+
+}
 
 
 float Entity::relativeVelocityX(Entity other)
