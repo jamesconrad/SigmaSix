@@ -177,12 +177,18 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		texture->loadSpriteSheet(filePath.c_str());
 		texture->setSpriteFrameSize(w, h);
 
-		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
-		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
-		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
-		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
+		texture->addSpriteAnimRow(0, 0, 1, w + 1, 0, 4);
+		texture->addSpriteAnimRow(1, 0, h + 2, w + 1, 0, 4);
+		texture->addSpriteAnimRow(2, 0, 2 * h + 3, w + 1, 0, 4);
+		texture->addSpriteAnimRow(3, 0, 3 * h + 4, w + 1, 0, 4);
 
-		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+
+		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
+		texture->addSpriteAnimRow(5, 0, h + 2, w + 1, 0, 4);
+		texture->addSpriteAnimRow(6, 0, 2 * h + 3, w + 1, 0, 4);
+		texture->addSpriteAnimRow(7, 0, 3 * h + 4, w + 1, 0, 4);
+
+		texture->addSpriteAnimFrame(8, 0, 189);
 	}
 	else if (entityType > 0 && entityType <= 6)
 	{
@@ -328,6 +334,15 @@ void Enemy::update(float dTime)
 			texture->setCurrentAnimation(8);
 			w = 52;
 			h = 30;
+			texture->setSpriteFrameSize(w, h);
+			w *= 0.5f;
+			h *= 0.5f;
+		}
+		else if (entityType < -100)
+		{
+			texture->setCurrentAnimation(8);
+			w = 64;
+			h = 32;
 			texture->setSpriteFrameSize(w, h);
 			w *= 0.5f;
 			h *= 0.5f;
