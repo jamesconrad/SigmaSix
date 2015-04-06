@@ -20,12 +20,15 @@ Item::Item(Entity* own, float cd, float pR)
 
 void Item::DrawItem(int i)
 {
-	icon->setPosition(owner->getCX() - 134.f + (18.f * i),owner->getCY() - 108.f);
-	icon->draw(0.5f);
+	if (draw)
+	{
+		icon->setPosition(owner->getCX() - 134.f + (18.f * i),owner->getCY() - 108.f);
+		icon->draw(0.5f);
+	}
 }
 
 void Item::DrawAnim()
 {
-	if (activated)
+	if (activated && draw)
 		aSprite->draw(0.5f);
 }

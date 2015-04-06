@@ -1,5 +1,5 @@
 #include "Player.h"
-#include "LifeSteal.h"
+#include "EnergyRegen.h"
 
 /*
 Sprite* texture;
@@ -9,6 +9,7 @@ vec2 direction, movement;
 */
 Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, float _y)
 {
+	inventory.push_back(new I_EnergyRegen(this, 0, 1));
 	texture = new Sprite;
 	projectileManager = projManager;
 	direction = vec2(0, -1);

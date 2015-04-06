@@ -175,6 +175,7 @@ public:
 protected:
 	float cooldown, procRate, maxCooldown, anim;
 	bool activated;
+	bool draw = true;
 	Sprite* icon;
 	Sprite* aSprite;
 	Entity* owner;
