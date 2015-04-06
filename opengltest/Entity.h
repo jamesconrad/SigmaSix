@@ -41,6 +41,7 @@ class Entity
 {
 public:
 
+
 	// Bonnie's shit Useless, do not touch just for math report
 	void mCollideWith(Entity other);
 	void mFindMomentum();
@@ -49,6 +50,7 @@ public:
 	float relativeVelocityX(Entity other);
 	float relativeVelocityY(Entity other);
 	void collideNonMovingWithMoving(Entity other);
+
 
 
 	virtual void draw() {}; //default does nothing needs to be overriden by owner
@@ -148,7 +150,7 @@ protected:
 	float deathAnim = 2000.f;
 
 	//again, this is bonnie's 
-	float momentum, weight, angle;
+	float momentum, weight, angle, velocity, CoFrictionSurface;
 
 	//ITEM VARS
 	bool shielded;
