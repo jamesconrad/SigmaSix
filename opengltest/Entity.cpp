@@ -16,16 +16,31 @@ void Entity::GiveItem(int itemId)
 	switch (itemId)
 	{
 	case 0:
-		inventory.push_back(new I_Shield(this, 10, 0.1));
+		inventory.push_back(new I_SpeedMod(this, 0, 1));
 		break;
 	case 1:
-		inventory.push_back(new Aura(this, 10, 0.1));
+		inventory.push_back(new I_DamageMod(this, 0, 1));
+		break;
+	case 2:
+		inventory.push_back(new I_EnergyRegen(this, 0, 1));
 		break;
 	case 3:
-		inventory.push_back(new Berserk(this, 10, 0.1, 4, 3));
+		inventory.push_back(new I_MaxEnergyMod(this, 0, 1));
 		break;
+
 	case 4:
-		inventory.push_back(new Barrage(this, 10, 0.1, 4, 1));
+		inventory.push_back(new I_MaxHealthMod(this, 0, 1));
+		break;
+	case 10:
+		inventory.push_back(new I_Shield(this, 10, 0.1));
+		break;
+	case 11:
+		inventory.push_back(new I_LifeSteal(this, 0, 1));
+		break;
+
+	default:
+		inventory.push_back(new I_Shield(this, 10, 0.1));
+		printf("ERROR: Invalid Item ID: %i", itemId);
 		break;
 	}
 }

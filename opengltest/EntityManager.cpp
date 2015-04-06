@@ -50,7 +50,7 @@ void EntityManager::CreateEntity(entitytype entityType, float x, float y)
 	}
 }
 
-void EntityManager::DeleteEntity(int index)
+void EntityManager::DropItems(int index)
 {
 	entitytype t = entityVector[index]->GetType();
 	float val = (float)rand() / RAND_MAX;
@@ -71,21 +71,21 @@ void EntityManager::DeleteEntity(int index)
 	{
 		if (val < 0.15)
 		{
-			di->itemId = 0;
+			di->itemId = rand() % 5;
 			di->qual = 1;
-		}	
+		}
 	}
 	else if (t == ELITE)
 	{
 		if (val < 0.5)
 		{
-			di->itemId = 0;
+			di->itemId = rand() % 2 + 10;
 			di->qual = 2;
 		}
 	}
 	else if (t == BOSS || (t >= MINIBOSS1 && t <= MINIBOSS6))
 	{
-		di->itemId = 0;
+		di->itemId = 0 + 100;
 		di->qual = 3;
 	}
 
@@ -100,12 +100,17 @@ void EntityManager::DeleteEntity(int index)
 		droppedItems.push_back(di);
 	}
 
+	score += 100;
+
+}
+
+void EntityManager::DeleteEntity(int index)
+{
 	free(entityVector[index]);
 	entityVector.erase(entityVector.begin() + index);
 	entityVector.shrink_to_fit();
 	for (int i = entityVector.size() - 1; i > 0; i--)
 		entityVector.at(i)->UpdateIndex(i);
-	score += 100;
 }
 
 void EntityManager::Clear()

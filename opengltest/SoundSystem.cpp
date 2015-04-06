@@ -9,7 +9,8 @@ SoundSystemClass::SoundSystemClass()
 	FMOD::Sound *sound;
 	system->createSound("assets/sound/plyr_hurt.mp3", FMOD_DEFAULT, NULL, &sound);
 	soundEffects.push_back(sound);
-	system->createSound("assets/sound/plyr_shoot.mp3", FMOD_DEFAULT, NULL, &sound);
+	system->createSound("assets/sound/pew_pew.mp3", FMOD_DEFAULT, NULL, &sound);
+	soundEffects.push_back(sound);
 
 }
 
@@ -43,4 +44,13 @@ void SoundSystemClass::Update(float dTime)
 	}
 	
 	system->update();
+}
+
+void SoundSystemClass::PlayLaser()
+{
+	system->playSound(soundEffects[1], NULL, false, &effects);
+	effects->setPaused(false);
+	effects->setVolume(1);
+	
+
 }

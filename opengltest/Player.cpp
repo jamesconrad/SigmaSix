@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "EnergyRegen.h"
 
 /*
 Sprite* texture;
@@ -8,6 +9,7 @@ vec2 direction, movement;
 */
 Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, float _y)
 {
+	inventory.push_back(new I_EnergyRegen(this, 0, 1));
 	texture = new Sprite;
 	projectileManager = projManager;
 	direction = vec2(0, -1);
@@ -49,10 +51,12 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	texture->addSpriteAnimRow(1, 0, 236, 35.f, 0, 3);
 	texture->addSpriteAnimRow(2, 0, 283, 35.f, 0, 3);
 	texture->addSpriteAnimRow(3, 0, 330, 35.f, 0, 3);
-	texture->addSpriteAnimRow(8, 0, 0, 35, 47, 3);
+	//texture->addSpriteAnimRow(8, 0, 378, 35, 47, 3);
+	texture->addSpriteAnimFrame(8, 0, 377);
 	texture->setLayerID(1);
 	texture->setCurrentAnimation(0);
-}
+
+	}
 
 Player::~Player()
 {
@@ -80,18 +84,6 @@ void Player::draw()
 
 void Player::update(float dTime)
 {
-	if (hp <= 0)
-	{
-		//am ded
-		//texture->setCurrentAnimation(9);
-		//texture->setSpriteFrameSize(52, 30);
-		deathAnim -= dTime;
-		return;
-	}
-	else
-	{
-		//texture->setSpriteFrameSize(34, 46);
-	}
 	//update items
 	for (int i = 0, s = inventory.size(); i < s; i++)
 		inventory[i]->Update(dTime);
@@ -224,8 +216,19 @@ void Player::update(float dTime)
 	else
 		speed = 0.1f;
 
+	if (hp <= 0)
+	{
+		texture->setCurrentAnimation(8);
+		texture->setSpriteFrameSize(52, 30);
+		deathAnim -= dTime;
+		return;
+	}
+	else
+	{
+		texture->setSpriteFrameSize(34, 46);
+		texture->setCurrentAnimation(curAnim);
+	}
 	texture->setPosition(x, y);
-	texture->setCurrentAnimation(curAnim);
 
 	if (animFrame >= 1.f)
 	{

@@ -56,6 +56,9 @@ void ColisionManager::RebuildColisionMap()
 
 void ColisionManager::Update()
 {
+	if (mapNum == 0 && EntityManager::instance()->getHP(0) < EntityManager::instance()->getMaxHP(0))
+		EntityManager::instance()->entityVector[0]->ModHP(1);
+
 	projectileVectorPtr = projectileManager->GetProjectileVector();//rederive location incase pushback caused it to move
 	RECT entPos;
 	for (int entityIter = 0, numOfEnts = entityManager->GetSize(); entityIter < numOfEnts; entityIter++)
@@ -231,6 +234,7 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 							//Now we get to load the map
 							int mapID = portalMap.at(portalIter).mapTransitionID;
 							mapLoader->LoadMap(mapID);
+							mapNum = mapID;
 							RebuildColisionMap();
 							EntityManager::instance()->Update(0);
 							return;

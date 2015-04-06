@@ -4,24 +4,24 @@ Hello there! Do you need me for something?
 ;
 
 :2:
-Oh, it gets rather hot in there!
+Oh, it's really hot in there!
 It takes you right to the caves within a volcano. 
-I think I saw some of Dr.Douche's men take a girl in there. 
+I saw some of Dr.Douche's men take a girl in there. 
 Her name was Lysandra, I believe.
-[0>2]
+[0>111]
 ;
 
 :3:
-To a forest! It's autumn there, and quite lovely,
-if you can get passed the people trying to kill you...
-Speak of them, they took someone there. 
+To a forest! It's autumn there, and actually quite lovely,
+if you can get past the people trying to kill you...
+Actually, they were dragging around this guy yelling something about potato salad...
 I think his name was Batata.
 [0>112]
 ;
 
 :4:
 There's a barren desert and ruins behind that door.
-Not much scenery, especially with the people trying to shoot you.
+Not much scenery, especially with the goons trying to shoot you.
 I think a guy named Kyred was taken there, actually. Poor guy.
 [0>113]
 ;

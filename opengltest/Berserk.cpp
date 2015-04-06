@@ -19,7 +19,7 @@ void Berserk::Activate()
 		icon->setNumberOfAnimations(1);
 		icon->setCurrentAnimation(0);
 		icon->setSpriteFrameSize(22, 16);
-		icon->addSpriteAnimFrame(0, 38, 388);
+		icon->addSpriteAnimFrame(0, 38, 108);
 	}
 }
 

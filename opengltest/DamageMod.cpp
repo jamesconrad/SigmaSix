@@ -3,6 +3,7 @@
 I_DamageMod::I_DamageMod(Entity* owner, float cooldown, float procRate) : Item(owner, cooldown, procRate)
 {
 	Activate();
+	draw = false;
 }
 
 void I_DamageMod::Activate()
