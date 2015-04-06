@@ -5,7 +5,7 @@ Grenade::Grenade(Entity* own, float cd, float pR, float tdamage) : Item(own, cd,
 {
 	damage = tdamage;
 	ready = true;
-
+	
 	
 
 	icon = new Sprite;
@@ -22,6 +22,8 @@ Grenade::Grenade(Entity* own, float cd, float pR, float tdamage) : Item(own, cd,
 	aSprite->setCurrentAnimation(0);
 	aSprite->setSpriteFrameSize(32, 30);
 	aSprite->addSpriteAnimRow(0, -32, 158, 33, 0, 11);
+	
+
 
 }
 

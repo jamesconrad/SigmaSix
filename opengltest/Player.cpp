@@ -58,7 +58,7 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	texture->setCurrentAnimation(0);
 
 
-
+	GiveItem(5);
 
 
 	}
