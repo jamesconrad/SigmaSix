@@ -8,6 +8,7 @@
 #include <sstream>
 #include "EntityManager.h"
 #include "ProjectileManager.h"
+#include "ColisionManager.h"
 
 enum targetType
 {

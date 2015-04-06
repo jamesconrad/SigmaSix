@@ -27,7 +27,7 @@ Script::Script(char* filepath)
 		while (std::getline(file, line))
 		{
 			cmd.push_back(line);
-			cmd.at(cmd.size()).append("\n");
+			cmd.at(cmd.size() - 1).append("\n");
 		}
 		file.close();
 	}
@@ -40,25 +40,37 @@ Script::Script(char* filepath)
 
 void Script::Update(float dTime)
 {
-	if (cmd.size() < 1)
+	if (step >= (signed)cmd.size())
 	{
 		complete = true;
 		return;
 	}
+	EntityManager::instance()->Update(dTime);
+
+	if (Dialog::instance()->MoreText())
+		return;
+
 	if (nextArg)
 	{
+		args.clear();
 		int space = cmd.at(step).find(' ');
 		int eol = cmd.at(step).find('\n');
-		curArg = cmd.at(step).substr(0, space - 1);
+		curArg = cmd.at(step).substr(0, space);
 		
-		std::stringstream stream(cmd.at(step).substr(space + 1, eol));
+		std::stringstream stream(cmd.at(step).substr(space + 1, cmd.at(step).size()));
 		int n;
-		while (stream >> n)
+		for (int i = 0, s = stream.end; i < s; i++)
+		{
+			stream >> n;
 			args.push_back(n);
+		}
+		//while (stream >> n && stream.end)
+		//	args.push_back(n);
 		nextArg = false;
+		step++;
 	}
 
-	if (curArg.compare("Attach"))
+	if (curArg.compare("Attach") == 0)
 	{
 		switch (args[0])
 		{
@@ -68,22 +80,16 @@ void Script::Update(float dTime)
 		target = args[1];
 		nextArg = true;
 	}
-	else if (curArg.compare("Move"))
+	else if (curArg.compare("Move") == 0)
 	{
 		switch (tarType)
 		{
 		case 1:
 			//X
 			//incase they are very close
-			if (args[0] - EntityManager::instance()->getXofID(target) < 1 && args[0] - EntityManager::instance()->getXofID(target) > 0)
+			if (args[0] - EntityManager::instance()->getXofID(target) < 1 && args[0] - EntityManager::instance()->getXofID(target) > -1)
 			{
 				EntityManager::instance()->ModPosOfID(target, vec2(args[0] - EntityManager::instance()->getXofID(target), 0));
-				nextArg = true;
-			}
-			else if (args[0] - EntityManager::instance()->getXofID(target) > -1 && args[0] - EntityManager::instance()->getXofID(target) < 0)
-			{
-				EntityManager::instance()->ModPosOfID(target, vec2(args[0] - EntityManager::instance()->getXofID(target), 0));
-				nextArg = true;
 			}
 			//incase they are far
 			else if (args[0] > EntityManager::instance()->getXofID(target))
@@ -92,39 +98,45 @@ void Script::Update(float dTime)
 				EntityManager::instance()->ModPosOfID(target, vec2(EntityManager::instance()->SpeedOfID(target) * dTime * -1.0, 0));
 			//Y
 			//incase they are very close
-			if (args[1] - EntityManager::instance()->getYofID(target) < 1 && args[1] - EntityManager::instance()->getYofID(target) > 0)
+			if (args[1] - EntityManager::instance()->getYofID(target) < 1 && args[1] - EntityManager::instance()->getYofID(target) > -1)
 			{
 				EntityManager::instance()->ModPosOfID(target, vec2(0, args[1] - EntityManager::instance()->getYofID(target)));
-				nextArg = true;
 			}
-			else if (args[1] - EntityManager::instance()->getYofID(target) > -1 && args[1] - EntityManager::instance()->getYofID(target) < 0)
-			{
-				EntityManager::instance()->ModPosOfID(target, vec2(0, args[1] - EntityManager::instance()->getYofID(target)));
-				nextArg = true;
-			}
+			//incase they are far
 			else if (args[1] > EntityManager::instance()->getYofID(target))
 				EntityManager::instance()->ModPosOfID(target, vec2(0, EntityManager::instance()->SpeedOfID(target) * dTime));
 			else if (args[1] < EntityManager::instance()->getYofID(target))
 				EntityManager::instance()->ModPosOfID(target, vec2(0, EntityManager::instance()->SpeedOfID(target) * dTime * -1.0));
+			//check if there
+			if (args[0] - EntityManager::instance()->getXofID(target) < 1 && args[0] - EntityManager::instance()->getXofID(target) > -1 && args[1] - EntityManager::instance()->getYofID(target) < 1 && args[1] - EntityManager::instance()->getYofID(target) > -1)
+				nextArg = true;
 		}
 	}
-	else if (curArg.compare("Freeze"))
+	else if (curArg.compare("Freeze") == 0)
 	{
 		if (args[0] != 0)
 			EntityManager::instance()->FreezeID(target, true);
 		else
 			EntityManager::instance()->FreezeID(target, false);
+		nextArg = true;
 	}
-	else if (curArg.compare("Kill"))
+	else if (curArg.compare("Kill") == 0)
 	{
 		EntityManager::instance()->DeleteEntity(args[0]);
+		nextArg = true;
 	}
-	else if (curArg.compare("Say"))
+	else if (curArg.compare("Say") == 0)
 	{
-		Dialog::instance()->Say(EntityManager::instance()->GetType(target), args[1]);
+		Dialog::instance()->Say(EntityManager::instance()->GetType(target), args[0]);
+		nextArg = true;
 	}
-	else if (curArg.compare("Breakout"))
+	else if (curArg.compare("Breakout\n") == 0)
 	{
-		//Deryk needs to do this.
+		TileManager::instance()->ReplaceTile(112, 128, STATIC, 112, 128, 16, 16, 305, 170, false);
+		TileManager::instance()->ReplaceTile(112, 112, STATIC, 112, 112, 16, 16, 220, 136, false);
+		
+		ColisionManager::instance()->RebuildColisionMap();
+
+		nextArg = true;
 	}
 }

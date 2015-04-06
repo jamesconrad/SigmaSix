@@ -289,16 +289,18 @@ void Enemy::update(float dTime)
 		animFrame = 0.f;
 	}
 
-
-	if (state == state_patrol && moving)
+	if (!frozen)
 	{
-		x += dTime * direction.x * (speed / 2.f);
-		y += dTime * direction.y * (speed / 2.f);
-	}
-	else if (moving)
-	{
-		x += dTime * direction.x * speed;
-		y += dTime * direction.y * speed;
+		if (state == state_patrol && moving)
+		{
+			x += dTime * direction.x * (speed / 2.f);
+			y += dTime * direction.y * (speed / 2.f);
+		}
+		else if (moving)
+		{
+			x += dTime * direction.x * speed;
+			y += dTime * direction.y * speed;
+		}
 	}
 
 	texture->setPosition(x,y);
@@ -339,39 +341,41 @@ RECT Enemy::getRect()
 
 void Enemy::updateAiState()
 {
-	if (entityType < 0)
+	if (!frozen)
 	{
-		if (hp < maxHP)
+		if (entityType < 0)
 		{
-			Runaway();
+			if (hp < maxHP)
+			{
+				Runaway();
+			}
+			else
+				Patrol();
+			return;
 		}
-		else
+		switch (state)
+		{
+		case state_attack:
+			Shoot();
+			break;
+		case state_passive:
+			if (hp < maxHP)
+				ChangeState(state_patrol, 100);
+			break;
+		case state_patrol:
 			Patrol();
-		return;
+			break;
+		case state_runaway:
+			Runaway();
+			break;
+		case state_heal:
+			Heal();
+			break;
+		case state_chase:
+			Chase();
+			break;
+		}
 	}
-	switch (state)
-	{
-	case state_attack:
-		Shoot();
-		break;
-	case state_passive:
-		if (hp < maxHP)
-			ChangeState(state_patrol, 100);
-		break;
-	case state_patrol:
-		Patrol();
-		break;
-	case state_runaway:
-		Runaway();
-		break;
-	case state_heal:
-		Heal();
-		break;
-	case state_chase:
-		Chase();
-		break;
-	}
-
 }
 
 void Enemy::Heal()

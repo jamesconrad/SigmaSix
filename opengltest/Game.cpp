@@ -415,6 +415,7 @@ void Game::update()
 		if (!script->Complete())
 		{
 			script->Update(updateTimer->getElapsedTimeMS());
+			Dialog::instance()->Update(updateTimer->getElapsedTimeMS(), entityManager->getCXofID(0), entityManager->getCYofID(0));
 		}
 		else
 		{

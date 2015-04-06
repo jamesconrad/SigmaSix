@@ -97,40 +97,43 @@ void Player::update(float dTime)
 	//update direction and movement
 	if (keysPressed['g']) this->Damage(1);
 	if (keysPressed['h']) hp++;
-	if (keysPressed[119])//w
+	if (!frozen)
 	{
-		y += dTime * speed;
-		direction.y = 1;
-		direction.x = 0;
-	}
-	if (keysPressed[97])//a
-	{
-		x -= dTime * speed;
-		direction.x = -1;
-		direction.y = 0;
-	}
-	if (keysPressed[100])//d
-	{
-		x += dTime * speed;
-		direction.x = 1;
-		direction.y = 0;
-	}
-	if (keysPressed[115])//s
-	{
-		y -= dTime * speed;
-		direction.y = -1;
-		direction.x = 0;
-	}
-	if (keysPressed[32])
-	{
-		if (lastShot >= 200.f && energy > 5)
+		if (keysPressed[119])//w
 		{
-			shoot();
-			lastShot = 0;
+			y += dTime * speed;
+			direction.y = 1;
+			direction.x = 0;
+		}
+		if (keysPressed[97])//a
+		{
+			x -= dTime * speed;
+			direction.x = -1;
+			direction.y = 0;
+		}
+		if (keysPressed[100])//d
+		{
+			x += dTime * speed;
+			direction.x = 1;
+			direction.y = 0;
+		}
+		if (keysPressed[115])//s
+		{
+			y -= dTime * speed;
+			direction.y = -1;
+			direction.x = 0;
+		}
+		if (keysPressed[32])
+		{
+			if (lastShot >= 200.f && energy > 5)
+			{
+				shoot();
+				lastShot = 0;
+			}
 		}
 	}
 
-	if (keysPressed[119] || keysPressed[97] || keysPressed[100] || keysPressed[115])
+	if (keysPressed[119] || keysPressed[97] || keysPressed[100] || keysPressed[115] && !frozen)
 	{
 		animFrame += dTime * (speed / 7.5f);
 		//set curAnim based on current direction;
@@ -145,7 +148,7 @@ void Player::update(float dTime)
 	}
 	if (Controller::instance()->Refresh())
 	{
-		if (sqrt(pow(Controller::instance()->leftStickX, 2) + pow(Controller::instance()->leftStickY, 2) >= 0.5))
+		if (sqrt(pow(Controller::instance()->leftStickX, 2) + pow(Controller::instance()->leftStickY, 2) >= 0.5) && !frozen)
 		{
 			direction.x = Controller::instance()->leftStickX;
 			direction.y = Controller::instance()->leftStickY;
@@ -160,7 +163,7 @@ void Player::update(float dTime)
 		}
 		else
 			gamepad_APressed = false;
-		if (sqrt(pow(Controller::instance()->rightStickX, 2) + pow(Controller::instance()->rightStickY, 2)) >= 0.75)
+		if (sqrt(pow(Controller::instance()->rightStickX, 2) + pow(Controller::instance()->rightStickY, 2)) >= 0.75 && !frozen)
 		{
 			Aim(Controller::instance()->rightStickX, Controller::instance()->rightStickY);
 			aiming = true;
@@ -178,7 +181,7 @@ void Player::update(float dTime)
 			else if (Controller::instance()->rightStickY < Controller::instance()->rightStickX && Controller::instance()->rightStickY < 0.f)
 				curAnim = 1;
 		}
-		else if (Controller::instance()->rightTrigger > 0.25f && lastShot >= 200.f && energy > 5)
+		else if (Controller::instance()->rightTrigger > 0.25f && lastShot >= 200.f && energy > 5 && !frozen)
 		{
 			shoot();
 			lastShot = 0;

@@ -66,7 +66,7 @@ TODO: (In order of priority)
 ||	X+	| Berserk		  ||--> done it just needs to be drawn and called
 ||	 +	| Rocket		  ||
 ||	X	| Lifesteal		  ||
-||	X	| HP+			  ||
+||	X+	| HP+			  ||
 ||	X	| Energy charge	  ||
 ||	X	| DMG+			  ||
 ||	X	| SPD+			  ||
