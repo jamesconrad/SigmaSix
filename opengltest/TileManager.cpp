@@ -265,6 +265,8 @@ void TileManager::ReplaceTile(float rX, float rY, tiletype tileType, float xPos,
 	else if (tileType == NON_STATIC)
 		tmpTile = new AnimTile(xPos, yPos, width, height, texX, texY, solid, texID, texW, texH, texSpacing, numFrames, animDelay);
 	tmpTile->ForceTexID(texID);
+	free(chunkVector[chunkNum].at(chunkPos));
 	tileVector->at(chunkPos) = tmpTile;
 	chunkVector.at(chunkNum).at(chunkPos)->MakePortal(mapTransitionID);
+	
 }

@@ -128,10 +128,12 @@ void EntityManager::HandleInput(char key, bool press)
 
 void EntityManager::DrawAll(float x, float y)
 {
-	for (int i = 0, size = entityVector.size(); i < size; i++)
+	for (int i = 1, size = entityVector.size(); i < size; i++)
 		entityVector[i]->draw();
 	for (int i = droppedItems.size() - 1; i >= 0; i--)
 		droppedItems[i]->drop->draw(0.25f);
+
+	entityVector[0]->draw();
 }
 
 void EntityManager::ModPosOfID(int id, vec2 mod)
