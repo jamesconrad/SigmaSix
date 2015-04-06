@@ -2,16 +2,12 @@ WARNINGS ARE NOW ERRORS
 DONT FUCKING ALLOW WARNINGS TO GO THROUGH
 
 CONRAD TODO:
-	Black lines yo.
-
-	Hit Markers
-
-	NPCs turn and face you when talking to.
 
 Deryk TODO:
 	Fix Menu
 	Add in sound effects
 	Add in the rest of the music
+	Add us into the game
 
 Baker TODO:
 	Finish adding in the rest of the drawing of items
