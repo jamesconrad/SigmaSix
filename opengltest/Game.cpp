@@ -455,6 +455,13 @@ void Game::update()
 		if (!script->Complete())
 		{
 			script->Update(updateTimer->getElapsedTimeMS());
+			if (Dialog::instance()->MoreText() && Controller::instance()->Refresh() && Controller::instance()->IsPressed(XINPUT_GAMEPAD_A) && delay < 0)
+			{
+				Dialog::instance()->Next();
+				delay = 250.f;
+			}
+
+			delay -= updateTimer->getElapsedTimeMS();
 			Dialog::instance()->Update(updateTimer->getElapsedTimeMS(), entityManager->getCXofID(0), entityManager->getCYofID(0));
 		}
 		else
