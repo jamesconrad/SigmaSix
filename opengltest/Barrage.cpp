@@ -7,6 +7,23 @@ Barrage::Barrage(Entity* own, float cd, float pR, float tSize,  float tduration)
 	size = tSize;
 	damage = own->getDamage();
 	duration = tduration;
+
+
+
+	icon = new Sprite;
+	aSprite = new Sprite;
+	Barrage::animDrawn = false;
+	icon->sheet = itemSheet->sheet;
+	icon->setNumberOfAnimations(1);
+	icon->setCurrentAnimation(0);
+	icon->setSpriteFrameSize(22, 19);
+	icon->addSpriteAnimFrame(0, 38, 107);
+
+	aSprite->sheet = itemSheet->sheet;
+	aSprite->setNumberOfAnimations(1);
+	aSprite->setCurrentAnimation(0);
+	aSprite->setSpriteFrameSize(37, 25);
+	aSprite->addSpriteAnimRow(0, -38, 131, 38, 0, 2);
 }
 
 
@@ -27,21 +44,13 @@ Update(float dTime)
 void Barrage::
 Activate()
 {
-	icon = new Sprite;
-	aSprite = new Sprite;
-	icon->sheet = itemSheet->sheet;
-	icon->setNumberOfAnimations(1);
-	icon->setCurrentAnimation(0);
-	icon->setSpriteFrameSize(16, 16);
-	icon->addSpriteAnimFrame(0, 20, 108);
-	//PUT STUFF HERE
+
 }
 
 
+/*
 
-
-void Barrage::
-OnHit(int projectileID)
+void Barrage::OnHit(int projectileID)
 {
 	if (nextShot = true)
 	{
@@ -59,7 +68,7 @@ OnHit(int projectileID)
 		}
 	}
 }
- 
+ */
 
 void Barrage::
 OnHit(vec2 location)
@@ -82,17 +91,18 @@ OnHit(vec2 location)
 
 void Barrage::
 OnFire()
-{/*
+{
 	if (nextShot = true)
 	{
 		nextShot = false;
 		cooldown = maxCooldown;
 		float dirX = owner->GetDirection().x;
 		float dirY = owner->GetDirection().y;
-		ProjectileManager::instance()->CreateProjectile(66, (owner->GetLocationX), (owner->getLocationY), dirX, dirY, damage, duration, 0, owner->GetIndex());
+	
+	//	ProjectileManager::instance()->CreateProjectile(66, (locX - i), (locY - j), 0, 0, damage, ProjDuration, 0, owner->GetIndex());
 
 	}
-	*/
+	
 }
 
 
