@@ -1,6 +1,6 @@
 //#include "Enemy.h"
 #include "MapLoader.h"
-#include "EntityManager.h"
+#include "ColisionManager.h"
 
 //	--ELITES--
 //		If alone refuses to run or heal
@@ -305,8 +305,14 @@ void Enemy::update(float dTime)
 			DropItems();
 			hasItem = false;
 			MapLoader::instance()->SaveFriend(entityType);
-			TileManager::instance()->ReplaceTile(144, 32, STATIC, 176, 32, 16, 16, 305, 153, true);
+			TileManager::instance()->ReplaceTile(144, 32, STATIC, 176, 32, 16, 16, 305, 153, false);
 			TileManager::instance()->CreatePortal(STATIC, 144, 32, 16, 16, 305, 153, true, 0);
+			ColisionManager::instance()->RebuildColisionMap();
+			/*
+			tileManager->CreatePortal(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 17, 0, true, 0);
+			tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 305, 153, true);
+			*/
+			//TileManager::instance()->CreatePortal(STATIC, 144, 32, 16, 16, 305, 153, true, 0);
 		}
 		else if (entityType == BOSS)
 		{
