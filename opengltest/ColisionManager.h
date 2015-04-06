@@ -25,12 +25,12 @@ public:
 		return instance;
 	}
 	void RebuildColisionMap();
-	void Update();
+	bool Update();
 	void DropItem(float x, float y, Item item);
 
 private:
 	ColisionManager();
-	void UpdateChunk(int chunkNum, int entityIter);
+	bool UpdateChunk(int chunkNum, int entityIter);
 	bool CheckAxis(RECT entPos, RotatedRectangle rRect, POINT axis);
 	POINT GetMinMax(POINT proj[4], POINT axis);
 	EntityManager* entityManager;

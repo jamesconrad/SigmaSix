@@ -468,7 +468,8 @@ void Game::update()
 
 				entityManager->Update(updateTimer->getElapsedTimeMS());
 				projectileManager->Update(updateTimer->getElapsedTimeMS());
-				colisionManager->Update();
+				if (colisionManager->Update())
+					updateTimer->tick();
 
 				fTime += updateTimer->getElapsedTimeSeconds();
 			}

@@ -54,7 +54,7 @@ void ColisionManager::RebuildColisionMap()
 	}
 }
 
-void ColisionManager::Update()
+bool ColisionManager::Update()
 {
 	if (mapNum == 0 && EntityManager::instance()->getHP(0) < EntityManager::instance()->getMaxHP(0))
 		EntityManager::instance()->entityVector[0]->ModHP(1);
@@ -66,18 +66,27 @@ void ColisionManager::Update()
 		entPos = entityManager->getRectOfID(entityIter);
 		int chunkNum = (int)((entPos.bottom / 15) / chunkW) * mapW + (int)((entPos.left / 15) / chunkW);
 		
-		UpdateChunk(chunkNum - mapW - 1, entityIter);
-		UpdateChunk(chunkNum - mapW, entityIter);
-		UpdateChunk(chunkNum - mapW + 1, entityIter);
+		if (UpdateChunk(chunkNum - mapW - 1, entityIter))
+			return true;
+		if (UpdateChunk(chunkNum - mapW, entityIter))
+		return true;
+		if (UpdateChunk(chunkNum - mapW + 1, entityIter))
+		return true;
 
-		UpdateChunk(chunkNum - 1, entityIter);
-		UpdateChunk(chunkNum, entityIter);
-		UpdateChunk(chunkNum + 1, entityIter);
+		if (UpdateChunk(chunkNum - 1, entityIter))
+			return true;
+		if (UpdateChunk(chunkNum, entityIter))
+			return true;
+		if (UpdateChunk(chunkNum + 1, entityIter))
+			return true;
 
-		UpdateChunk(chunkNum + mapW - 1, entityIter);
-		UpdateChunk(chunkNum + mapW, entityIter);
-		UpdateChunk(chunkNum + mapW + 1, entityIter);
-		
+		if (UpdateChunk(chunkNum + mapW - 1, entityIter))
+			return true;
+		if (UpdateChunk(chunkNum + mapW, entityIter))
+			return true;
+		if (UpdateChunk(chunkNum + mapW + 1, entityIter))
+			return true;
+
 
 		//Attempt #2 Fuck the seperating axis theorm
 		for (int projectileIter = projectileVectorPtr->size() - 1; projectileIter >= 0; projectileIter--)
@@ -137,6 +146,8 @@ void ColisionManager::Update()
 			}
 		}
 	}
+
+	return false;
 }
 
 bool ColisionManager::CheckAxis(RECT entPos, RotatedRectangle rRect, POINT axis)
@@ -203,7 +214,7 @@ POINT ColisionManager::GetMinMax(POINT proj[4], POINT axis)
 	return rVal;	
 }
 
-void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
+bool ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 {
 	vec2 mtd;
 	RECT entPos = entityManager->getRectOfID(entityIter);
@@ -237,7 +248,7 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 							mapNum = mapID;
 							RebuildColisionMap();
 							EntityManager::instance()->Update(0);
-							return;
+							return true;
 						}
 					}
 				}
@@ -284,4 +295,6 @@ void ColisionManager::UpdateChunk(int chunkNum, int entityIter)
 			}
 		}
 	}
+
+	return false;
 }
