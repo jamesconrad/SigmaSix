@@ -144,17 +144,6 @@ bool MapLoader::LoadMap(int mapID)
 
 	EntityManager::instance()->Update(0);
 
-	/*
-	if (mapID == 7)
-	{
-		Dialog::instance()->Say(PLAYER, 0);
-	}
-	else if (mapID == 0 && !hubIntro)
-	{
-		Dialog::instance()->Say(NEUTRAL2, 0);
-		hubIntro = true;
-	}
-	*/
 	if (mapID > 10)
 	{
 		entitytype et;
@@ -168,6 +157,11 @@ bool MapLoader::LoadMap(int mapID)
 		case 16: et = F6; break;
 		}
 		Dialog::instance()->Say(et, -1);
+	}
+	else if (mapID == 0 && !hubIntro)
+	{
+		Dialog::instance()->Say(NEUTRAL2, 0);
+		hubIntro = true;
 	}
 
 

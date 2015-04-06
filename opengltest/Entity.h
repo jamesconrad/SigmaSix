@@ -86,7 +86,7 @@ public:
 	virtual float getMaxHP() { return 0.f; }
 	virtual float getMaxEnergy() { return 0.f; }
 	virtual float getSpeed() { return 0.f; }
-	virtual void Freeze(bool status) { return; }
+	void Freeze(bool status) { frozen = status; }
 	virtual void OnHit(vec2 location);
 	virtual void OnHit();
 	virtual int GetIndex() { return 0; }
@@ -141,7 +141,7 @@ protected:
 	int curAnim;
 	float shotTimer;
 	int manIndex;
-	bool frozen; 
+	bool frozen = false; 
 	float lastShot, energyRegenCd;
 	bool keysPressed[256];
 	int lives;
