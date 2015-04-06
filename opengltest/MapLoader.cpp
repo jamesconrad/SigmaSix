@@ -28,7 +28,7 @@
 
 #define MAP_ID_7_POSITION {255,46,15,31} //Tutorial
 
-#define MAP_ID_9_POSITION {137,0,70,19} //Boss Path
+#define MAP_ID_9_POSITION {137,0,70,14} //Boss Path
 #define MAP_ID_10_POSITION {208,0,32,19} //Boss Room
 
 struct Rect
@@ -75,6 +75,8 @@ bool MapLoader::LoadMap(int mapID)
 	case 5: mapData = MAP_ID_5_POSITION; break;
 	case 6: mapData = MAP_ID_6_POSITION; break;
 	case 7: mapData = MAP_ID_7_POSITION; break;
+	case 9: mapData = MAP_ID_9_POSITION; break;
+	case 10: mapData = MAP_ID_10_POSITION; break;
 	case 11: mapData = MAP_ID_11_POSITION; break;
 	case 12: mapData = MAP_ID_12_POSITION; break;
 	case 13: mapData = MAP_ID_13_POSITION; break;

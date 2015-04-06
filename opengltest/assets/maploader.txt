@@ -12,22 +12,22 @@
 //Boss Portals
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 9 && Pixels[pos * 3 + 2] == 0)
 		{
-		tileManager->CreatePortal(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 17, 0, true, 0);
+		tileManager->CreatePortal(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 17, 0, true, 9);
 		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 305, 153, true);
 		}
-	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 9 && Pixels[pos * 3 + 2] == 0)
+	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 0 && Pixels[pos * 3 + 2] == 9)
 		{
 		tileManager->CreatePortal(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 17, 0, true, 0);
 		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 305, 153, true);
 		}
 	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 9 && Pixels[pos * 3 + 2] == 10)
 		{
-		tileManager->CreatePortal(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 17, 0, true, 0);
+		tileManager->CreatePortal(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 17, 0, true, 9);
 		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 305, 153, true);
 		}
-	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 10 && Pixels[pos * 3 + 2] == 0)
+	else if (Pixels[pos * 3 + 0] == 0 && Pixels[pos * 3 + 1] == 10 && Pixels[pos * 3 + 2] == 9)
 		{
-		tileManager->CreatePortal(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 17, 0, true, 0);
+		tileManager->CreatePortal(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 17, 0, true, 10);
 		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 305, 153, true);
 		}
 
@@ -747,6 +747,23 @@
 		entityManager->CreateEntity(BOSS, x * 16 - 0.0f * x, (mapData.h - y) * 16);
 	}
 
+	//Level 9 (Boss Path)
+
+	else if (Pixels[pos * 3 + 0] == 200 && Pixels[pos * 3 + 1] == 200 && Pixels[pos * 3 + 2] == 2)
+	{	
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 186, 17, false);
+		entityManager->CreateEntity(BOSS, x * 16 - 0.0f * x, (mapData.h - y) * 16);
+	}
+	else if (Pixels[pos * 3 + 0] == 149 && Pixels[pos * 3 + 1] == 149 && Pixels[pos * 3 + 2] == 6)
+	{	
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 186, 17, false);
+		entityManager->CreateEntity(PLAYER, x * 16 - 0.0f * x, (mapData.h - y) * 16);
+		}
+	else if (Pixels[pos * 3 + 0] == 149 && Pixels[pos * 3 + 1] == 149 && Pixels[pos * 3 + 2] == 5)
+	{	
+		tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 237, 136, false);
+		entityManager->CreateEntity(PLAYER, x * 16 - 0.0f * x, (mapData.h - y) * 16);
+		}
 	//Mini Boss Spawns
 
 	if (Pixels[pos * 3 + 0] == 231 && Pixels[pos * 3 + 1] == 231 && Pixels[pos * 3 + 2] == 231)
