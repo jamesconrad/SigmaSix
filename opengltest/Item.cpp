@@ -22,7 +22,7 @@ void Item::DrawItem(int i)
 {
 	if (draw)
 	{
-		icon->setPosition(owner->getCX() - 134.f + (18.f * i),owner->getCY() - 108.f);
+		icon->setPosition(owner->getCX() - 134.f + (10.f * i),owner->getCY() - 108.f);
 		icon->draw(0.5f);
 	}
 }
