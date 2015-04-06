@@ -3,6 +3,8 @@
 
 #include "Entity.h"
 
+#include "MapLoader.h"
+
 enum ai_state
 {
 	state_dead = -1,

@@ -29,6 +29,7 @@ public:
 	void freeTexture();
 	int GetCurrentMap() { return currentMap; }
 	bool hubIntro = false;
+	void SaveFriend(int level);
 private:
 	MapLoader();
 	ILubyte *Pixels;
@@ -37,6 +38,7 @@ private:
 	TileManager* tileManager;
 	EntityManager* entityManager;
 	bool mapLoaded;
+	bool saved[6];
 	int currentMap;
 };
 

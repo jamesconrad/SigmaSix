@@ -55,6 +55,8 @@ MapLoader::MapLoader()
 	tileManager = TileManager::instance();
 	entityManager = EntityManager::instance();
 	mapLoaded = false;
+	for (int i = 0; i < 6; i++)
+		saved[i] = false;
 }
 
 bool MapLoader::LoadMap(int mapID)
@@ -168,6 +170,13 @@ bool MapLoader::LoadMap(int mapID)
 	printf("%i",mapID);
 	mapLoaded = true;
 	return true;
+}
+
+void MapLoader::SaveFriend(int f)
+{
+	saved[f - 1] = true;
+
+
 }
 
 void RenderBackground()

@@ -304,6 +304,10 @@ void Enemy::update(float dTime)
 		state = state_dead;
 		w *= 0.5f;
 		h *= 0.5f;
+
+		if (entityType > 0 && entityType < 7)
+			MapLoader::instance()->SaveFriend(entityType);
+
 		if (hasItem)
 		{
 			DropItems();
