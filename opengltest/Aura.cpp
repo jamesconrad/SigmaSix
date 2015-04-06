@@ -6,7 +6,27 @@ Aura::Aura(Entity* own, float cd, float pR) :Item(own, cd, pR)
 	scaler = 2;
 	size = (own->getHP())*scaler;
 	damage = owner->getDamage();
-	return;
+
+	icon = new Sprite;
+	aSprite = new Sprite;
+	Aura::animDraw = false;
+	icon->sheet = itemSheet->sheet;
+	icon->setNumberOfAnimations(1);
+	icon->setCurrentAnimation(0);
+	icon->setSpriteFrameSize(38, 16);
+	icon->addSpriteAnimFrame(0, 0, 0);
+
+	aSprite->sheet = itemSheet->sheet;
+	aSprite->setNumberOfAnimations(1);
+	aSprite->setCurrentAnimation(0);
+	aSprite->setSpriteFrameSize(50, 50);
+	aSprite->addSpriteAnimRow(0, 0, 17, 51, 0, 9);
+	
+}
+
+void Aura::DrawAnim()
+{
+
 }
 
 //STILL WORKING ON THIS
@@ -30,20 +50,26 @@ void Aura::createProjectiles()
 
 void Aura::Update()
 {
-	
-	size = (owner->getMaxHP() - owner->getHP())*scaler;
-	
-	createProjectiles();
+	if (activated == true)
+	{
+		while (tElapsed < AbilityDuration)
+		{
+			Update();
+			tElapsed--;
+
+			size = (owner->getMaxHP() - owner->getHP())*scaler;
+
+			createProjectiles();
+		}
+	}
+	else
+		cooldown--;
+
 }
 
 void Aura::Activate()
 {
-	while (tElapsed < AbilityDuration)
-	{
-		Update();
-			tElapsed--;
-
-	}
+	cooldown = maxCooldown;
 	{
 		icon = new Sprite;
 		aSprite = new Sprite;

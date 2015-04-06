@@ -41,6 +41,7 @@ class Entity
 {
 public:
 
+	void setlowHP();
 
 	// Bonnie's shit Useless, do not touch just for math report
 	void mCollideWith(Entity other);
@@ -124,6 +125,9 @@ public:
 	void increaseNRG();
 
 	bool IsDeathAnimOver() { return (deathAnim <= 0); }
+
+	
+
 
 	float delay;
 	bool gamepad_APressed = false;

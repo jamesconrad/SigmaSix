@@ -31,6 +31,13 @@ void Entity::GiveItem(int itemId)
 	case 4:
 		inventory.push_back(new I_MaxHealthMod(this, 0, 1));
 		break;
+	case 5:
+		inventory.push_back(new Berserk(this, 0, 1, 3, 3));
+		break;
+	case 6:
+		inventory.push_back(new Barrage(this, 0, 1, 2, 1));
+		break;
+
 	case 10:
 		inventory.push_back(new I_Shield(this, 10, 0.1));
 		break;
@@ -55,6 +62,11 @@ void Entity::OnHit(vec2 location)
 	}
 
 
+}
+
+void Entity::setlowHP()
+{
+	hp = maxHP *.2;
 }
 
 void Entity::OnHit()

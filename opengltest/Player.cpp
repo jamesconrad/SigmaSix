@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "EnergyRegen.h"
+#include "Berserk.h"
 
 /*
 Sprite* texture;
@@ -56,7 +57,13 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	texture->setLayerID(1);
 	texture->setCurrentAnimation(0);
 
+
+
+	inventory.push_back(new Berserk(this, 0, 1, 3, 3));
+
 	}
+
+
 
 Player::~Player()
 {
