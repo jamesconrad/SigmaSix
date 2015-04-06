@@ -242,3 +242,29 @@ void TileManager::ReplaceTile(float rX, float rY, tiletype tileType, float xPos,
 	free(chunkVector[chunkNum].at(chunkPos));
 	chunkVector[chunkNum].at(chunkPos) = tmpTile;
 }
+
+void TileManager::ReplaceTile(float rX, float rY, tiletype tileType, float xPos, float yPos, float width, float height, float texX, float texY, bool solid, int mapTransitionID, int texSpacing, int numFrames, float animDelay)
+{
+	int chunkNum = (int)((yPos / height) / CHUNK_WIDTH) * MAP_WIDTH_IN_CHUNKS + (int)((xPos / width) / CHUNK_WIDTH);
+	int chunkPos = 0;
+
+	for (int i = chunkVector.at(chunkNum).size() - 1; i >= 0; i--)
+	{
+		RECT tmp = chunkVector[chunkNum].at(i)->GetRect();
+		if (tmp.left == rX && tmp.bottom == rY)
+		{
+			chunkPos = i;
+			break;
+		}
+	}
+
+	Tile* tmpTile;
+	std::vector<Tile*>* tileVector = &chunkVector[chunkNum];
+	if (tileType == STATIC)
+		tmpTile = new Tile(xPos, yPos, width, height, texX, texY, solid, texID, texW, texH);
+	else if (tileType == NON_STATIC)
+		tmpTile = new AnimTile(xPos, yPos, width, height, texX, texY, solid, texID, texW, texH, texSpacing, numFrames, animDelay);
+	tmpTile->ForceTexID(texID);
+	tileVector->at(chunkPos) = tmpTile;
+	chunkVector.at(chunkNum).at(chunkPos)->MakePortal(mapTransitionID);
+}

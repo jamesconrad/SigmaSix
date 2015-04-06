@@ -14,12 +14,12 @@
 #include "IL/ilu.h"
 #include "IL/ilut.h"
 #include "Sprite.h"
+#include "MapLoader.h"
 #include "HorizontalScrollingBackground.h"
 #include "Timer.h"
 #include <algorithm>
 #include <cmath>
 #include "Vector2.h"
-#include "MapLoader.h"
 #include "ColisionManager.h"
 #include "TileManager.h"
 #include "EntityManager.h"

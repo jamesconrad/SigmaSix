@@ -9,6 +9,7 @@ class Aura : public Item
 public:
 
 	Aura(Entity* own, float cd, float pR);
+	void DrawAnim();
 	virtual void Activate();
 	virtual void Update();
 	virtual void OnFire() { return; }
@@ -23,6 +24,7 @@ private:
 	float AbilityDuration;
 	float ProjDuration;
 	float tElapsed;
+	bool animDraw;
 
 };
 

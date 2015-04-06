@@ -3,6 +3,7 @@
 
 #include "Entity.h"
 
+
 enum ai_state
 {
 	state_dead = -1,
