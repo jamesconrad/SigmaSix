@@ -10,8 +10,8 @@ I_Shield::I_Shield(Entity* owner, float cooldown, float procRate) : Item(owner, 
 	icon->sheet = itemSheet->sheet;
 	icon->setNumberOfAnimations(1);
 	icon->setCurrentAnimation(0);
-	icon->setSpriteFrameSize(38, 16);
-	icon->addSpriteAnimFrame(0,0,0);
+	icon->setSpriteFrameSize(16, 16);
+	icon->addSpriteAnimFrame(0,167,109);
 
 	aSprite->sheet = itemSheet->sheet;
 	aSprite->setNumberOfAnimations(1);
