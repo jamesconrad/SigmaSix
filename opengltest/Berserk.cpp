@@ -2,15 +2,15 @@
 
 
 Berserk::
-Berserk(Entity* own, float cd, float pR, float dmgbuff, float rgnbuff) :Item(own, cd, pR)
+Berserk(Entity* own, float cd, float pR, float dmgbuff, float rgnbuff) : Item(own, cd, pR)
 {
 	DmgIncrease = dmgbuff;
 	RegenIncrease = rgnbuff;	
 	duration = 0;
-	maxDuration = 200.f;
+	maxDuration = 400;
 	maxCooldown = cd;
 	activated = false;
-	cooldown = maxCooldown;
+	
 
 	icon = new Sprite;
 	aSprite = new Sprite;
@@ -40,13 +40,13 @@ void Berserk::Activate()
 
 void Berserk::Update(float dtime)
 {
-	if (owner->getHP() <= owner->getMaxHP()*.2 && cooldown <= 0)
+	if (owner->getHP() <= owner->getMaxHP()*.3 && cooldown == 0)
 	{
 		activated = true;
 	}
 
 
-	if (duration > maxDuration)
+	if (duration >= maxDuration)
 	{
 		activated = false;
 		duration = 0;
@@ -55,14 +55,15 @@ void Berserk::Update(float dtime)
 
 	
 
-	if (activated = true)
+	if (activated)
 	{
 		owner->setlowHP();
 		owner->modDamage(2);
 		owner->increaseNRG();	
-		duration += dtime;
+		duration ++;
 		Berserk::animDrawn = false;
 		aSprite->setPosition(owner->getX() , owner->getY()+ 15);
+
 
 		anim += dtime;
 		if (anim > 100.f)
@@ -72,7 +73,13 @@ void Berserk::Update(float dtime)
 		}
 	}
 	else
-		cooldown -= dtime;
+	{
+		if (cooldown != 0)
+		{
+			cooldown--;
+		}
+	}
+		
 
 
 
