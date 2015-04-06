@@ -26,6 +26,7 @@ public:
 	}
 	void CreateEntity(entitytype entityType, float x, float y);
 	void DeleteEntity(int entityID);
+	void DropItems(int index);
 	void Update(float dTime);
 	void HandleInput(char key, bool press);
 	void DrawAll(float x, float y);

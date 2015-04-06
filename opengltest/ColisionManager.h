@@ -39,6 +39,7 @@ private:
 	MapLoader* mapLoader;
 	
 	int chunkW, mapW;
+	int mapNum;
 	std::vector<std::vector<Tile*>>* chunkVectorPtr;
 	std::vector<Projectile*>* projectileVectorPtr;
 	std::vector<std::vector<RECT>> colisionMap;
