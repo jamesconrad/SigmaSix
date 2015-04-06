@@ -1,15 +1,15 @@
 :1:
-Have you helped any of your friends yet? Or were you all talk.
+Have you helped any of your friends yet? 
+Or are you just planning on walking around the fountain?
 [0>200]
 ;
 
-:10:
-I didn't say anything. I'm just an old man.
+:10:Hm? Nothing. I'm just an old man. Don't mind me.
 [0>201]
 ;
 
 :0:
-Well, well, well. You're a new face around here.
+Well, well, well. Didn't expect to be seeing any new faces.
 Did you just come from the prison?
 [0>220]
 ;
@@ -22,13 +22,14 @@ did you have some friends with you?
 ;
 
 :3:
-I have. If you talk to the ladies wandering by the doors,
+I have. If you talk to those ladies wandering by the doors,
 they can tell you where your friends are.
 [0>222]
 ;
 
 :4:
-He's probably in his office, but fighting him is no joke.
+He's probably in his office, but fighting him is not going to be easy. 
+Especially not right now.
 [0>223]
 ;
 

@@ -11,7 +11,7 @@ Goodbye.
 
 //This is old man talk now (-2)
 :220:
-Yes... Where is this?
+Yeah... Where am I?
 [-2>2]
 ;
 
@@ -26,7 +26,9 @@ What about Dr.Douche?
 ;
 
 :223:
-I'll be the one to decide that.
+Wait that's ACTUALLY his NAME?
+Pffft.. Ahem.. anyways.
+I'll be the one to decide when I can fight him.
 [-2>5]
 ;
 
@@ -40,7 +42,7 @@ Excuse you?
 ;
 //Blue hair girl now (-1)
 :110:
-What's behind the first door?
+Hey! What's behind the first door?
 [-1>2]
 ;
 
@@ -65,7 +67,7 @@ About that fourth door...
 ;
 
 :311:
-And the fifth?
+And the fifth one?
 [-3>3]
 ;
 
@@ -75,7 +77,7 @@ What will I find behind the sixth?
 ;
 
 :313:
-Huh... Thanks, I guess.
+Hm... Thanks.
 ;
 
 //Tutorial
@@ -90,14 +92,13 @@ Where am I?
 ;
 
 :1001:
-UGH.
-The floor is disgusting!
+Wha-- EW.
+This floor is disgusting!
 [100>1000]
 ;
 
 :1002:
-That is... Too much information.
-Hey! Let me out!
+Whatever! Just let me out!
 [100>1001]
 ;
 
@@ -107,12 +108,13 @@ You son of a-
 ;
 
 :1004:
-... I want to kill him...
+... I'm going to kill him...
 But first, where is everyone else?
 I should get out of here and look for them.
 ;
 
 :1100:
+Huh...
 Alright...
 That was convenient.
 Let's go rescue my friends.
