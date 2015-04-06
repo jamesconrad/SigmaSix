@@ -31,16 +31,7 @@ Berserk(Entity* own, float cd, float pR, float dmgbuff, float rgnbuff) :Item(own
 void Berserk::Activate()
 {
 // fix this shit already baker ._.
-	if (hp / getMaxHP < 0.20)
-		Activate;
-	if (Activate)
-		hp = maxhp*0.2
-		damage = 500
-		energy = maxenergy;
-	else
-		damage = damagebefore Activate
-		activated = true;
-		cooldown = maxCooldown;
+
 }
 
 
