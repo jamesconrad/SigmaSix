@@ -50,6 +50,7 @@ public:
 	float relativeVelocityX(Entity other);
 	float relativeVelocityY(Entity other);
 	void collideNonMovingWithMoving(Entity other);
+	void setVelocity();
 
 
 
@@ -175,6 +176,7 @@ public:
 protected:
 	float cooldown, procRate, maxCooldown, anim;
 	bool activated;
+	bool draw = true;
 	Sprite* icon;
 	Sprite* aSprite;
 	Entity* owner;

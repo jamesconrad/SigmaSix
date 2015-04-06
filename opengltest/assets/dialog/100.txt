@@ -2,12 +2,13 @@
 
 
 :1000:
-Naturally! That is where I do my dirtiest of activities.
+Honestly, what did you expect? It's a cell. In a dungeon.
+I'm not exactly sending my housekeeper to clean the place.
 [0>1002]
 ;
 
 :1001:
-No. This wouldn't be a very long game if I just let you out.
+This game wouldn't be very long if I just opened your cell door for you.
 [0>1003]
 ;
 

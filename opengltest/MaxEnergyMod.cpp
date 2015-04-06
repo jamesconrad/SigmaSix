@@ -14,7 +14,7 @@ I_MaxEnergyMod::I_MaxEnergyMod(Entity* owner, float cooldown, float procRate) : 
 		icon->setNumberOfAnimations(1);
 		icon->setCurrentAnimation(0);
 		icon->setSpriteFrameSize(16, 17);
-		icon->addSpriteAnimFrame(0, 62, 388);
+		icon->addSpriteAnimFrame(0, 62, 108);
 	}
 
 }

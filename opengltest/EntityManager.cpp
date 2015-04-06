@@ -71,7 +71,7 @@ void EntityManager::DropItems(int index)
 	{
 		if (val < 0.15)
 		{
-			di->itemId = 0;
+			di->itemId = rand() % 5;
 			di->qual = 1;
 		}
 	}
@@ -79,13 +79,13 @@ void EntityManager::DropItems(int index)
 	{
 		if (val < 0.5)
 		{
-			di->itemId = 0;
+			di->itemId = rand() % 2 + 10;
 			di->qual = 2;
 		}
 	}
 	else if (t == BOSS || (t >= MINIBOSS1 && t <= MINIBOSS6))
 	{
-		di->itemId = 0;
+		di->itemId = 0 + 100;
 		di->qual = 3;
 	}
 
