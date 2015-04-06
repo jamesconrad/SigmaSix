@@ -58,8 +58,7 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	texture->setCurrentAnimation(0);
 
 
-	GiveItem(5);
-	inventory.push_back(new Berserk(this, 0, 1, 3, 3));
+		inventory.push_back(new Berserk(this, 0, 1, 3, 3));
 
 	}
 
