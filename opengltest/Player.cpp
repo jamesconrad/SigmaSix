@@ -59,7 +59,7 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 
 
 
-	GiveItem(5);
+
 
 	}
 
