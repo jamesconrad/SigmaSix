@@ -77,6 +77,7 @@ void Player::draw()
 		inventory[i]->DrawItem(i);
 }
 
+
 void Player::update(float dTime)
 {
 	if (hp <= 0)
