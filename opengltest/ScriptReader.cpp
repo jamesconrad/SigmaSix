@@ -49,6 +49,9 @@ void Script::Update(float dTime)
 
 	if (Dialog::instance()->MoreText())
 		return;
+	
+	if (Controller::instance()->Refresh() && Controller::instance()->IsPressed(XINPUT_GAMEPAD_A))
+		Dialog::instance()->Next();
 
 	if (nextArg)
 	{
