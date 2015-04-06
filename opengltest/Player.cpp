@@ -1,6 +1,5 @@
 #include "Player.h"
-#include "SoundSystem.h"
-
+#include "EnergyRegen.h"
 
 /*
 Sprite* texture;
@@ -10,6 +9,7 @@ vec2 direction, movement;
 */
 Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, float _y)
 {
+	inventory.push_back(new I_EnergyRegen(this, 0, 1));
 	texture = new Sprite;
 	projectileManager = projManager;
 	direction = vec2(0, -1);
@@ -55,7 +55,8 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	texture->addSpriteAnimFrame(8, 0, 377);
 	texture->setLayerID(1);
 	texture->setCurrentAnimation(0);
-}
+
+	}
 
 Player::~Player()
 {
@@ -276,11 +277,6 @@ void Player::shoot()
 	{
 		energy -= 5;
 		projectileManager->CreateProjectile(0, getCX(), getCY() + 0.5f * direction.x, direction.x, direction.y, damage, 3000.f, 0.2f, 0);
-		SoundSystemClass::instance()->PlayLaser();
-
-
-
-
 		for (int i = 0, s = inventory.size(); i < s; i++)
 			inventory[i]->OnFire();
 	}

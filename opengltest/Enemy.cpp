@@ -302,6 +302,8 @@ void Enemy::update(float dTime)
 		deathAnim -= dTime;
 		texture->setSpriteFrameSize(w, h);
 		state = state_dead;
+		w *= 0.5f;
+		h *= 0.5f;
 		if (hasItem)
 		{
 			DropItems();
@@ -333,8 +335,11 @@ void Enemy::draw()
 
 	if (entityType >= 0 || hp < maxHP)
 	{
-		hpBG->draw(0.25f);
-		hpBar->draw(0.25f);
+		if (hp > 0)
+		{
+			hpBG->draw(0.25f);
+			hpBar->draw(0.25f);
+		}
 	}
 }
 
