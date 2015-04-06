@@ -15,17 +15,16 @@ void Entity::GiveItem(int itemId)
 {
 	switch (itemId)
 	{
-	case 0:
+	case 10:
 		inventory.push_back(new I_Shield(this, 10, 0.1));
 		break;
-	case 1:
-		inventory.push_back(new Aura(this, 10, 0.1));
+	case 11:
+		inventory.push_back(new I_LifeSteal(this, 0, 1));
 		break;
-	case 3:
-		inventory.push_back(new Berserk(this, 10, 0.1, 4, 3));
-		break;
-	case 4:
-		inventory.push_back(new Barrage(this, 10, 0.1, 4, 1));
+
+	default:
+		inventory.push_back(new I_Shield(this, 10, 0.1));
+		printf("ERROR: Invalid Item ID: %i", itemId);
 		break;
 	}
 }
