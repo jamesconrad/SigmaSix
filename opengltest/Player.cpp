@@ -1,7 +1,5 @@
 #include "Player.h"
-#include "EnergyRegen.h"
-#include "Berserk.h"
-
+#include "SoundSystem.h"
 /*
 Sprite* texture;
 int hp, energy, energyRegen, damage;
@@ -10,7 +8,6 @@ vec2 direction, movement;
 */
 Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, float _y)
 {
-	inventory.push_back(new I_EnergyRegen(this, 0, 1));
 	texture = new Sprite;
 	projectileManager = projManager;
 	direction = vec2(0, -1);
@@ -291,6 +288,7 @@ void Player::shoot()
 	{
 		energy -= 5;
 		projectileManager->CreateProjectile(0, getCX(), getCY() + 0.5f * direction.x, direction.x, direction.y, damage, 3000.f, 0.2f, 0);
+		SoundSystemClass::instance()->PlayLaser(true);
 		for (int i = 0, s = inventory.size(); i < s; i++)
 			inventory[i]->OnFire();
 	}
@@ -311,6 +309,7 @@ void Player::shoot(float _x, float _y)
 	{
 		energy -= 5;
 		projectileManager->CreateProjectile(0, getCX() - 2.f, getCY() - 6.f, _x, _y, damage, 3000.f, 0.2f, 0);
+		SoundSystemClass::instance()->PlayLaser(true);
 		for (int i = 0, s = inventory.size(); i < s; i++)
 			inventory[i]->OnFire();
 	}
