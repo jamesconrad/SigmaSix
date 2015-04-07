@@ -1,3 +1,4 @@
+#pragma once
 #include "Entity.h"
 
 
@@ -6,10 +7,9 @@ class Grenade :public Item
 {
 public:
 	Grenade(Entity* own, float cd, float pR, float damage);
-	void Activate() { return; }
+	void Activate() override;
 	void Update(float dTime);
 	void OnHit(vec2 location);
-	void DrawItem(int i) { return; }
 	void DrawAnim(){
 		if (!animDrawn && activated)
 		{
@@ -18,10 +18,9 @@ public:
 		}
 		return;
 	}
-	void checks();
+	
 
-
-protected:
+private:
 
 	static bool animDrawn;
 	float duration;

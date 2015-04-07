@@ -19,7 +19,7 @@ Berserk(Entity* own, float cd, float pR, float dmgbuff, float rgnbuff) : Item(ow
 	icon->setNumberOfAnimations(1);
 	icon->setCurrentAnimation(0);
 	icon->setSpriteFrameSize(22, 19);
-	icon->addSpriteAnimFrame(0, 38, 107);
+	icon->addSpriteAnimFrame(0, 37, 107);
 
 	aSprite->sheet = itemSheet->sheet;
 	aSprite->setNumberOfAnimations(1);
@@ -30,30 +30,22 @@ Berserk(Entity* own, float cd, float pR, float dmgbuff, float rgnbuff) : Item(ow
 }
 
 
-void Berserk::Activate()
-{
 
-
-	
-}
 
 
 void Berserk::Update(float dtime)
 {
+
 	if (owner->getHP() <= owner->getMaxHP()*.3 && cooldown == 0)
 	{
 		activated = true;
 	}
-
-
 	if (duration >= maxDuration)
 	{
 		activated = false;
 		duration = 0;
 		cooldown = maxCooldown;
-	}
-
-	
+	}	
 
 	if (activated)
 	{

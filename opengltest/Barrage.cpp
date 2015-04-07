@@ -24,6 +24,9 @@ Barrage::Barrage(Entity* own, float cd, float pR, float tSize,  float tduration)
 	aSprite->setCurrentAnimation(0);
 	aSprite->setSpriteFrameSize(37, 25);
 	aSprite->addSpriteAnimRow(0, -38, 131, 38, 0, 2);
+
+
+
 }
 
 

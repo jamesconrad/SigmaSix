@@ -37,7 +37,7 @@ void Entity::GiveItem(int itemId)
 		inventory.push_back(new Barrage(this, 0, 1, 2, 1));
 		break;
 	case 7:
-		inventory.push_back(new Grenade(this, 400, 2, 4));
+		inventory.push_back(new Grenade(this, 400, 1, 4));
 		break;
 	case 10:
 		inventory.push_back(new I_Shield(this, 10, 0.1));
@@ -60,12 +60,9 @@ void Entity::OnHit(vec2 location)
 {
 	for (int i = 0, s = inventory.size(); i < s; i++)
 	{
-		
-			inventory[i]->OnHit(location);
-	
+		inventory[i]->OnHit(location);
 	}
-
-
+	
 }
 
 void Entity::setlowHP()
@@ -87,6 +84,6 @@ void Entity::OnHit()
 }
 void Entity::increaseNRG()
 {
-	energy = energy + 1;
+	energy = maxEnergy;
 
 }
