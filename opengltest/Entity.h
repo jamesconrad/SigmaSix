@@ -87,7 +87,7 @@ public:
 	virtual float getCY() { return 0.f; }
 	virtual float getHP() { return 0.f; }
 	float getEnergy() { return energy; }
-	virtual float getMaxHP() { return 0.f; }
+	float getMaxHP() { return maxHP; }
 	float getMaxEnergy() { return maxEnergy; }
 	virtual float getSpeed() { return 0.f; }
 	void Freeze(bool status) { frozen = status; }
@@ -112,7 +112,7 @@ public:
 	void GiveItem(int itemId);//
 	int GetLives() { return lives; }//
 	void ModLives(int mod) { lives += mod; deathAnim = 2000.f; }//
-	void ModHP(int mod) { hp += mod; }//
+	virtual void ModHP(int mod) { hp += mod; }//
 
 	int GetCollidingID(){ return 1; }
 	vec2 GetDirection(){ return direction; }
