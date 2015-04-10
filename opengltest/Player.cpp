@@ -53,10 +53,6 @@ Player::Player(ProjectileManager* projManager, SpriteSheetInfo bar, float _x, fl
 	texture->addSpriteAnimFrame(8, 0, 377);
 	texture->setLayerID(1);
 	texture->setCurrentAnimation(0);
-
-
-	//GiveItem(7);
-	//GiveItem(100);
 }
 
 

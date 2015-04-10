@@ -1,7 +1,7 @@
 :1:
 Have you helped any of your friends yet? 
 Or are you just planning on walking around the fountain?
-[0>200]
+
 ;
 
 :10:Hm? Nothing. I'm just an old man. Don't mind me.

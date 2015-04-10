@@ -305,6 +305,8 @@ void Game::drawSprites()
 	energyBar->setPosition(entityManager->getCXofID(0) - (100 - 57.5), entityManager->getYofID(0) - (60.25 + 10));
 	energyBar->draw(0.25);
 
+	printf("q");
+
 	energyFlash->setPosition(entityManager->getCXofID(0) - (100 - 53.5), entityManager->getYofID(0) - (60.25 + 11));
 
 	if ((float)entityManager->getEnergy(0) / (float)entityManager->getMaxEnergy(0) < 0.33)

@@ -64,7 +64,7 @@ public:
 	void Aim(float normX, float normY);
 	void shoot(float x, float y);
 
-	
+	void ModHP(int mod) { hp += mod; }
 
 private:
 	vec2 aimDir;
