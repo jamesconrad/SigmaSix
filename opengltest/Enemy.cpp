@@ -82,7 +82,7 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		damage = 20;
 		speed /= 2;
 		texture->loadSpriteSheet("assets/npc1.png");
-		texture->setSpriteFrameSize(w, h);
+		texture->setSpriteFrameSize(w, h);/*
 		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
 		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
 		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
@@ -90,9 +90,17 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
 		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
 		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
-		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
+		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);*/
 
-		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+		texture->addSpriteAnimFrame(0, 0, 1);
+		texture->addSpriteAnimFrame(1, 0, 48);
+		texture->addSpriteAnimFrame(2, 0, 95);
+		texture->addSpriteAnimFrame(3, 0, 142);
+		texture->addSpriteAnimFrame(4, 0, 1);
+		texture->addSpriteAnimFrame(5, 0, 48);
+		texture->addSpriteAnimFrame(6, 0, 95);
+		texture->addSpriteAnimFrame(7, 0, 142);
+		texture->addSpriteAnimFrame(8, 0, 189);
 	}
 	else if (entityType == NEUTRAL2)
 	{
@@ -103,17 +111,16 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		damage = 20;
 		speed /= 2;
 		texture->loadSpriteSheet("assets/npc2.png");
-		texture->setSpriteFrameSize(w, h);
-		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
-		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
-		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
-		texture->addSpriteAnimRow(7, 0, 142, w + 1, 0, 4);
-		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
-		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
-		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
-		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
 
-		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+		texture->addSpriteAnimFrame(0, 0, 1);
+		texture->addSpriteAnimFrame(1, 0, 48);
+		texture->addSpriteAnimFrame(2, 0, 95);
+		texture->addSpriteAnimFrame(3, 0, 142);
+		texture->addSpriteAnimFrame(4, 0, 1);
+		texture->addSpriteAnimFrame(5, 0, 48);
+		texture->addSpriteAnimFrame(6, 0, 95);
+		texture->addSpriteAnimFrame(7, 0, 142);
+		texture->addSpriteAnimFrame(8, 0, 189);
 	}
 	else if (entityType == NEUTRAL3)
 	{
@@ -124,17 +131,17 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		damage = 20;
 		speed /= 2;
 		texture->loadSpriteSheet("assets/npc3.png");
-		texture->setSpriteFrameSize(w, h);
-		texture->addSpriteAnimRow(4, 0, 1, w + 1, 0, 4);
-		texture->addSpriteAnimRow(5, 0, 48, w + 1, 0, 4);
-		texture->addSpriteAnimRow(6, 0, 95, w + 1, 0, 4);
-		texture->addSpriteAnimRow(7, 0, 142, w + 1, 0, 4);
-		texture->addSpriteAnimRow(0, 0, 189, w + 1, 0, 4);
-		texture->addSpriteAnimRow(1, 0, 236, w + 1, 0, 4);
-		texture->addSpriteAnimRow(2, 0, 283, w + 1, 0, 4);
-		texture->addSpriteAnimRow(3, 0, 330, w + 1, 0, 4);
-
-		texture->addSpriteAnimRow(8, 0, 189, w + 1, 47, 4);
+		texture->setSpriteFrameSize(w, h); 
+		
+		texture->addSpriteAnimFrame(0, 0, 1);
+		texture->addSpriteAnimFrame(1, 0, 48);
+		texture->addSpriteAnimFrame(2, 0, 95);
+		texture->addSpriteAnimFrame(3, 0, 142);
+		texture->addSpriteAnimFrame(4, 0, 1);
+		texture->addSpriteAnimFrame(5, 0, 48);
+		texture->addSpriteAnimFrame(6, 0, 95);
+		texture->addSpriteAnimFrame(7, 0, 142);
+		texture->addSpriteAnimFrame(8, 0, 189);
 	}
 	else if (entityType == BOSS)
 	{
@@ -319,6 +326,15 @@ void Enemy::update(float dTime)
 			tileManager->CreateTile(STATIC, x * 16 - 0.0f * x, (mapData.h - y) * 16, 16, 16, 305, 153, true);
 			*/
 			//TileManager::instance()->CreatePortal(STATIC, 144, 32, 16, 16, 305, 153, true, 0);
+		}
+		else if (entityType < 0 && entityType > -10)
+		{
+			texture->setCurrentAnimation(8);
+			w = 64;
+			h = 32;
+			texture->setSpriteFrameSize(w, h);
+			w *= 0.5f;
+			h *= 0.5f;
 		}
 		else if (entityType == BOSS)
 		{

@@ -9,10 +9,10 @@
 #include <iostream>
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include "GL/glut.h"
-#include "IL/il.h"
-#include "IL/ilu.h"
-#include "IL/ilut.h"
+#include <GL/glut.h>
+#include <IL/il.h>
+#include <IL/ilu.h>
+#include <IL/ilut.h>
 
 #include <string>
 
