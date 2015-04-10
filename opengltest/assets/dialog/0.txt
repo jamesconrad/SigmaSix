@@ -114,8 +114,7 @@ I should get out of here and look for them.
 ;
 
 :1100:
-Huh...
-Alright...
+Huh... Alright...
 That was convenient.
 Let's go rescue my friends.
 ;

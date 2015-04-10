@@ -58,12 +58,12 @@ TODO: (In order of priority)
 ++------------------------++
 ||	X+	| Shield		  ||
 ||	X+	| Expanding Aura  ||-->	Bonnyman
-||		| Stun			  ||	Double check your projectile code. You may have to make a few changes to the projectile class inorder to make it work the way it needs to.
+||	 +	| Stun			  ||	Double check your projectile code. You may have to make a few changes to the projectile class inorder to make it work the way it needs to.
 ||		| Constant AOE	  ||	Should create one projectile every frame with the width and height of the desired aura size. Ask Ashley for art assets when you are ready to put them in.
 ||	X+	| Laser			  ||	Bonny: I was just going to have it leave mine like projectiles on the ground, also I have the duration set so it can last for one frame if you want it too.
 ||	X+	| Berserk		  ||--> done it just needs to be drawn and called
 ||	 +	| Rocket		  ||
-||	X	| Lifesteal		  ||
+||	X+	| Lifesteal		  ||
 ||	X+	| HP+			  ||
 ||	X	| Energy charge	  ||
 ||	X	| DMG+			  ||
