@@ -111,6 +111,7 @@ Enemy::Enemy(ProjectileManager* projMan, EntityManager* entityMan, SpriteSheetIn
 		damage = 20;
 		speed /= 2;
 		texture->loadSpriteSheet("assets/npc2.png");
+		texture->setSpriteFrameSize(w, h);
 
 		texture->addSpriteAnimFrame(0, 0, 1);
 		texture->addSpriteAnimFrame(1, 0, 48);
